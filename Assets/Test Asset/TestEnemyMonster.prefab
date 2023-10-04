@@ -125,4 +125,19 @@ MonoBehaviour:
     attack: 3
     attackDistance: 0
     attackInterval: 0
+    constantLoad:
+      raiseRate: 0
+      impactTime: 0
+    spawnLoad:
+      raiseRate: 0
+      impactTime: 0
+    attackLoad:
+      raiseRate: 0
+      impactTime: 0
+    DestroyLoad:
+      raiseRate: 0
+      impactTime: 0
+  status: 0
   damageText: {fileID: 0}
+  initMaterial: {fileID: 2100000, guid: b86c2bb7984a9c848bec9fc7a67daa93, type: 2}
+  debugMaterial: {fileID: 2100000, guid: cc81d399fe3e2874ebc631442d6d94ec, type: 2}

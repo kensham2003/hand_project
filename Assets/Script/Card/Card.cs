@@ -24,11 +24,20 @@ public class Card : MonoBehaviour
     
     protected Image image;
 
+    //imageの初期サイズ
+    Vector2 imageInitSize;
+    //imageのホバーしているときのサイズ
+    Vector2 imageHorverSize;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
         initPos = GetComponent<RectTransform>().anchoredPosition;
         image = GetComponent<Image>();
+
+
+        imageInitSize = GetComponent<RectTransform>().sizeDelta;
+        imageHorverSize = GetComponent<RectTransform>().sizeDelta * 2;
     }
 
     // Update is called once per frame
@@ -51,7 +60,9 @@ public class Card : MonoBehaviour
 
         if(horverd)
         {
-           
+           //画像の大きさ変更
+           GetComponent<RectTransform>().sizeDelta = imageHorverSize;
+
             if(Input.GetMouseButton(0))
             {
                 press();
@@ -62,6 +73,11 @@ public class Card : MonoBehaviour
             }
 
             
+        }
+        else
+        {
+            //画像の大きさ変更
+           GetComponent<RectTransform>().sizeDelta = imageInitSize;
         }
         
         if(pressed)

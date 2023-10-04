@@ -13,13 +13,15 @@ public class PlayerMonster : Monster
     // Start is called before the first frame update
     public override void Start()
     {
+        base.Start();
         mainCamera = Camera.main;
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        
+        base.Update();
+
         //画面チェック
         if(DetectEnemiesInScreen())
         {
@@ -39,13 +41,9 @@ public class PlayerMonster : Monster
             }
             //攻撃中じゃなければ攻撃
             else if(attackFlag == false)
-            {
-                
+            {                
                 Invoke("Action",paramerter.attackInterval);
 
-                //デバッグ用ダメージ演出
-                GameObject spawnText = Instantiate(damageText,target.transform.position + new Vector3( 0.0f, 3.0f, 0.0f), Quaternion.identity);
-                spawnText.GetComponent<TextMeshPro>().text = paramerter.attack.ToString();
                 attackFlag = true;
             }
            
@@ -65,6 +63,10 @@ public class PlayerMonster : Monster
         {
             target.GetComponent<EnemyMonster>().ChangeHP(paramerter.attack);
             attackFlag = false;
+
+            //デバッグ用ダメージ演出
+            GameObject spawnText = Instantiate(damageText,target.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+            spawnText.GetComponent<TextMeshPro>().text = paramerter.attack.ToString();
 
             target = null;
         }
