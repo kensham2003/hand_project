@@ -118,11 +118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55069b7af515c9744a355a5bb143cb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
-  speed: 3
-  monsterID: 0
-  attack: 10
-  attackDistance: 1
-  attackInterval: 1
+  paramerter:
+    hp: 10
+    speed: 3
+    monsterID: 0
+    attack: 5
+    attackDistance: 1
+    attackInterval: 1
   damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
   objectsInView: []

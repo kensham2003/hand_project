@@ -32,20 +32,20 @@ public class PlayerMonster : Monster
              //ターゲットの距離
             float targetDistance = Vector3.Distance(target.transform.position,transform.position);
 
-            if(attackDistance < targetDistance)
+            if(paramerter.attackDistance < targetDistance)
             {
                 //ターゲット移動
-                transform.position += speed * moveVec * Time.deltaTime;
+                transform.position += paramerter.speed * moveVec * Time.deltaTime;
             }
             //攻撃中じゃなければ攻撃
             else if(attackFlag == false)
             {
                 
-                Invoke("Action",attackInterval);
+                Invoke("Action",paramerter.attackInterval);
 
                 //デバッグ用ダメージ演出
                 GameObject spawnText = Instantiate(damageText,target.transform.position + new Vector3( 0.0f, 3.0f, 0.0f), Quaternion.identity);
-                spawnText.GetComponent<TextMeshPro>().text = attack.ToString();
+                spawnText.GetComponent<TextMeshPro>().text = paramerter.attack.ToString();
                 attackFlag = true;
             }
            
@@ -54,7 +54,7 @@ public class PlayerMonster : Monster
         else
         {
             //前進
-            transform.position += speed * transform.forward * Time.deltaTime;
+            transform.position += paramerter.speed * transform.forward * Time.deltaTime;
         }
     }
 
@@ -63,8 +63,10 @@ public class PlayerMonster : Monster
     {
         if(target == true)
         {
-            target.GetComponent<EnemyMonster>().ChangeHP(attack);
+            target.GetComponent<EnemyMonster>().ChangeHP(paramerter.attack);
             attackFlag = false;
+
+            target = null;
         }
         
     }

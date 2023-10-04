@@ -2,20 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public enum Status
+{
+    idle,
+    attack,
+    death
+}
+
+//CPU負荷単位
+[System.Serializable]
+public struct  CPULoad
+{
+    //上昇率
+    public float raiseRate;
+    //影響時間
+    public float impactTime;
+}
+
+[System.Serializable]
+public struct  MonsterParamerter
 {
     //体力
-    [SerializeField] protected int hp;
+    public int hp;
     //速度
-    [SerializeField] protected float speed;
+    public float speed;
     //ID
-    [SerializeField] protected int monsterID;
+    public int monsterID;
     //攻撃力
-    [SerializeField] protected int attack;
+    public int attack;
     //攻撃距離
-    [SerializeField] protected int attackDistance;
+    public int attackDistance;
     //攻撃間隔
-    [SerializeField] protected float attackInterval;
+    public float attackInterval;
+
+    //CPU系
+    //常時
+    public CPULoad constantLoad;
+    //出現
+    public CPULoad spawnLoad;
+    //攻撃
+    public CPULoad attackLoad;
+    //消失
+    public CPULoad DestroyLoad;
+
+
+}
+
+public class Monster : MonoBehaviour
+{
+    //モンスターのパラメーター
+    [SerializeField] public MonsterParamerter paramerter;
+    //モンスターのステータス
+    [SerializeField] public Status status;
     //攻撃しているかのフラグ
     protected bool attackFlag;
     //攻撃するターゲット
@@ -42,13 +80,11 @@ public class Monster : MonoBehaviour
 
     public void ChangeHP(int val)
     {
-        hp -= val;
+        paramerter.hp -= val;
 
-        Debug.Log(val);
-
-        if(hp < 0)
+        if(paramerter.hp < 0)
         {
-            hp = 0;
+            paramerter.hp = 0;
             Death();
         }
     }

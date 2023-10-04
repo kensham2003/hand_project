@@ -14,6 +14,6 @@ public class EnemyMonster : Monster
     public override void Update()
     {
         //前進
-        transform.position -= speed * transform.forward * Time.deltaTime;
+        transform.position -= paramerter.speed * transform.forward * Time.deltaTime;
     }
 }
