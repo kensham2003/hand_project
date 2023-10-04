@@ -14,6 +14,14 @@ public class Monster : MonoBehaviour
     [SerializeField] protected int attack;
     //攻撃距離
     [SerializeField] protected int attackDistance;
+    //攻撃間隔
+    [SerializeField] protected float attackInterval;
+    //攻撃しているかのフラグ
+    protected bool attackFlag;
+    //攻撃するターゲット
+    protected GameObject target;
+     //デバッグ用ダメージ演出オブジェクト
+    [SerializeField] protected GameObject damageText;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -32,9 +40,11 @@ public class Monster : MonoBehaviour
         
     }
 
-    void ChangeHP(int val)
+    public void ChangeHP(int val)
     {
         hp -= val;
+
+        Debug.Log(val);
 
         if(hp < 0)
         {

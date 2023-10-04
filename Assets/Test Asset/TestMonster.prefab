@@ -121,6 +121,8 @@ MonoBehaviour:
   hp: 0
   speed: 3
   monsterID: 0
-  attack: 0
+  attack: 10
   attackDistance: 1
+  attackInterval: 1
+  damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
   objectsInView: []

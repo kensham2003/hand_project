@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 599639917257512408}
   - component: {fileID: 4146233356194724103}
   - component: {fileID: 1575944783445659544}
+  - component: {fileID: 4618585785549219545}
   m_Layer: 0
   m_Name: TestEnemyMonster
   m_TagString: Untagged
@@ -105,3 +106,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4618585785549219545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589737548005725556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64ce4ad48535c3429094b9664a8252e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  speed: 0.01
+  monsterID: 0
+  attack: 5
+  attackDistance: 1
+  attackInterval: 2

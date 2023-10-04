@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 
 public class PlayerMonster : Monster
 {
@@ -23,7 +23,7 @@ public class PlayerMonster : Monster
         //画面チェック
         if(DetectEnemiesInScreen())
         {
-           GameObject target = GetClosestObject();
+            target = GetClosestObject();
 
             //進行方向
            Vector3 moveVec = target.transform.position - transform.position;
@@ -37,6 +37,17 @@ public class PlayerMonster : Monster
                 //ターゲット移動
                 transform.position += speed * moveVec * Time.deltaTime;
             }
+            //攻撃中じゃなければ攻撃
+            else if(attackFlag == false)
+            {
+                
+                Invoke("Action",attackInterval);
+
+                //デバッグ用ダメージ演出
+                GameObject spawnText = Instantiate(damageText,target.transform.position + new Vector3( 0.0f, 3.0f, 0.0f), Quaternion.identity);
+                spawnText.GetComponent<TextMeshPro>().text = attack.ToString();
+                attackFlag = true;
+            }
            
 
         }
@@ -47,9 +58,15 @@ public class PlayerMonster : Monster
         }
     }
 
+    //ターゲットへ攻撃
     public override void Action()
     {
-        ;
+        if(target == true)
+        {
+            target.GetComponent<EnemyMonster>().ChangeHP(attack);
+            attackFlag = false;
+        }
+        
     }
 
     //画面内に敵がいるかチェック
