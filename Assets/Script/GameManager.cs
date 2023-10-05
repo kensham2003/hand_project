@@ -4,22 +4,55 @@ using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    enum type{
-        A,
-        B,
-        C,
-    }
+    bool clearFlag = false;
 
-    
-    // Start is called before the first frame update
+    [Range(0f, 0.1f)]
+    [SerializeField] float lagInterval = 0.0f;
+
+    public AnimationCurve cpuUsage_LagIntervalCurve;
+
+    [SerializeField] CpuMain cpuMain;
+    [SerializeField] GameObject clearText;
+
+    Coroutine lagCoroutine = null;
+
     void Start()
     {
-        Time.timeScale = 0.5f;
+        cpuMain.OnUsageFull += GameClear;
+        lagCoroutine = StartCoroutine(LagSimulate());
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(clearFlag){return;}
+        EvaluateLagInterval(cpuMain.Usage);
+    }
+
+    //ラグ間隔取得
+    void EvaluateLagInterval(float cpu){
+        lagInterval = cpuUsage_LagIntervalCurve.Evaluate(cpu / (float)100);
+    }
+
+    //クリア処理
+    public void GameClear(){
+        clearFlag = true;
+        clearText.SetActive(true);
+        StopCoroutine(lagCoroutine);
+        Time.timeScale = 0f;
+    }
+
+    IEnumerator LagSimulate(){
+        while(true){
+            //0なら処理しない
+            if(lagInterval <= 0.0f){
+                yield return null;
+                continue;
+            }
+            //止まったり動いたりする
+            Time.timeScale = 0f;
+            yield return new WaitForSecondsRealtime(lagInterval); //+ランダムノイズでも？
+            Time.timeScale = 1f;
+            yield return new WaitForSecondsRealtime(lagInterval);
+        }
     }
 }
