@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Card : MonoBehaviour
 {
     //カード名
-    protected string cardName;
+    [SerializeField] protected string cardName;
     //カードの詳細テキスト
-    protected string cardText;
+    [SerializeField] protected string cardText;
     //スプライト
     protected Sprite sprite;
     //カードID
@@ -28,6 +29,9 @@ public class Card : MonoBehaviour
     Vector2 imageInitSize;
     //imageのホバーしているときのサイズ
     Vector2 imageHorverSize;
+    //すべてのカードで一枚でもホバーしていたらTrue
+    public bool onceHorverd = false;
+    public GameObject test;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -72,12 +76,45 @@ public class Card : MonoBehaviour
                 release();
             }
 
+            //カードテキスト表示
+            GameObject.Find("CardInfo").GetComponent<Image>().color = new Color(255,255,255,0.5f);
+            GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text = cardName;
+            GameObject.Find("CardText").GetComponent<TextMeshProUGUI>().text = cardText;
             
         }
         else
         {
             //画像の大きさ変更
-           GetComponent<RectTransform>().sizeDelta = imageInitSize;
+            GetComponent<RectTransform>().sizeDelta = imageInitSize;
+
+            //仮の処理
+            Object[] allGameObject = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+            
+            onceHorverd = false;
+
+            foreach (GameObject obj in allGameObject)
+            {
+                Card cardcomp = obj.GetComponent<Card>();
+                if(cardcomp == true)
+                {
+                    
+                    if(cardcomp.horverd)
+                    {
+                        onceHorverd = true;
+                    }
+                }
+            }
+
+            if(onceHorverd == false)
+            {
+                //カードテキスト非表示
+                GameObject.Find("CardInfo").GetComponent<Image>().color = new Color(0,0,0,0);;
+                GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text = "";
+                GameObject.Find("CardText").GetComponent<TextMeshProUGUI>().text = "";
+
+                
+            }
+           
         }
         
         if(pressed)
