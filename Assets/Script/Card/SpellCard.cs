@@ -20,6 +20,8 @@ public class SpelCard : Card
      //効果発動
     public override void CardEffect(RaycastHit hit)
     {
-        Instantiate(SpawnObject, hit.point, Quaternion.identity);
+       //スポーン
+        GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
+        InstantiateMonster(cardID, hit.point, Quaternion.identity);
     }
 }

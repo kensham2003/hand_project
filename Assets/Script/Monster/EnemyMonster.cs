@@ -81,6 +81,7 @@ public class EnemyMonster : Monster
             {
                 //ターゲット移動
                 transform.position += paramerter.speed * moveVec * Time.deltaTime;
+                
             }
             //攻撃中じゃなければ攻撃
             else if(attackFlag == false &&paramerter.attackDistance >= targetDistance)

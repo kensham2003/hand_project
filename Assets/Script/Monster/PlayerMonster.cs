@@ -25,34 +25,38 @@ public class PlayerMonster : Monster
         //画面チェック
         if(DetectEnemiesInScreen())
         {
-            target = GetClosestObject();
-
-            //進行方向
-           Vector3 moveVec = target.transform.position - transform.position;
-           moveVec = moveVec.normalized;
-
-             //ターゲットの距離
-            targetDistance = Vector3.Distance(target.transform.position,transform.position);
-
-            if(paramerter.attackDistance < targetDistance)
+            target = GetClosestEnemy();
+            if(target == null)
+            //待機
             {
-                //ターゲット移動
-                transform.position += paramerter.speed * moveVec * Time.deltaTime;
-            }
-            //攻撃中じゃなければ攻撃
-            else if(attackFlag == false && paramerter.attackDistance > targetDistance)
-            {                
-                Invoke("Action",paramerter.attackInterval);
 
-                attackFlag = true;
             }
+            //移動
+            else
+            {
+                //進行方向
+                Vector3 moveVec = target.transform.position - transform.position;
+                moveVec = moveVec.normalized;
+
+                //ターゲットの距離
+                targetDistance = Vector3.Distance(target.transform.position,transform.position);
+
+                if(paramerter.attackDistance < targetDistance)
+                {
+                    //ターゲット移動
+                    transform.position += paramerter.speed * moveVec * Time.deltaTime;
+                }
+                //攻撃中じゃなければ攻撃
+                else if(attackFlag == false && paramerter.attackDistance > targetDistance)
+                {                
+                    Invoke("Action",paramerter.attackInterval);
+
+                    attackFlag = true;
+                }
+            }
+            
            
 
-        }
-        else
-        {
-            //前進
-            transform.position += paramerter.speed * transform.forward * Time.deltaTime;
         }
     }
 
