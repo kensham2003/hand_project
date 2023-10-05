@@ -44,6 +44,10 @@ public class InstantiateManager : SingletonMonoBehaviour<InstantiateManager>
         PoolManager.Instance.GetGameObject(monster, position, rotation);
     }
 
+    public void DestroyMonster(GameObject monster){
+        PoolManager.Instance.ReleaseGameObject(monster);
+    }
+
     public void InstantiateEffect(int effectId, Vector3 position, Quaternion rotation){
         //エフェクトの生成
     }
