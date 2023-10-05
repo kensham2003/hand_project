@@ -72,8 +72,10 @@ public class Monster : MonoBehaviour
     [Tooltip("攻撃しているか")]
     protected bool attackFlag;
     //攻撃するターゲット
-    [Tooltip("一番近いターゲット")]
+    [Tooltip("攻撃ターゲット")]
     protected GameObject target;
+    //ターゲットの距離
+    protected float targetDistance;
      //デバッグ用ダメージ演出オブジェクト
      [Tooltip("デバッグ用ダメージ演出オブジェクト")]
     [SerializeField] protected GameObject damageText;
@@ -83,6 +85,9 @@ public class Monster : MonoBehaviour
     //デバッグ用ダメージマテリアル
     [SerializeField] Material debugMaterial;
 
+    //ViewList(画面に映っているモンスター)のインデックス
+    protected int viewListIndex; 
+    
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -124,7 +129,7 @@ public class Monster : MonoBehaviour
         GetComponent<Renderer>().material = initMaterial;
     }
 
-    void Death()
+    public virtual void Death()
     {
         Destroy(this.gameObject);
     }

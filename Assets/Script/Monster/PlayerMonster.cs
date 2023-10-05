@@ -32,7 +32,7 @@ public class PlayerMonster : Monster
            moveVec = moveVec.normalized;
 
              //ターゲットの距離
-            float targetDistance = Vector3.Distance(target.transform.position,transform.position);
+            targetDistance = Vector3.Distance(target.transform.position,transform.position);
 
             if(paramerter.attackDistance < targetDistance)
             {
@@ -40,7 +40,7 @@ public class PlayerMonster : Monster
                 transform.position += paramerter.speed * moveVec * Time.deltaTime;
             }
             //攻撃中じゃなければ攻撃
-            else if(attackFlag == false)
+            else if(attackFlag == false && paramerter.attackDistance > targetDistance)
             {                
                 Invoke("Action",paramerter.attackInterval);
 
@@ -59,7 +59,7 @@ public class PlayerMonster : Monster
     //ターゲットへ攻撃
     public override void Action()
     {
-        if(target == true)
+        if(target == true && paramerter.attackDistance >= targetDistance)
         {
             target.GetComponent<EnemyMonster>().ChangeHP(paramerter.attack);
             attackFlag = false;
@@ -73,6 +73,12 @@ public class PlayerMonster : Monster
         
     }
 
+    public override void Death()
+    {
+        Destroy(this.gameObject);
+    }
+
+    //---------------------------------------------------ここから下は仮後でマネージャーにまとめる
     //画面内に敵がいるかチェック
     //いなければfalse
     bool DetectEnemiesInScreen()
@@ -102,12 +108,49 @@ public class PlayerMonster : Monster
     //一番近いオブジェクトを取得
     public GameObject GetClosestObject()
     {
+        //一番近いエネミー
+        GameObject closestEnmey = GetClosestEnemy();
+        //一番近いボスエネミー
+        GameObject closestBossEnmey = GetClosestBossEnemy();
+
+        //通常の敵がいなければボスをターゲット
+        if(closestEnmey == null)
+        {
+            return closestBossEnmey;
+        }
+        //通常の敵がいれば一番近い通常の敵をターゲット
+        else
+        {
+            return closestEnmey;
+        }
+    }
+
+    //一番近いEnemy取得
+    public GameObject GetClosestEnemy()
+    {
         GameObject closestObject = null;
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
         {
             float distance = Vector3.Distance(transform.position, obj.transform.position);
-            if (distance < shortestDistance)
+            if (distance < shortestDistance && !obj.GetComponent<EnemyBossMonster>())
+            {
+                closestObject = obj;
+                shortestDistance = distance;
+            }
+        }
+        return closestObject;
+    }
+
+    //一番近いBossEnemy取得
+    public GameObject GetClosestBossEnemy()
+    {
+        GameObject closestObject = null;
+        float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
+        foreach (GameObject obj in objectsInView)
+        {
+            float distance = Vector3.Distance(transform.position, obj.transform.position);
+            if (distance < shortestDistance && obj.GetComponent<EnemyBossMonster>())
             {
                 closestObject = obj;
                 shortestDistance = distance;

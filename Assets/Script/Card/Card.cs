@@ -7,6 +7,8 @@ public class Card : MonoBehaviour
 {
     //カード名
     protected string cardName;
+    //カードの詳細テキスト
+    protected string cardText;
     //スプライト
     protected Sprite sprite;
     //カードID
