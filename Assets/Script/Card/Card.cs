@@ -12,15 +12,13 @@ public class Card : MonoBehaviour
     //スプライト
     protected Sprite sprite;
     //カードID
-    protected int cardID;
+    [SerializeField] protected int cardID;
     //押されているフラグ
     protected bool pressed = false;
     //マウスがカード上
     protected bool horverd = false;
     //マウス位置
     protected Vector2 mousePos;
-    //生成するオブジェクト
-    public GameObject SpawnObject;
     //初期位置
     protected Vector2 initPos;
     

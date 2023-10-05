@@ -510,6 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad31a83cf475484458f6007159880a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardID: 1
   SpawnObject: {fileID: 6804468718962571076, guid: 9876fd940da10904faf08206efa456dc, type: 3}
 --- !u!114 &778141229
 MonoBehaviour:
@@ -637,6 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad31a83cf475484458f6007159880a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardID: 1
   SpawnObject: {fileID: 6804468718962571076, guid: 9876fd940da10904faf08206efa456dc, type: 3}
 --- !u!1 &963194225
 GameObject:
@@ -837,6 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardID: 1
   SpawnObject: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
 --- !u!114 &1147730822
 MonoBehaviour:
