@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellCard : Card
+public class SpelCard : Card
 {
     // Start is called before the first frame update
     public override void Start()
