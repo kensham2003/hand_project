@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6804468718962571076}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &4737216028760134893
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123,7 +123,22 @@ MonoBehaviour:
     speed: 3
     monsterID: 0
     attack: 5
-    attackDistance: 1
+    attackDistance: 1.5
     attackInterval: 1
+    constantLoad:
+      raiseRate: 0
+      impactTime: 0
+    spawnLoad:
+      raiseRate: 0
+      impactTime: 0
+    attackLoad:
+      raiseRate: 0
+      impactTime: 0
+    DestroyLoad:
+      raiseRate: 0
+      impactTime: 0
+  status: 0
   damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
+  initMaterial: {fileID: 0}
+  debugMaterial: {fileID: 0}
   objectsInView: []

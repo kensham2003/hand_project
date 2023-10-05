@@ -38,7 +38,7 @@ public struct  MonsterParamerter
     public int attack;
     //攻撃距離
     [Tooltip("攻撃範囲")]
-    public int attackDistance;
+    public float attackDistance;
     //攻撃間隔
     [Tooltip("クールタイム")]
     public float attackInterval;
