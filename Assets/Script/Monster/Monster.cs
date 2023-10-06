@@ -91,7 +91,15 @@ public class Monster : MonoBehaviour
     [SerializeField] Material debugMaterial;
 
     //ViewList(画面に映っているモンスター)のインデックス
-    protected int viewListIndex; 
+    protected int visibleListIndex; //映っていない場合は-1
+    protected bool visibleFlag = false;
+    private VisibleList _visibleList;
+    public VisibleList visibleList
+    {
+        get {return _visibleList;}
+        set { _visibleList = value; }
+    }
+    
     
 
     // Start is called before the first frame update
@@ -99,6 +107,9 @@ public class Monster : MonoBehaviour
     {
         
         initMaterial = GetComponent<Renderer>().material;
+        if(visibleList == null){
+            visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
+        }
 
         paramerter.maxHp = paramerter.hp;
     }
@@ -106,7 +117,7 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-        
+        CheckVisible();
     }
 
     public virtual void Action()
@@ -145,6 +156,47 @@ public class Monster : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    //カメラが映らなくなる時の処理
+    protected virtual void OnBecameVisibleFromCamera() {
+        visibleListIndex = _visibleList.AddVisibleObject(this.gameObject);
+    }
+
+    //カメラが映るようになる時の処理
+    protected virtual void OnBecameInvisibleFromCamera() {
+        //不具合ですでに-1になっている時は処理しない
+        if(visibleListIndex < 0)return;
+
+        _visibleList.RemoveVisibleObject(visibleListIndex);
+        visibleListIndex = -1;
+    }
+
+    //カメラが映っているかチェック
+    protected bool IsVisibleFromCamera(){
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        return GeometryUtility.TestPlanesAABB(planes, GetComponent<Renderer>().bounds);
+    }
+
+    protected virtual void CheckVisible(){
+        if(visibleFlag == IsVisibleFromCamera())return;
+
+        if(visibleFlag){
+            //OnBecameInvisibleの処理
+            OnBecameInvisibleFromCamera();
+        }
+        else{
+            //OnBecameVisibleの処理
+            OnBecameVisibleFromCamera();
+        }
+        //visibleFlagの状態を保存
+        visibleFlag = !visibleFlag;
+    }
+
+    protected void OnDestroy() {
+        //VisibleListから自分を削除
+        if(visibleFlag){
+            OnBecameInvisibleFromCamera();
+        }
+        
     //モンスターの能力上昇
     public void UpHP(float var)
     {
@@ -155,14 +207,17 @@ public class Monster : MonoBehaviour
             paramerter.hp = paramerter.maxHp;
         }
     }
+    
     public void UpSpeed(float var)
     {
         paramerter.speed += var;
     }
+    
     public void UpAttack(float var)
     {
         paramerter.attack += var;
     }
+    
     public void UpCoolTime(float var)
     {
         paramerter.attackInterval -= var;

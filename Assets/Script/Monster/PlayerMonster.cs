@@ -27,6 +27,35 @@ public class PlayerMonster : Monster
 
         switch(status)
         {
+            //target = GetClosestObject();
+            //if(target == null)
+            ////待機
+            //{
+
+            //}
+            ////移動
+            //else
+            //{
+            //    //進行方向
+            //    Vector3 moveVec = target.transform.position - transform.position;
+            //   moveVec = moveVec.normalized;
+
+            //    //ターゲットの距離
+            //    targetDistance = Vector3.Distance(target.transform.position,transform.position);
+
+            //    if(paramerter.attackDistance < targetDistance)
+            //    {
+            //        //ターゲット移動
+            //        transform.position += paramerter.speed * moveVec * Time.deltaTime;
+            //    }
+            //    //攻撃中じゃなければ攻撃
+            //    else if(attackFlag == false && paramerter.attackDistance > targetDistance)
+            //    {                
+            //        Invoke("Action",paramerter.attackInterval);
+
+            //        attackFlag = true;
+            //    }
+            //}
             case Status.idle:
             Idle();
             break;
@@ -67,24 +96,14 @@ public class PlayerMonster : Monster
     bool DetectEnemiesInScreen()
     {
         bool view = false;
-
-         objectsInView.Clear();
-        foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
-        {
-            Vector3 viewportPoint = mainCamera.WorldToViewportPoint(obj.transform.position);
-            // ビューポート座標が (0,0) と (1,1) の間にあるかどうかを確認
-            if (viewportPoint.z > 0 && viewportPoint.x > 0 && viewportPoint.x < 1 && viewportPoint.y > 0 && viewportPoint.y < 1)
-            {
-                if(obj.GetComponent<EnemyMonster>())
-                {
-                    objectsInView.Add(obj);
-
-                    view = true;
-                }
-                
+        objectsInView.Clear();
+        foreach(GameObject obj in visibleList.GetVisibleList()){
+            if(obj == null)continue;
+            if(obj.GetComponent<EnemyMonster>()){
+                objectsInView.Add(obj);
+                view = true;
             }
         }
-
         return view;
     }
 
@@ -95,7 +114,6 @@ public class PlayerMonster : Monster
         GameObject closestEnmey = GetClosestEnemy();
         //一番近いボスエネミー
         GameObject closestBossEnmey = GetClosestBossEnemy();
-
         //通常の敵がいなければボスをターゲット
         if(closestEnmey == null)
         {
