@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 180807585}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -647,6 +647,8 @@ MonoBehaviour:
   cardName: Test3
   cardText: Test3
   cardID: 1
+  onceHorverd: 0
+  test: {fileID: 0}
 --- !u!114 &778141229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,6 +778,8 @@ MonoBehaviour:
   cardName: Test1
   cardText: Test1
   cardID: 1
+  onceHorverd: 0
+  test: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,7 +940,7 @@ GameObject:
   - component: {fileID: 1147730820}
   - component: {fileID: 1147730823}
   - component: {fileID: 1147730822}
-  - component: {fileID: 1147730821}
+  - component: {fileID: 1147730824}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -963,21 +967,6 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: 100}
   m_SizeDelta: {x: 70, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1147730821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147730819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: Test2
-  cardText: Test2
-  cardID: 2
 --- !u!114 &1147730822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,6 +1005,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147730819}
   m_CullTransparentMesh: 1
+--- !u!114 &1147730824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147730819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1018114b5b44cde459d2f298540f1f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: "\u30CB\u30A2\u30EC\u30B9\u30C8\u30EC\u30A4\u30D0\u30FC"
+  cardText: "\u5473\u65B9\u30E2\u30F3\u30B9\u30BF\u30FC1\u4F53\u306E\u653B\u6483\u529B+2"
+  cardID: 1
+  onceHorverd: 0
+  test: {fileID: 0}
 --- !u!1001 &1355171071
 PrefabInstance:
   m_ObjectHideFlags: 0

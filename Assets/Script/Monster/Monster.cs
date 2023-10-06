@@ -15,10 +15,10 @@ public struct  CPULoad
 {
     //上昇率
     [Tooltip("上昇率")]
-    public float raiseRate;
+    [SerializeField] public float raiseRate;
     //影響時間
     [Tooltip("影響時間")]
-    public float impactTime;
+    [SerializeField] public float impactTime;
 }
 
 [System.Serializable]
@@ -26,36 +26,40 @@ public struct  MonsterParamerter
 {
     //体力
     [Tooltip("体力")]
-    public int hp;
+    [SerializeField] public float hp;
+    //体力上限
+    [Tooltip("体力最大値（ここはいじらない）")]
+
+    public float maxHp;
     //速度
     [Tooltip("移動速度")]
-    public float speed;
+    [SerializeField] public float speed;
     //ID
     [Tooltip("識別番号")]
-    public int monsterID;
+    [SerializeField] public int monsterID;
     //攻撃力
     [Tooltip("攻撃力")]
-    public int attack;
+    [SerializeField] public float attack;
     //攻撃距離
     [Tooltip("攻撃範囲")]
-    public float attackDistance;
+    [SerializeField] public float attackDistance;
     //攻撃間隔
     [Tooltip("クールタイム")]
-    public float attackInterval;
+    [SerializeField] public float attackInterval;
 
     //CPU系
     //常時
     [Tooltip("常時CPU影響")]
-    public CPULoad constantLoad;
+    [SerializeField] public CPULoad constantLoad;
     //出現
     [Tooltip("出現時CPU影響")]
-    public CPULoad spawnLoad;
+    [SerializeField] public CPULoad spawnLoad;
     //攻撃
     [Tooltip("攻撃時CPU影響")]
-    public CPULoad attackLoad;
+    [SerializeField] public CPULoad attackLoad;
     //消失
     [Tooltip("消失時CPU影響")]
-    public CPULoad DestroyLoad;
+    [SerializeField] public CPULoad DestroyLoad;
 
 
 }
@@ -92,8 +96,10 @@ public class Monster : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        Debug.Log("Start");
+        
         initMaterial = GetComponent<Renderer>().material;
+
+        paramerter.maxHp = paramerter.hp;
     }
 
     // Update is called once per frame
@@ -107,7 +113,7 @@ public class Monster : MonoBehaviour
         
     }
 
-    public void ChangeHP(int val)
+    public void ChangeHP(float val)
     {
         paramerter.hp -= val;
 
@@ -134,5 +140,32 @@ public class Monster : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    //モンスターの能力上昇
+    public void UpHP(float var)
+    {
+        paramerter.hp += var;
+
+        if(paramerter.hp > paramerter.maxHp)
+        {
+            paramerter.hp = paramerter.maxHp;
+        }
+    }
+    public void UpSpeed(float var)
+    {
+        paramerter.speed += var;
+    }
+    public void UpAttack(float var)
+    {
+        paramerter.attack += var;
+    }
+    public void UpCoolTime(float var)
+    {
+        paramerter.attackInterval -= var;
+
+        if(paramerter.attackInterval < 1)
+        {
+            paramerter.attackInterval = 1;
+        }
+    }
 
 }
