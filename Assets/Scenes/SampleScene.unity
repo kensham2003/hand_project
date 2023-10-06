@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 180807585}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -646,7 +646,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Test3
   cardText: Test3
-  cardID: 1
+  cardID: 2
+  onceHorverd: 0
+  damageText: {fileID: 0}
 --- !u!114 &778141229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,6 +778,8 @@ MonoBehaviour:
   cardName: Test1
   cardText: Test1
   cardID: 1
+  onceHorverd: 0
+  damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,7 +940,7 @@ GameObject:
   - component: {fileID: 1147730820}
   - component: {fileID: 1147730823}
   - component: {fileID: 1147730822}
-  - component: {fileID: 1147730821}
+  - component: {fileID: 1147730824}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -963,21 +967,6 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: 100}
   m_SizeDelta: {x: 70, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1147730821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147730819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: Test2
-  cardText: Test2
-  cardID: 2
 --- !u!114 &1147730822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,6 +1005,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147730819}
   m_CullTransparentMesh: 1
+--- !u!114 &1147730824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147730819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abcc2a7059beb347a4e676f15aca1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 
+  cardText: 
+  cardID: 0
+  onceHorverd: 0
+  damageText: {fileID: 0}
+  ID: 6
 --- !u!1001 &1355171071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1062,6 +1069,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618585785549219545, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: enemyMonsterType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
@@ -1263,6 +1274,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1445500049203078097, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
+      propertyPath: paramerter.hp
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2970880193662403185, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.11
@@ -1492,6 +1507,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618585785549219545, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: enemyMonsterType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}

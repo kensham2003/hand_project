@@ -25,37 +25,38 @@ public class EnemyMonster : Monster
     {
         base.Start();
         mainCamera = Camera.main;
+
+        status = Status.idle;
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        base.Update();
-
-        switch(enemyMonsterType)
+        switch(status)
         {
-            //Aタイプ
-            case EnemyMonsterType.A:
-            UpdateTypeA();
+            
+            case Status.idle:
+            Idle();
+            break;
+            
+            case Status.move:
+            Move();
             break;
 
-            //Bタイプ
-            case EnemyMonsterType.B:
-            UpdateTypeB();
+            case Status.attack:
+            Attack();
             break;
         }
+        
     }
 
     public override void Action()
     {
-        if(target == true && paramerter.attackDistance >= targetDistance)
+        attackFlag = false;
+
+        if(target != null && paramerter.attackDistance >= targetDistance)
         {
             target.GetComponent<PlayerMonster>().ChangeHP(paramerter.attack);
-            attackFlag = false;
-
-            //デバッグ用ダメージ演出
-            GameObject spawnText = Instantiate(damageText,target.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
-            spawnText.GetComponent<TextMeshPro>().text = paramerter.attack.ToString();
 
             target = null;
         }
@@ -88,9 +89,7 @@ public class EnemyMonster : Monster
             //攻撃中じゃなければ攻撃
             else if(attackFlag == false &&paramerter.attackDistance >= targetDistance)
             {                
-                Invoke("Action",paramerter.attackInterval);
-
-                attackFlag = true;
+                status = Status.attack;
             }
            
 
@@ -125,9 +124,7 @@ public class EnemyMonster : Monster
             //攻撃中じゃなければ攻撃
             else if(attackFlag == false &&paramerter.attackDistance >= targetDistance)
             {                
-                Invoke("Action",paramerter.attackInterval);
-
-                attackFlag = true;
+                status = Status.attack;
             }
            
 
@@ -208,5 +205,61 @@ public class EnemyMonster : Monster
             }
         }
         return closestObject;
+    }
+
+    //待機
+    void Idle()
+    {
+        status = Status.move;
+    }
+
+    //移動
+    void Move()
+    {
+        switch(enemyMonsterType)
+        {
+            //Aタイプ
+            case EnemyMonsterType.A:
+            UpdateTypeA();
+            break;
+
+            //Bタイプ
+            case EnemyMonsterType.B:
+            UpdateTypeB();
+            break;
+        }
+    }
+
+    //攻撃
+    void Attack()
+    {
+        if(DetectEnemiesInScreen())
+        {
+            target = GetClosestBossPlayerMonster();
+
+            //進行方向
+           Vector3 moveVec = target.transform.position - transform.position;
+           moveVec = moveVec.normalized;
+
+             //ターゲットの距離
+            targetDistance = Vector3.Distance(target.transform.position,transform.position);
+            if(attackFlag == false &&paramerter.attackDistance >= targetDistance)
+            {                
+                Invoke("Action",paramerter.attackInterval);
+
+                attackFlag = true;
+            }
+            else
+            {
+                status = Status.move;
+            }
+
+           
+
+        }
+        else
+        {
+            status = Status.idle;
+        }
     }
 }
