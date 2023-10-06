@@ -51,9 +51,7 @@ public class EnemyMonster : Monster
             target.GetComponent<PlayerMonster>().ChangeHP(paramerter.attack);
             attackFlag = false;
 
-            //デバッグ用ダメージ演出
-            GameObject spawnText = Instantiate(damageText,target.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
-            spawnText.GetComponent<TextMeshPro>().text = paramerter.attack.ToString();
+            
 
             target = null;
         }

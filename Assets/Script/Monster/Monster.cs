@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public enum Status
 {
     idle,
@@ -115,6 +115,10 @@ public class Monster : MonoBehaviour
     public void ChangeHP(float val)
     {
         paramerter.hp -= val;
+
+        //デバッグ用ダメージ演出
+        GameObject spawnText = Instantiate(damageText,transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        spawnText.GetComponent<TextMeshPro>().text = val.ToString();
 
         if(paramerter.hp < 0)
         {
