@@ -107,6 +107,7 @@ public class Card : MonoBehaviour
 
             if(onceHorverd == false)
             {
+                //Debug.Log(GameObject.Find("CardInfo"));
                 //カードテキスト非表示
                 GameObject.Find("CardInfo").GetComponent<Image>().color = new Color(0,0,0,0);;
                 GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text = "";
