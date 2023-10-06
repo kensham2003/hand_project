@@ -29,7 +29,6 @@ public struct  MonsterParamerter
     [SerializeField] public float hp;
     //体力上限
     [Tooltip("体力最大値（ここはいじらない）")]
-
     public float maxHp;
     //速度
     [Tooltip("移動速度")]

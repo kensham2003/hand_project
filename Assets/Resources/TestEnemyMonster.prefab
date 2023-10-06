@@ -122,8 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paramerter:
     hp: 50
+    maxHp: 0
     speed: 0.5
-    monsterID: 0
+    monsterID: 2
     attack: 3
     attackDistance: 1.5
     attackInterval: 2

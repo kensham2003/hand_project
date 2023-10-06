@@ -121,8 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paramerter:
     hp: 10
+    maxHp: 0
     speed: 3
-    monsterID: 0
+    monsterID: 1
     attack: 5
     attackDistance: 1.5
     attackInterval: 1
@@ -168,5 +169,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
