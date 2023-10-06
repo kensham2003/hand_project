@@ -9,6 +9,8 @@ public class InstantiateManager : SingletonMonoBehaviour<InstantiateManager>
     public TextAsset cardMonsterCSV;
     private Dictionary<int, GameObject> cardMonsterDict = new Dictionary<int, GameObject>();
 
+    private VisibleList visibleList;
+
     //CPUメイン
 
     new void Awake(){
@@ -16,6 +18,7 @@ public class InstantiateManager : SingletonMonoBehaviour<InstantiateManager>
         //CSVファイルに<カードID、プレハブ名>のペアの想定
         ReadCardMonsterCSV();
 
+        visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
         // //デバッグ用
         // foreach (KeyValuePair<int, GameObject> kvp in cardMonsterDict)
         //     Debug.Log ("カードID："+ kvp.Key + "  オブジェクト名：" + kvp.Value);
@@ -41,7 +44,8 @@ public class InstantiateManager : SingletonMonoBehaviour<InstantiateManager>
 
     public void InstantiateMonster(int cardId, Vector3 position, Quaternion rotation){
         GameObject monster = cardMonsterDict[cardId];
-        PoolManager.Instance.GetGameObject(monster, position, rotation);
+        GameObject monsterObj = PoolManager.Instance.GetGameObject(monster, position, rotation);
+        monsterObj.GetComponent<Monster>().visibleList = visibleList;
     }
 
     public void DestroyMonster(GameObject monster){

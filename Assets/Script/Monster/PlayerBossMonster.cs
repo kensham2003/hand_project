@@ -16,7 +16,7 @@ public class PlayerBossMonster : PlayerMonster
     // Update is called once per frame
     public override void Update()
     {
-       
+       base.Update();
     }
 
     //ターゲットへ攻撃

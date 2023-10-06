@@ -30,6 +30,8 @@ public class EnemyMonster : Monster
     // Update is called once per frame
     public override void Update()
     {
+        base.Update();
+        
         switch(enemyMonsterType)
         {
             //Aタイプ

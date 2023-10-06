@@ -453,7 +453,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.92
+      value: -33.17
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -644,7 +644,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad31a83cf475484458f6007159880a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnObject: {fileID: 6804468718962571076, guid: 9876fd940da10904faf08206efa456dc, type: 3}
+  cardName: 
+  cardText: 
+  cardID: 1
+  onceHorverd: 0
+  test: {fileID: 0}
 --- !u!114 &778141229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,7 +775,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad31a83cf475484458f6007159880a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnObject: {fileID: 6804468718962571076, guid: 9876fd940da10904faf08206efa456dc, type: 3}
+  cardName: 
+  cardText: 
+  cardID: 1
+  onceHorverd: 0
+  test: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,7 +1068,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnObject: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+  cardName: 
+  cardText: 
+  cardID: 1
+  onceHorverd: 0
+  test: {fileID: 0}
 --- !u!114 &1147730822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,7 +1121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.99
+      value: 18.16
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1151,11 +1163,59 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestEnemyMonster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+--- !u!1 &1391828835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391828837}
+  - component: {fileID: 1391828836}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1391828836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391828835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bdea4e34628bd4eb2754d807e12b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1391828837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391828835}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4431987, y: 0.12560147, z: 4.363491}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1522673717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1251,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.170013, y: -7.5700073}
+  m_AnchoredPosition: {x: -12.170044, y: -7.5700073}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1522673719
@@ -1477,7 +1537,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 12.72
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1519,6 +1579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestEnemyMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1538,3 +1602,4 @@ SceneRoots:
   - {fileID: 180807583}
   - {fileID: 1864295519}
   - {fileID: 1091163621}
+  - {fileID: 1391828837}
