@@ -453,7 +453,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.17
+      value: -6.9
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -494,6 +494,10 @@ PrefabInstance:
     - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_Name
       value: TestEnemyMonster (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -979,7 +983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: bc5ea8ff5e6c5104daba87825621a5d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.06
+      value: 16.6
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: bc5ea8ff5e6c5104daba87825621a5d8, type: 3}
       propertyPath: m_LocalRotation.w

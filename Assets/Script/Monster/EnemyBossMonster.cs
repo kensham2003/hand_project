@@ -13,7 +13,7 @@ public class EnemyBossMonster : EnemyMonster
     // Update is called once per frame
     public override void Update()
     {
-        base.Update();
+        CheckVisible();
     }
 
     public override void Action()

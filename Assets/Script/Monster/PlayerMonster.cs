@@ -25,7 +25,7 @@ public class PlayerMonster : Monster
         //画面チェック
         if(DetectEnemiesInScreen())
         {
-            target = GetClosestEnemy();
+            target = GetClosestObject();
             if(target == null)
             //待機
             {
@@ -88,24 +88,14 @@ public class PlayerMonster : Monster
     bool DetectEnemiesInScreen()
     {
         bool view = false;
-
-         objectsInView.Clear();
-        foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
-        {
-            Vector3 viewportPoint = mainCamera.WorldToViewportPoint(obj.transform.position);
-            // ビューポート座標が (0,0) と (1,1) の間にあるかどうかを確認
-            if (viewportPoint.z > 0 && viewportPoint.x > 0 && viewportPoint.x < 1 && viewportPoint.y > 0 && viewportPoint.y < 1)
-            {
-                if(obj.GetComponent<EnemyMonster>())
-                {
-                    objectsInView.Add(obj);
-
-                    view = true;
-                }
-                
+        objectsInView.Clear();
+        foreach(GameObject obj in visibleList.GetVisibleList()){
+            if(obj == null)continue;
+            if(obj.GetComponent<EnemyMonster>()){
+                objectsInView.Add(obj);
+                view = true;
             }
         }
-
         return view;
     }
 
@@ -116,7 +106,6 @@ public class PlayerMonster : Monster
         GameObject closestEnmey = GetClosestEnemy();
         //一番近いボスエネミー
         GameObject closestBossEnmey = GetClosestBossEnemy();
-
         //通常の敵がいなければボスをターゲット
         if(closestEnmey == null)
         {
