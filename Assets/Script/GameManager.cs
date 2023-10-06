@@ -50,9 +50,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             }
             //止まったり動いたりする
             Time.timeScale = 0f;
-            yield return new WaitForSecondsRealtime(lagInterval); //+ランダムノイズでも？
+            //WaitForSecondsをキャッシュして使う
+            yield return LagTimer.Get(lagInterval); //+ランダムノイズでも？
             Time.timeScale = 1f;
-            yield return new WaitForSecondsRealtime(lagInterval);
+            yield return LagTimer.Get(lagInterval);
         }
     }
 }

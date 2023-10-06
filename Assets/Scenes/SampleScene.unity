@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &69266889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 69266891}
+  - component: {fileID: 69266890}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &69266890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69266889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bdea4e34628bd4eb2754d807e12b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &69266891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69266889}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.986689, y: 1.1725861, z: 8.585126}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &144181040
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +250,7 @@ GameObject:
   - component: {fileID: 180807585}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -646,7 +690,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Test3
   cardText: Test3
-  cardID: 1
+  cardID: 2
+  onceHorverd: 0
+  damageText: {fileID: 0}
 --- !u!114 &778141229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,6 +822,8 @@ MonoBehaviour:
   cardName: Test1
   cardText: Test1
   cardID: 1
+  onceHorverd: 0
+  damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,7 +984,7 @@ GameObject:
   - component: {fileID: 1147730820}
   - component: {fileID: 1147730823}
   - component: {fileID: 1147730822}
-  - component: {fileID: 1147730821}
+  - component: {fileID: 1147730824}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -963,21 +1011,6 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: 100}
   m_SizeDelta: {x: 70, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1147730821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147730819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: Test2
-  cardText: Test2
-  cardID: 2
 --- !u!114 &1147730822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,6 +1049,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147730819}
   m_CullTransparentMesh: 1
+--- !u!114 &1147730824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147730819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abcc2a7059beb347a4e676f15aca1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: 
+  cardText: 
+  cardID: 0
+  onceHorverd: 0
+  damageText: {fileID: 0}
+  ID: 6
 --- !u!1001 &1355171071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1062,6 +1113,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618585785549219545, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: enemyMonsterType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
@@ -1263,6 +1318,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1445500049203078097, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
+      propertyPath: paramerter.hp
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2970880193662403185, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.11
@@ -1494,6 +1553,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4618585785549219545, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: enemyMonsterType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_Name
       value: TestEnemyMonster
@@ -1558,7 +1621,7 @@ PrefabInstance:
     - target: {fileID: 9063530962507207815, guid: e51f70bad7f88f349aeb08ed5bca50f1, type: 3}
       propertyPath: cardMonsterCSV
       value: 
-      objectReference: {fileID: 4900000, guid: 6c7a32aa768a1b04bb5c877fb408b6d1, type: 3}
+      objectReference: {fileID: 4900000, guid: 596f663efd30fe34ea4dc217928f85d2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1579,3 +1642,4 @@ SceneRoots:
   - {fileID: 1864295519}
   - {fileID: 1091163621}
   - {fileID: 8237341113206652033}
+  - {fileID: 69266891}

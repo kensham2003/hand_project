@@ -31,7 +31,8 @@ public class Card : MonoBehaviour
     Vector2 imageHorverSize;
     //すべてのカードで一枚でもホバーしていたらTrue
     public bool onceHorverd = false;
-    public GameObject test;
+    //デバッグ用演出
+    [SerializeField] protected GameObject damageText;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -107,6 +108,7 @@ public class Card : MonoBehaviour
 
             if(onceHorverd == false)
             {
+                //Debug.Log(GameObject.Find("CardInfo"));
                 //カードテキスト非表示
                 GameObject.Find("CardInfo").GetComponent<Image>().color = new Color(0,0,0,0);;
                 GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text = "";
@@ -147,6 +149,9 @@ public class Card : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
                 CardEffect(hit);
+
+                //デバッグヒットしたオブジェクトの名前  
+                Debug.Log(hit.collider.gameObject.name);
             }
         }
 

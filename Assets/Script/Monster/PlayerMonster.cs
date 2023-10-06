@@ -15,6 +15,9 @@ public class PlayerMonster : Monster
     {
         base.Start();
         mainCamera = Camera.main;
+
+        //ステータス設定
+        status = Status.move;
     }
 
     // Update is called once per frame
@@ -22,55 +25,60 @@ public class PlayerMonster : Monster
     {
         base.Update();
 
-        //画面チェック
-        if(DetectEnemiesInScreen())
+        switch(status)
         {
-            target = GetClosestEnemy();
-            if(target == null)
-            //待機
-            {
+            //target = GetClosestObject();
+            //if(target == null)
+            ////待機
+            //{
 
-            }
-            //移動
-            else
-            {
-                //進行方向
-                Vector3 moveVec = target.transform.position - transform.position;
-                moveVec = moveVec.normalized;
+            //}
+            ////移動
+            //else
+            //{
+            //    //進行方向
+            //    Vector3 moveVec = target.transform.position - transform.position;
+            //   moveVec = moveVec.normalized;
 
-                //ターゲットの距離
-                targetDistance = Vector3.Distance(target.transform.position,transform.position);
+            //    //ターゲットの距離
+            //    targetDistance = Vector3.Distance(target.transform.position,transform.position);
 
-                if(paramerter.attackDistance < targetDistance)
-                {
-                    //ターゲット移動
-                    transform.position += paramerter.speed * moveVec * Time.deltaTime;
-                }
-                //攻撃中じゃなければ攻撃
-                else if(attackFlag == false && paramerter.attackDistance > targetDistance)
-                {                
-                    Invoke("Action",paramerter.attackInterval);
+            //    if(paramerter.attackDistance < targetDistance)
+            //    {
+            //        //ターゲット移動
+            //        transform.position += paramerter.speed * moveVec * Time.deltaTime;
+            //    }
+            //    //攻撃中じゃなければ攻撃
+            //    else if(attackFlag == false && paramerter.attackDistance > targetDistance)
+            //    {                
+            //        Invoke("Action",paramerter.attackInterval);
 
-                    attackFlag = true;
-                }
-            }
-            
-           
-
+            //        attackFlag = true;
+            //    }
+            //}
+            case Status.idle:
+            Idle();
+            break;
+            case Status.move:
+            Move();
+            break;
+            case Status.attack:
+            Attack();
+            break;
         }
+
+        
     }
 
     //ターゲットへ攻撃
     public override void Action()
     {
-        if(target == true && paramerter.attackDistance >= targetDistance)
+        attackFlag = false;
+        
+        if(target != null && paramerter.attackDistance >= targetDistance)
         {
             target.GetComponent<EnemyMonster>().ChangeHP(paramerter.attack);
-            attackFlag = false;
-
-            //デバッグ用ダメージ演出
-            GameObject spawnText = Instantiate(damageText,target.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
-            spawnText.GetComponent<TextMeshPro>().text = paramerter.attack.ToString();
+            
 
             target = null;
         }
@@ -88,24 +96,14 @@ public class PlayerMonster : Monster
     bool DetectEnemiesInScreen()
     {
         bool view = false;
-
-         objectsInView.Clear();
-        foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
-        {
-            Vector3 viewportPoint = mainCamera.WorldToViewportPoint(obj.transform.position);
-            // ビューポート座標が (0,0) と (1,1) の間にあるかどうかを確認
-            if (viewportPoint.z > 0 && viewportPoint.x > 0 && viewportPoint.x < 1 && viewportPoint.y > 0 && viewportPoint.y < 1)
-            {
-                if(obj.GetComponent<EnemyMonster>())
-                {
-                    objectsInView.Add(obj);
-
-                    view = true;
-                }
-                
+        objectsInView.Clear();
+        foreach(GameObject obj in visibleList.GetVisibleList()){
+            if(obj == null)continue;
+            if(obj.GetComponent<EnemyMonster>()){
+                objectsInView.Add(obj);
+                view = true;
             }
         }
-
         return view;
     }
 
@@ -116,7 +114,6 @@ public class PlayerMonster : Monster
         GameObject closestEnmey = GetClosestEnemy();
         //一番近いボスエネミー
         GameObject closestBossEnmey = GetClosestBossEnemy();
-
         //通常の敵がいなければボスをターゲット
         if(closestEnmey == null)
         {
@@ -161,5 +158,82 @@ public class PlayerMonster : Monster
             }
         }
         return closestObject;
+    }
+
+    //待機
+    void Idle()
+    {
+        //画面チェック
+        if(DetectEnemiesInScreen())
+        {
+            status = Status.move;
+        }
+    }
+
+    //移動
+    void Move()
+    {
+        //画面チェック
+        if(DetectEnemiesInScreen())
+        {
+            target = GetClosestEnemy();
+            if(target == null)
+            //待機
+            {
+                status = Status.idle;
+            }
+            //移動
+            else
+            {
+                //進行方向
+                Vector3 moveVec = target.transform.position - transform.position;
+                moveVec = moveVec.normalized;
+
+                //ターゲットの距離
+                targetDistance = Vector3.Distance(target.transform.position,transform.position);
+
+                if(paramerter.attackDistance < targetDistance)
+                {
+                    //ターゲット移動
+                    transform.position += paramerter.speed * moveVec * Time.deltaTime;
+                }
+                //攻撃中じゃなければ攻撃
+                else if(attackFlag == false && paramerter.attackDistance > targetDistance)
+                {                
+                    status = Status.attack;
+                }
+            }
+            
+           
+
+        }
+    }
+
+    //攻撃
+    void Attack()
+    {
+        target = GetClosestEnemy();
+        if(target == null)
+        //待機
+        {
+            status = Status.idle;
+        }
+        //攻撃
+        else
+        {
+            targetDistance = Vector3.Distance(target.transform.position,transform.position);
+            
+            if(attackFlag == false && paramerter.attackDistance > targetDistance)
+            {                
+                Invoke("Action",paramerter.attackInterval);
+                {
+                    attackFlag = true;
+                }
+            }
+            else
+            {
+                status = Status.move;
+            }
+        }
     }
 }
