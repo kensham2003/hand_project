@@ -48,6 +48,7 @@ public class NearestNeighbor : SpellCard
             //デバッグ用演出
             GameObject spawnText = Instantiate(damageText,hit.point + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
 
+            //パラメータによって演出を変更
             switch(type)
             {
                 case UpType.HP:

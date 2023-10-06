@@ -20,6 +20,7 @@ public class DaemonOrbObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //移動
         transform.position += speed * new Vector3(0,0,1) * Time.deltaTime;
     }
 
@@ -27,6 +28,7 @@ public class DaemonOrbObject : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
+            //ダメージ
             collision.gameObject.GetComponent<EnemyMonster>().ChangeHP(damage);
             Destroy(this.gameObject);
         }

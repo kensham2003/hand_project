@@ -5,7 +5,9 @@ using TMPro;
 public enum Status
 {
     idle,
+    move,
     attack,
+    stop,
     death
 }
 
@@ -169,6 +171,11 @@ public class Monster : MonoBehaviour
         {
             paramerter.attackInterval = 1;
         }
+    }
+
+    public void SetStatus(Status st)
+    {
+        status = st;
     }
 
 }

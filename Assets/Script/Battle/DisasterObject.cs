@@ -18,6 +18,7 @@ public class DisasterObject : MonoBehaviour
         {
             if(obj.tag == "Enemy")
             {
+                //距離で比較
                 float distance = Vector3.Distance(obj.transform.position,transform.position);
                 if(distance < damageRange)
                 {
