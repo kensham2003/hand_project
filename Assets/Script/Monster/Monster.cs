@@ -196,6 +196,7 @@ public class Monster : MonoBehaviour
         if(visibleFlag){
             OnBecameInvisibleFromCamera();
         }
+    }
         
     //モンスターの能力上昇
     public void UpHP(float var)
