@@ -43,10 +43,9 @@ public class Card : MonoBehaviour
 
     //カード情報まとめ
     GameObject cardInfoUI;
-    GameObject cardNameUI;
-    GameObject cardTextUI;
-    public bool ourhorvered = false;
-    public bool onceHorverd = false;
+
+
+    
     public virtual void Start()
     {
         initPos = GetComponent<RectTransform>().anchoredPosition;
@@ -59,45 +58,32 @@ public class Card : MonoBehaviour
 
         //手札
         hands = GameObject.Find ("Hands");
-
+        //カード情報UI
         cardInfoUI = GameObject.Find("CardInfo");
-        cardNameUI = GameObject.Find("CardName");
-        cardTextUI = GameObject.Find("CardText");
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        Vector2 CardPos = GetComponent<RectTransform>().anchoredPosition;
-        mousePos = Input.mousePosition;
-        var CardSize = GetComponent<RectTransform>().sizeDelta;
+        
         
         
         //一枚でもホバーしているか
-        ourhorvered = false;
+        bool oneceHorvered = false;
         foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
         {
             if(obj.handsCardNum == handsCardNum)continue;
 
             if(obj.horverd == true)
             {
-                ourhorvered = true;
+                oneceHorvered = true;
             }
         }
 
-        if(CardPos.x + CardSize.x > mousePos.x && CardPos.x - CardSize.x < mousePos.x &&
-        CardPos.y + CardSize.y > mousePos.y && CardPos.y - CardSize.y < mousePos.y && ourhorvered == false)
-        {
-            horverd = true;
-            Debug.Log("horver");
-        }
-        else
-        {
-            horverd = false;
-            Debug.Log("Unhorver");
-        }
+        //マウスがカードの上にあるか判断
+        horverd = CheckMouseOnCard();
 
-        if(horverd == true)
+        if(horverd == true && oneceHorvered == false)
         {
            //画像の大きさ変更
            GetComponent<RectTransform>().sizeDelta = imageHorverSize;
@@ -112,39 +98,29 @@ public class Card : MonoBehaviour
             }
 
             //カードテキスト表示
-            cardInfoUI.GetComponent<Image>().color = new Color(255,255,255,0.5f);
-            cardNameUI.GetComponent<TextMeshProUGUI>().text = cardName;
-            cardTextUI.GetComponent<TextMeshProUGUI>().text = cardText;
-            
+            cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true,cardName,cardText);
         }
         else
         {
             //画像の大きさ変更
             GetComponent<RectTransform>().sizeDelta = imageInitSize;
-
-            //仮の処理
-            Object[] allGameObject = Resources.FindObjectsOfTypeAll(typeof(GameObject));
             
             //一枚でもホバーしているか
-            onceHorverd = false;
+            oneceHorvered = false;
             foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
             {
                 if(obj.handsCardNum == handsCardNum)continue;
                 if(obj.horverd)
                 {
-                    onceHorverd = true;
+                    oneceHorvered = true;
                 }
             }
 
-            if(onceHorverd == false)
+            if(oneceHorvered == false)
             {
                 //Debug.Log(GameObject.Find("CardInfo"));
                 //カードテキスト非表示
-                cardInfoUI.GetComponent<Image>().color = new Color(255,255,255,0.0f);
-                cardNameUI.GetComponent<TextMeshProUGUI>().text = "";
-                cardTextUI.GetComponent<TextMeshProUGUI>().text = "";
-
-                
+                cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(false,"","");
             }
            
         }
@@ -198,5 +174,24 @@ public class Card : MonoBehaviour
     public void SetInitPos(Vector2 pos)
     {
         initPos = pos;
+    }
+    
+
+    //カードの上にマウスがあるか判断
+    bool CheckMouseOnCard()
+    {
+        Vector2 CardPos = GetComponent<RectTransform>().anchoredPosition;
+        mousePos = Input.mousePosition;
+        var CardSize = GetComponent<RectTransform>().sizeDelta;
+
+        if(CardPos.x + CardSize.x > mousePos.x && CardPos.x - CardSize.x < mousePos.x &&
+        CardPos.y + CardSize.y > mousePos.y && CardPos.y - CardSize.y < mousePos.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
