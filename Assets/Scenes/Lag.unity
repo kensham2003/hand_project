@@ -997,7 +997,7 @@ MonoBehaviour:
   cardText: test3
   cardID: 3
   onceHorverd: 0
-  test: {fileID: 0}
+  damageText: {fileID: 0}
 --- !u!114 &778141229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   cardText: test1
   cardID: 1
   onceHorverd: 0
-  test: {fileID: 0}
+  damageText: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,6 +1250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardMonsterCSV: {fileID: 4900000, guid: 596f663efd30fe34ea4dc217928f85d2, type: 3}
+  visibleList: {fileID: 1391828836}
+  cpuMain: {fileID: 963194231}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,7 +1423,7 @@ MonoBehaviour:
   cardText: test2
   cardID: 2
   onceHorverd: 0
-  test: {fileID: 0}
+  damageText: {fileID: 0}
 --- !u!114 &1147730822
 MonoBehaviour:
   m_ObjectHideFlags: 0

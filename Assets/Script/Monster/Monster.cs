@@ -99,6 +99,13 @@ public class Monster : MonoBehaviour
         get {return _visibleList;}
         set { _visibleList = value; }
     }
+
+    private CpuMain _cpuMain;
+    public CpuMain cpuMain
+    {
+        get {return _cpuMain;}
+        set { _cpuMain = value; }
+    }
     
     
 
@@ -110,8 +117,12 @@ public class Monster : MonoBehaviour
         if(visibleList == null){
             visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
         }
+        if(cpuMain == null){
+            cpuMain = GameObject.Find("Main Camera").GetComponent<CpuMain>();
+        }
 
         paramerter.maxHp = paramerter.hp;
+        cpuMain.UsageRegister(paramerter.constantLoad);
     }
 
     // Update is called once per frame
