@@ -79,6 +79,8 @@ public class PlayerMonster : Monster
         {
             target.GetComponent<EnemyMonster>().ChangeHP(paramerter.attack);
             
+            cpuMain.UsageRegister(paramerter.attackLoad);
+            Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
             target = null;
         }
@@ -87,7 +89,11 @@ public class PlayerMonster : Monster
 
     public override void Death()
     {
-        Destroy(this.gameObject);
+        if(visibleFlag){
+            OnBecameInvisibleFromCamera();
+        }
+        //InstantiateManager.Instance.DestroyMonster(this.gameObject);
+        instantiateManager.DestroyMonster(this.gameObject);
     }
 
     //---------------------------------------------------ここから下は仮後でマネージャーにまとめる
@@ -97,7 +103,8 @@ public class PlayerMonster : Monster
     {
         bool view = false;
         objectsInView.Clear();
-        foreach(GameObject obj in visibleList.GetVisibleList()){
+        foreach(GameObject obj in visibleList.GetVisibleList())
+        {
             if(obj == null)continue;
             if(obj.GetComponent<EnemyMonster>()){
                 objectsInView.Add(obj);
@@ -176,7 +183,7 @@ public class PlayerMonster : Monster
         //画面チェック
         if(DetectEnemiesInScreen())
         {
-            target = GetClosestEnemy();
+            target = GetClosestObject();
             if(target == null)
             //待機
             {
@@ -212,7 +219,7 @@ public class PlayerMonster : Monster
     //攻撃
     void Attack()
     {
-        target = GetClosestEnemy();
+        target = GetClosestObject();
         if(target == null)
         //待機
         {

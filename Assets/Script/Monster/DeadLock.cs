@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadLock : MonoBehaviour
+public class DeadLock : EffectMonster
 {
     [Tooltip("自滅するまでの時間")]
     [SerializeField] public float lifeTime = 5;
@@ -15,13 +15,13 @@ public class DeadLock : MonoBehaviour
     //ロックフラグ
     bool lockFlag = false;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         
     }
@@ -44,7 +44,7 @@ public class DeadLock : MonoBehaviour
         }
     }
 
-    void Death()
+    public override void Death()
     {
         lockEnemy.GetComponent<EnemyMonster>().SetStatus(Status.move);
 

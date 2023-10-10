@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : SingletonMonoBehaviour<GameManager>
+public class GameManager : MonoBehaviour
 {
     bool clearFlag = false;
 
@@ -11,21 +12,28 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public AnimationCurve cpuUsage_LagIntervalCurve;
 
-    [SerializeField] CpuMain cpuMain;
-    [SerializeField] GameObject clearText;
-
+    [SerializeField]   CpuMain cpuMain;
+    [SerializeField]  GameObject clearText;
+    //リトライ用のボタン
+    [SerializeField] GameObject retryButton;
     Coroutine lagCoroutine = null;
 
     void Start()
     {
+        Time.timeScale = 1f;
         cpuMain.OnUsageFull += GameClear;
         lagCoroutine = StartCoroutine(LagSimulate());
     }
 
+    private void OnDestroy() {
+        //cpuMain.OnUsageFull -= GameClear;
+        //Debug.Log("unsub");
+    }
     void Update()
     {
         if(clearFlag){return;}
         EvaluateLagInterval(cpuMain.Usage);
+        
     }
 
     //ラグ間隔取得
@@ -37,8 +45,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void GameClear(){
         clearFlag = true;
         clearText.SetActive(true);
+        retryButton.SetActive(true);
         StopCoroutine(lagCoroutine);
         Time.timeScale = 0f;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     IEnumerator LagSimulate(){

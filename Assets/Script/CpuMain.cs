@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 
-public class CpuMain : SingletonMonoBehaviour<CpuMain>
+public class CpuMain : MonoBehaviour
 {
     private float usage;
     public float Usage
@@ -19,8 +19,11 @@ public class CpuMain : SingletonMonoBehaviour<CpuMain>
     //使用率が100%になった時呼ぶイベント
     public event Action OnUsageFull = delegate{};
 
-    new void Awake(){
-        base.Awake();
+    // new void Awake(){
+    //     base.Awake();
+    //     usage = 0;
+    // }
+    private void Awake() {
         usage = 0;
     }
 

@@ -34,6 +34,8 @@ public class Card : MonoBehaviour
     //デバッグ用演出
     [SerializeField] protected GameObject damageText;
 
+    protected InstantiateManager instantiateManager;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -43,6 +45,7 @@ public class Card : MonoBehaviour
 
         imageInitSize = GetComponent<RectTransform>().sizeDelta;
         imageHorverSize = GetComponent<RectTransform>().sizeDelta * 2;
+        instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
     }
 
     // Update is called once per frame
