@@ -21,7 +21,8 @@ public class SpellCard : Card
     public override void CardEffect(RaycastHit hit)
     {
        //スポーン
-        GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
-        InstantiateMonster(cardID, hit.point, Quaternion.identity);
+        // GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
+        // InstantiateMonster(cardID, hit.point, Quaternion.identity);
+        instantiateManager.InstantiateMonster(cardID, hit.point, Quaternion.identity);
     }
 }

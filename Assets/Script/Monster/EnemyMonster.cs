@@ -31,7 +31,7 @@ public class EnemyMonster : Monster
 
         status = Status.idle;
 
-        cpumain = GameObject.Find("Main Camera").GetComponent<CpuMain>();
+        cpumain = GameObject.Find("Managers").GetComponent<CpuMain>();
     }
 
     // Update is called once per frame

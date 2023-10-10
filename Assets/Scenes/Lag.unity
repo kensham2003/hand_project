@@ -1287,9 +1287,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194232}
-  - component: {fileID: 963194231}
-  - component: {fileID: 963194230}
   - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
@@ -1384,82 +1381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad8ec1b10a687145b92337a21a255b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94dc67a77220f5b4ba4313deb2d03b48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardMonsterCSV: {fileID: 4900000, guid: 596f663efd30fe34ea4dc217928f85d2, type: 3}
-  visibleList: {fileID: 1391828836}
-  cpuMain: {fileID: 963194231}
---- !u!114 &963194231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 516a6e6fe2fce2242907049f7ee28c23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &963194232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdbd08c18e14fb346a1ba7f849c246ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lagInterval: 0
-  cpuUsage_LagIntervalCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.3
-      value: 0
-      inSlope: -0
-      outSlope: 0.14285715
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.3416667
-    - serializedVersion: 3
-      time: 1
-      value: 0.1
-      inSlope: 0.14285715
-      outSlope: 0.3237919
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.31666672
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  cpuMain: {fileID: 963194231}
-  clearText: {fileID: 10155630}
-  retryButton: {fileID: 126592387}
 --- !u!1 &1147730819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: test2
   cardText: test2
-  cardID: 2
+  cardID: 4
   onceHorverd: 0
   damageText: {fileID: 0}
 --- !u!114 &1147730822
@@ -1758,6 +1679,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1391828837}
   - component: {fileID: 1391828836}
+  - component: {fileID: 1391828840}
+  - component: {fileID: 1391828839}
   - component: {fileID: 1391828838}
   m_Layer: 0
   m_Name: Managers
@@ -1803,13 +1726,73 @@ MonoBehaviour:
   m_GameObject: {fileID: 1391828835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce915b574068c344b01e8b30e1b5707, type: 3}
+  m_Script: {fileID: 11500000, guid: 516a6e6fe2fce2242907049f7ee28c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Objects:
-  - {fileID: 10155630}
-  - {fileID: 126592387}
-  - {fileID: 963194225}
+--- !u!114 &1391828839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391828835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94dc67a77220f5b4ba4313deb2d03b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardMonsterCSV: {fileID: 4900000, guid: 596f663efd30fe34ea4dc217928f85d2, type: 3}
+  visibleList: {fileID: 1391828836}
+  cpuMain: {fileID: 1391828838}
+--- !u!114 &1391828840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391828835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbd08c18e14fb346a1ba7f849c246ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lagInterval: 0
+  cpuUsage_LagIntervalCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 0
+      inSlope: -0
+      outSlope: 0.14285715
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3416667
+    - serializedVersion: 3
+      time: 1
+      value: 0.1
+      inSlope: 0.14285715
+      outSlope: 0.3237919
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.31666672
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  cpuMain: {fileID: 1391828838}
+  clearText: {fileID: 10155630}
+  retryButton: {fileID: 126592387}
 --- !u!1 &1522673717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,7 +1811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1522673718
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1845,7 +1828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.170044, y: -7.5700073}
+  m_AnchoredPosition: {x: -74.37, y: -61.39}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1522673719
@@ -1957,7 +1940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3a5a6c3762982408f486ec412ead13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cpuMain: {fileID: 0}
+  cpuMain: {fileID: 1391828838}
 --- !u!1 &1543978063
 GameObject:
   m_ObjectHideFlags: 0
