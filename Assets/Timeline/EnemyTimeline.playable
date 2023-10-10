@@ -16,7 +16,7 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter: 4
+  parameter: 2
 --- !u!114 &-623582723538158500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -33,7 +33,7 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter: 4
+  parameter: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 1
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter: 1
+  parameter: 2
 --- !u!114 &2551732082802963591
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter: 4
+  parameter: 2
 --- !u!114 &8987557550823571137
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,4 +174,4 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 1
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter: 1
+  parameter: 2
