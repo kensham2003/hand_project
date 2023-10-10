@@ -1537,8 +1537,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsPrefab:
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: 1eda84047779e0b4e8cba4b26362797c, type: 3}
-  - {fileID: 1205900353765170463, guid: 238dad77362c2da43a83d8e6166e980e, type: 3}
   - {fileID: 2666206380844969574, guid: 02c711e35fe20a841a72d12c4479ccc8, type: 3}
   - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
   - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
