@@ -35,7 +35,10 @@ public class Card : MonoBehaviour
     [SerializeField] protected GameObject damageText;
 
     protected InstantiateManager instantiateManager;
-
+    //手札
+    protected GameObject hands;
+    //手札の中の何枚目のカードか
+    protected int handsCardNum;
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -46,6 +49,9 @@ public class Card : MonoBehaviour
         imageInitSize = GetComponent<RectTransform>().sizeDelta;
         imageHorverSize = GetComponent<RectTransform>().sizeDelta * 2;
         instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
+
+        //手札
+        hands = GameObject.Find ("Hands");
     }
 
     // Update is called once per frame
@@ -159,5 +165,17 @@ public class Card : MonoBehaviour
         }
 
         GetComponent<RectTransform>().anchoredPosition = initPos;
+    }
+
+    //何枚目か設定
+    public void SetHandsCardNum(int n)
+    {
+        handsCardNum = n;
+    }
+
+    //初期位置変更
+    public void SetInitPos(Vector2 pos)
+    {
+        initPos = pos;
     }
 }
