@@ -20,6 +20,9 @@ public class EnemyMonster : Monster
     //画面内にいるPlayerMonster
     public List<GameObject> objectsInView = new List<GameObject>();
 
+    //CPU
+    CpuMain cpumain;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -27,11 +30,22 @@ public class EnemyMonster : Monster
         mainCamera = Camera.main;
 
         status = Status.idle;
+
+        cpumain = GameObject.Find("Main Camera").GetComponent<CpuMain>();
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        base.Update();
+
+        if(cpumain != null)
+        {
+            //常時CPU影響
+            cpumain.UsageRegister(paramerter.constantLoad);
+        }
+        
+
         switch(status)
         {
             
@@ -235,7 +249,7 @@ public class EnemyMonster : Monster
     {
         if(DetectEnemiesInScreen())
         {
-            target = GetClosestBossPlayerMonster();
+            target = GetClosestObject();
 
             //進行方向
            Vector3 moveVec = target.transform.position - transform.position;

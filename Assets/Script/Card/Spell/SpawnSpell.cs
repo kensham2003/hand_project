@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class SpawnSpell : SpellCard
 {
-    //速度
-    [Tooltip("生成するオブジェクトのID")]
-    [SerializeField] public int ID;
+    
 
     // Start is called before the first frame update
     public override void  Start()
@@ -26,7 +24,7 @@ public class SpawnSpell : SpellCard
         
         //スポーン
         GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
-        InstantiateMonster(ID, hit.point, Quaternion.identity);
+        InstantiateMonster(cardID, hit.point, Quaternion.identity);
 
         
     }

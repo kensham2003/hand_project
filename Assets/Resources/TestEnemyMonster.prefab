@@ -129,8 +129,8 @@ MonoBehaviour:
     attackDistance: 1.5
     attackInterval: 2
     constantLoad:
-      raiseRate: 0
-      impactTime: 0
+      raiseRate: 1
+      impactTime: 1
     spawnLoad:
       raiseRate: 0
       impactTime: 0
