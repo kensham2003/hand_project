@@ -26,6 +26,6 @@ public class SpawnSpell : SpellCard
         GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
         InstantiateMonster(cardID, hit.point, Quaternion.identity);
 
-        
+        hands.GetComponent<Hands>().RemoveCard(handsCardNum);
     }
 }

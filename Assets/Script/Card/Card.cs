@@ -17,7 +17,7 @@ public class Card : MonoBehaviour
     //押されているフラグ
     protected bool pressed = false;
     //マウスがカード上
-    protected bool horverd = false;
+    public bool horverd = false;
     //マウス位置
     protected Vector2 mousePos;
     //初期位置
@@ -30,13 +30,22 @@ public class Card : MonoBehaviour
     //imageのホバーしているときのサイズ
     Vector2 imageHorverSize;
     //すべてのカードで一枚でもホバーしていたらTrue
-    public bool onceHorverd = false;
+    
     //デバッグ用演出
     [SerializeField] protected GameObject damageText;
 
     protected InstantiateManager instantiateManager;
-
+    //手札
+    protected GameObject hands;
+    //手札の中の何枚目のカードか
+    protected int handsCardNum;
     // Start is called before the first frame update
+
+    //カード情報まとめ
+    GameObject cardInfoUI;
+
+
+    
     public virtual void Start()
     {
         initPos = GetComponent<RectTransform>().anchoredPosition;
@@ -46,27 +55,35 @@ public class Card : MonoBehaviour
         imageInitSize = GetComponent<RectTransform>().sizeDelta;
         imageHorverSize = GetComponent<RectTransform>().sizeDelta * 2;
         instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
+
+        //手札
+        hands = GameObject.Find ("Hands");
+        //カード情報UI
+        cardInfoUI = GameObject.Find("CardInfo");
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-         Vector2 CardPos = GetComponent<RectTransform>().anchoredPosition;
-        mousePos = Input.mousePosition;
-        var CardSize = GetComponent<RectTransform>().sizeDelta;
         
-
-        if(CardPos.x + CardSize.x > mousePos.x && CardPos.x - CardSize.x < mousePos.x &&
-        CardPos.y + CardSize.y > mousePos.y && CardPos.y - CardSize.y < mousePos.y)
+        
+        
+        //一枚でもホバーしているか
+        bool oneceHorvered = false;
+        foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
         {
-            horverd = true;
-        }
-        else
-        {
-            horverd = false;
+            if(obj.handsCardNum == handsCardNum)continue;
+
+            if(obj.horverd == true)
+            {
+                oneceHorvered = true;
+            }
         }
 
-        if(horverd)
+        //マウスがカードの上にあるか判断
+        horverd = CheckMouseOnCard();
+
+        if(horverd == true && oneceHorvered == false)
         {
            //画像の大きさ変更
            GetComponent<RectTransform>().sizeDelta = imageHorverSize;
@@ -81,43 +98,29 @@ public class Card : MonoBehaviour
             }
 
             //カードテキスト表示
-            GameObject.Find("CardInfo").GetComponent<Image>().color = new Color(255,255,255,0.5f);
-            GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text = cardName;
-            GameObject.Find("CardText").GetComponent<TextMeshProUGUI>().text = cardText;
-            
+            cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true,cardName,cardText);
         }
         else
         {
             //画像の大きさ変更
             GetComponent<RectTransform>().sizeDelta = imageInitSize;
-
-            //仮の処理
-            Object[] allGameObject = Resources.FindObjectsOfTypeAll(typeof(GameObject));
             
-            onceHorverd = false;
-
-            foreach (GameObject obj in allGameObject)
+            //一枚でもホバーしているか
+            oneceHorvered = false;
+            foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
             {
-                Card cardcomp = obj.GetComponent<Card>();
-                if(cardcomp == true)
+                if(obj.handsCardNum == handsCardNum)continue;
+                if(obj.horverd)
                 {
-                    
-                    if(cardcomp.horverd)
-                    {
-                        onceHorverd = true;
-                    }
+                    oneceHorvered = true;
                 }
             }
 
-            if(onceHorverd == false)
+            if(oneceHorvered == false)
             {
                 //Debug.Log(GameObject.Find("CardInfo"));
                 //カードテキスト非表示
-                GameObject.Find("CardInfo").GetComponent<Image>().color = new Color(0,0,0,0);;
-                GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text = "";
-                GameObject.Find("CardText").GetComponent<TextMeshProUGUI>().text = "";
-
-                
+                cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(false,"","");
             }
            
         }
@@ -159,5 +162,36 @@ public class Card : MonoBehaviour
         }
 
         GetComponent<RectTransform>().anchoredPosition = initPos;
+    }
+
+    //何枚目か設定
+    public void SetHandsCardNum(int n)
+    {
+        handsCardNum = n;
+    }
+
+    //初期位置変更
+    public void SetInitPos(Vector2 pos)
+    {
+        initPos = pos;
+    }
+    
+
+    //カードの上にマウスがあるか判断
+    bool CheckMouseOnCard()
+    {
+        Vector2 CardPos = GetComponent<RectTransform>().anchoredPosition;
+        mousePos = Input.mousePosition;
+        var CardSize = GetComponent<RectTransform>().sizeDelta;
+
+        if(CardPos.x + CardSize.x > mousePos.x && CardPos.x - CardSize.x < mousePos.x &&
+        CardPos.y + CardSize.y > mousePos.y && CardPos.y - CardSize.y < mousePos.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
