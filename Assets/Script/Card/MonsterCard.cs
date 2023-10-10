@@ -32,5 +32,7 @@ public class MonsterCard : Card
         // GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
         // InstantiateMonster(cardID, hit.point, Quaternion.identity);
         instantiateManager.InstantiateMonster(cardID, hit.point, Quaternion.identity);
+
+        hands.GetComponent<Hands>().RemoveCard(handsCardNum);
     }
 }
