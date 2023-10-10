@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DaemonOrbObject : MonoBehaviour
+public class DaemonOrbObject : EffectMonster
 {
     //速度
     [Tooltip("移動速度")]
@@ -12,13 +12,13 @@ public class DaemonOrbObject : MonoBehaviour
     [SerializeField] public float damage = 20;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         //移動
         transform.position += speed * new Vector3(0,0,1) * Time.deltaTime;

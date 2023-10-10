@@ -97,7 +97,8 @@ public class PlayerMonster : Monster
     {
         bool view = false;
         objectsInView.Clear();
-        foreach(GameObject obj in visibleList.GetVisibleList()){
+        foreach(GameObject obj in visibleList.GetVisibleList())
+        {
             if(obj == null)continue;
             if(obj.GetComponent<EnemyMonster>()){
                 objectsInView.Add(obj);
@@ -176,7 +177,7 @@ public class PlayerMonster : Monster
         //画面チェック
         if(DetectEnemiesInScreen())
         {
-            target = GetClosestEnemy();
+            target = GetClosestObject();
             if(target == null)
             //待機
             {
@@ -212,7 +213,7 @@ public class PlayerMonster : Monster
     //攻撃
     void Attack()
     {
-        target = GetClosestEnemy();
+        target = GetClosestObject();
         if(target == null)
         //待機
         {
