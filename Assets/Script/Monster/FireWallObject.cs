@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class FireWallObject : MonoBehaviour
+public class FireWallObject : EffectMonster
 {
     [Tooltip("自滅するまでの時間")]
     [SerializeField] public float lifeTime = 10;
@@ -15,7 +15,7 @@ public class FireWallObject : MonoBehaviour
     //ダメージを与えるフラグ
     bool damageFlag = false;
 
-    void Start()
+    public override void Start()
     {
         Invoke("Death", lifeTime);
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisasterObject : MonoBehaviour
+public class DisasterObject : EffectMonster
 {
     //ダメージを与える範囲
     [Tooltip("ダメージを与える範囲")]
@@ -11,7 +11,7 @@ public class DisasterObject : MonoBehaviour
     [Tooltip("ダメージ量")]
     [SerializeField] public float damage = 3.0f;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject obj in allObjects)
@@ -31,7 +31,7 @@ public class DisasterObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         
     }

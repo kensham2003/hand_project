@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VisibleList : MonoBehaviour
 {
-    private List<GameObject> VisibleObjects = new List<GameObject>();
+    public List<GameObject> VisibleObjects = new List<GameObject>();
     private List<int> emptyIndex = new List<int>(); //空いているスロットのリスト
 
     void Start(){

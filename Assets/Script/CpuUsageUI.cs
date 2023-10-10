@@ -10,6 +10,11 @@ public class CpuUsageUI : MonoBehaviour
     void Awake(){
         cpuMain.OnUsageChanged += ChangeUsageUI;
         GetComponent<TextMeshProUGUI>().text = ((int)cpuMain.Usage).ToString() + "%";
+        
+    }
+
+    private void OnDestroy() {
+        cpuMain.OnUsageChanged -= ChangeUsageUI;
     }
 
     public void ChangeUsageUI(float usage){

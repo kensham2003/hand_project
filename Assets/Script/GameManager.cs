@@ -12,9 +12,10 @@ public class GameManager : MonoBehaviour
 
     public AnimationCurve cpuUsage_LagIntervalCurve;
 
-    [SerializeField] CpuMain cpuMain;
-    [SerializeField] GameObject clearText;
-
+    [SerializeField]   CpuMain cpuMain;
+    [SerializeField]  GameObject clearText;
+    //リトライ用のボタン
+    [SerializeField] GameObject retryButton;
     Coroutine lagCoroutine = null;
 
     void Start()
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         if(clearFlag){return;}
         EvaluateLagInterval(cpuMain.Usage);
+        
     }
 
     //ラグ間隔取得
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
     public void GameClear(){
         clearFlag = true;
         clearText.SetActive(true);
+        retryButton.SetActive(true);
         StopCoroutine(lagCoroutine);
         Time.timeScale = 0f;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
