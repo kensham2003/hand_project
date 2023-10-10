@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using System;
 
-public class InstantiateManager : SingletonMonoBehaviour<InstantiateManager>
+public class InstantiateManager : MonoBehaviour
 {
     public TextAsset cardMonsterCSV;
     private Dictionary<int, GameObject> cardMonsterDict = new Dictionary<int, GameObject>();
@@ -16,8 +16,17 @@ public class InstantiateManager : SingletonMonoBehaviour<InstantiateManager>
     //CPUメイン
     [SerializeField]private CpuMain cpuMain;
 
-    new void Awake(){
-        base.Awake();
+    // new void Awake(){
+    //     base.Awake();
+    //     //CSVファイルに<カードID、プレハブ名>のペアの想定
+    //     ReadCardMonsterCSV();
+
+    //     visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
+    //     // //デバッグ用
+    //     // foreach (KeyValuePair<int, GameObject> kvp in cardMonsterDict)
+    //     //     Debug.Log ("カードID："+ kvp.Key + "  オブジェクト名：" + kvp.Value);
+    // }
+    private void Awake(){
         //CSVファイルに<カードID、プレハブ名>のペアの想定
         ReadCardMonsterCSV();
 
@@ -79,6 +88,7 @@ public class InstantiateManager : SingletonMonoBehaviour<InstantiateManager>
         Monster m = monsterObj.GetComponent<Monster>();
         m.visibleList = visibleList;
         m.cpuMain = cpuMain;
+        m.instantiateManager = this;
         m.paramerter = cardMonsterParamDict[cardId];
         cpuMain.UsageRegister(m.paramerter.spawnLoad);
         Debug.Log("生成 : " + m.paramerter.spawnLoad.raiseRate);

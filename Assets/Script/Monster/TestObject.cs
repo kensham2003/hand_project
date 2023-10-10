@@ -19,6 +19,6 @@ public class TestObject : MonoBehaviour
     }
 
     void DestroyThis(){
-        InstantiateManager.Instance.DestroyMonster(this.gameObject);
+        //InstantiateManager.Instance.DestroyMonster(this.gameObject);
     }
 }

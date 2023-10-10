@@ -107,6 +107,12 @@ public class Monster : MonoBehaviour
         set { _cpuMain = value; }
     }
     
+    private InstantiateManager _instantiateManager;
+    public InstantiateManager instantiateManager
+    {
+        get {return _instantiateManager;}
+        set { _instantiateManager = value; }
+    }
     
 
     // Start is called before the first frame update
@@ -118,7 +124,7 @@ public class Monster : MonoBehaviour
             visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
         }
         if(cpuMain == null){
-            cpuMain = GameObject.Find("Main Camera").GetComponent<CpuMain>();
+            cpuMain = GameObject.Find("Managers").GetComponent<CpuMain>();
         }
 
         paramerter.maxHp = paramerter.hp;

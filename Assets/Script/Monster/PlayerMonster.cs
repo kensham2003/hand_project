@@ -92,7 +92,8 @@ public class PlayerMonster : Monster
         if(visibleFlag){
             OnBecameInvisibleFromCamera();
         }
-        InstantiateManager.Instance.DestroyMonster(this.gameObject);
+        //InstantiateManager.Instance.DestroyMonster(this.gameObject);
+        instantiateManager.DestroyMonster(this.gameObject);
     }
 
     //---------------------------------------------------ここから下は仮後でマネージャーにまとめる

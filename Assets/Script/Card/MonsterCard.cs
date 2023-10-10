@@ -31,6 +31,6 @@ public class MonsterCard : Card
         //スポーン
         // GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
         // InstantiateMonster(cardID, hit.point, Quaternion.identity);
-        InstantiateManager.Instance.InstantiateMonster(cardID, hit.point, Quaternion.identity);
+        instantiateManager.InstantiateMonster(cardID, hit.point, Quaternion.identity);
     }
 }

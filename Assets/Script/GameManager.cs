@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : SingletonMonoBehaviour<GameManager>
+public class GameManager : MonoBehaviour
 {
     bool clearFlag = false;
 
@@ -18,10 +19,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     void Start()
     {
+        Time.timeScale = 1f;
         cpuMain.OnUsageFull += GameClear;
         lagCoroutine = StartCoroutine(LagSimulate());
     }
 
+    private void OnDestroy() {
+        //cpuMain.OnUsageFull -= GameClear;
+        //Debug.Log("unsub");
+    }
     void Update()
     {
         if(clearFlag){return;}
@@ -39,6 +45,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         clearText.SetActive(true);
         StopCoroutine(lagCoroutine);
         Time.timeScale = 0f;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     IEnumerator LagSimulate(){
