@@ -88,8 +88,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: test6
-  cardText: test6
+  cardName: "\u30D5\u30A1\u30A4\u30A2\u30A6\u30A9\u30FC\u30EB"
+  cardText: "\u30B2\u30FC\u30E0\u753B\u9762\u306B\u30AB\u30FC\u30C9\u3092\u30C9\u30ED\u30C3\u30D7\u3057\u305F\u5730\u70B9\u306B
+    \u6A2A\u5E453\uFF4D\u306E\u708E\u306E\u58C1\u3092\u751F\u6210\u3059\u308B\u3092\u751F\u6210\u3059\u308B\u3002
+    \u58C1\u306B\u89E6\u308C\u305F\u6575\u30D7\u30EC\u30A4\u30E4\u30FC\u306F2\u79D2\u6BCE\u30012\u30C0\u30E1\u30FC\u30B8\u3092
+    \u53D7\u3051\u308B\u3002"
   cardID: 6
   onceHorverd: 0
   damageText: {fileID: 0}

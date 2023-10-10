@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad31a83cf475484458f6007159880a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: test2
-  cardText: test2
+  cardName: "\u30C6\u30B9\u30C8\u7528\u306E\u6575\u30E2\u30F3\u30B9\u30BF\u30FC"
+  cardText: "\u30C6\u30B9\u30C8\u7528"
   cardID: 2
   onceHorverd: 0
   damageText: {fileID: 0}

@@ -10,7 +10,7 @@ public class Hands : MonoBehaviour
     [SerializeField] int maxCount = 5;
     public CardSlot slot;
     //所持カード
-    public List<Card> handsCard;
+    private List<Card> handsCard;
     
     //キャンバス
     private GameObject canvas;
@@ -19,6 +19,8 @@ public class Hands : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        handsCard = new List<Card>(maxCount);
+        
         canvas = GameObject.Find ("Canvas");
         deck = GameObject.Find ("Deck");
         
@@ -41,11 +43,12 @@ public class Hands : MonoBehaviour
         
     }
 
+    //テスト用カード生成
     public void Draw()
     {
         if(cardCount < maxCount)
         {
-            //テスト用カード生成
+            
             GameObject temp = deck.GetComponent<Deck>().Draw();
             handsCard.Add(temp.GetComponent<Card>());
             temp.transform.SetParent (canvas.transform,false); 
@@ -56,6 +59,7 @@ public class Hands : MonoBehaviour
 
     }
 
+    //カード位置調整
     void ChangePosition()
     {
         int i = 0;
@@ -63,9 +67,16 @@ public class Hands : MonoBehaviour
         {
             Vector2 pos = new Vector2(i * 280 + 140 , 100 );
             obj.GetComponent<RectTransform>().anchoredPosition = pos;
+            //カードの初期位置設定
             obj.SetInitPos(pos);
+            //何枚目のカードか設定
             obj.SetHandsCardNum(i);
             i++;
         }
+    }
+
+    public List<Card>GetHandsCard()
+    {
+        return handsCard;
     }
 }
