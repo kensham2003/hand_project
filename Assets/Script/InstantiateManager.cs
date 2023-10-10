@@ -91,13 +91,13 @@ public class InstantiateManager : MonoBehaviour
         m.instantiateManager = this;
         m.paramerter = cardMonsterParamDict[cardId];
         cpuMain.UsageRegister(m.paramerter.spawnLoad);
-        Debug.Log("生成 : " + m.paramerter.spawnLoad.raiseRate);
+        //Debug.Log("生成 : " + m.paramerter.spawnLoad.raiseRate);
     }
 
     public void DestroyMonster(GameObject monster){
         PoolManager.Instance.ReleaseGameObject(monster);
         cpuMain.UsageRegister(monster.GetComponent<Monster>().paramerter.DestroyLoad);
-        Debug.Log("消失 : " + monster.GetComponent<Monster>().paramerter.DestroyLoad.raiseRate);
+        //Debug.Log("消失 : " + monster.GetComponent<Monster>().paramerter.DestroyLoad.raiseRate);
     }
 
     public void InstantiateEffect(int effectId, Vector3 position, Quaternion rotation){

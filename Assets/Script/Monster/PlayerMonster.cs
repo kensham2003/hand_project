@@ -80,7 +80,7 @@ public class PlayerMonster : Monster
             target.GetComponent<EnemyMonster>().ChangeHP(paramerter.attack);
             
             cpuMain.UsageRegister(paramerter.attackLoad);
-            Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
+            //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
             target = null;
         }
