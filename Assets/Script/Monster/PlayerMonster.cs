@@ -79,6 +79,8 @@ public class PlayerMonster : Monster
         {
             target.GetComponent<EnemyMonster>().ChangeHP(paramerter.attack);
             
+            cpuMain.UsageRegister(paramerter.attackLoad);
+            Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
             target = null;
         }
@@ -87,7 +89,11 @@ public class PlayerMonster : Monster
 
     public override void Death()
     {
-        Destroy(this.gameObject);
+        if(visibleFlag){
+            OnBecameInvisibleFromCamera();
+        }
+        //InstantiateManager.Instance.DestroyMonster(this.gameObject);
+        instantiateManager.DestroyMonster(this.gameObject);
     }
 
     //---------------------------------------------------ここから下は仮後でマネージャーにまとめる

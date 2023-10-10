@@ -1397,6 +1397,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardMonsterCSV: {fileID: 4900000, guid: 596f663efd30fe34ea4dc217928f85d2, type: 3}
+  visibleList: {fileID: 1391828836}
+  cpuMain: {fileID: 963194231}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -38,14 +38,6 @@ public class EnemyMonster : Monster
     public override void Update()
     {
         base.Update();
-
-        if(cpumain != null)
-        {
-            //常時CPU影響
-            cpumain.UsageRegister(paramerter.constantLoad);
-        }
-        
-
         switch(status)
         {
             
@@ -67,10 +59,12 @@ public class EnemyMonster : Monster
     public override void Action()
     {
         attackFlag = false;
-
         if(target != null && paramerter.attackDistance >= targetDistance)
         {
             target.GetComponent<PlayerMonster>().ChangeHP(paramerter.attack);
+
+            cpuMain.UsageRegister(paramerter.attackLoad);
+            Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
             target = null;
         }
@@ -78,7 +72,13 @@ public class EnemyMonster : Monster
 
     public override void Death()
     {
+        if(visibleFlag){
+            OnBecameInvisibleFromCamera();
+        }
+        cpuMain.UsageRegister(paramerter.DestroyLoad);
+        Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
         Destroy(this.gameObject);
+        //InstantiateManager.Instance.DestroyMonster(this.gameObject);
     }
 
     //AタイプのUpdate

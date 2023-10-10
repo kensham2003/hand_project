@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,12 +20,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
-
+        Time.timeScale = 1f;
         cpuMain.OnUsageFull += GameClear;
         lagCoroutine = StartCoroutine(LagSimulate());
     }
 
+    private void OnDestroy() {
+        //cpuMain.OnUsageFull -= GameClear;
+        //Debug.Log("unsub");
+    }
     void Update()
     {
         if(clearFlag){return;}
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
         retryButton.SetActive(true);
         StopCoroutine(lagCoroutine);
         Time.timeScale = 0f;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     IEnumerator LagSimulate(){

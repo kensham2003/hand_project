@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class LagTimer
 {
-    static Dictionary<float, WaitForSeconds> _timeInterval = new Dictionary<float, WaitForSeconds>(100);
+    static Dictionary<float, WaitForSecondsRealtime> _timeInterval = new Dictionary<float, WaitForSecondsRealtime>(100);
  
     static WaitForEndOfFrame _endOfFrame = new WaitForEndOfFrame();
     public static WaitForEndOfFrame OneFrame {
@@ -16,9 +16,9 @@ public static class LagTimer
         get{ return _fixedUpdate; }
     }
  
-    public static WaitForSeconds Get(float seconds){
+    public static WaitForSecondsRealtime Get(float seconds){
         if(!_timeInterval.ContainsKey(seconds))
-            _timeInterval.Add(seconds, new WaitForSeconds(seconds));
+            _timeInterval.Add(seconds, new WaitForSecondsRealtime(seconds));
         return _timeInterval[seconds];
     }
 }
