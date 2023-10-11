@@ -42,7 +42,7 @@ public class Card : MonoBehaviour
     // Start is called before the first frame update
 
     //カード情報まとめ
-    GameObject cardInfoUI;
+    protected GameObject cardInfoUI;
 
 
     
@@ -60,6 +60,8 @@ public class Card : MonoBehaviour
         hands = GameObject.Find ("Hands");
         //カード情報UI
         cardInfoUI = GameObject.Find("CardInfo");
+        //透明部分をレイキャストに当たらない（スプライトから「Read\Write」をチェックする）
+        image.alphaHitTestMinimumThreshold = 0.5f;
     }
 
     // Update is called once per frame
@@ -99,7 +101,8 @@ public class Card : MonoBehaviour
             }
 
             //カードテキスト表示
-            cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true,cardName,cardText);
+            //cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true,cardName,cardText);
+            SetCardInfoText();
         }
         else
         {
@@ -179,6 +182,8 @@ public class Card : MonoBehaviour
     {
         initPos = pos;
     }
+
+    protected virtual void SetCardInfoText(){}
     
 
     //カードの上にマウスがあるか判断

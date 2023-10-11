@@ -27,4 +27,10 @@ public class SpellCard : Card
 
         hands.GetComponent<Hands>().RemoveCard(handsCardNum);
     }
+
+    protected override void SetCardInfoText()
+    {
+        //カードテキスト表示
+        cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true,cardName,cardText);
+    }
 }

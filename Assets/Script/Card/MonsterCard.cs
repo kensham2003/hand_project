@@ -35,4 +35,11 @@ public class MonsterCard : Card
 
         hands.GetComponent<Hands>().RemoveCard(handsCardNum);
     }
+
+    protected override void SetCardInfoText()
+    {
+        MonsterParamerter mp = CardMonsterDictionary.Instance.GetMonsterParamerter(cardID);
+        //カードテキスト表示
+        cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true, cardName, mp.hp.ToString(), mp.attack.ToString(), mp.speed.ToString(), cardText);
+    }
 }

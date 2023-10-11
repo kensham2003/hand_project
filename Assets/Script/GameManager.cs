@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        cpuMain.OnUsageFull += GameClear;
+        cpuMain.OnUsageFull += GameOver;
         lagCoroutine = StartCoroutine(LagSimulate());
     }
 
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     }
 
     //クリア処理
-    public void GameClear(){
+    public void GameOver(){
         clearFlag = true;
         clearText.SetActive(true);
         retryButton.SetActive(true);

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerBossMonster : PlayerMonster
 {
-    
+    [Header("ダメージ持続時間（-1:永続的）")]
+    [SerializeField]private float damageTime = -1;
 
     // Start is called before the first frame update
     public override void Start()
@@ -30,5 +31,11 @@ public class PlayerBossMonster : PlayerMonster
         Destroy(this.gameObject);
     }
 
-    
+    public override void ChangeHP(float val)
+    {
+        base.ChangeHP(val);
+        CPULoad cpuLoad = new CPULoad{raiseRate = val, impactTime = damageTime};
+        cpuMain.UsageRegister(cpuLoad);
+    }
+
 }

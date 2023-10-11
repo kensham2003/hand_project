@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7232522004999221149
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Signal Emitter With Int
+  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithInt
+  m_Time: 4
+  m_Retroactive: 0
+  m_EmitOnce: 1
+  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
+  parameter: 8
 --- !u!114 &-4755167690115122101
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17,6 +34,23 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 2
+--- !u!114 &-2997225846911617707
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Signal Emitter With Int
+  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithInt
+  m_Time: 3
+  m_Retroactive: 0
+  m_EmitOnce: 1
+  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
+  parameter: 8
 --- !u!114 &-623582723538158500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,6 +131,8 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -623582723538158500}
+    - {fileID: -2997225846911617707}
+    - {fileID: -7232522004999221149}
 --- !u!114 &3149204699835930882
 MonoBehaviour:
   m_ObjectHideFlags: 1

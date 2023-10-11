@@ -142,7 +142,7 @@ public class Monster : MonoBehaviour
         
     }
 
-    public void ChangeHP(float val)
+    public virtual void ChangeHP(float val)
     {
         paramerter.hp -= val;
 
