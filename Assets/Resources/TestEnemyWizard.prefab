@@ -124,7 +124,7 @@ MonoBehaviour:
     hp: 50
     maxHp: 0
     speed: 0.5
-    monsterID: 2
+    monsterID: 10
     attack: 3
     attackDistance: 1.5
     attackInterval: 2

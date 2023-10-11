@@ -17,7 +17,7 @@ public class Card : MonoBehaviour
     //押されているフラグ
     protected bool pressed = false;
     //マウスがカード上
-    public bool horverd = false;
+    public bool hovered = false;
     //マウス位置
     protected Vector2 mousePos;
     //初期位置
@@ -76,7 +76,7 @@ public class Card : MonoBehaviour
         {
             if(obj.handsCardNum == handsCardNum)continue;
             if(obj == this)continue;
-            if(obj.horverd == true)
+            if(obj.hovered == true)
             {
                 oneceHorvered = true;
             }
@@ -86,7 +86,7 @@ public class Card : MonoBehaviour
         //horverd = CheckMouseOnCard();
         //Debug.Log(gameObject.name + " : " + horverd);
 
-        if(horverd == true && oneceHorvered == false)
+        if(hovered == true && oneceHorvered == false)
         {
            //画像の大きさ変更
            GetComponent<RectTransform>().sizeDelta = imageHorverSize;
@@ -114,7 +114,7 @@ public class Card : MonoBehaviour
             foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
             {
                 if(obj.handsCardNum == handsCardNum)continue;
-                if(obj.horverd)
+                if(obj.hovered)
                 {
                     oneceHorvered = true;
                 }

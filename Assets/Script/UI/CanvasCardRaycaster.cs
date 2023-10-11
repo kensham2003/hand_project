@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class CanvasRaycaster : MonoBehaviour
+public class CanvasCardRaycaster : MonoBehaviour
 {
 
     private Card nowHovering = null;
@@ -47,14 +47,14 @@ public class CanvasRaycaster : MonoBehaviour
 
             //すでにホバーしているならこのままに
             if(nowHovering == card){
-                card.horverd = true;
+                card.hovered = true;
                 isHoveringCard = true;
                 break;
             }
 
             //ホバーしていないならホバーにする
             if(!nowHovering){
-                card.horverd = true;
+                card.hovered = true;
                 nowHovering = card;
                 //選択中カードを一番上に表示
                 card.transform.SetAsLastSibling(); 
@@ -65,7 +65,7 @@ public class CanvasRaycaster : MonoBehaviour
         //他のカードをホバーしていない状態に
         foreach(Card card in GetComponentsInChildren<Card>()){
             if(card == nowHovering)continue;
-            card.horverd = false;
+            card.hovered = false;
         }
 
         //なにもホバーしていないならnullに
