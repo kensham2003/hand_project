@@ -16,6 +16,6 @@ public class EffectMonster : Monster
 
     public override void Death()
     {
-        
+        Destroy(this.gameObject);
     }
 }

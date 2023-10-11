@@ -8,7 +8,10 @@ public enum Status
     move,
     attack,
     stop,
-    death
+    death,
+    //ここから下はユニバーサルクロス用
+    ucm,
+    uca
 }
 
 //CPU負荷単位
@@ -251,4 +254,9 @@ public class Monster : MonoBehaviour
         status = st;
     }
 
+
+    public void SetTarget(GameObject obj)
+    {
+        target = obj;
+    }
 }

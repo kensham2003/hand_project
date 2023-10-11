@@ -35,10 +35,7 @@ public class FireWallObject : EffectMonster
             }
         }
     }
-    void Death()
-    {
-        Destroy(this.gameObject);
-    }
+    
     void Damage()
     {
         foreach (GameObject obj in targetEnemys) 

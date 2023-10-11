@@ -25,6 +25,7 @@ public class CopyPaste : SpellCard
         
         if(hit.collider.gameObject.tag == "Player")
         {
+            
             Vector3 direction;
             Vector3 spawnPosition = hit.point;
 
@@ -35,8 +36,10 @@ public class CopyPaste : SpellCard
             spawnPosition += direction * spawnRange;
 
             //スポーン
-            GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
-            InstantiateMonster(hit.collider.gameObject.GetComponent<PlayerMonster>().paramerter.monsterID, spawnPosition, Quaternion.identity);
+            GameObject.Find("Managers").GetComponent<InstantiateManager>().
+            InstantiateMonster(hit.collider.gameObject.GetComponent<Monster>().paramerter.monsterID, spawnPosition, Quaternion.identity);
+
+            hands.GetComponent<Hands>().RemoveCard(handsCardNum);
         }
 
         

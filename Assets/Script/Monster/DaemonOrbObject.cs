@@ -30,7 +30,8 @@ public class DaemonOrbObject : EffectMonster
         {
             //ダメージ
             collision.gameObject.GetComponent<EnemyMonster>().ChangeHP(damage);
-            Destroy(this.gameObject);
+            
+            Death();
         }
         
     }
