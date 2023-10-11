@@ -27,7 +27,7 @@ public class DisasterObject : EffectMonster
             }
         }
 
-        Destroy(this.gameObject);
+        Death();
     }
 
     // Update is called once per frame
