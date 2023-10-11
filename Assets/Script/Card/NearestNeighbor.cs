@@ -43,8 +43,6 @@ public class NearestNeighbor : SpellCard
         
         if(hit.collider.gameObject.tag == "Player")
         {
-            
-
             //デバッグ用演出
             GameObject spawnText = Instantiate(damageText,hit.point + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
 
@@ -77,7 +75,7 @@ public class NearestNeighbor : SpellCard
 
             }
 
-            
+            hands.GetComponent<Hands>().RemoveCard(handsCardNum);
         }
 
         
