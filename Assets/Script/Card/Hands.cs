@@ -21,7 +21,7 @@ public class Hands : MonoBehaviour
     {
         handsCard = new List<Card>(maxCount);
         
-        canvas = GameObject.Find ("Canvas");
+        canvas = GameObject.Find ("Cards");
         deck = GameObject.Find ("Deck");
         
         InvokeRepeating("Draw",2.0f,2.0f);

@@ -73,7 +73,7 @@ public class Card : MonoBehaviour
         foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
         {
             if(obj.handsCardNum == handsCardNum)continue;
-
+            if(obj == this)continue;
             if(obj.horverd == true)
             {
                 oneceHorvered = true;
@@ -81,7 +81,8 @@ public class Card : MonoBehaviour
         }
 
         //マウスがカードの上にあるか判断
-        horverd = CheckMouseOnCard();
+        //horverd = CheckMouseOnCard();
+        //Debug.Log(gameObject.name + " : " + horverd);
 
         if(horverd == true && oneceHorvered == false)
         {
@@ -127,7 +128,10 @@ public class Card : MonoBehaviour
         
         if(pressed)
         {
-            GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
+            //CanvasScaler canvasScaler = GetComponentInParent<CanvasScaler>();
+            float scale = (float)Screen.width / 1920;
+            //Debug.Log(scale);
+            GetComponent<RectTransform>().anchoredPosition = Input.mousePosition / scale;
         }
     }
 
@@ -182,6 +186,7 @@ public class Card : MonoBehaviour
     {
         Vector2 CardPos = GetComponent<RectTransform>().anchoredPosition;
         mousePos = Input.mousePosition;
+        //Debug.Log(mousePos);
         var CardSize = GetComponent<RectTransform>().sizeDelta;
 
         if(CardPos.x + CardSize.x > mousePos.x && CardPos.x - CardSize.x < mousePos.x &&
