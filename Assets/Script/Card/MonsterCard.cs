@@ -10,7 +10,7 @@ public class MonsterCard : Card
     public override void Start()
     {
         base.Start();
-        image.color = Color.red;
+        image.sprite = sprite;
     }
 
     // Update is called once per frame

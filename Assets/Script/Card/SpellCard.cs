@@ -8,7 +8,7 @@ public class SpellCard : Card
     public override void Start()
     {
         base.Start();
-        image.color = Color.blue;
+        image.sprite = sprite;
     }
 
     // Update is called once per frame

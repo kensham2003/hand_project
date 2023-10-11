@@ -11,7 +11,7 @@ public class Card : MonoBehaviour
     //カードの詳細テキスト
     [SerializeField] protected string cardText;
     //スプライト
-    protected Sprite sprite;
+    [SerializeField] protected Sprite sprite;
     //カードID
     [SerializeField] protected int cardID;
     //押されているフラグ
