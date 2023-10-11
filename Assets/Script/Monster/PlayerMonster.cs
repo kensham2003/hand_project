@@ -65,6 +65,12 @@ public class PlayerMonster : Monster
             case Status.attack:
             Attack();
             break;
+            case Status.ucm:
+            UCMove();
+            break;
+            case Status.uca:
+            UCAttack();
+            break;
         }
 
         
@@ -241,6 +247,62 @@ public class PlayerMonster : Monster
             {
                 status = Status.move;
             }
+        }
+    }
+
+    //ユニバーサルクロス用移動
+    void UCMove()
+    {
+        //進行方向
+        Vector3 moveVec = target.transform.position - transform.position;
+        moveVec = moveVec.normalized;
+
+        //ターゲットの距離
+        targetDistance = Vector3.Distance(target.transform.position,transform.position);
+
+        if(paramerter.attackDistance < targetDistance)
+        {
+            //ターゲット移動
+           transform.position += paramerter.speed * moveVec * Time.deltaTime;
+        }
+        else
+        {
+            if(target.GetComponent<EnemyMonster>() != null)
+            {
+                //ターゲットが敵だったらucaへ
+                status = Status.uca;
+            }
+            else
+            {
+                //ターゲットが敵ではなければidleへ
+                status = Status.idle;
+            }
+            
+        }
+    }
+
+    //ユニバーサルクロス用攻撃
+    void UCAttack()
+    {
+        if(target == null)
+        {
+            //死んでいたらidleへ
+            status = Status.idle;
+            return;
+        }
+        
+        targetDistance = Vector3.Distance(target.transform.position,transform.position);
+            
+        if(attackFlag == false && paramerter.attackDistance > targetDistance)
+        {                
+            Invoke("Action",paramerter.attackInterval);
+            {
+                attackFlag = true;
+            }
+        }
+        else
+        {
+            status = Status.ucm;
         }
     }
 }

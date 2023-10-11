@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4737216028760134893}
   - component: {fileID: 8557028607211462719}
   - component: {fileID: 1445500049203078097}
+  - component: {fileID: 4284470787492356900}
   m_Layer: 0
   m_Name: TestBossMonster
   m_TagString: Untagged
@@ -119,7 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paramerter:
-    hp: 0
+    hp: 100
+    maxHp: 0
     speed: 0
     monsterID: 0
     attack: 0
@@ -142,3 +144,30 @@ MonoBehaviour:
   initMaterial: {fileID: 2100000, guid: cc81d399fe3e2874ebc631442d6d94ec, type: 2}
   debugMaterial: {fileID: 2100000, guid: b86c2bb7984a9c848bec9fc7a67daa93, type: 2}
   objectsInView: []
+--- !u!54 &4284470787492356900
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6804468718962571076}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
