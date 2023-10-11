@@ -1161,7 +1161,7 @@ MonoBehaviour:
   cardName: test3
   cardText: test3
   cardID: 3
-  horverd: 0
+  hoverd: 0
   damageText: {fileID: 0}
 --- !u!114 &778141229
 MonoBehaviour:
@@ -1566,6 +1566,7 @@ MonoBehaviour:
   - {fileID: 2666206380844969574, guid: 76fdc1c85bab4bd4ba7624f078b4d78a, type: 3}
   - {fileID: 2666206380844969574, guid: 069f55d4e5f8719479b2aa3dfd83fd18, type: 3}
   - {fileID: 2666206380844969574, guid: c7b63b50408af86468ae1059b581d60a, type: 3}
+  - {fileID: 2666206380844969574, guid: 6b814cd22bc6f684a9f70565f22cf461, type: 3}
 --- !u!4 &1356730244
 Transform:
   m_ObjectHideFlags: 0
@@ -2217,6 +2218,10 @@ PrefabInstance:
     - target: {fileID: 2970880193662403185, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284470787492356900, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 6804468718962571076, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: m_Name

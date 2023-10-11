@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1956810205313928163}
   - component: {fileID: 9044415064842214206}
   m_Layer: 5
-  m_Name: Card_03
+  m_Name: Card_TestEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad31a83cf475484458f6007159880a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: "\u30C6\u30B9\u30C8\u7528\uFF13"
-  cardText: "\u30C6\u30B9\u30C8\u7528\uFF13"
-  cardID: 3
+  cardName: "\u30C6\u30B9\u30C8\u7528\u306E\u6575\u30E2\u30F3\u30B9\u30BF\u30FC"
+  cardText: "\u30C6\u30B9\u30C8\u7528"
+  cardID: 2
   onceHorverd: 0
   damageText: {fileID: 0}

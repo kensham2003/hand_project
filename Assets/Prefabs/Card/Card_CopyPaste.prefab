@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4090542196055065757}
   - component: {fileID: 4726580592499274122}
   - component: {fileID: 4523712568488947956}
-  - component: {fileID: 457344151885676981}
+  - component: {fileID: 3712096140373565956}
   m_Layer: 5
-  m_Name: Card_04
+  m_Name: Card_CopyPaste
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &457344151885676981
+--- !u!114 &3712096140373565956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,14 +85,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2666206380844969574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e8ab58a62e88494499785c914805d792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: "\u30C7\u30FC\u30E2\u30F3\u30AA\u30FC\u30D6"
+  cardName: "\u30B3\u30D4\u30DA"
   cardText: "\u30B2\u30FC\u30E0\u753B\u9762\u306B\u30AB\u30FC\u30C9\u3092\u30C9\u30ED\u30C3\u30D7\u3057\u305F\u5730\u70B9\u306B
-    \u6A2A\u5E451\u30E1\u30FC\u30C8\u30EB\u7403\u4F53\u304C\u51FA\u73FE\u3002\u771F\u3063\u3059\u3050\u4E0A\u306B\u9032\u3080\u3002
-    \u7403\u4F53\u304C\u6575\u306B\u89E6\u308C\u308B\u3068\u6575\u306B20\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u3066\u3001
-    \u7403\u4F53\u306F\u6D88\u6EC5\u3059\u308B\u3002\u307E\u305F\u3001\u753B\u9762\u5916\u306B\u51FA\u3066\u3082\u6D88\u6EC5\u3059\u308B"
-  cardID: 4
-  onceHorverd: 0
+    \u5473\u65B9\u30E2\u30F3\u30B9\u30BF\u30FC\u304C\u3044\u308B\u306A\u3089\u3001\u305D\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u3068
+    \u540C\u3058\u30E2\u30F3\u30B9\u30BF\u30FC\u304C\u8FD1\u304F\u306B\u51FA\u73FE\u3059\u308B\u3002
+    \u30C9\u30ED\u30C3\u30D7\u3057\u305F\u5730\u70B9\u306B\u5473\u65B9\u30E2\u30F3\u30B9\u30BF\u30FC\u304C\u3044\u306A\u3044
+    \u5834\u5408\u306F\u3001\u4E0D\u767A\u3068\u306A\u308A\u30AB\u30FC\u30C9\u306F\u30AB\u30FC\u30C9\u4E00\u89A7\u306B\u623B\u308B\u3002
+    \u4E0D\u767A\u306E\u5834\u5408\u306F\u30AB\u30FC\u30C9\u4E00\u89A7\u306B\u65B0\u305F\u306B\u30AB\u30FC\u30C9\u306F\u751F\u6210
+    \u3055\u308C\u306A\u3044\u3002"
+  cardID: 0
+  horverd: 0
   damageText: {fileID: 0}
+  spawnRange: 2

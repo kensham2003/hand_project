@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4523712568488947956}
   - component: {fileID: 457344151885676981}
   m_Layer: 5
-  m_Name: Card_09
+  m_Name: Card_AllCopyPaste
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,7 +17,7 @@ public class Card : MonoBehaviour
     //押されているフラグ
     protected bool pressed = false;
     //マウスがカード上
-    public bool horverd = false;
+    public bool hoverd = false;
     //マウス位置
     protected Vector2 mousePos;
     //初期位置
@@ -28,7 +28,7 @@ public class Card : MonoBehaviour
     //imageの初期サイズ
     Vector2 imageInitSize;
     //imageのホバーしているときのサイズ
-    Vector2 imageHorverSize;
+    Vector2 imageHoverSize;
     //すべてのカードで一枚でもホバーしていたらTrue
     
     //デバッグ用演出
@@ -53,7 +53,7 @@ public class Card : MonoBehaviour
 
 
         imageInitSize = GetComponent<RectTransform>().sizeDelta;
-        imageHorverSize = GetComponent<RectTransform>().sizeDelta * 2;
+        imageHoverSize = GetComponent<RectTransform>().sizeDelta * 2;
         instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
 
         //手札
@@ -74,19 +74,19 @@ public class Card : MonoBehaviour
         {
             if(obj.handsCardNum == handsCardNum)continue;
 
-            if(obj.horverd == true)
+            if(obj.hoverd == true)
             {
                 oneceHorvered = true;
             }
         }
 
         //マウスがカードの上にあるか判断
-        horverd = CheckMouseOnCard();
+        hoverd = CheckMouseOnCard();
 
-        if(horverd == true && oneceHorvered == false)
+        if(hoverd == true && oneceHorvered == false)
         {
            //画像の大きさ変更
-           GetComponent<RectTransform>().sizeDelta = imageHorverSize;
+           GetComponent<RectTransform>().sizeDelta = imageHoverSize;
 
             if(Input.GetMouseButton(0))
             {
@@ -110,7 +110,7 @@ public class Card : MonoBehaviour
             foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
             {
                 if(obj.handsCardNum == handsCardNum)continue;
-                if(obj.horverd)
+                if(obj.hoverd)
                 {
                     oneceHorvered = true;
                 }
