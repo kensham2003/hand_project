@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4618585785549219545, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: enemyMonsterType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_Name
       value: TestEnemyMonster (2)
@@ -641,6 +645,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4618585785549219545, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: enemyMonsterType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_Name
       value: TestEnemyMonster (1)
@@ -684,20 +692,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsPrefab:
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 2666206380844969574, guid: 02c711e35fe20a841a72d12c4479ccc8, type: 3}
-  - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
   - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
-  - {fileID: 2666206380844969574, guid: 8ffb8d4daff58464190793d526600681, type: 3}
-  - {fileID: 2666206380844969574, guid: 3937da55c633dd141b47462278d60b7a, type: 3}
-  - {fileID: 2666206380844969574, guid: 76fdc1c85bab4bd4ba7624f078b4d78a, type: 3}
-  - {fileID: 2666206380844969574, guid: 069f55d4e5f8719479b2aa3dfd83fd18, type: 3}
-  - {fileID: 2666206380844969574, guid: c7b63b50408af86468ae1059b581d60a, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
 --- !u!4 &1356730244
 Transform:
   m_ObjectHideFlags: 0
@@ -884,6 +880,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2839940306908833818, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: signalAssetEventPairs.Array.data[0].signalAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
+    - target: {fileID: 3610615197509224566, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: m_SceneBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610615197509224566, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].key
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610615197509224566, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].key
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610615197509224566, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].key
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610615197509224566, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: m_SceneBindings.Array.data[5].key
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7744719453396753822, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -892,6 +912,10 @@ PrefabInstance:
       propertyPath: instantiateManager
       value: 
       objectReference: {fileID: 1391828839}
+    - target: {fileID: 8315366648002559916, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: signalAssetEventPairs.Array.data[0].signalAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1160,6 +1184,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1646445050086744012, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618585785549219545, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
+      propertyPath: enemyMonsterType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7589737548005725556, guid: c9118aac4a3b66945abf2112fa211c3b, type: 3}
