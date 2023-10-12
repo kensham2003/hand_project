@@ -145,7 +145,7 @@ MonoBehaviour:
   damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
   initMaterial: {fileID: 2100000, guid: b86c2bb7984a9c848bec9fc7a67daa93, type: 2}
   debugMaterial: {fileID: 2100000, guid: cc81d399fe3e2874ebc631442d6d94ec, type: 2}
-  enemyMonsterType: 0
+  enemyMonsterType: 1
   objectsInView: []
 --- !u!54 &5114570568138440191
 Rigidbody:
@@ -172,7 +172,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1001 &1476705459473897193
 PrefabInstance:
