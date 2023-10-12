@@ -22,7 +22,7 @@ public class InstantiateManager : MonoBehaviour
         visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
     }
 
-    public void InstantiateMonster(int cardId, Vector3 position, Quaternion rotation){
+    public GameObject InstantiateMonster(int cardId, Vector3 position, Quaternion rotation){
         GameObject monsterPrefab = CardMonsterDictionary.Instance.GetMonsterPrefab(cardId);
         GameObject monsterObj = PoolManager.Instance.GetGameObject(monsterPrefab, position, rotation);
         
@@ -35,6 +35,8 @@ public class InstantiateManager : MonoBehaviour
         m.paramerter.monsterID = cardId;
         cpuMain.UsageRegister(m.paramerter.spawnLoad);
         Debug.Log("生成 : " + m.paramerter.spawnLoad.raiseRate);
+
+        return monsterObj;
     }
 
     public void DestroyMonster(GameObject monster){

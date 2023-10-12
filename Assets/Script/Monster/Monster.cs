@@ -227,16 +227,28 @@ public class Monster : MonoBehaviour
         {
             paramerter.hp = paramerter.maxHp;
         }
+        //デバッグ用演出
+        GameObject spawnText = Instantiate(damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        spawnText.GetComponent<TextMeshPro>().text = "+"+ var.ToString();
+        spawnText.GetComponent<TextMeshPro>().color = new Color(0,255,0,1);
     }
     
     public void UpSpeed(float var)
     {
         paramerter.speed += var;
+        //デバッグ用演出
+        GameObject spawnText = Instantiate(damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        spawnText.GetComponent<TextMeshPro>().text = "+"+ var.ToString();
+        spawnText.GetComponent<TextMeshPro>().color = new Color(0,0,255,1);
     }
     
     public void UpAttack(float var)
     {
         paramerter.attack += var;
+        //デバッグ用演出
+        GameObject spawnText = Instantiate(damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        spawnText.GetComponent<TextMeshPro>().text = "+"+ var.ToString();
+        spawnText.GetComponent<TextMeshPro>().color = new Color(255,0,0,1);
     }
     
     public void UpCoolTime(float var)
@@ -247,6 +259,10 @@ public class Monster : MonoBehaviour
         {
             paramerter.attackInterval = 1;
         }
+        //デバッグ用演出
+        GameObject spawnText = Instantiate(damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        spawnText.GetComponent<TextMeshPro>().text = "-"+ var.ToString();
+        spawnText.GetComponent<TextMeshPro>().color = new Color(255,255,0,1);
     }
 
     public void SetStatus(Status st)
