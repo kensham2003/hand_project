@@ -39,7 +39,7 @@ MonoBehaviour:
   m_EmitOnce: 1
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter1: 2
-  parameter2: 5
+  parameter2: 10
 --- !u!114 &2551732082802963591
 MonoBehaviour:
   m_ObjectHideFlags: 1
