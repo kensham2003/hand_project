@@ -74,11 +74,14 @@ public class EnemyMonster : Monster
 
     public override void Death()
     {
+        if(isDead)return;
         if(visibleFlag){
             OnBecameInvisibleFromCamera();
         }
         cpuMain.UsageRegister(paramerter.DestroyLoad);
-        Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
+        //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
+        CPULoad constant = new CPULoad{raiseRate = -1 * paramerter.constantLoad.raiseRate, impactTime = -1};
+        cpuMain.UsageRegister(constant);
         Destroy(this.gameObject);
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
     }
@@ -159,7 +162,7 @@ public class EnemyMonster : Monster
     {
         bool view = false;
         objectsInView.Clear();
-        Debug.Log(visibleList.GetVisibleList());
+        //Debug.Log(visibleList.GetVisibleList());
         foreach(GameObject obj in visibleList.GetVisibleList()){
             if(obj == null)continue;
             if(obj.GetComponent<PlayerMonster>()){
@@ -195,11 +198,12 @@ public class EnemyMonster : Monster
     //一番近いPlatyerMonster取得
     public GameObject GetClosestPlayerMonster()
     {
-        Debug.Log(objectsInView.Count);
+        //Debug.Log(objectsInView.Count);
         GameObject closestObject = null;
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
         {
+            if(obj == null)continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && !obj.GetComponent<PlayerBossMonster>())
             {
@@ -217,6 +221,7 @@ public class EnemyMonster : Monster
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
         {
+            if(obj == null)continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && obj.GetComponent<PlayerBossMonster>())
             {

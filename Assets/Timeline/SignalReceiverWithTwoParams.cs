@@ -23,7 +23,7 @@ public class SignalReceiverWithTwoInt : MonoBehaviour, INotificationReceiver
         if(notification is ParameterizedEmitterWithTwoParams<int> intEmitter){
             var matches = signalAssetEventPairs.Where(x => ReferenceEquals(x.signalAsset, intEmitter.asset));
             foreach(var m in matches){
-                Debug.Log(intEmitter);
+                Debug.Log("param = " + intEmitter.parameter1 + ", " +intEmitter.parameter2);
                 m.events.Invoke(intEmitter.parameter1, intEmitter.parameter2);
             }
         }

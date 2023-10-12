@@ -5,13 +5,17 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("生成マネージャ")]
-    [SerializeField] private InstantiateManager instantiateManager;
+    [SerializeField] private InstantiateManager m_instantiateManager;
     
-    //敵をスポーン
+    /// <summary>
+    /// 一体の敵をスポーン
+    /// </summary>
+    /// <param name="monsterId"></param>
     public void SpawnEnemy(int monsterId){
         Vector3 pos = GetRandomPosition(GetComponent<Collider>().bounds);
-        instantiateManager.InstantiateMonster(monsterId, pos, Quaternion.identity);
+        m_instantiateManager.InstantiateMonster(monsterId, pos, Quaternion.identity);
     }
+
 
     public void SpawnEnemies(int monsterId, int loopCount){
         for(int i = 0; i < loopCount; i++){

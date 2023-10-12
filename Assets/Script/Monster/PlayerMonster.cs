@@ -95,9 +95,17 @@ public class PlayerMonster : Monster
 
     public override void Death()
     {
+        if(isDead)return;
         if(visibleFlag){
             OnBecameInvisibleFromCamera();
+            visibleFlag = false;
         }
+        cpuMain.UsageRegister(paramerter.DestroyLoad);
+        //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
+        CPULoad constant = new CPULoad{raiseRate = -1 * paramerter.constantLoad.raiseRate, impactTime = -1};
+        cpuMain.UsageRegister(constant);
+        isDead = true;
+        //Debug.Log("death");
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
         instantiateManager.DestroyMonster(this.gameObject);
     }
@@ -146,6 +154,7 @@ public class PlayerMonster : Monster
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
         {
+            if(obj == null)continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && !obj.GetComponent<EnemyBossMonster>())
             {
@@ -163,6 +172,7 @@ public class PlayerMonster : Monster
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
         {
+            if(obj == null)continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && obj.GetComponent<EnemyBossMonster>())
             {
