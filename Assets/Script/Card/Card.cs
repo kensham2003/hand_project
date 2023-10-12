@@ -28,7 +28,7 @@ public class Card : MonoBehaviour
     //imageの初期サイズ
     Vector2 imageInitSize;
     //imageのホバーしているときのサイズ
-    Vector2 imageHorverSize;
+    Vector2 imageHoverSize;
     //すべてのカードで一枚でもホバーしていたらTrue
     
     //デバッグ用演出
@@ -53,7 +53,7 @@ public class Card : MonoBehaviour
 
 
         imageInitSize = GetComponent<RectTransform>().sizeDelta;
-        imageHorverSize = GetComponent<RectTransform>().sizeDelta * 2;
+        imageHoverSize = GetComponent<RectTransform>().sizeDelta * 2;
         instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
 
         //手札
@@ -75,7 +75,6 @@ public class Card : MonoBehaviour
         foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
         {
             if(obj.handsCardNum == handsCardNum)continue;
-            if(obj == this)continue;
             if(obj.hovered == true)
             {
                 oneceHorvered = true;
@@ -89,7 +88,7 @@ public class Card : MonoBehaviour
         if(hovered == true && oneceHorvered == false)
         {
            //画像の大きさ変更
-           GetComponent<RectTransform>().sizeDelta = imageHorverSize;
+           GetComponent<RectTransform>().sizeDelta = imageHoverSize;
 
             if(Input.GetMouseButton(0))
             {

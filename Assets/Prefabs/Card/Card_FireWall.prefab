@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4523712568488947956}
   - component: {fileID: 457344151885676981}
   m_Layer: 5
-  m_Name: Card_09
+  m_Name: Card_FireWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -88,14 +88,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: "\u30AA\u30FC\u30EB\u30B3\u30D4\u307A"
-  cardText: "\u30B2\u30FC\u30E0\u753B\u9762\u306B\u30AB\u30FC\u30C9\u3092\u30C9\u30ED\u30C3\u30D7\u3059\u308B\u3068\u767A\u52D5\u3059\u308B
-    \u73FE\u5728\u30B2\u30FC\u30E0\u753B\u9762\u306B\u3044\u308B\u5473\u65B9\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u6570\u3068
-    \u540C\u3058\u6570\u306E\u5473\u65B9\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u3092\u30E9\u30F3\u30C0\u30E0\u306A\u4F4D\u7F6E\u306B
-    \u51FA\u73FE\u3059\u308B\u3002 \u7A2E\u985E\u306F\u7570\u306A\u308B\u5834\u5408(\u4F8B:\u30E2\u30F3\u30B9\u30BF\u30FCA\u304C2\u4F53\u3001
-    \u30E2\u30F3\u30B9\u30BF\u30FCB\u304C3\u4F53)\u306F\u305D\u308C\u305E\u308C2\u4F53\u30683\u4F53\u3067\u5408\u8A08
-    5\u4F53\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u304C\u51FA\u73FE\u3059\u308B\u3002"
+  cardName: "\u30D5\u30A1\u30A4\u30A2\u30A6\u30A9\u30FC\u30EB"
+  cardText: "\u30B2\u30FC\u30E0\u753B\u9762\u306B\u30AB\u30FC\u30C9\u3092\u30C9\u30ED\u30C3\u30D7\u3057\u305F\u5730\u70B9\u306B
+    \u6A2A\u5E453\uFF4D\u306E\u708E\u306E\u58C1\u3092\u751F\u6210\u3059\u308B\u3092\u751F\u6210\u3059\u308B\u3002
+    \u58C1\u306B\u89E6\u308C\u305F\u6575\u30D7\u30EC\u30A4\u30E4\u30FC\u306F2\u79D2\u6BCE\u30012\u30C0\u30E1\u30FC\u30B8\u3092
+    \u53D7\u3051\u308B\u3002"
   sprite: {fileID: 21300000, guid: 535cf0617c5de9043bcc9216e7547ffb, type: 3}
-  cardID: 8
-  hovered: 0
+  cardID: 6
+  horverd: 0
   damageText: {fileID: 0}

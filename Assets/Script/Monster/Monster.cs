@@ -81,7 +81,7 @@ public class Monster : MonoBehaviour
     protected bool attackFlag;
     //攻撃するターゲット
     [Tooltip("攻撃ターゲット")]
-    protected GameObject target;
+    public GameObject target;
     //ターゲットの距離
     protected float targetDistance;
      //デバッグ用ダメージ演出オブジェクト

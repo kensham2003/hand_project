@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4090542196055065757}
   - component: {fileID: 4726580592499274122}
   - component: {fileID: 4523712568488947956}
-  - component: {fileID: -5464576013066846535}
+  - component: {fileID: 457344151885676981}
   m_Layer: 5
-  m_Name: Card_11
+  m_Name: Card_AllCopyPaste
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-5464576013066846535
+--- !u!114 &457344151885676981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,10 +88,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: "\u30A6\u30A4\u30EB\u30B9"
+  cardName: "\u30AA\u30FC\u30EB\u30B3\u30D4\u307A"
   cardText: "\u30B2\u30FC\u30E0\u753B\u9762\u306B\u30AB\u30FC\u30C9\u3092\u30C9\u30ED\u30C3\u30D7\u3059\u308B\u3068\u767A\u52D5\u3059\u308B
-    10\u79D2\u9593\u3001\u6575\u5168\u4F53\u306B\u6BCE\u79D22\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B"
+    \u73FE\u5728\u30B2\u30FC\u30E0\u753B\u9762\u306B\u3044\u308B\u5473\u65B9\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u6570\u3068
+    \u540C\u3058\u6570\u306E\u5473\u65B9\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u3092\u30E9\u30F3\u30C0\u30E0\u306A\u4F4D\u7F6E\u306B
+    \u51FA\u73FE\u3059\u308B\u3002 \u7A2E\u985E\u306F\u7570\u306A\u308B\u5834\u5408(\u4F8B:\u30E2\u30F3\u30B9\u30BF\u30FCA\u304C2\u4F53\u3001
+    \u30E2\u30F3\u30B9\u30BF\u30FCB\u304C3\u4F53)\u306F\u305D\u308C\u305E\u308C2\u4F53\u30683\u4F53\u3067\u5408\u8A08
+    5\u4F53\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u304C\u51FA\u73FE\u3059\u308B\u3002"
   sprite: {fileID: 21300000, guid: 535cf0617c5de9043bcc9216e7547ffb, type: 3}
-  cardID: 9
+  cardID: 8
   hovered: 0
   damageText: {fileID: 0}

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4090542196055065757}
   - component: {fileID: 4726580592499274122}
   - component: {fileID: 4523712568488947956}
-  - component: {fileID: 457344151885676981}
+  - component: {fileID: -3536986960399645049}
   m_Layer: 5
-  m_Name: Card_06
+  m_Name: Card_UniversalCross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &457344151885676981
+--- !u!114 &-3536986960399645049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,15 +85,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2666206380844969574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7361dd783aa51364bb3e7e8f90b674ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 80a13a9cc74bba44abc96fd39d992eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: "\u30D5\u30A1\u30A4\u30A2\u30A6\u30A9\u30FC\u30EB"
-  cardText: "\u30B2\u30FC\u30E0\u753B\u9762\u306B\u30AB\u30FC\u30C9\u3092\u30C9\u30ED\u30C3\u30D7\u3057\u305F\u5730\u70B9\u306B
-    \u6A2A\u5E453\uFF4D\u306E\u708E\u306E\u58C1\u3092\u751F\u6210\u3059\u308B\u3092\u751F\u6210\u3059\u308B\u3002
-    \u58C1\u306B\u89E6\u308C\u305F\u6575\u30D7\u30EC\u30A4\u30E4\u30FC\u306F2\u79D2\u6BCE\u30012\u30C0\u30E1\u30FC\u30B8\u3092
-    \u53D7\u3051\u308B\u3002"
+  cardName: "\u30E6\u30CB\u30D0\u30FC\u30B5\u30EB\u30AF\u30ED\u30B9"
+  cardText: "\u30E6\u30CB\u30D0\u30FC\u30B5\u30EB\u30AF\u30ED\u30B9"
   sprite: {fileID: 21300000, guid: 535cf0617c5de9043bcc9216e7547ffb, type: 3}
-  cardID: 6
-  horverd: 0
+  cardID: 0
+  hovered: 0
   damageText: {fileID: 0}

@@ -41,10 +41,9 @@ public class NearestNeighbor : SpellCard
     public override void CardEffect(RaycastHit hit)
     {
         
-        if(hit.collider.gameObject.tag == "Player")
+        if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null && hit.collider.gameObject.GetComponent<PlayerBossMonster>() == null)
         {
-            
-
+            //PlayerMonster対象
             //デバッグ用演出
             GameObject spawnText = Instantiate(damageText,hit.point + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
 
@@ -77,7 +76,18 @@ public class NearestNeighbor : SpellCard
 
             }
 
-            
+            hands.GetComponent<Hands>().RemoveCard(handsCardNum);
+        }
+        else if(hit.collider.gameObject.GetComponent<PlayerBossMonster>() != null)
+        {
+            //CPU対象
+            foreach (GameObject obj in UnityEngine.Object.FindObjectsOfType(typeof(GameObject)))
+            {
+                if(obj.GetComponent<PlayerMonster>() != null)
+                {
+                    //A
+                }
+            }
         }
 
         

@@ -216,9 +216,11 @@ public class PlayerMonster : Monster
                     status = Status.attack;
                 }
             }
-            
-           
-
+        }
+        else
+        {
+            //画面に敵がいなければIdleへ
+            status = Status.idle;
         }
     }
 
@@ -253,6 +255,12 @@ public class PlayerMonster : Monster
     //ユニバーサルクロス用移動
     void UCMove()
     {
+        if(target == null)
+        {
+            status = Status.idle;
+            return;
+        }
+
         //進行方向
         Vector3 moveVec = target.transform.position - transform.position;
         moveVec = moveVec.normalized;
@@ -290,7 +298,7 @@ public class PlayerMonster : Monster
             status = Status.idle;
             return;
         }
-        
+
         targetDistance = Vector3.Distance(target.transform.position,transform.position);
             
         if(attackFlag == false && paramerter.attackDistance > targetDistance)
