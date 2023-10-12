@@ -11,13 +11,13 @@ public class Card : MonoBehaviour
     //カードの詳細テキスト
     [SerializeField] protected string cardText;
     //スプライト
-    protected Sprite sprite;
+    [SerializeField] protected Sprite sprite;
     //カードID
     [SerializeField] protected int cardID;
     //押されているフラグ
     protected bool pressed = false;
     //マウスがカード上
-    public bool horverd = false;
+    public bool hovered = false;
     //マウス位置
     protected Vector2 mousePos;
     //初期位置
@@ -28,7 +28,7 @@ public class Card : MonoBehaviour
     //imageの初期サイズ
     Vector2 imageInitSize;
     //imageのホバーしているときのサイズ
-    Vector2 imageHorverSize;
+    Vector2 imageHoverSize;
     //すべてのカードで一枚でもホバーしていたらTrue
     
     //デバッグ用演出
@@ -42,7 +42,7 @@ public class Card : MonoBehaviour
     // Start is called before the first frame update
 
     //カード情報まとめ
-    GameObject cardInfoUI;
+    protected GameObject cardInfoUI;
 
 
     
@@ -53,13 +53,15 @@ public class Card : MonoBehaviour
 
 
         imageInitSize = GetComponent<RectTransform>().sizeDelta;
-        imageHorverSize = GetComponent<RectTransform>().sizeDelta * 2;
+        imageHoverSize = GetComponent<RectTransform>().sizeDelta * 2;
         instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
 
         //手札
         hands = GameObject.Find ("Hands");
         //カード情報UI
         cardInfoUI = GameObject.Find("CardInfo");
+        //透明部分をレイキャストに当たらない（スプライトから「Read\Write」をチェックする）
+        image.alphaHitTestMinimumThreshold = 0.5f;
     }
 
     // Update is called once per frame
@@ -73,20 +75,20 @@ public class Card : MonoBehaviour
         foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
         {
             if(obj.handsCardNum == handsCardNum)continue;
-
-            if(obj.horverd == true)
+            if(obj.hovered == true)
             {
                 oneceHorvered = true;
             }
         }
 
         //マウスがカードの上にあるか判断
-        horverd = CheckMouseOnCard();
+        //horverd = CheckMouseOnCard();
+        //Debug.Log(gameObject.name + " : " + horverd);
 
-        if(horverd == true && oneceHorvered == false)
+        if(hovered == true && oneceHorvered == false)
         {
            //画像の大きさ変更
-           GetComponent<RectTransform>().sizeDelta = imageHorverSize;
+           GetComponent<RectTransform>().sizeDelta = imageHoverSize;
 
             if(Input.GetMouseButton(0))
             {
@@ -98,7 +100,8 @@ public class Card : MonoBehaviour
             }
 
             //カードテキスト表示
-            cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true,cardName,cardText);
+            //cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true,cardName,cardText);
+            SetCardInfoText();
         }
         else
         {
@@ -110,7 +113,7 @@ public class Card : MonoBehaviour
             foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
             {
                 if(obj.handsCardNum == handsCardNum)continue;
-                if(obj.horverd)
+                if(obj.hovered)
                 {
                     oneceHorvered = true;
                 }
@@ -127,7 +130,10 @@ public class Card : MonoBehaviour
         
         if(pressed)
         {
-            GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
+            //CanvasScaler canvasScaler = GetComponentInParent<CanvasScaler>();
+            float scale = (float)Screen.width / 1920;
+            //Debug.Log(scale);
+            GetComponent<RectTransform>().anchoredPosition = Input.mousePosition / scale;
         }
     }
 
@@ -175,6 +181,8 @@ public class Card : MonoBehaviour
     {
         initPos = pos;
     }
+
+    protected virtual void SetCardInfoText(){}
     
 
     //カードの上にマウスがあるか判断
@@ -182,6 +190,7 @@ public class Card : MonoBehaviour
     {
         Vector2 CardPos = GetComponent<RectTransform>().anchoredPosition;
         mousePos = Input.mousePosition;
+        //Debug.Log(mousePos);
         var CardSize = GetComponent<RectTransform>().sizeDelta;
 
         if(CardPos.x + CardSize.x > mousePos.x && CardPos.x - CardSize.x < mousePos.x &&

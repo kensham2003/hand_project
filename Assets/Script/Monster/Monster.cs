@@ -8,7 +8,10 @@ public enum Status
     move,
     attack,
     stop,
-    death
+    death,
+    //ここから下はユニバーサルクロス用
+    ucm,
+    uca
 }
 
 //CPU負荷単位
@@ -78,7 +81,7 @@ public class Monster : MonoBehaviour
     protected bool attackFlag;
     //攻撃するターゲット
     [Tooltip("攻撃ターゲット")]
-    protected GameObject target;
+    public GameObject target;
     //ターゲットの距離
     protected float targetDistance;
      //デバッグ用ダメージ演出オブジェクト
@@ -142,7 +145,7 @@ public class Monster : MonoBehaviour
         
     }
 
-    public void ChangeHP(float val)
+    public virtual void ChangeHP(float val)
     {
         paramerter.hp -= val;
 
@@ -251,4 +254,9 @@ public class Monster : MonoBehaviour
         status = st;
     }
 
+
+    public void SetTarget(GameObject obj)
+    {
+        target = obj;
+    }
 }

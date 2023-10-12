@@ -25,13 +25,42 @@ public class CardInfo : MonoBehaviour
         {
             GetComponent<Image>().color = new Color(255,255,255,0.5f);
             transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = cardName;
-            transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = cardText;
+            transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>().text = cardText;
         }
         else
         {
             GetComponent<Image>().color = new Color(255,255,255,0.0f);
             transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "";
             transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+        }
+    }
+
+    //カード情報の視認切り替え
+    public void SetVisibleCardInfo(bool f,string cardName, string cardHp, string cardAtk, string cardSpd, string cardText)
+    {
+        if(f)
+        {
+            GetComponent<Image>().color = new Color(255,255,255,0.5f);
+            transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = cardName;
+            transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = cardHp;
+            transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = cardAtk;
+            transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = cardSpd;
+            transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>().text = cardText;
+        }
+        else
+        {
+            GetComponent<Image>().color = new Color(255,255,255,0.0f);
+            transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>().text = "";
         }
     }
 }

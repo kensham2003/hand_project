@@ -46,7 +46,11 @@ public class DeadLock : EffectMonster
 
     public override void Death()
     {
-        lockEnemy.GetComponent<EnemyMonster>().SetStatus(Status.move);
+        if(lockEnemy != null)
+        {
+            lockEnemy.GetComponent<EnemyMonster>().SetStatus(Status.move);
+        }
+        
 
         Destroy(this.gameObject);
     }

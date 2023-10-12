@@ -8,7 +8,7 @@ public class SpellCard : Card
     public override void Start()
     {
         base.Start();
-        image.color = Color.blue;
+        image.sprite = sprite;
     }
 
     // Update is called once per frame
@@ -26,5 +26,11 @@ public class SpellCard : Card
         instantiateManager.InstantiateMonster(cardID, hit.point, Quaternion.identity);
 
         hands.GetComponent<Hands>().RemoveCard(handsCardNum);
+    }
+
+    protected override void SetCardInfoText()
+    {
+        //カードテキスト表示
+        cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true,cardName,cardText);
     }
 }
