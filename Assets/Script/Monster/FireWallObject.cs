@@ -19,14 +19,14 @@ public class FireWallObject : EffectMonster
     {
         Invoke("Death", lifeTime);
     }
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
-            if (!targetEnemys.Contains(other.gameObject))
+            if (!targetEnemys.Contains(collision.gameObject))
             {
                 //ターゲットに追加
-                targetEnemys.Add(other.gameObject);
+                targetEnemys.Add(collision.gameObject);
                 if (!damageFlag)
                 {
                     damageFlag = true;
