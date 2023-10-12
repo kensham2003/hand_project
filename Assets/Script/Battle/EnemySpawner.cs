@@ -13,6 +13,12 @@ public class EnemySpawner : MonoBehaviour
         instantiateManager.InstantiateMonster(monsterId, pos, Quaternion.identity);
     }
 
+    public void SpawnEnemies(int monsterId, int loopCount){
+        for(int i = 0; i < loopCount; i++){
+            SpawnEnemy(monsterId);
+        }
+    }
+
     //自分のコライダーの範囲内のランダムな位置を返す（高さは一番低い方）
     private Vector3 GetRandomPosition(Bounds bounds){
         return new Vector3(

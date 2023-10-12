@@ -59,12 +59,14 @@ public class EnemyMonster : Monster
     public override void Action()
     {
         attackFlag = false;
+        targetDistance = Vector3.Distance(target.transform.position,transform.position);
         if(target != null && paramerter.attackDistance >= targetDistance)
         {
+
             target.GetComponent<PlayerMonster>().ChangeHP(paramerter.attack);
 
             cpuMain.UsageRegister(paramerter.attackLoad);
-            Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
+            //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
             target = null;
         }
@@ -122,7 +124,7 @@ public class EnemyMonster : Monster
         {
             target = GetClosestObject();
 
-
+            //Debug.Log(target.gameObject.name);
             //進行方向
            Vector3 moveVec = target.transform.position - transform.position;
            moveVec = moveVec.normalized;
@@ -178,11 +180,13 @@ public class EnemyMonster : Monster
         //通常のプレイヤーモンスターがいなければボスをターゲット
         if(closestPlayerMonster == null)
         {
+            //Debug.Log("no player monster");
             return closestBossPlayerMonster;
         }
         //通常のプレイヤーモンスターがいれば一番近い通常の敵をターゲット
         else
         {
+            //Debug.Log("player monster");
             return closestPlayerMonster;
         }
     }
@@ -190,6 +194,7 @@ public class EnemyMonster : Monster
     //一番近いPlatyerMonster取得
     public GameObject GetClosestPlayerMonster()
     {
+        Debug.Log(objectsInView.Count);
         GameObject closestObject = null;
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
@@ -250,7 +255,7 @@ public class EnemyMonster : Monster
         if(DetectEnemiesInScreen())
         {
             target = GetClosestObject();
-
+            
             //進行方向
            Vector3 moveVec = target.transform.position - transform.position;
            moveVec = moveVec.normalized;
