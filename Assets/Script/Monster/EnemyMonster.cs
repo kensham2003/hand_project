@@ -159,6 +159,7 @@ public class EnemyMonster : Monster
     {
         bool view = false;
         objectsInView.Clear();
+        Debug.Log(visibleList.GetVisibleList());
         foreach(GameObject obj in visibleList.GetVisibleList()){
             if(obj == null)continue;
             if(obj.GetComponent<PlayerMonster>()){
