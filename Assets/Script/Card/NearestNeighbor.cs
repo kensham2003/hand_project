@@ -44,34 +44,25 @@ public class NearestNeighbor : SpellCard
         if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null && hit.collider.gameObject.GetComponent<PlayerBossMonster>() == null)
         {
             //PlayerMonster対象
-            //デバッグ用演出
-            GameObject spawnText = Instantiate(damageText,hit.point + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+            
 
             //パラメータによって演出を変更
             switch(type)
             {
                 case UpType.HP:
                 hit.collider.gameObject.GetComponent<PlayerMonster>().UpHP(value);
-                spawnText.GetComponent<TextMeshPro>().text = "+"+value.ToString();
-                spawnText.GetComponent<TextMeshPro>().color = new Color(0,255,0,1);
                 break;
 
                 case UpType.Speed:
                 hit.collider.gameObject.GetComponent<PlayerMonster>().UpSpeed(value);
-                spawnText.GetComponent<TextMeshPro>().text = "+"+value.ToString();
-                spawnText.GetComponent<TextMeshPro>().color = new Color(0,0,255,1);
                 break;
 
                 case UpType.Attack:
                 hit.collider.gameObject.GetComponent<PlayerMonster>().UpAttack(value);
-                spawnText.GetComponent<TextMeshPro>().text = "+"+value.ToString();
-                spawnText.GetComponent<TextMeshPro>().color = new Color(255,0,0,1);
                 break;
 
                 case UpType.CoolTime:
                 hit.collider.gameObject.GetComponent<PlayerMonster>().UpCoolTime(value);
-                spawnText.GetComponent<TextMeshPro>().text = "-"+value.ToString();
-                spawnText.GetComponent<TextMeshPro>().color = new Color(255,255,0,1);
                 break;
 
             }
@@ -81,13 +72,10 @@ public class NearestNeighbor : SpellCard
         else if(hit.collider.gameObject.GetComponent<PlayerBossMonster>() != null)
         {
             //CPU対象
-            foreach (GameObject obj in UnityEngine.Object.FindObjectsOfType(typeof(GameObject)))
-            {
-                if(obj.GetComponent<PlayerMonster>() != null)
-                {
-                    //A
-                }
-            }
+            //obj生成＆パラメータ設定（種類、上昇量）
+            GameObject obj =  instantiateManager.InstantiateMonster(11, hit.point, Quaternion.identity);
+            obj.GetComponent<CPUTargetNearestNeighbor>().SetParamerter(type,value);
+            hands.GetComponent<Hands>().RemoveCard(handsCardNum);
         }
 
         
