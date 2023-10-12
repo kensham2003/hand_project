@@ -159,7 +159,7 @@ public class EnemyMonster : Monster
     {
         bool view = false;
         objectsInView.Clear();
-        Debug.Log(visibleList.GetVisibleList());
+        //Debug.Log("visible list = " + visibleList.GetVisibleList().Count);
         foreach(GameObject obj in visibleList.GetVisibleList()){
             if(obj == null)continue;
             if(obj.GetComponent<PlayerMonster>()){
@@ -195,7 +195,7 @@ public class EnemyMonster : Monster
     //一番近いPlatyerMonster取得
     public GameObject GetClosestPlayerMonster()
     {
-        Debug.Log(objectsInView.Count);
+        //Debug.Log(objectsInView.Count);
         GameObject closestObject = null;
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)

@@ -34,7 +34,7 @@ public class InstantiateManager : MonoBehaviour
         //追加　ID設定
         m.paramerter.monsterID = cardId;
         cpuMain.UsageRegister(m.paramerter.spawnLoad);
-        Debug.Log("生成 : " + m.paramerter.spawnLoad.raiseRate);
+        //Debug.Log("生成 : " + m.paramerter.spawnLoad.raiseRate);
         return monsterObj;
     }
 

@@ -12,10 +12,13 @@ public class GameManager : MonoBehaviour
 
     public AnimationCurve cpuUsage_LagIntervalCurve;
 
-    [SerializeField]   CpuMain cpuMain;
-    [SerializeField]  GameObject clearText;
+    [SerializeField] CpuMain cpuMain;
+    [SerializeField] GameObject clearText;
     //リトライ用のボタン
     [SerializeField] GameObject retryButton;
+    [SerializeField] SceneChange canvas;
+    [SerializeField] string gameoverSceneName;
+    [SerializeField] string clearSceneName;
     Coroutine lagCoroutine = null;
 
     void Start()
@@ -43,12 +46,16 @@ public class GameManager : MonoBehaviour
 
     //クリア処理
     public void GameOver(){
-        clearFlag = true;
-        clearText.SetActive(true);
-        retryButton.SetActive(true);
+        
+        //clearText.SetActive(true);
+        //retryButton.SetActive(true);
         StopCoroutine(lagCoroutine);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(!clearFlag){
+            canvas.ChangeScene(gameoverSceneName);
+        }
+        clearFlag = true;
     }
 
     IEnumerator LagSimulate(){

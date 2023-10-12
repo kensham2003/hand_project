@@ -1,5 +1,5 @@
 ID,Prefab Name,HP,Speed,Attack,Attack Range,Attack Cooldown,Constant CPU,Spawn CPU Rate,Spawn CPU Time,Atk CPU Rate,Atk CPU Time,Death CPU Rate,Death CPU Time
-1,TestMonster,100,5,5,2,2,1,1,2,1,2,1,5
+1,TestMonster,30,5,5,2,2,1,1,2,1,2,1,5
 2,TestEnemyMonster,100,2,2,1.5,3,1,1,2,1,2,1,5
 3,TestObject,20,0,20,2,10,10,10,10,10,3,8,5
 4,TestDaemonOrb,20,0,20,2,10,10,10,10,10,3,8,5
