@@ -44,5 +44,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638164a688b030d4ea351ead6c835bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageRange: 20
+  paramerter:
+    hp: 0
+    maxHp: 0
+    speed: 0
+    monsterID: 0
+    attack: 0
+    attackDistance: 0
+    attackInterval: 0
+    constantLoad:
+      raiseRate: 0
+      impactTime: 0
+    spawnLoad:
+      raiseRate: 0
+      impactTime: 0
+    attackLoad:
+      raiseRate: 0
+      impactTime: 0
+    DestroyLoad:
+      raiseRate: 0
+      impactTime: 0
+  status: 0
+  target: {fileID: 0}
+  damageText: {fileID: 0}
+  initMaterial: {fileID: 0}
+  debugMaterial: {fileID: 0}
+  damageRange: 3
   damage: 20
