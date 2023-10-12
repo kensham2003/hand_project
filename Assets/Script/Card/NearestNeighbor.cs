@@ -85,7 +85,7 @@ public class NearestNeighbor : SpellCard
             {
                 if(obj.GetComponent<PlayerMonster>() != null)
                 {
-                    
+                    //A
                 }
             }
         }
