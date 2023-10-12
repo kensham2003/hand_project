@@ -24,6 +24,12 @@ public class Hands : MonoBehaviour
         canvas = GameObject.Find ("Cards");
         deck = GameObject.Find ("Deck");
         
+        //3枚ドロー
+        for(int i = 0;i < maxCount;i++)
+        {
+            Draw();
+        }
+
         InvokeRepeating("Draw",2.0f,2.0f);
     }
 
@@ -57,6 +63,29 @@ public class Hands : MonoBehaviour
             cardCount++;
         }
 
+    }
+
+    //メルセンヌツイスター用ドロー
+    public void MersenneTwisterDraw()
+    {
+        GameObject temp = deck.GetComponent<Deck>().Draw();
+        handsCard.Add(temp.GetComponent<Card>());
+        temp.transform.SetParent (canvas.transform,false); 
+        temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(cardCount * 280 + 140 , 100 );
+        temp.GetComponent<Card>().SetHandsCardNum(cardCount);
+        cardCount++;
+
+    }
+
+    //ターゲットツイスター用ドロー
+    public void TargetTwisterDraw(GameObject drawcard)
+    {
+        GameObject temp = Instantiate (drawcard);
+        handsCard.Add(temp.GetComponent<Card>());
+        temp.transform.SetParent (canvas.transform,false); 
+        temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(cardCount * 280 + 140 , 100 );
+        temp.GetComponent<Card>().SetHandsCardNum(cardCount);
+        cardCount++;
     }
 
     //カード位置調整
