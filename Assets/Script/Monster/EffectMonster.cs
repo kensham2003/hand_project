@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class EffectMonster : Monster
 {
-    public override void Update()
+    protected override void Start()
+    {
+    
+    }
+    
+    protected override void Update()
     {
         
     }

@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class TestObject : MonoBehaviour
 {
-    int LifeTime;
+    private int m_LifeTime;
     // Start is called before the first frame update
     void Start()
     {
-        LifeTime = 120;
+        m_LifeTime = 120;
     }
 
     void Update(){
-        LifeTime--;
-        if(LifeTime < 0){
+        m_LifeTime--;
+        if(m_LifeTime < 0){
             DestroyThis();
         }
     }

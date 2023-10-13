@@ -854,6 +854,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1445500049203078097, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
+      propertyPath: m_damageText
+      value: 
+      objectReference: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
+    - target: {fileID: 1445500049203078097, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: paramerter.hp
       value: 100
       objectReference: {fileID: 0}

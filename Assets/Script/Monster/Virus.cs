@@ -4,35 +4,46 @@ using UnityEngine;
 
 public class Virus : EffectMonster
 {
-    //死ぬまでの時間
-    [SerializeField]  float lifeTime = 10;
-    //ダメージ量
-    [SerializeField]  float damageValue = 2;
-    //ダメージ間隔
-    [SerializeField]  float damageInterval = 1;
+    /// <summary>
+    /// 効果が切れるまでの時間
+    /// </summary>
+    [SerializeField] private float m_lifeTime = 10;
+    
+    /// <summary>
+    /// ダメージ量
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    [SerializeField] private float m_damageValue = 2;
+    
+    /// <summary>
+    /// ダメージを与える間隔
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    [SerializeField]  float m_damageInterval = 1;
+
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-
-        Invoke("Death",lifeTime);
-
-        InvokeRepeating("Damage",damageInterval,damageInterval);
+        Invoke("Death",m_lifeTime);
+        InvokeRepeating("Damage",m_damageInterval,m_damageInterval);
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         
     }
 
     void Damage()
     {
-        foreach (GameObject obj in UnityEngine.Object.FindObjectsOfType(typeof(GameObject)))
+        foreach (GameObject obj in GameObject.Find("Managers").GetComponent<VisibleList>().GetVisibleList())
         {
             EnemyMonster em = obj.GetComponent<EnemyMonster>();
             if(em != null)
             {
-                em.ChangeHP(damageValue);
+                em.ChangeHP(m_damageValue);
             }
         }
     }
