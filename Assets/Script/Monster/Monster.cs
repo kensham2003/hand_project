@@ -72,26 +72,26 @@ public class Monster : MonoBehaviour
 {
     //モンスターのパラメーター
     [Tooltip("モンスターのパラメーター")]
-    [SerializeField] public MonsterParamerter paramerter;
+    [SerializeField] public MonsterParamerter m_paramerter;
     //モンスターのステータス
     [Tooltip("モンスターのステータス")]
-    [SerializeField] public Status status;
+    [SerializeField] public Status m_status;
     //攻撃しているかのフラグ
     [Tooltip("攻撃しているか")]
-    protected bool attackFlag;
+    protected bool m_attackFlag;
     //攻撃するターゲット
     [Tooltip("攻撃ターゲット")]
-    public GameObject target;
+    public GameObject m_target;
     //ターゲットの距離
-    protected float targetDistance;
+    protected float m_targetDistance;
      //デバッグ用ダメージ演出オブジェクト
      [Tooltip("デバッグ用ダメージ演出オブジェクト")]
-    [SerializeField] protected GameObject damageText;
+    [SerializeField] protected GameObject m_damageText;
     
     //初期マテリアル
-    public Material initMaterial;
+    public Material m_initMaterial;
     //デバッグ用ダメージマテリアル
-    [SerializeField] Material debugMaterial;
+    [SerializeField] Material m_debugMaterial;
 
     //ViewList(画面に映っているモンスター)のインデックス
     protected int visibleListIndex; //映っていない場合は-1
@@ -124,10 +124,10 @@ public class Monster : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public virtual void Start()
+    protected virtual void Start()
     {
         
-        initMaterial = GetComponent<Renderer>().material;
+        m_initMaterial = GetComponent<Renderer>().material;
         if(visibleList == null){
             visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
         }
@@ -135,12 +135,12 @@ public class Monster : MonoBehaviour
             cpuMain = GameObject.Find("Managers").GetComponent<CpuMain>();
         }
 
-        paramerter.maxHp = paramerter.hp;
-        cpuMain.UsageRegister(paramerter.constantLoad);
+        m_paramerter.maxHp = m_paramerter.hp;
+        cpuMain.UsageRegister(m_paramerter.constantLoad);
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    protected virtual void Update()
     {
         CheckVisible();
     }
@@ -152,20 +152,20 @@ public class Monster : MonoBehaviour
 
     public virtual void ChangeHP(float val)
     {
-        paramerter.hp -= val;
+        m_paramerter.hp -= val;
 
         //デバッグ用ダメージ演出
-        GameObject spawnText = Instantiate(damageText,transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        GameObject spawnText = Instantiate(m_damageText,transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
         spawnText.GetComponent<TextMeshPro>().text = val.ToString();
 
-        if(paramerter.hp < 0)
+        if(m_paramerter.hp < 0)
         {
-            paramerter.hp = 0;
+            m_paramerter.hp = 0;
             Death();
         }
 
         //デバッグ用
-        GetComponent<Renderer>().material = debugMaterial;
+        GetComponent<Renderer>().material = m_debugMaterial;
         Invoke("ResetMaterial",0.25f);
         
     }
@@ -173,7 +173,7 @@ public class Monster : MonoBehaviour
     //マテリアルを戻す
     void ResetMaterial()
     {
-        GetComponent<Renderer>().material = initMaterial;
+        GetComponent<Renderer>().material = m_initMaterial;
     }
 
     public virtual void Death()
@@ -228,58 +228,58 @@ public class Monster : MonoBehaviour
     //モンスターの能力上昇
     public void UpHP(float var)
     {
-        paramerter.hp += var;
+        m_paramerter.hp += var;
 
-        if(paramerter.hp > paramerter.maxHp)
+        if(m_paramerter.hp > m_paramerter.maxHp)
         {
-            paramerter.hp = paramerter.maxHp;
+            m_paramerter.hp = m_paramerter.maxHp;
         }
         //デバッグ用演出
-        GameObject spawnText = Instantiate(damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        GameObject spawnText = Instantiate(m_damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
         spawnText.GetComponent<TextMeshPro>().text = "+"+ var.ToString();
         spawnText.GetComponent<TextMeshPro>().color = new Color(0,255,0,1);
     }
     
     public void UpSpeed(float var)
     {
-        paramerter.speed += var;
+        m_paramerter.speed += var;
         //デバッグ用演出
-        GameObject spawnText = Instantiate(damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        GameObject spawnText = Instantiate(m_damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
         spawnText.GetComponent<TextMeshPro>().text = "+"+ var.ToString();
         spawnText.GetComponent<TextMeshPro>().color = new Color(0,0,255,1);
     }
     
     public void UpAttack(float var)
     {
-        paramerter.attack += var;
+        m_paramerter.attack += var;
         //デバッグ用演出
-        GameObject spawnText = Instantiate(damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        GameObject spawnText = Instantiate(m_damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
         spawnText.GetComponent<TextMeshPro>().text = "+"+ var.ToString();
         spawnText.GetComponent<TextMeshPro>().color = new Color(255,0,0,1);
     }
     
     public void UpCoolTime(float var)
     {
-        paramerter.attackInterval -= var;
+        m_paramerter.attackInterval -= var;
 
-        if(paramerter.attackInterval < 1)
+        if(m_paramerter.attackInterval < 1)
         {
-            paramerter.attackInterval = 1;
+            m_paramerter.attackInterval = 1;
         }
         //デバッグ用演出
-        GameObject spawnText = Instantiate(damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        GameObject spawnText = Instantiate(m_damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
         spawnText.GetComponent<TextMeshPro>().text = "-"+ var.ToString();
         spawnText.GetComponent<TextMeshPro>().color = new Color(255,255,0,1);
     }
 
     public void SetStatus(Status st)
     {
-        status = st;
+        m_status = st;
     }
 
 
     public void SetTarget(GameObject obj)
     {
-        target = obj;
+        m_target = obj;
     }
 }

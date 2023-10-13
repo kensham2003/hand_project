@@ -119,17 +119,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55069b7af515c9744a355a5bb143cb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paramerter:
-    hp: 10
+  m_paramerter:
+    hp: 0
     maxHp: 0
-    speed: 3
-    monsterID: 1
-    attack: 5
-    attackDistance: 1.5
-    attackInterval: 1
+    speed: 0
+    monsterID: 0
+    attack: 0
+    attackDistance: 0
+    attackInterval: 0
     constantLoad:
-      raiseRate: 50
-      impactTime: 5
+      raiseRate: 0
+      impactTime: 0
     spawnLoad:
       raiseRate: 0
       impactTime: 0
@@ -139,12 +139,12 @@ MonoBehaviour:
     DestroyLoad:
       raiseRate: 0
       impactTime: 0
-  status: 0
-  target: {fileID: 0}
-  damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
-  initMaterial: {fileID: 2100000, guid: cc81d399fe3e2874ebc631442d6d94ec, type: 2}
-  debugMaterial: {fileID: 2100000, guid: b86c2bb7984a9c848bec9fc7a67daa93, type: 2}
-  objectsInView: []
+  m_status: 0
+  m_target: {fileID: 0}
+  m_damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
+  m_initMaterial: {fileID: 2100000, guid: cc81d399fe3e2874ebc631442d6d94ec, type: 2}
+  m_debugMaterial: {fileID: 2100000, guid: b86c2bb7984a9c848bec9fc7a67daa93, type: 2}
+  m_objectsInView: []
 --- !u!54 &-2323258723513183699
 Rigidbody:
   m_ObjectHideFlags: 0

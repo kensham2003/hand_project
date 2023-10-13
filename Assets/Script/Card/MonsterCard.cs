@@ -7,20 +7,20 @@ using UnityEngine;
 public class MonsterCard : Card
 {
     // Start is called before the first frame update
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
-        image.sprite = sprite;
+        m_image.sprite = m_sprite;
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
      //効果発動
-    public override void CardEffect(RaycastHit hit)
+    protected override void CardEffect(RaycastHit hit)
     {
         //デバッグ用
         // CPULoad cpuLoad;
@@ -31,15 +31,15 @@ public class MonsterCard : Card
         //スポーン
         // GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
         // InstantiateMonster(cardID, hit.point, Quaternion.identity);
-        instantiateManager.InstantiateMonster(cardID, hit.point + new Vector3(0,1.0f,0.0f), Quaternion.identity);
+        m_instantiateManager.InstantiateMonster(m_cardID, hit.point + new Vector3(0,1.0f,0.0f), Quaternion.identity);
 
-        hands.GetComponent<Hands>().RemoveCard(handsCardNum);
+        m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
     }
 
     protected override void SetCardInfoText()
     {
-        MonsterParamerter mp = CardMonsterDictionary.Instance.GetMonsterParamerter(cardID);
+        MonsterParamerter mp = CardMonsterDictionary.Instance.GetMonsterParamerter(m_cardID);
         //カードテキスト表示
-        cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true, cardName, mp.hp.ToString(), mp.attack.ToString(), mp.speed.ToString(), cardText);
+        m_cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true, m_cardName, mp.hp.ToString(), mp.attack.ToString(), mp.speed.ToString(), m_cardText);
     }
 }

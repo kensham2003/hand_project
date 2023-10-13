@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class CopyPaste : SpellCard
 {
-    //半径
+    /// <summary>
+    ///生成される距離
+    /// </summary>
     [Tooltip("半径")]
-    [SerializeField] float spawnRange = 2;
+    [SerializeField] private float m_spawnRange = 2;
+
      // Start is called before the first frame update
-    public override void  Start()
+    protected override void  Start()
     {
         base.Start();
     }
     
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
     //効果発動
-    public override void CardEffect(RaycastHit hit)
+    protected override void CardEffect(RaycastHit hit)
     {
         
         if(hit.collider.gameObject.tag == "Player")
@@ -33,15 +36,13 @@ public class CopyPaste : SpellCard
             direction.z = Random.Range(-1.0f,1.0f);
             direction.y = 0;
 
-            spawnPosition += direction * spawnRange;
+            spawnPosition += direction * m_spawnRange;
 
             //スポーン
             GameObject.Find("Managers").GetComponent<InstantiateManager>().
-            InstantiateMonster(hit.collider.gameObject.GetComponent<Monster>().paramerter.monsterID, spawnPosition, Quaternion.identity);
+            InstantiateMonster(hit.collider.gameObject.GetComponent<Monster>().m_paramerter.monsterID, spawnPosition, Quaternion.identity);
 
-            hands.GetComponent<Hands>().RemoveCard(handsCardNum);
+            m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
-
-        
     }
 }

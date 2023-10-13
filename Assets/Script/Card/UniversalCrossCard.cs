@@ -5,35 +5,37 @@ using UnityEngine;
 public class UniversalCrossCard : SpellCard
 {
     // Start is called before the first frame update
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
-     //効果発動
-    public override void CardEffect(RaycastHit hit)
+    /// <summary>
+    /// 効果発動
+    /// </summary>
+    /// <param name="hit"></param>
+    protected override void CardEffect(RaycastHit hit)
     {
+        //CPUかエネミー
         if(hit.collider.gameObject.GetComponent<PlayerBossMonster>() != null || hit.collider.gameObject.GetComponent<EnemyMonster>() != null)
         {
-            //CPUかエネミー
             foreach (GameObject obj in UnityEngine.Object.FindObjectsOfType(typeof(GameObject)))
             {
-                if(obj.tag == "Player")
-                {
-                    PlayerMonster pm = obj.GetComponent<PlayerMonster>();
+                PlayerMonster pm = obj.GetComponent<PlayerMonster>();
 
+                if(pm != null)
+                {
                     pm.SetStatus(Status.ucm);
                     pm.SetTarget(hit.collider.gameObject);
                 }
             }
-
-            hands.GetComponent<Hands>().RemoveCard(handsCardNum);
+            m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
 
         

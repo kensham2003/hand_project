@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class CardSlot : MonoBehaviour
 {
-    //カード位置
-    public List<Vector2> cardPositions = new List<Vector2>(3);
+    /// <summary>
+    /// カード位置
+    /// </summary>
+    private List<Vector2> m_cardPositions = new List<Vector2>(3);
 
-    //最大枚数
+    /// <summary>
+    /// 最大枚数
+    /// </summary>
     [SerializeField] int maxCount = 5;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }
@@ -26,7 +30,7 @@ public class CardSlot : MonoBehaviour
     {
         if(n > maxCount)
         {
-            return cardPositions[n];
+            return m_cardPositions[n];
         }
         //エラー
         else
@@ -39,18 +43,18 @@ public class CardSlot : MonoBehaviour
     //カードスロット追加
     public void AddCardSlot(Vector2 n)
     {
-        if(cardPositions.Count < maxCount)
+        if(m_cardPositions.Count < maxCount)
         {
-            cardPositions.Add(n);
+            m_cardPositions.Add(n);
         }
     }
 
     //カードスロット減少
     public void DecCardSlot(int n)
     {
-        if(cardPositions.Count > 0)
+        if(m_cardPositions.Count > 0)
         {
-            cardPositions.RemoveAt(n);
+            m_cardPositions.RemoveAt(n);
         }
     }
 }

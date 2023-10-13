@@ -17,67 +17,64 @@ public enum UpType
 public class NearestNeighbor : SpellCard
 {
 
-    //上昇対象
+    /// <summary>
+    /// 上昇対象
+    /// </summary>
     [Tooltip("上昇対象")]
-    [SerializeField] UpType type;
+    [SerializeField] private UpType m_type;
 
-    //上昇量
+    /// <summary>
+    /// 上昇量
+    /// </summary>
     [Tooltip("上昇量")]
-    [SerializeField] float value;
+    [SerializeField] private float m_value;
 
     // Start is called before the first frame update
-    public override void  Start()
+    protected override void  Start()
     {
         base.Start();
     }
     
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
     //効果発動
-    public override void CardEffect(RaycastHit hit)
+    protected override void CardEffect(RaycastHit hit)
     {
-        
         if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null && hit.collider.gameObject.GetComponent<PlayerBossMonster>() == null)
         {
-            //PlayerMonster対象
-            
-
             //パラメータによって演出を変更
-            switch(type)
+            switch(m_type)
             {
                 case UpType.HP:
-                hit.collider.gameObject.GetComponent<PlayerMonster>().UpHP(value);
+                hit.collider.gameObject.GetComponent<PlayerMonster>().UpHP(m_value);
                 break;
 
                 case UpType.Speed:
-                hit.collider.gameObject.GetComponent<PlayerMonster>().UpSpeed(value);
+                hit.collider.gameObject.GetComponent<PlayerMonster>().UpSpeed(m_value);
                 break;
 
                 case UpType.Attack:
-                hit.collider.gameObject.GetComponent<PlayerMonster>().UpAttack(value);
+                hit.collider.gameObject.GetComponent<PlayerMonster>().UpAttack(m_value);
                 break;
 
                 case UpType.CoolTime:
-                hit.collider.gameObject.GetComponent<PlayerMonster>().UpCoolTime(value);
+                hit.collider.gameObject.GetComponent<PlayerMonster>().UpCoolTime(m_value);
                 break;
 
             }
-
-            hands.GetComponent<Hands>().RemoveCard(handsCardNum);
+            m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
         else if(hit.collider.gameObject.GetComponent<PlayerBossMonster>() != null)
         {
             //CPU対象
             //obj生成＆パラメータ設定（種類、上昇量）
-            GameObject obj =  instantiateManager.InstantiateMonster(11, hit.point, Quaternion.identity);
-            obj.GetComponent<CPUTargetNearestNeighbor>().SetParamerter(type,value);
-            hands.GetComponent<Hands>().RemoveCard(handsCardNum);
+            GameObject obj =  m_instantiateManager.InstantiateMonster(11, hit.point, Quaternion.identity);
+            obj.GetComponent<CPUTargetNearestNeighbor>().SetParamerter(m_type,m_value);
+            m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
-
-        
     }
 }

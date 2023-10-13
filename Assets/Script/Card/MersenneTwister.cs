@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class MersenneTwister : SpellCard
 {
-    //ドロー回数
-    [SerializeField] int drawCount = 2;
+    /// <summary>
+    /// ドロー回数
+    /// </summary>
+    [SerializeField] private int m_drawCount = 2;
+    
     // Start is called before the first frame update
-    public override void  Start()
+    protected override void  Start()
     {
         base.Start();
     }
     
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
-    //効果発動
-    public override void CardEffect(RaycastHit hit)
+    /// <summary>
+    /// 効果発動
+    /// </summary>
+    /// <param name="hit"></param>
+    protected override void CardEffect(RaycastHit hit)
     {
-        for(int i = 0; i < drawCount;i++)
+        for(int i = 0; i < m_drawCount;i++)
         {
-            hands.GetComponent<Hands>().MersenneTwisterDraw();
+            m_hands.GetComponent<Hands>().MersenneTwisterDraw();
         }
-        hands.GetComponent<Hands>().RemoveCard(handsCardNum);
+        m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
     }
 }

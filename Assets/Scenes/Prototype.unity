@@ -562,8 +562,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsPrefab:
-  - {fileID: 2666206380844969574, guid: 76fdc1c85bab4bd4ba7624f078b4d78a, type: 3}
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 2666206380844969574, guid: 044e8b5e2b3bda14797c942a0c97367e, type: 3}
+  - {fileID: 2666206380844969574, guid: 069f55d4e5f8719479b2aa3dfd83fd18, type: 3}
+  - {fileID: 2666206380844969574, guid: c7b63b50408af86468ae1059b581d60a, type: 3}
 --- !u!4 &1356730244
 Transform:
   m_ObjectHideFlags: 0
@@ -781,6 +785,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7744719453396753822, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8304289224852184228, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
       propertyPath: instantiateManager
       value: 
@@ -827,9 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1693dacdf8c0e3b458b80dbce7dc35f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCount: 0
-  maxCount: 5
-  slot: {fileID: 0}
+  m_maxCount: 5
 --- !u!4 &1708244789
 Transform:
   m_ObjectHideFlags: 0
@@ -853,10 +859,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1445500049203078097, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
-      propertyPath: paramerter.hp
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 2970880193662403185, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.11
@@ -867,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2970880193662403185, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.31
+      value: -5.36
       objectReference: {fileID: 0}
     - target: {fileID: 2970880193662403185, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: m_LocalRotation.w

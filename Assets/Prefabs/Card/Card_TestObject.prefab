@@ -88,9 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad31a83cf475484458f6007159880a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: "\u30C6\u30B9\u30C8\u7528\uFF13"
-  cardText: "\u30C6\u30B9\u30C8\u7528\uFF13"
-  sprite: {fileID: 21300000, guid: 3d53936a8898356469911e156d96f48c, type: 3}
-  cardID: 3
-  horverd: 0
-  damageText: {fileID: 0}
+  m_cardName: "\u30C6\u30B9\u30C8\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8"
+  m_cardText: "\u30C6\u30B9\u30C8\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8"
+  m_sprite: {fileID: 21300000, guid: 3d53936a8898356469911e156d96f48c, type: 3}
+  m_cardID: 3
+  m_hovered: 0
+  m_damageText: {fileID: 0}

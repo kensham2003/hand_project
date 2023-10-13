@@ -4,95 +4,118 @@ using UnityEngine;
 
 public class Hands : MonoBehaviour
 {
-    //所持カードの枚数
-    public int cardCount;
-    //最大枚数
-    [SerializeField] int maxCount = 5;
-    public CardSlot slot;
-    //所持カード
-    private List<Card> handsCard;
+    /// <summary>
+    /// 所持カードの枚数
+    /// </summary>
+    private int m_cardCount;
+
+    /// <summary>
+    /// 最大枚数
+    /// </summary>
+    [SerializeField] private int m_maxCount = 5;
+    private CardSlot slot;
     
-    //キャンバス
-    private GameObject canvas;
-    //デッキ
-    private GameObject deck;
+    /// <summary>
+    /// 所持カード
+    /// </summary>
+    private List<Card> m_handsCard;
+    
+    /// <summary>
+    /// キャンバス
+    /// </summary>
+    private GameObject m_canvas;
+    
+    /// <summary>
+    /// デッキ
+    /// </summary>
+    private GameObject m_deck;
+
+    [SerializeField] private float m_drawInterval = 1.0f;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        handsCard = new List<Card>(maxCount);
+        m_handsCard = new List<Card>(m_maxCount);
         
-        canvas = GameObject.Find ("Cards");
-        deck = GameObject.Find ("Deck");
+        m_canvas = GameObject.Find ("Cards");
+        m_deck = GameObject.Find ("Deck");
         
-        //3枚ドロー
-        for(int i = 0;i < maxCount;i++)
+        //限界までドロー
+        for(int i = 0;i < m_maxCount;i++)
         {
             Draw();
         }
 
-        InvokeRepeating("Draw",2.0f,2.0f);
+        InvokeRepeating("Draw",0.0f,m_drawInterval);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }
 
     public void RemoveCard(int n)
     {
-        Destroy(handsCard[n].gameObject);
-        handsCard.RemoveAt(n);
-        cardCount--;
+        Destroy(m_handsCard[n].gameObject);
+        m_handsCard.RemoveAt(n);
+        m_cardCount--;
 
         ChangePosition();
         
     }
 
-    //テスト用カード生成
+    /// <summary>
+    /// デッキからカード生成
+    /// </summary>
     public void Draw()
     {
-        if(cardCount < maxCount)
+        if(m_cardCount < m_maxCount)
         {
-            
-            GameObject temp = deck.GetComponent<Deck>().Draw();
-            handsCard.Add(temp.GetComponent<Card>());
-            temp.transform.SetParent (canvas.transform,false); 
-            temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(cardCount * 280 + 140 , 100 );
-            temp.GetComponent<Card>().SetHandsCardNum(cardCount);
-            cardCount++;
+            GameObject temp = m_deck.GetComponent<Deck>().Draw();
+            m_handsCard.Add(temp.GetComponent<Card>());
+            temp.transform.SetParent (m_canvas.transform,false); 
+            temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(m_cardCount * 280 + 140 , 100 );
+            temp.GetComponent<Card>().SetHandsCardNum(m_cardCount);
+            m_cardCount++;
         }
 
     }
 
-    //メルセンヌツイスター用ドロー
+    /// <summary>
+    /// メルセンヌツイスター用ドロー
+    /// </summary>
     public void MersenneTwisterDraw()
     {
-        GameObject temp = deck.GetComponent<Deck>().Draw();
-        handsCard.Add(temp.GetComponent<Card>());
-        temp.transform.SetParent (canvas.transform,false); 
-        temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(cardCount * 280 + 140 , 100 );
-        temp.GetComponent<Card>().SetHandsCardNum(cardCount);
-        cardCount++;
+        GameObject temp = m_deck.GetComponent<Deck>().Draw();
+        m_handsCard.Add(temp.GetComponent<Card>());
+        temp.transform.SetParent (m_canvas.transform,false); 
+        temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(m_cardCount * 280 + 140 , 100 );
+        temp.GetComponent<Card>().SetHandsCardNum(m_cardCount);
+        m_cardCount++;
 
     }
 
-    //ターゲットツイスター用ドロー
+    /// <summary>
+    /// ターゲットツイスター用ドロー
+    /// </summary>
+    /// <param name="drawcard"></param>
     public void TargetTwisterDraw(GameObject drawcard)
     {
         GameObject temp = Instantiate (drawcard);
-        handsCard.Add(temp.GetComponent<Card>());
-        temp.transform.SetParent (canvas.transform,false); 
-        temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(cardCount * 280 + 140 , 100 );
-        temp.GetComponent<Card>().SetHandsCardNum(cardCount);
-        cardCount++;
+        m_handsCard.Add(temp.GetComponent<Card>());
+        temp.transform.SetParent (m_canvas.transform,false); 
+        temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(m_cardCount * 280 + 140 , 100 );
+        temp.GetComponent<Card>().SetHandsCardNum(m_cardCount);
+        m_cardCount++;
     }
 
-    //カード位置調整
+    /// <summary>
+    /// カード位置調整
+    /// </summary>
     void ChangePosition()
     {
         int i = 0;
-        foreach(Card obj in handsCard)
+        foreach(Card obj in m_handsCard)
         {
             Vector2 pos = new Vector2(i * 280 + 140 , 100 );
             obj.GetComponent<RectTransform>().anchoredPosition = pos;
@@ -106,6 +129,6 @@ public class Hands : MonoBehaviour
 
     public List<Card>GetHandsCard()
     {
-        return handsCard;
+        return m_handsCard;
     }
 }

@@ -3,47 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 public class FireWallObject : EffectMonster
 {
+    /// <summary>
+    /// 効果が切れるまでの時間
+    /// </summary>
     [Tooltip("自滅するまでの時間")]
-    [SerializeField] public float lifeTime = 10;
+    [SerializeField] private float m_lifeTime = 10;
+    
+    /// <summary>
+    /// ダメージを与える間隔
+    /// </summary>
     [Tooltip("ダメージ間隔")]
-    [SerializeField] public float damageInterval = 2;
+    [SerializeField] private float m_damageInterval = 2;
+
+    /// <summary>
+    /// ダメージ量
+    /// </summary> <summary>
+    /// 
+    /// </summary>
     [Tooltip("ダメージ量")]
-    [SerializeField] public float damage = 2;
+    [SerializeField] private float m_damage = 2;
 
-    //ダメージを与える敵リスト
-    List<GameObject> targetEnemys = new List<GameObject>();
-    //ダメージを与えるフラグ
-    bool damageFlag = false;
+    /// <summary>
+    /// ダメージを与える敵リスト
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="GameObject"></typeparam>
+    /// <returns></returns>
+    List<GameObject> m_targetEnemys = new List<GameObject>();
+    
+    /// <summary>
+    /// ダメージを与えるフラグ
+    /// </summary>
+    private bool m_damageFlag = false;
 
-    public override void Start()
+    protected override void Start()
     {
-        Invoke("Death", lifeTime);
+        Invoke("Death", m_lifeTime);
     }
-    void OnCollisionEnter(Collision collision)
+
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            if (!targetEnemys.Contains(collision.gameObject))
+            if (!m_targetEnemys.Contains(collision.gameObject))
             {
                 //ターゲットに追加
-                targetEnemys.Add(collision.gameObject);
-                if (!damageFlag)
+                m_targetEnemys.Add(collision.gameObject);
+                if (!m_damageFlag)
                 {
-                    damageFlag = true;
-                    InvokeRepeating("Damage", damageInterval, damageInterval);
+                    m_damageFlag = true;
+                    InvokeRepeating("Damage", m_damageInterval, m_damageInterval);
                 }
             }
         }
     }
     
-    void Damage()
+    private void Damage()
     {
-        foreach (GameObject obj in targetEnemys) 
+        foreach (GameObject obj in m_targetEnemys) 
         {
             //ターゲットにダメージ
             if(obj != null)
             {
-                obj.GetComponent<EnemyMonster>().ChangeHP(damage);
+                obj.GetComponent<EnemyMonster>().ChangeHP(m_damage);
             }
         }
     }

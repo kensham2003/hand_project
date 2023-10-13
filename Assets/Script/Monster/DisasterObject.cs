@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class DisasterObject : EffectMonster
 {
-    //ダメージを与える範囲
+    /// <summary>
+    /// ダメージを与える距離
+    /// </summary>
     [Tooltip("ダメージを与える範囲")]
-    [SerializeField] public float damageRange = 3.0f;
-    //ダメージ量
+    [SerializeField] private float m_damageRange = 3.0f;
+    
+    /// <summary>
+    /// 敵に与えるダメージ量
+    /// </summary>
     [Tooltip("ダメージ量")]
-    [SerializeField] public float damage = 3.0f;
+    [SerializeField] private float m_damage = 3.0f;
+
     // Start is called before the first frame update
-    public override void Start()
+    protected override void Start()
     {
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject obj in allObjects)
@@ -20,9 +26,9 @@ public class DisasterObject : EffectMonster
             {
                 //距離で比較
                 float distance = Vector3.Distance(obj.transform.position,transform.position);
-                if(distance < damageRange)
+                if(distance < m_damageRange)
                 {
-                    obj.GetComponent<EnemyMonster>().ChangeHP(damage);
+                    obj.GetComponent<EnemyMonster>().ChangeHP(m_damage);
                 }
             }
         }
@@ -31,7 +37,7 @@ public class DisasterObject : EffectMonster
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         
     }

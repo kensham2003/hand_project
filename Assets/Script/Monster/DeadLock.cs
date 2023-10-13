@@ -4,54 +4,68 @@ using UnityEngine;
 
 public class DeadLock : EffectMonster
 {
+    /// <summary>
+    /// 効果が切れるまでの時間
+    /// </summary> <summary>
+    /// 
+    /// </summary>
     [Tooltip("自滅するまでの時間")]
-    [SerializeField] public float lifeTime = 5;
+    [SerializeField] private float m_lifeTime = 5;
 
+    /// <summary>
+    /// 敵に与えるダメージ量
+    /// </summary>
     [Tooltip("ダメージ量")]
-    [SerializeField] public float damage = 20;
+    [SerializeField] private float m_damage = 20;
 
-    //ロックした敵
-    GameObject lockEnemy;
-    //ロックフラグ
-    bool lockFlag = false;
+    /// <summary>
+    /// ロックした敵
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    private GameObject m_lockEnemy;
+    
+    /// <summary>
+    /// ロックしているかのフラグ
+    /// ロックしていたらTRUE
+    /// </summary>
+    bool m_lockFlag = false;
     // Start is called before the first frame update
-    public override void Start()
+    protected override void Start()
     {
         
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" && lockFlag == false)
+        if (other.gameObject.GetComponent<EnemyMonster>() != null && m_lockFlag == false)
         {
-            
             //ロックした敵設定
-            lockEnemy = other.gameObject;
-            lockFlag = true;
+            m_lockEnemy = other.gameObject;
+            m_lockFlag = true;
 
-            lockEnemy.GetComponent<EnemyMonster>().SetStatus(Status.stop);
+            m_lockEnemy.GetComponent<EnemyMonster>().SetStatus(Status.stop);
 
             //ダメージ
-            lockEnemy.GetComponent<EnemyMonster>().ChangeHP(damage);
+            m_lockEnemy.GetComponent<EnemyMonster>().ChangeHP(m_damage);
 
-            Invoke("Death",lifeTime);
+            Invoke("Death",m_lifeTime);
         }
     }
 
     public override void Death()
     {
-        if(lockEnemy != null)
+        if(m_lockEnemy != null)
         {
-            lockEnemy.GetComponent<EnemyMonster>().SetStatus(Status.move);
+            m_lockEnemy.GetComponent<EnemyMonster>().SetStatus(Status.move);
         }
         
-
         Destroy(this.gameObject);
     }
 }
