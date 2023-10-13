@@ -34,7 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 901001798473355519}
+  - {fileID: 1438045450693193986}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &599639917257512408
@@ -145,7 +145,7 @@ MonoBehaviour:
   damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
   initMaterial: {fileID: 2100000, guid: b86c2bb7984a9c848bec9fc7a67daa93, type: 2}
   debugMaterial: {fileID: 2100000, guid: cc81d399fe3e2874ebc631442d6d94ec, type: 2}
-  enemyMonsterType: 0
+  enemyMonsterType: 1
   objectsInView: []
 --- !u!54 &5114570568138440191
 Rigidbody:
@@ -172,9 +172,9 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
---- !u!1001 &795933314124052244
+--- !u!1001 &1476705459473897193
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -231,8 +231,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
---- !u!4 &901001798473355519 stripped
+--- !u!4 &1438045450693193986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
-  m_PrefabInstance: {fileID: 795933314124052244}
+  m_PrefabInstance: {fileID: 1476705459473897193}
   m_PrefabAsset: {fileID: 0}

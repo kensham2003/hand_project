@@ -43,7 +43,6 @@ public class PoolManager : SingletonMonoBehaviour<PoolManager>
         Transform tf = obj.transform;
         tf.position = position;
         tf.rotation = rotation;
-        Debug.Log(prefab.name);
         return obj;
     }
 

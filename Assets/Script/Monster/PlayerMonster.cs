@@ -99,9 +99,17 @@ public class PlayerMonster : Monster
     
     public override void Death()
     {
+        if(isDead)return;
         if(visibleFlag){
             OnBecameInvisibleFromCamera();
+            visibleFlag = false;
         }
+        cpuMain.UsageRegister(paramerter.DestroyLoad);
+        //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
+        CPULoad constant = new CPULoad{raiseRate = -1 * paramerter.constantLoad.raiseRate, impactTime = -1};
+        cpuMain.UsageRegister(constant);
+        isDead = true;
+        //Debug.Log("death");
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
         instantiateManager.DestroyMonster(this.gameObject);
     }

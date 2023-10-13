@@ -31,6 +31,7 @@ public class InstantiateManager : MonoBehaviour
         m.cpuMain = cpuMain;
         m.instantiateManager = this;
         m.paramerter = CardMonsterDictionary.Instance.GetMonsterParamerter(cardId);
+        m.isDead = false;
         //追加　ID設定
         m.paramerter.monsterID = cardId;
         cpuMain.UsageRegister(m.paramerter.spawnLoad);

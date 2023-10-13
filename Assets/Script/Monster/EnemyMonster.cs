@@ -74,11 +74,14 @@ public class EnemyMonster : Monster
 
     public override void Death()
     {
+        if(isDead)return;
         if(visibleFlag){
             OnBecameInvisibleFromCamera();
         }
         cpuMain.UsageRegister(paramerter.DestroyLoad);
-        Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
+        //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
+        CPULoad constant = new CPULoad{raiseRate = -1 * paramerter.constantLoad.raiseRate, impactTime = -1};
+        cpuMain.UsageRegister(constant);
         Destroy(this.gameObject);
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
     }

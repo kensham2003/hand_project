@@ -96,27 +96,32 @@ public class Monster : MonoBehaviour
     //ViewList(画面に映っているモンスター)のインデックス
     protected int visibleListIndex; //映っていない場合は-1
     protected bool visibleFlag = false;
-    private VisibleList _visibleList;
+    protected VisibleList _visibleList;
     public VisibleList visibleList
     {
         get {return _visibleList;}
         set { _visibleList = value; }
     }
 
-    private CpuMain _cpuMain;
+    protected CpuMain _cpuMain;
     public CpuMain cpuMain
     {
         get {return _cpuMain;}
         set { _cpuMain = value; }
     }
     
-    private InstantiateManager _instantiateManager;
+    protected InstantiateManager _instantiateManager;
     public InstantiateManager instantiateManager
     {
         get {return _instantiateManager;}
         set { _instantiateManager = value; }
     }
     
+    protected bool _isDead;
+    public bool isDead{
+        get{return _isDead;}
+        set{_isDead = value;}
+    }
 
     // Start is called before the first frame update
     public virtual void Start()
