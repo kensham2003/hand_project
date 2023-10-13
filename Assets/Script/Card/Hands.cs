@@ -30,6 +30,7 @@ public class Hands : MonoBehaviour
     /// </summary>
     private GameObject m_deck;
 
+    [SerializeField] private float m_drawInterval = 1.0f;
     // Start is called before the first frame update
     private void Start()
     {
@@ -38,13 +39,13 @@ public class Hands : MonoBehaviour
         m_canvas = GameObject.Find ("Cards");
         m_deck = GameObject.Find ("Deck");
         
-        //3枚ドロー
+        //限界までドロー
         for(int i = 0;i < m_maxCount;i++)
         {
             Draw();
         }
 
-        InvokeRepeating("Draw",2.0f,2.0f);
+        InvokeRepeating("Draw",0.0f,m_drawInterval);
     }
 
     // Update is called once per frame
