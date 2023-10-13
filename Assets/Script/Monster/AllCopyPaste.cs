@@ -24,6 +24,7 @@ public class AllCopyPaste : EffectMonster
         //シーン上のPlayerMonster収集&生成
         foreach(GameObject obj in GameObject.Find("Managers").GetComponent<VisibleList>().GetVisibleList())
         {
+            if(obj == null)continue;
             if(obj.tag == "Player")
             {
                 Spawn(obj,obj.GetComponent<PlayerMonster>().m_paramerter.monsterID);

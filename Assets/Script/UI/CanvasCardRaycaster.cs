@@ -47,14 +47,14 @@ public class CanvasCardRaycaster : MonoBehaviour
 
             //すでにホバーしているならこのままに
             if(nowHovering == card){
-                card.hovered = true;
+                card.m_hovered = true;
                 isHoveringCard = true;
                 break;
             }
 
             //ホバーしていないならホバーにする
             if(!nowHovering){
-                card.hovered = true;
+                card.m_hovered = true;
                 nowHovering = card;
                 //選択中カードを一番上に表示
                 card.transform.SetAsLastSibling(); 
@@ -65,7 +65,7 @@ public class CanvasCardRaycaster : MonoBehaviour
         //他のカードをホバーしていない状態に
         foreach(Card card in GetComponentsInChildren<Card>()){
             if(card == nowHovering)continue;
-            card.hovered = false;
+            card.m_hovered = false;
         }
 
         //なにもホバーしていないならnullに
