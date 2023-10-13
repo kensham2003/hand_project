@@ -179,6 +179,7 @@ public class Monster : MonoBehaviour
     //カメラが映らなくなる時の処理
     protected virtual void OnBecameVisibleFromCamera() {
         visibleListIndex = _visibleList.AddVisibleObject(this.gameObject);
+        //Debug.Log("my index = " + visibleListIndex);
     }
 
     //カメラが映るようになる時の処理
@@ -187,6 +188,7 @@ public class Monster : MonoBehaviour
         if(visibleListIndex < 0)return;
 
         _visibleList.RemoveVisibleObject(visibleListIndex);
+        visibleFlag = false;
         visibleListIndex = -1;
     }
 
