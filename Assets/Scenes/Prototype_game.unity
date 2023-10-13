@@ -123,16 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &10155630 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6054406371707412058, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
-  m_PrefabInstance: {fileID: 1049370278299794815}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &126592387 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2233693706858521955, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
-  m_PrefabInstance: {fileID: 1049370278299794815}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &144181040
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf13303ee1c976d469b8a970e39cb2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardMonsterCSV: {fileID: 4900000, guid: 596f663efd30fe34ea4dc217928f85d2, type: 3}
+  m_cardMonsterCSV: {fileID: 4900000, guid: 596f663efd30fe34ea4dc217928f85d2, type: 3}
 --- !u!114 &1163886835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,7 +773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bdea4e34628bd4eb2754d807e12b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisibleObjects: []
 --- !u!4 &1391828837
 Transform:
   m_ObjectHideFlags: 0
@@ -823,8 +812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94dc67a77220f5b4ba4313deb2d03b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visibleList: {fileID: 1391828836}
-  cpuMain: {fileID: 1391828838}
+  m_visibleList: {fileID: 1391828836}
+  m_cpuMain: {fileID: 1391828838}
 --- !u!114 &1391828840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,46 +826,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbd08c18e14fb346a1ba7f849c246ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lagInterval: 0
-  cpuUsage_LagIntervalCurve:
+  m_cpuUsage_LagIntervalCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.3
-      value: 0
-      inSlope: -0
-      outSlope: 0.14285715
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.3416667
-    - serializedVersion: 3
-      time: 1
-      value: 0.1
-      inSlope: 0.14285715
-      outSlope: 0.3237919
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.31666672
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  cpuMain: {fileID: 1391828838}
-  clearText: {fileID: 10155630}
-  retryButton: {fileID: 126592387}
-  canvas: {fileID: 1085037004}
-  gameoverSceneName: Prototype_gameover
-  clearSceneName: Prototype_clear
+  m_cpuMain: {fileID: 1391828838}
+  m_canvas: {fileID: 1085037004}
+  m_gameoverSceneName: 
+  m_clearSceneName: 
 --- !u!1001 &1416395499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1088,6 +1047,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1016207295978007517, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
       propertyPath: cpuMain
+      value: 
+      objectReference: {fileID: 1391828838}
+    - target: {fileID: 1016207295978007517, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_cpuMain
       value: 
       objectReference: {fileID: 1391828838}
     - target: {fileID: 2588919186079798516, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
