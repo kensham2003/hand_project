@@ -692,8 +692,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsPrefab:
-  - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
+  - {fileID: 2666206380844969574, guid: 044e8b5e2b3bda14797c942a0c97367e, type: 3}
+  - {fileID: 2666206380844969574, guid: 92b67c58061fa8640852e1cc4aa81c4d, type: 3}
 --- !u!4 &1356730244
 Transform:
   m_ObjectHideFlags: 0
@@ -908,6 +910,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7744719453396753822, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8304289224852184228, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
       propertyPath: instantiateManager
       value: 
@@ -1020,6 +1026,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4284470787492356900, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 6804468718962571076, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: m_Name
       value: TestBossMonster
@@ -1049,6 +1059,14 @@ PrefabInstance:
       propertyPath: cpuMain
       value: 
       objectReference: {fileID: 1391828838}
+    - target: {fileID: 6829781902473909431, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: spellUI
+      value: 
+      objectReference: {fileID: 21300000, guid: 86375cc1ededca344be5e5671b1dfed5, type: 3}
+    - target: {fileID: 6829781902473909431, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: monsterUI
+      value: 
+      objectReference: {fileID: 21300000, guid: f4828e13103559f44896107791ef6c87, type: 3}
     - target: {fileID: 8569898126896594391, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
       propertyPath: m_Pivot.x
       value: 0

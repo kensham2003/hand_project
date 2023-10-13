@@ -200,6 +200,7 @@ public class EnemyMonster : Monster
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
         {
+            if(obj == null) continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && !obj.GetComponent<PlayerBossMonster>())
             {
@@ -217,6 +218,7 @@ public class EnemyMonster : Monster
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
         {
+            if(obj == null) continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && obj.GetComponent<PlayerBossMonster>())
             {

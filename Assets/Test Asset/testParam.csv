@@ -8,5 +8,5 @@ ID,Prefab Name,HP,Speed,Attack,Attack Range,Attack Cooldown,Constant CPU,Spawn C
 7,TestDeadLock,20,0,20,2,10,10,10,10,10,3,8,5
 8,TestACP,20,0,20,2,10,10,10,10,10,3,8,5
 9,TestVirus,20,0,20,2,10,10,10,10,10,3,8,5
-10,TestEnemyWizard,10,2,10,2,10,1,1,2,5,5,1,10
+10,TestEnemyWizard,8,0.5,5,6,10,0.1,0.2,2,1,2,0.1,5
 11,TestCPUTargetNN,10,2,10,2,10,1,1,2,5,5,1,10

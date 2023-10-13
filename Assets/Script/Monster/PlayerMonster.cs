@@ -90,9 +90,13 @@ public class PlayerMonster : Monster
 
             target = null;
         }
+        else
+        {
+            status = Status.idle;
+        }
         
     }
-
+    
     public override void Death()
     {
         if(visibleFlag){
@@ -146,6 +150,7 @@ public class PlayerMonster : Monster
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
         {
+            if(obj == null)continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && !obj.GetComponent<EnemyBossMonster>())
             {
@@ -163,6 +168,7 @@ public class PlayerMonster : Monster
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
         foreach (GameObject obj in objectsInView)
         {
+            if(obj == null)continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && obj.GetComponent<EnemyBossMonster>())
             {
@@ -234,7 +240,7 @@ public class PlayerMonster : Monster
             status = Status.idle;
         }
         //攻撃
-        else
+        else if(target != null)
         {
             targetDistance = Vector3.Distance(target.transform.position,transform.position);
             
