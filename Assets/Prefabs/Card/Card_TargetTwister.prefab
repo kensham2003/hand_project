@@ -97,4 +97,4 @@ MonoBehaviour:
   m_hovered: 0
   m_damageText: {fileID: 0}
   m_drawCount: 2
-  m_drawCard: {fileID: 0}
+  m_drawCard: {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
