@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7489426327874390566}
   - component: {fileID: 4480589492622699239}
   - component: {fileID: 8565524987562710858}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FireWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0930b549e4deab04fa903babc9b63735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paramerter:
+  m_paramerter:
     hp: 0
     maxHp: 0
     speed: 0
@@ -166,11 +166,11 @@ MonoBehaviour:
     DestroyLoad:
       raiseRate: 0
       impactTime: 0
-  status: 0
-  target: {fileID: 0}
-  damageText: {fileID: 0}
-  initMaterial: {fileID: 0}
-  debugMaterial: {fileID: 0}
-  lifeTime: 10
-  damageInterval: 2
-  damage: 2
+  m_status: 0
+  m_target: {fileID: 0}
+  m_damageText: {fileID: 0}
+  m_initMaterial: {fileID: 0}
+  m_debugMaterial: {fileID: 0}
+  m_lifeTime: 10
+  m_damageInterval: 2
+  m_damage: 2

@@ -206,7 +206,7 @@ public class Card : MonoBehaviour
                 CardEffect(hit);
 
                 //デバッグヒットしたオブジェクトの名前  
-                Debug.Log(hit.collider.gameObject.name);
+                //Debug.Log(hit.collider.gameObject.name);
             }
         }
 
