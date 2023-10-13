@@ -45,7 +45,6 @@ public class CardInfo : MonoBehaviour
             transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = "";
             transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = "";
             transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>().text = "";
-            
         }
     }
 

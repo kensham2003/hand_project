@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 使っていない：テスト用オブジェクト
+/// </summary>
 public class TestObject : MonoBehaviour
 {
     int LifeTime;

@@ -3,44 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor.Search;
 
+/// <summary>
+/// シーン遷移におけるフェードイン・フェードアウトを処理するクラス
+/// </summary>
 public class Fade : MonoBehaviour
 {
+    /// <summary>
+    /// フェードのモード（イン・アウト）
+    /// </summary>
     public enum FADE_MODE{
         FADE_IN,
         FADE_OUT,
         FADE_NONE,
     }
 
-    //フェード前のα値
+    #region private
+    /// <summary>
+    /// フェード前のα値
+    /// </summary>
     private float m_prevAlpha;
-    //フェード後のα値
+
+    /// <summary>
+    /// フェード後のα値
+    /// </summary>
     private float m_targetAlpha;
-    //フェードの時間
+
+    /// <summary>
+    /// フェードの時間
+    /// </summary>
     private float m_fadeTime;
-    //フェード中現在の時間
+
+    /// <summary>
+    /// フェード中現在の時間
+    /// </summary>
     private float m_nowFadeTime = 0;
-    //オーバーレイ画像
+
+    /// <summary>
+    /// オーバーレイ画像
+    /// </summary>
     private Image m_image;
+
+    /// <summary>
+    /// フェード中かどうか
+    /// </summary>
     private bool m_isFading;
+
+    /// <summary>
+    /// 次のシーン名<para>終了ならばシーン名を"ENDGAME"に</para>
+    /// </summary>
     private string m_nextSceneName;
+
+    /// <summary>
+    /// フェードモード
+    /// </summary>
     private FADE_MODE m_fadeMode;
-    // Start is called before the first frame update
-    void Start()
+    #endregion
+
+
+    private void Start()
     {
         m_image = GetComponent<Image>();
         SetFadeIn(1f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //シーンの最初数フレームのunscaledDeltaTimeが異常に大きいのでフェードの処理をしない
-        if(Time.unscaledDeltaTime > 0.1f)return;
+        //閾値はわりと適当（普通な場合なら超えないだろうな値）
+        if(Time.unscaledDeltaTime > 0.3f)return;
 
+        //フェード中であれば
         if(m_isFading){
-            //フェード
+            //フェード（CrossFadeAlphaが上手くできないので直接に画像のα値を変更）
             Color color = m_image.color;
             color.a = Mathf.Lerp(m_prevAlpha, m_targetAlpha, m_nowFadeTime);
             m_nowFadeTime += Time.unscaledDeltaTime / m_fadeTime;
@@ -48,6 +83,7 @@ public class Fade : MonoBehaviour
 
             //フェードアウト
             if(m_fadeMode == FADE_MODE.FADE_OUT){
+                //シーン遷移
                 if(m_image.color.a >= 1f){
                     if(m_nextSceneName == "ENDGAME"){
                         EndGame();
@@ -68,14 +104,21 @@ public class Fade : MonoBehaviour
         }
     }
 
-    //フェードインを設定
+    /// <summary>
+    /// フェードインを設定
+    /// </summary>
+    /// <param name="duration">フェードのかかる秒数</param>
     public void SetFadeIn(float duration){
         m_fadeMode = FADE_MODE.FADE_IN;
         m_prevAlpha = 1f;
         StartFade(0f, duration);
     }
 
-    //フェードアウトを設定
+    /// <summary>
+    /// フェードアウトを設定
+    /// </summary>
+    /// <param name="duration">フェードのかかる秒数</param>
+    /// <param name="sceneName">次のシーン名</param>
     public void SetFadeOut(float duration, string sceneName){
         m_fadeMode = FADE_MODE.FADE_OUT;
         m_nextSceneName = sceneName;
@@ -83,7 +126,11 @@ public class Fade : MonoBehaviour
         StartFade(1f, duration);
     }
 
-    //フェードの共通処理
+    /// <summary>
+    /// フェードの共通処理
+    /// </summary>
+    /// <param name="targetAlpha">フェード後のα値</param>
+    /// <param name="fadeTime">フェードのかかる秒数</param>
     private void StartFade(float targetAlpha, float fadeTime){
         m_targetAlpha = targetAlpha;
         m_fadeTime = fadeTime;
@@ -91,7 +138,9 @@ public class Fade : MonoBehaviour
         m_isFading = true;
     }
 
-    //ゲーム終了処理
+    /// <summary>
+    /// ゲーム終了処理
+    /// </summary>
     private void EndGame(){
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// シングルトンの基底クラス
+/// </summary>
+/// <typeparam name="T">継承している自分のクラス名でOK</typeparam>
 public class SingletonMonoBehaviour<T> : MonoBehaviour where T : Component
 {
     private static T _instance;
+    /// <summary>
+    /// インスタンスをアクセスする
+    /// </summary>
     public static T Instance{
         get{
             if(_instance == null){
@@ -28,6 +35,9 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : Component
         RemoveDuplicates();
     }
 
+    /// <summary>
+    /// シングルトンインスタンスを作る
+    /// </summary>
     private static void SetupInstance(){
         _instance = (T)FindObjectOfType(typeof(T));
         if(_instance == null){
@@ -39,6 +49,9 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : Component
         }
     }
 
+    /// <summary>
+    /// 重複しているインスタンスを消す
+    /// </summary>
     private void RemoveDuplicates(){
         if(_instance == null){
             _instance = this as T;

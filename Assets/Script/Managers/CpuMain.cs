@@ -4,46 +4,61 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 
+/// <summary>
+/// CPU使用量の管理
+/// </summary>
 public class CpuMain : MonoBehaviour
 {
-    private float usage;
+    private float m_usage;
+
+    /// <summary>
+    /// CPU使用量（0～100）
+    /// </summary>
     public float Usage
     {
-        get { return usage; }
-        set { usage = value; }
+        get { return m_usage; }
+        set { m_usage = value; }
     }
-    
-    //使用率変わった時呼ぶイベント
+
+    /// <summary>
+    /// 使用率変わった時呼ぶイベント
+    /// </summary>
     public event Action<float> OnUsageChanged = delegate{};
 
-    //使用率が100%になった時呼ぶイベント
+    /// <summary>
+    /// 使用率が100%になった時呼ぶイベント
+    /// </summary>
     public event Action OnUsageFull = delegate{};
 
-    // new void Awake(){
-    //     base.Awake();
-    //     usage = 0;
-    // }
     private void Awake() {
-        usage = 0;
+        m_usage = 0;
     }
 
+    /// <summary>
+    /// CPU使用量の変化（内部処理）
+    /// </summary>
+    /// <param name="amount">変化量</param>
     private void UsageChange(float amount){
-        usage += amount;
-        if(usage >= 100){
-            usage = 100;
+        m_usage += amount;
+        if(m_usage >= 100){
+            m_usage = 100;
             //UI更新・クリア処理
-            OnUsageChanged(usage);
+            OnUsageChanged(m_usage);
             OnUsageFull();
             return;
         }
-        if(usage <= 0){
-            usage = 0;
+        if(m_usage <= 0){
+            m_usage = 0;
         }
         //UI更新
-        OnUsageChanged(usage);
+        OnUsageChanged(m_usage);
     }
 
-    //CPU使用率に変動を登録
+    /// <summary>
+    /// CPU使用率に変動を登録
+    /// <para>下がらない変動はcpuLoad.impactTime = -1に登録</para>
+    /// </summary>
+    /// <param name="cpuLoad">CPU負荷単位</param>
     public void UsageRegister(CPULoad cpuLoad){
         UsageChange(cpuLoad.raiseRate);
 
@@ -53,6 +68,11 @@ public class CpuMain : MonoBehaviour
         StartCoroutine(RemoveUsage(cpuLoad));
     }
 
+    /// <summary>
+    /// impactTime時間後登録した使用量を戻るコルーチン
+    /// </summary>
+    /// <param name="cpuLoad">CPU負荷単位</param>
+    /// <returns></returns>
     IEnumerator RemoveUsage(CPULoad cpuLoad){
         yield return new WaitForSeconds(cpuLoad.impactTime);
         UsageChange(-1 * cpuLoad.raiseRate);
