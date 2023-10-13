@@ -27,7 +27,7 @@ public class AllCopyPaste : EffectMonster
             if(obj == null)continue;
             if(obj.tag == "Player")
             {
-                Spawn(obj,obj.GetComponent<PlayerMonster>().m_paramerter.monsterID);
+                Spawn(obj,obj.GetComponent<PlayerMonster>().m_parameter.monsterID);
             }
         }
 

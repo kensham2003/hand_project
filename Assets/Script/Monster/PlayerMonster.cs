@@ -91,11 +91,11 @@ public class PlayerMonster : Monster
     {
         m_attackFlag = false;
         
-        if(m_target != null && m_paramerter.attackDistance >= m_targetDistance)
+        if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
         {
-            m_target.GetComponent<EnemyMonster>().ChangeHP(m_paramerter.attack);
+            m_target.GetComponent<EnemyMonster>().ChangeHP(m_parameter.attack);
             
-            cpuMain.UsageRegister(m_paramerter.attackLoad);
+            cpuMain.UsageRegister(m_parameter.attackLoad);
             //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
             m_target = null;
@@ -110,13 +110,13 @@ public class PlayerMonster : Monster
     public override void Death()
     {
         if(isDead)return;
-        if(visibleFlag){
+        if(m_visibleFlag){
             OnBecameInvisibleFromCamera();
-            visibleFlag = false;
+            m_visibleFlag = false;
         }
-        cpuMain.UsageRegister(m_paramerter.DestroyLoad);
+        cpuMain.UsageRegister(m_parameter.DestroyLoad);
         //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
-        CPULoad constant = new CPULoad{raiseRate = -1 * m_paramerter.constantLoad.raiseRate, impactTime = -1};
+        CPULoad constant = new CPULoad{raiseRate = -1 * m_parameter.constantLoad.raiseRate, impactTime = -1};
         cpuMain.UsageRegister(constant);
         isDead = true;
         //Debug.Log("death");
@@ -229,13 +229,13 @@ public class PlayerMonster : Monster
                 //ターゲットの距離
                 m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
 
-                if(m_paramerter.attackDistance < m_targetDistance)
+                if(m_parameter.attackDistance < m_targetDistance)
                 {
                     //ターゲット移動
-                    transform.position += m_paramerter.speed * moveVec * Time.deltaTime;
+                    transform.position += m_parameter.speed * moveVec * Time.deltaTime;
                 }
                 //攻撃中じゃなければ攻撃
-                else if(m_attackFlag == false && m_paramerter.attackDistance > m_targetDistance)
+                else if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
                 {                
                     m_status = Status.attack;
                 }
@@ -262,9 +262,9 @@ public class PlayerMonster : Monster
         {
             m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             
-            if(m_attackFlag == false && m_paramerter.attackDistance > m_targetDistance)
+            if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
             {                
-                Invoke("Action",m_paramerter.attackInterval);
+                Invoke("Action",m_parameter.attackInterval);
                 {
                     m_attackFlag = true;
                 }
@@ -292,10 +292,10 @@ public class PlayerMonster : Monster
         //ターゲットの距離
         m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
 
-        if(m_paramerter.attackDistance < m_targetDistance)
+        if(m_parameter.attackDistance < m_targetDistance)
         {
             //ターゲット移動
-           transform.position += m_paramerter.speed * moveVec * Time.deltaTime;
+           transform.position += m_parameter.speed * moveVec * Time.deltaTime;
         }
         else
         {
@@ -325,9 +325,9 @@ public class PlayerMonster : Monster
 
         m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             
-        if(m_attackFlag == false && m_paramerter.attackDistance > m_targetDistance)
+        if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
         {                
-            Invoke("Action",m_paramerter.attackInterval);
+            Invoke("Action",m_parameter.attackInterval);
             {
                 m_attackFlag = true;
             }

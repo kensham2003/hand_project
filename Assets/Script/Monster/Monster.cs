@@ -72,7 +72,7 @@ public class Monster : MonoBehaviour
 {
     //モンスターのパラメーター
     [Tooltip("モンスターのパラメーター")]
-    [SerializeField] public MonsterParamerter m_paramerter;
+    [SerializeField] public MonsterParamerter m_parameter;
     //モンスターのステータス
     [Tooltip("モンスターのステータス")]
     [SerializeField] public Status m_status;
@@ -94,33 +94,33 @@ public class Monster : MonoBehaviour
     [SerializeField] Material m_debugMaterial;
 
     //ViewList(画面に映っているモンスター)のインデックス
-    protected int visibleListIndex; //映っていない場合は-1
-    protected bool visibleFlag = false;
-    protected VisibleList _visibleList;
+    protected int m_visibleListIndex; //映っていない場合は-1
+    protected bool m_visibleFlag = false;
+    protected VisibleList m_visibleList;
     public VisibleList visibleList
     {
-        get {return _visibleList;}
-        set { _visibleList = value; }
+        get {return m_visibleList;}
+        set { m_visibleList = value; }
     }
 
-    protected CpuMain _cpuMain;
+    protected CpuMain m_cpuMain;
     public CpuMain cpuMain
     {
-        get {return _cpuMain;}
-        set { _cpuMain = value; }
+        get {return m_cpuMain;}
+        set { m_cpuMain = value; }
     }
     
-    protected InstantiateManager _instantiateManager;
+    protected InstantiateManager m_instantiateManager;
     public InstantiateManager instantiateManager
     {
-        get {return _instantiateManager;}
-        set { _instantiateManager = value; }
+        get {return m_instantiateManager;}
+        set { m_instantiateManager = value; }
     }
     
-    protected bool _isDead;
+    protected bool m_isDead;
     public bool isDead{
-        get{return _isDead;}
-        set{_isDead = value;}
+        get{return m_isDead;}
+        set{m_isDead = value;}
     }
 
     // Start is called before the first frame update
@@ -135,8 +135,8 @@ public class Monster : MonoBehaviour
             cpuMain = GameObject.Find("Managers").GetComponent<CpuMain>();
         }
 
-        m_paramerter.maxHp = m_paramerter.hp;
-        cpuMain.UsageRegister(m_paramerter.constantLoad);
+        m_parameter.maxHp = m_parameter.hp;
+        cpuMain.UsageRegister(m_parameter.constantLoad);
     }
 
     // Update is called once per frame
@@ -152,15 +152,15 @@ public class Monster : MonoBehaviour
 
     public virtual void ChangeHP(float val)
     {
-        m_paramerter.hp -= val;
+        m_parameter.hp -= val;
 
         //デバッグ用ダメージ演出
         GameObject spawnText = Instantiate(m_damageText,transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
         spawnText.GetComponent<TextMeshPro>().text = val.ToString();
 
-        if(m_paramerter.hp < 0)
+        if(m_parameter.hp < 0)
         {
-            m_paramerter.hp = 0;
+            m_parameter.hp = 0;
             Death();
         }
 
@@ -181,32 +181,39 @@ public class Monster : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    //カメラが映らなくなる時の処理
+    /// <summary>
+    /// カメラが映らなくなる時の処理
+    /// </summary>
     protected virtual void OnBecameVisibleFromCamera() {
-        visibleListIndex = _visibleList.AddVisibleObject(this.gameObject);
+        m_visibleListIndex = m_visibleList.AddVisibleObject(this.gameObject);
         //Debug.Log("my index = " + visibleListIndex);
     }
 
-    //カメラが映るようになる時の処理
+    /// <summary>
+    /// カメラが映るようになる時の処理
+    /// </summary>
     protected virtual void OnBecameInvisibleFromCamera() {
         //不具合ですでに-1になっている時は処理しない
-        if(visibleListIndex < 0)return;
+        if(m_visibleListIndex < 0)return;
 
-        _visibleList.RemoveVisibleObject(visibleListIndex);
-        visibleFlag = false;
-        visibleListIndex = -1;
+        m_visibleList.RemoveVisibleObject(m_visibleListIndex);
+        m_visibleFlag = false;
+        m_visibleListIndex = -1;
     }
 
-    //カメラが映っているかチェック
+    /// <summary>
+    /// カメラが映っているかチェック
+    /// </summary>
+    /// <returns></returns>
     protected bool IsVisibleFromCamera(){
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
         return GeometryUtility.TestPlanesAABB(planes, GetComponent<Renderer>().bounds);
     }
 
     protected virtual void CheckVisible(){
-        if(visibleFlag == IsVisibleFromCamera())return;
+        if(m_visibleFlag == IsVisibleFromCamera())return;
 
-        if(visibleFlag){
+        if(m_visibleFlag){
             //OnBecameInvisibleの処理
             OnBecameInvisibleFromCamera();
         }
@@ -215,24 +222,27 @@ public class Monster : MonoBehaviour
             OnBecameVisibleFromCamera();
         }
         //visibleFlagの状態を保存
-        visibleFlag = !visibleFlag;
+        m_visibleFlag = !m_visibleFlag;
     }
 
     protected void OnDestroy() {
         //VisibleListから自分を削除
-        if(visibleFlag){
+        if(m_visibleFlag){
             OnBecameInvisibleFromCamera();
         }
     }
         
-    //モンスターの能力上昇
+    /// <summary>
+    /// モンスターの能力上昇
+    /// </summary>
+    /// <param name="var"></param>
     public void UpHP(float var)
     {
-        m_paramerter.hp += var;
+        m_parameter.hp += var;
 
-        if(m_paramerter.hp > m_paramerter.maxHp)
+        if(m_parameter.hp > m_parameter.maxHp)
         {
-            m_paramerter.hp = m_paramerter.maxHp;
+            m_parameter.hp = m_parameter.maxHp;
         }
         //デバッグ用演出
         GameObject spawnText = Instantiate(m_damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
@@ -242,7 +252,7 @@ public class Monster : MonoBehaviour
     
     public void UpSpeed(float var)
     {
-        m_paramerter.speed += var;
+        m_parameter.speed += var;
         //デバッグ用演出
         GameObject spawnText = Instantiate(m_damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
         spawnText.GetComponent<TextMeshPro>().text = "+"+ var.ToString();
@@ -251,7 +261,7 @@ public class Monster : MonoBehaviour
     
     public void UpAttack(float var)
     {
-        m_paramerter.attack += var;
+        m_parameter.attack += var;
         //デバッグ用演出
         GameObject spawnText = Instantiate(m_damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
         spawnText.GetComponent<TextMeshPro>().text = "+"+ var.ToString();
@@ -260,11 +270,11 @@ public class Monster : MonoBehaviour
     
     public void UpCoolTime(float var)
     {
-        m_paramerter.attackInterval -= var;
+        m_parameter.attackInterval -= var;
 
-        if(m_paramerter.attackInterval < 1)
+        if(m_parameter.attackInterval < 1)
         {
-            m_paramerter.attackInterval = 1;
+            m_parameter.attackInterval = 1;
         }
         //デバッグ用演出
         GameObject spawnText = Instantiate(m_damageText,gameObject.transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);

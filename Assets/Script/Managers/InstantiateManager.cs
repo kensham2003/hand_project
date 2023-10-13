@@ -39,11 +39,11 @@ public class InstantiateManager : MonoBehaviour
         m.visibleList = m_visibleList;
         m.cpuMain = m_cpuMain;
         m.instantiateManager = this;
-        m.m_paramerter = CardMonsterDictionary.Instance.GetMonsterParamerter(cardId);
+        m.m_parameter = CardMonsterDictionary.Instance.GetMonsterParamerter(cardId);
         m.isDead = false;
         //追加　ID設定
-        m.m_paramerter.monsterID = cardId;
-        cpuMain.UsageRegister(m.m_paramerter.spawnLoad);
+        m.m_parameter.monsterID = cardId;
+        m_cpuMain.UsageRegister(m.m_parameter.spawnLoad);
         //Debug.Log("生成 : " + m.paramerter.spawnLoad.raiseRate);
         return monsterObj;
     }
@@ -54,7 +54,7 @@ public class InstantiateManager : MonoBehaviour
     /// <param name="monster">モンスターのインスタンス</param>
     public void DestroyMonster(GameObject monster){
         PoolManager.Instance.ReleaseGameObject(monster);
-        cpuMain.UsageRegister(monster.GetComponent<Monster>().m_paramerter.DestroyLoad);
+        m_cpuMain.UsageRegister(monster.GetComponent<Monster>().m_parameter.DestroyLoad);
         //Debug.Log("消失 : " + monster.GetComponent<Monster>().paramerter.DestroyLoad.raiseRate);
     }
 

@@ -40,7 +40,7 @@ public class CopyPaste : SpellCard
 
             //スポーン
             GameObject.Find("Managers").GetComponent<InstantiateManager>().
-            InstantiateMonster(hit.collider.gameObject.GetComponent<Monster>().m_paramerter.monsterID, spawnPosition, Quaternion.identity);
+            InstantiateMonster(hit.collider.gameObject.GetComponent<Monster>().m_parameter.monsterID, spawnPosition, Quaternion.identity);
 
             m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
