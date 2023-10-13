@@ -7,6 +7,9 @@ using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
+/// <summary>
+/// 一つintのパラメータを持つシグナル
+/// </summary>
 public class SignalReceiverWithInt : MonoBehaviour, INotificationReceiver
 {
     public SignalAssetEventPair[] signalAssetEventPairs;

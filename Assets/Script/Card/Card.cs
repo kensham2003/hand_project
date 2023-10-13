@@ -44,7 +44,10 @@ public class Card : MonoBehaviour
     //カード情報まとめ
     protected GameObject cardInfoUI;
 
-
+    /// <summary>
+    /// レイキャストに反応するレイヤー
+    /// </summary>
+    protected int m_layerMask;
     
     public virtual void Start()
     {
@@ -62,6 +65,7 @@ public class Card : MonoBehaviour
         cardInfoUI = GameObject.Find("CardInfo");
         //透明部分をレイキャストに当たらない（スプライトから「Read\Write」をチェックする）
         image.alphaHitTestMinimumThreshold = 0.5f;
+        m_layerMask = LayerMask.GetMask("Floor");
     }
 
     // Update is called once per frame
@@ -158,7 +162,7 @@ public class Card : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            if (Physics.Raycast(ray, out hit, 100.0f, m_layerMask))
             {
                 CardEffect(hit);
 

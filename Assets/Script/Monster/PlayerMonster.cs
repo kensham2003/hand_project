@@ -10,6 +10,16 @@ public class PlayerMonster : Monster
     //画面内にいる敵
     public List<GameObject> objectsInView = new List<GameObject>();
 
+    /// <summary>
+    /// 範囲攻撃のスクリプト
+    /// </summary>
+    [SerializeField]private RangeAttackZone m_rangeAttackZone;
+
+    /// <summary>
+    /// 範囲攻撃受ける時生成する爆風オブジェクト
+    /// </summary>
+    [SerializeField]private GameObject m_explosion;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -325,6 +335,17 @@ public class PlayerMonster : Monster
         else
         {
             status = Status.ucm;
+        }
+    }
+
+    /// <summary>
+    /// 範囲内の味方もダメージを食らう
+    /// </summary>
+    /// <param name="val">ダメージ量</param>
+    public void ChangeHPInRange(float val){
+        Instantiate(m_explosion, transform.position, Quaternion.identity);
+        foreach(PlayerMonster pm in m_rangeAttackZone.GetPlayerMonstersInRange()){
+            pm.ChangeHP(val);
         }
     }
 }
