@@ -4,17 +4,27 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// UIのマウスからのレイキャストを処理するクラス
+/// </summary>
 public class CanvasCardRaycaster : MonoBehaviour
 {
+    /// <summary>
+    /// 今ホバーしているカード
+    /// </summary>
+    private Card m_nowHovering = null;
 
-    private Card nowHovering = null;
+    /// <summary>
+    /// RaycastAllの結果格納用List
+    /// </summary>
+    private List<RaycastResult> m_rayResult= new List<RaycastResult>();
 
-    void Update()
+    private void Update()
     {
         //カード選択中
-        if(nowHovering != null && Input.GetMouseButton(0)){
+        if(m_nowHovering != null && Input.GetMouseButton(0)){
             //選択中カードを一番上に表示
-            nowHovering.transform.SetAsLastSibling(); 
+            m_nowHovering.transform.SetAsLastSibling(); 
             return;
         }
 
@@ -26,51 +36,68 @@ public class CanvasCardRaycaster : MonoBehaviour
         //     Debug.Log(nowHovering.gameObject.name);
         // }
 
-        bool isHoveringCard = false;
+        GetRaycastResult();
 
+        bool isHoveringCard = ProcessRaycastResult();
+
+        SetCardsHoveredState();
+
+        //なにもホバーしていないならnullに
+        if(!isHoveringCard){
+            m_nowHovering = null;
+        }
+    }
+
+    /// <summary>
+    /// レイキャスト処理
+    /// </summary>
+    private void GetRaycastResult(){
         //RaycastAllの引数（PointerEventData）作成
         PointerEventData pointData = new PointerEventData(EventSystem.current);
 
-        //RaycastAllの結果格納用List
-        List<RaycastResult> RayResult= new List<RaycastResult>(); 
+        m_rayResult.Clear();
 
         //PointerEventDataにマウスの位置をセット
         pointData.position = Input.mousePosition;
         //RayCast（スクリーン座標）
-        EventSystem.current.RaycastAll(pointData , RayResult);
+        EventSystem.current.RaycastAll(pointData , m_rayResult);
+    }
 
-        //当たっているカードだけホバーするように
-        foreach (RaycastResult result in RayResult)
+    /// <summary>
+    /// レイキャストの結果を処理
+    /// </summary>
+    /// <returns>今ホバーしているカードがあるかどうか</returns>
+    private bool ProcessRaycastResult(){
+        foreach (RaycastResult result in m_rayResult)
         {
             Card card = result.gameObject.GetComponent<Card>();
             if(!card)continue;
 
             //すでにホバーしているならこのままに
-            if(nowHovering == card){
+            if(m_nowHovering == card){
                 card.m_hovered = true;
-                isHoveringCard = true;
-                break;
+                return true;
             }
 
             //ホバーしていないならホバーにする
-            if(!nowHovering){
+            if(!m_nowHovering){
                 card.m_hovered = true;
-                nowHovering = card;
+                m_nowHovering = card;
                 //選択中カードを一番上に表示
                 card.transform.SetAsLastSibling(); 
-                isHoveringCard = true;
+                return true;
             }
         }
+        return false;
+    }
 
-        //他のカードをホバーしていない状態に
+    /// <summary>
+    /// 他のカードをホバーしていない状態にする
+    /// </summary>
+    private void SetCardsHoveredState(){
         foreach(Card card in GetComponentsInChildren<Card>()){
-            if(card == nowHovering)continue;
+            if(card == m_nowHovering)continue;
             card.m_hovered = false;
-        }
-
-        //なにもホバーしていないならnullに
-        if(!isHoveringCard){
-            nowHovering = null;
         }
     }
 }

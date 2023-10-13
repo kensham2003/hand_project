@@ -7,6 +7,9 @@ using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
+/// <summary>
+/// 二つintのパラメータを持つシグナル
+/// </summary>
 public class SignalReceiverWithTwoInt : MonoBehaviour, INotificationReceiver
 {
     public SignalAssetEventPair[] signalAssetEventPairs;
@@ -23,7 +26,6 @@ public class SignalReceiverWithTwoInt : MonoBehaviour, INotificationReceiver
         if(notification is ParameterizedEmitterWithTwoParams<int> intEmitter){
             var matches = signalAssetEventPairs.Where(x => ReferenceEquals(x.signalAsset, intEmitter.asset));
             foreach(var m in matches){
-                Debug.Log("param = " + intEmitter.parameter1 + ", " +intEmitter.parameter2);
                 m.events.Invoke(intEmitter.parameter1, intEmitter.parameter2);
             }
         }

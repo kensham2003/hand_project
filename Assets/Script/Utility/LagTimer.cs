@@ -2,25 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//メモリーのゴミを減らすためWaitForSecondsRealTimeのキャッシュ
+/// <summary>
+/// WaitForSecondsRealTimeのキャッシュを保存するクラス（メモリ消費を減らすため）
+/// </summary>
 public static class LagTimer
 {
-    static Dictionary<float, WaitForSecondsRealtime> _timeInterval = new Dictionary<float, WaitForSecondsRealtime>(100);
+    /// <summary>
+    /// 保存しているWaitForSecondsRealTimeのリスト
+    /// </summary>
+    private static Dictionary<float, WaitForSecondsRealtime> m_timeInterval = new Dictionary<float, WaitForSecondsRealtime>(100);
  
-    static WaitForEndOfFrame _endOfFrame = new WaitForEndOfFrame();
+    private static WaitForEndOfFrame m_endOfFrame = new WaitForEndOfFrame();
+    /// <summary>
+    /// 1フレーム分の時間を待つ
+    /// </summary>
     public static WaitForEndOfFrame OneFrame {
-        get{ return _endOfFrame;}
+        get{ return m_endOfFrame;}
     }
  
-    static WaitForFixedUpdate _fixedUpdate = new WaitForFixedUpdate();
+    private static WaitForFixedUpdate m_fixedUpdate = new WaitForFixedUpdate();
+    /// <summary>
+    /// FixedUpdate分の時間を待つ
+    /// </summary>
     public static WaitForFixedUpdate FixedUpdate{
-        get{ return _fixedUpdate; }
+        get{ return m_fixedUpdate; }
     }
  
-    //待つ時間を取得
+    /// <summary>
+    /// 待つ秒数を取得
+    /// </summary>
+    /// <param name="seconds">秒数</param>
+    /// <returns></returns>
     public static WaitForSecondsRealtime Get(float seconds){
-        if(!_timeInterval.ContainsKey(seconds))
-            _timeInterval.Add(seconds, new WaitForSecondsRealtime(seconds));
-        return _timeInterval[seconds];
+        if(!m_timeInterval.ContainsKey(seconds))
+            m_timeInterval.Add(seconds, new WaitForSecondsRealtime(seconds));
+        return m_timeInterval[seconds];
     }
 }

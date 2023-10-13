@@ -76,9 +76,12 @@ public class EnemyMonster : Monster
         m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
         if(m_target != null && m_paramerter.attackDistance >= m_targetDistance)
         {
-
-            m_target.GetComponent<PlayerMonster>().ChangeHP(m_paramerter.attack);
-
+            if(paramerter.attackDistance < 5.99f){
+                m_target.GetComponent<PlayerMonster>().ChangeHP(m_paramerter.attack);
+            }
+            else{
+                m_target.GetComponent<PlayerMonster>().ChangeHPInRange(m_paramerter.attack);
+            }
             cpuMain.UsageRegister(m_paramerter.attackLoad);
             //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
