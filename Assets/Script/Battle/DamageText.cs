@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class DamageText : MonoBehaviour
 {
-    private Camera mainCam;
+    private Camera m_mainCam;
 
-    //速度
-    [SerializeField] protected float speed = 3.0f;
+    /// <summary>
+    /// 速度
+    /// </summary>
+    [SerializeField] private float m_speed = 3.0f;
 
     private void Start()
     {
-        mainCam = Camera.main;
+        m_mainCam = Camera.main;
 
         Invoke("Delete",2.0f);
     }
     private void Update()
     {
-        transform.LookAt(transform.position + mainCam.transform.rotation * Vector3.forward, mainCam.transform.rotation * Vector3.up);
+        transform.LookAt(transform.position + m_mainCam.transform.rotation * Vector3.forward, m_mainCam.transform.rotation * Vector3.up);
 
         //前進
-        transform.position += speed * new Vector3(0,0,1).normalized * Time.deltaTime;
+        transform.position += m_speed * new Vector3(0,0,1).normalized * Time.deltaTime;
     }
 
-    void Delete()
+    private void Delete()
     {
         Destroy(this.gameObject);
     }
