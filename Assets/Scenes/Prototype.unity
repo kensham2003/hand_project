@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -702,6 +702,9 @@ MonoBehaviour:
   cpuMain: {fileID: 1391828838}
   clearText: {fileID: 10155630}
   retryButton: {fileID: 126592387}
+  canvas: {fileID: 0}
+  gameoverSceneName: 
+  clearSceneName: 
 --- !u!1001 &1416395499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -780,6 +783,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8304289224852184228, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
       propertyPath: instantiateManager
+      value: 
+      objectReference: {fileID: 1391828839}
+    - target: {fileID: 8304289224852184228, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
+      propertyPath: m_instantiateManager
       value: 
       objectReference: {fileID: 1391828839}
     - target: {fileID: 8315366648002559916, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
@@ -919,6 +926,14 @@ PrefabInstance:
       propertyPath: cpuMain
       value: 
       objectReference: {fileID: 1391828838}
+    - target: {fileID: 6829781902473909431, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: spellUI
+      value: 
+      objectReference: {fileID: 21300000, guid: 86375cc1ededca344be5e5671b1dfed5, type: 3}
+    - target: {fileID: 6829781902473909431, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: monsterUI
+      value: 
+      objectReference: {fileID: 21300000, guid: f4828e13103559f44896107791ef6c87, type: 3}
     - target: {fileID: 8569898126896594391, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
