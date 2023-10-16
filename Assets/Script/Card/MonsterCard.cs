@@ -36,6 +36,7 @@ public class MonsterCard : Card
             {
                 m_previewObject = m_instantiateManager.InstantiateMonster(m_cardID,new Vector3(0,1.0f,0.0f), Quaternion.identity);
                 m_previewObject.GetComponent<PlayerMonster>().SetPreview(true);
+                m_previewObject.GetComponent<Collider>().enabled = false;
             }
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
