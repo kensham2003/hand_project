@@ -6,6 +6,9 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("生成マネージャ")]
     [SerializeField] private InstantiateManager m_instantiateManager;
+
+    [Header("エネミーマネージャ")]
+    [SerializeField] private EnemyManager m_enemyManager;
     
     /// <summary>
     /// 一体の敵をスポーン
@@ -13,7 +16,9 @@ public class EnemySpawner : MonoBehaviour
     /// <param name="monsterId">敵のID</param>
     public void SpawnEnemy(int monsterId){
         Vector3 pos = GetRandomPosition(GetComponent<Collider>().bounds);
-        m_instantiateManager.InstantiateMonster(monsterId, pos, Quaternion.identity);
+        GameObject monster = m_instantiateManager.InstantiateMonster(monsterId, pos, Quaternion.identity);
+        monster.GetComponent<EnemyMonster>().m_enemyManager = m_enemyManager;
+        m_enemyManager.RegisterEnemy();
     }
 
     /// <summary>

@@ -88,4 +88,11 @@ public class PoolManager : SingletonMonoBehaviour<PoolManager>
         }
         //pool.Release(obj);
     }
+
+    // デバッグ用
+    // private void Update() {
+    //     foreach (string key in m_poolDict.Keys) {
+    //         Debug.Log (key);
+    //     }
+    // }
 }
