@@ -121,8 +121,8 @@ public class Card : MonoBehaviour
         m_cardInfoUI = GameObject.Find("CardInfo");
         //透明部分をレイキャストに当たらない（スプライトから「Read\Write」をチェックする）
         m_image.alphaHitTestMinimumThreshold = 0.5f;
-        m_layerMask = LayerMask.GetMask("Floor");
-
+        //m_layerMask = LayerMask.GetMask("Floor");
+        m_layerMask = (1 << LayerMask.NameToLayer("Floor")) | (1 << LayerMask.NameToLayer("PlayerMonster"));
         //キャンバス取得
         m_canvas = FindObjectOfType<Canvas>();
     }
@@ -320,11 +320,15 @@ public class Card : MonoBehaviour
     }
 
     //ターゲットモンスター強調
-    protected void EmphasisTarget()
+    protected void EmphasisTarget(GameObject target)
     {
         if(m_spawnEmpasis == null)
         {
             m_spawnEmpasis = Instantiate(m_targetEmphasisText,m_canvas.transform);
+        }
+        else
+        {
+            m_spawnEmpasis.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
         }
     }
 

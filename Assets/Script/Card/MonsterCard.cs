@@ -40,7 +40,7 @@ public class MonsterCard : Card
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100.0f, m_layerMask))
+            if (Physics.Raycast(ray, out hit, 100.0f, (1 << LayerMask.NameToLayer("Floor"))))
             {
                 m_previewObject.transform.position = hit.point;
             }
