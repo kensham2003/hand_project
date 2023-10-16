@@ -20,6 +20,21 @@ public class CopyPaste : SpellCard
     protected override void Update()
     {
         base.Update();
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100.0f) && m_pressed)
+        {
+            Debug.Log("強調！");
+            if(hit.collider.gameObject.tag == "Player")
+            {
+                EmphasisTarget();
+            }
+            else
+            {
+                UnEmphasisTarget();
+            }
+        }
     }
 
     //効果発動

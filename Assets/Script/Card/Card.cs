@@ -94,6 +94,17 @@ public class Card : MonoBehaviour
     /// </summary>
     protected int m_layerMask;
     
+    /// <summary>
+    /// ターゲット強調テキスト
+    /// </summary>
+    [SerializeField] private GameObject m_targetEmphasisText;
+
+    /// <summary>
+    /// スポーン下強調テキスト
+    /// </summary>
+    private GameObject m_spawnEmpasis;
+
+    private Canvas m_canvas;
     protected virtual void Start()
     {
         m_initPos = GetComponent<RectTransform>().anchoredPosition;
@@ -111,6 +122,9 @@ public class Card : MonoBehaviour
         //透明部分をレイキャストに当たらない（スプライトから「Read\Write」をチェックする）
         m_image.alphaHitTestMinimumThreshold = 0.5f;
         m_layerMask = LayerMask.GetMask("Floor");
+
+        //キャンバス取得
+        m_canvas = FindObjectOfType<Canvas>();
     }
 
     // Update is called once per frame
@@ -243,17 +257,14 @@ public class Card : MonoBehaviour
 
         if(cardEffectFalg)
         {
-            if(GetComponent<RectTransform>().anchoredPosition.y > 200)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100.0f, m_layerMask))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100.0f, m_layerMask))
-                {
-                    CardEffect(hit);
+                CardEffect(hit);
 
-                    //デバッグヒットしたオブジェクトの名前  
-                    //Debug.Log(hit.collider.gameObject.name);
-                }
+                //デバッグヒットしたオブジェクトの名前  
+                //Debug.Log(hit.collider.gameObject.name);
             }
         }
 
@@ -306,5 +317,20 @@ public class Card : MonoBehaviour
         {
             return false;
         }
+    }
+
+    //ターゲットモンスター強調
+    protected void EmphasisTarget()
+    {
+        if(m_spawnEmpasis == null)
+        {
+            m_spawnEmpasis = Instantiate(m_targetEmphasisText,m_canvas.transform);
+        }
+    }
+
+    //ターゲットモンスター強調
+    protected void UnEmphasisTarget()
+    {
+        Destroy(m_spawnEmpasis);   
     }
 }
