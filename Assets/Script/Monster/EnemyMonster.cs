@@ -37,6 +37,11 @@ public class EnemyMonster : Monster
     /// </summary>
     private CpuMain m_cpumain;
 
+    /// <summary>
+    /// エネミーマネージャ
+    /// </summary>
+    public EnemyManager m_enemyManager;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -98,11 +103,14 @@ public class EnemyMonster : Monster
         if(m_visibleFlag){
             OnBecameInvisibleFromCamera();
         }
+        isDead = true;
         cpuMain.UsageRegister(m_parameter.DestroyLoad);
         //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
         CPULoad constant = new CPULoad{raiseRate = -1 * m_parameter.constantLoad.raiseRate, impactTime = -1};
         cpuMain.UsageRegister(constant);
-        Destroy(this.gameObject);
+        m_enemyManager.UnregisterEnemy();
+        m_instantiateManager.DestroyMonster(this.gameObject);
+        //Destroy(this.gameObject);
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
     }
 
