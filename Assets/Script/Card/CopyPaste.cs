@@ -20,13 +20,28 @@ public class CopyPaste : SpellCard
     protected override void Update()
     {
         base.Update();
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100.0f,m_layerMask) && m_pressed)
+        {
+            Debug.Log(hit.collider.gameObject);
+            if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null)
+            {
+                EmphasisTarget(hit.collider.gameObject);
+            }
+            else
+            {
+                UnEmphasisTarget();
+            }
+        }
     }
 
     //効果発動
     protected override void CardEffect(RaycastHit hit)
     {
-        
-        if(hit.collider.gameObject.tag == "Player")
+        Debug.Log(hit.collider.gameObject);
+        if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null)
         {
             
             Vector3 direction;
@@ -43,6 +58,9 @@ public class CopyPaste : SpellCard
             InstantiateMonster(hit.collider.gameObject.GetComponent<Monster>().m_parameter.monsterID, spawnPosition, Quaternion.identity);
 
             m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
+
+            //強調テキスト削除
+            UnEmphasisTarget();
         }
     }
 }

@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 using UnityEngine.UI;
 using TMPro;
+
 
 public class Card : MonoBehaviour
 {
@@ -49,7 +52,7 @@ public class Card : MonoBehaviour
     /// <summary>
     /// カードのImage
     /// </summary>
-    protected Image m_image;
+    protected UnityEngine.UI.Image m_image;
 
     /// <summary>
     /// imageの初期サイズ
@@ -91,10 +94,21 @@ public class Card : MonoBehaviour
     /// </summary>
     protected int m_layerMask;
     
+    /// <summary>
+    /// ターゲット強調テキスト
+    /// </summary>
+    [SerializeField] private GameObject m_targetEmphasisText;
+
+    /// <summary>
+    /// スポーン下強調テキスト
+    /// </summary>
+    private GameObject m_spawnEmpasis;
+
+    private Canvas m_canvas;
     protected virtual void Start()
     {
         m_initPos = GetComponent<RectTransform>().anchoredPosition;
-        m_image = GetComponent<Image>();
+        m_image = GetComponent<UnityEngine.UI.Image>();
 
 
         m_imageInitSize = GetComponent<RectTransform>().sizeDelta;
@@ -107,7 +121,10 @@ public class Card : MonoBehaviour
         m_cardInfoUI = GameObject.Find("CardInfo");
         //透明部分をレイキャストに当たらない（スプライトから「Read\Write」をチェックする）
         m_image.alphaHitTestMinimumThreshold = 0.5f;
-        m_layerMask = LayerMask.GetMask("Floor");
+        //m_layerMask = LayerMask.GetMask("Floor");
+        m_layerMask = (1 << LayerMask.NameToLayer("Floor")) | (1 << LayerMask.NameToLayer("PlayerMonster"));
+        //キャンバス取得
+        m_canvas = FindObjectOfType<Canvas>();
     }
 
     // Update is called once per frame
@@ -137,7 +154,7 @@ public class Card : MonoBehaviour
             {
                 press();
             }
-            else
+            else if(m_pressed)
             {
                 release();
             }
@@ -171,12 +188,16 @@ public class Card : MonoBehaviour
            
         }
         
+        
+
         if(m_pressed)
         {
             //CanvasScaler canvasScaler = GetComponentInParent<CanvasScaler>();
             float scale = (float)Screen.width / 1920;
             //Debug.Log(scale);
             GetComponent<RectTransform>().anchoredPosition = Input.mousePosition / scale;
+
+            
         }
     }
 
@@ -201,7 +222,40 @@ public class Card : MonoBehaviour
     {
         m_pressed = false;
 
-        if(GetComponent<RectTransform>().anchoredPosition.y > 200)
+        //RaycastAllの引数（PointerEventData）作成
+        PointerEventData pointData = new PointerEventData(EventSystem.current);
+
+        List<RaycastResult> rayResult = new List<RaycastResult>();
+
+        //PointerEventDataにマウスの位置をセット
+        pointData.position = Input.mousePosition;
+        //RayCast（スクリーン座標）
+        EventSystem.current.RaycastAll(pointData ,rayResult);
+
+        //フラグ関連
+        bool cardEffectFalg = false;
+        bool trashFlag = false;
+        foreach(RaycastResult result in rayResult)
+        {
+            //カード効果
+            if(result.gameObject.name == "SpawnField")
+            {
+                cardEffectFalg = true;
+
+                break;
+            }
+
+            //削除
+            if(result.gameObject.name == "TrashBox")
+            {
+                trashFlag = true;
+
+                break;
+            }
+        }
+
+
+        if(cardEffectFalg)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -212,6 +266,12 @@ public class Card : MonoBehaviour
                 //デバッグヒットしたオブジェクトの名前  
                 //Debug.Log(hit.collider.gameObject.name);
             }
+        }
+
+        //削除
+        if(trashFlag)
+        {
+            m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
 
         GetComponent<RectTransform>().anchoredPosition = m_initPos;
@@ -257,5 +317,24 @@ public class Card : MonoBehaviour
         {
             return false;
         }
+    }
+
+    //ターゲットモンスター強調
+    protected void EmphasisTarget(GameObject target)
+    {
+        if(m_spawnEmpasis == null)
+        {
+            m_spawnEmpasis = Instantiate(m_targetEmphasisText,m_canvas.transform);
+        }
+        else
+        {
+            m_spawnEmpasis.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
+        }
+    }
+
+    //ターゲットモンスター強調
+    protected void UnEmphasisTarget()
+    {
+        Destroy(m_spawnEmpasis);   
     }
 }

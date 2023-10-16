@@ -52,6 +52,9 @@ public class EnemyMonster : Monster
     protected override void Update()
     {
         base.Update();
+
+        if(m_preview)return;
+        
         switch(m_status)
         {
             

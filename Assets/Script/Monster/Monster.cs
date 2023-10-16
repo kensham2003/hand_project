@@ -123,6 +123,8 @@ public class Monster : MonoBehaviour
         set{m_isDead = value;}
     }
 
+    protected bool m_preview = false;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -291,5 +293,15 @@ public class Monster : MonoBehaviour
     public void SetTarget(GameObject obj)
     {
         m_target = obj;
+    }
+
+    /// <summary>
+    /// Monsterをプレビュー状態にする
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    public void SetPreview(bool b)
+    {
+        m_preview = b;
     }
 }
