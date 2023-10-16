@@ -63,6 +63,9 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 敵が全部生成された時呼ぶ関数
+    /// </summary>
     public void SetAllEnemySpawned(){
         m_isAllEnemySpawned = true;
     }

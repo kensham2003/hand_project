@@ -10,12 +10,24 @@ public class UITimer : MonoBehaviour
     [Header("クリアまでの秒数")]
     [SerializeField]private float m_clearTime = 30f;
 
+    /// <summary>
+    /// タイマーが有効なのか
+    /// </summary>
     public bool m_timerActive;
 
+    /// <summary>
+    /// タイマーのテキスト
+    /// </summary>
     private TextMeshProUGUI m_timerText;
 
+    /// <summary>
+    /// 現在の時間
+    /// </summary>
     private float m_currentTime;
 
+    /// <summary>
+    /// タイマーがクリア時間になったら呼ぶ関数
+    /// </summary>
     public event Action OnTimerZero = delegate{};
 
     // Start is called before the first frame update
@@ -34,10 +46,14 @@ public class UITimer : MonoBehaviour
             SetUIText();
             if(m_currentTime >= m_clearTime){
                 OnTimerZero();
+                m_timerActive = false;
             }
         }
     }
 
+    /// <summary>
+    /// タイマーテキストを更新
+    /// </summary>
     private void SetUIText(){
         float countdownTime = m_clearTime - m_currentTime;
         if(countdownTime < 0f){countdownTime = 0f;}
