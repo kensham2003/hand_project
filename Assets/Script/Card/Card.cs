@@ -171,12 +171,16 @@ public class Card : MonoBehaviour
            
         }
         
+        
+
         if(m_pressed)
         {
             //CanvasScaler canvasScaler = GetComponentInParent<CanvasScaler>();
             float scale = (float)Screen.width / 1920;
             //Debug.Log(scale);
             GetComponent<RectTransform>().anchoredPosition = Input.mousePosition / scale;
+
+            
         }
     }
 

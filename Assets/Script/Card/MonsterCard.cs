@@ -6,6 +6,13 @@ using UnityEngine;
 
 public class MonsterCard : Card
 {
+
+    /// <summary>
+    /// プレビューオブジェクト
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    private GameObject m_previewObject;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -17,6 +24,34 @@ public class MonsterCard : Card
     protected override void Update()
     {
         base.Update();
+
+        //image表示＆非表示を設定
+        m_image.enabled = !m_pressed;
+
+        if(m_pressed)
+        {
+            //プレビュー表示
+            if(m_previewObject == null)
+            {
+                m_previewObject = m_instantiateManager.InstantiateMonster(m_cardID,new Vector3(0,1.0f,0.0f), Quaternion.identity);
+                m_previewObject.GetComponent<PlayerMonster>().SetPreview(true);
+            }
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100.0f, m_layerMask))
+            {
+                m_previewObject.transform.position = hit.point;
+            }
+        }
+        else
+        {
+            //プレビュー非表示
+            if(m_previewObject != null)
+            {   
+                Destroy(m_previewObject);
+            }
+        }
     }
 
      //効果発動
