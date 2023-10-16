@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 2
-  parameter2: 1
+  parameter1: 10
+  parameter2: 3
 --- !u!114 &-3891126586034313251
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 2
+  parameter1: 12
   parameter2: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -141,4 +141,4 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter1: 2
-  parameter2: 1
+  parameter2: 3
