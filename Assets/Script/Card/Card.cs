@@ -6,76 +6,119 @@ using TMPro;
 
 public class Card : MonoBehaviour
 {
-    //カード名
-    [SerializeField] protected string cardName;
-    //カードの詳細テキスト
-    [SerializeField] protected string cardText;
-    //スプライト
-    [SerializeField] protected Sprite sprite;
-    //カードID
-    [SerializeField] protected int cardID;
-    //押されているフラグ
-    protected bool pressed = false;
-    //マウスがカード上
-    public bool hovered = false;
-    //マウス位置
-    protected Vector2 mousePos;
-    //初期位置
-    protected Vector2 initPos;
+    /// <summary>
+    /// カード名
+    /// </summary>
+    [SerializeField] protected string m_cardName;
     
-    protected Image image;
+    /// <summary>
+    /// カードの詳細テキスト
+    /// </summary>
+    [SerializeField] protected string m_cardText;
 
-    //imageの初期サイズ
-    Vector2 imageInitSize;
-    //imageのホバーしているときのサイズ
-    Vector2 imageHoverSize;
-    //すべてのカードで一枚でもホバーしていたらTrue
+    /// <summary>
+    /// スプライト
+    /// </summary>
+    [SerializeField] protected Sprite m_sprite;
+
+    /// <summary>
+    /// カードID
+    /// </summary>
+    [SerializeField] protected int m_cardID;
     
-    //デバッグ用演出
-    [SerializeField] protected GameObject damageText;
+    /// <summary>
+    /// 押されているフラグ
+    /// </summary>
+    protected bool m_pressed = false;
+    
+    /// <summary>
+    /// マウスがカード上
+    /// </summary>
+    public bool m_hovered = false;
+    
+    /// <summary>
+    /// マウス位置
+    /// </summary>
+    protected Vector2 m_mousePos;
 
-    protected InstantiateManager instantiateManager;
-    //手札
-    protected GameObject hands;
-    //手札の中の何枚目のカードか
-    protected int handsCardNum;
+    /// <summary>
+    /// 初期位置
+    /// </summary>
+    protected Vector2 m_initPos;
+    
+    /// <summary>
+    /// カードのImage
+    /// </summary>
+    protected Image m_image;
+
+    /// <summary>
+    /// imageの初期サイズ
+    /// </summary>
+    Vector2 m_imageInitSize;
+
+    /// <summary>
+    /// imageのホバーしているときのサイズ
+    /// </summary>
+    Vector2 m_imageHoverSize;
+    
+    
+    /// <summary>
+    /// デバッグ用演出
+    /// </summary>
+    [SerializeField] protected GameObject m_damageText;
+
+    protected InstantiateManager m_instantiateManager;
+    
+    /// <summary>
+    /// 手札
+    /// </summary>
+    protected GameObject m_hands;
+    
+    /// <summary>
+    /// 手札の中の何枚目のカードか
+    /// </summary>
+    protected int m_handsCardNum;
+    
     // Start is called before the first frame update
 
-    //カード情報まとめ
-    protected GameObject cardInfoUI;
+    /// <summary>
+    /// カード情報まとめ
+    /// </summary>
+    protected GameObject m_cardInfoUI;
 
-
+    /// <summary>
+    /// レイキャストに反応するレイヤー
+    /// </summary>
+    protected int m_layerMask;
     
-    public virtual void Start()
+    protected virtual void Start()
     {
-        initPos = GetComponent<RectTransform>().anchoredPosition;
-        image = GetComponent<Image>();
+        m_initPos = GetComponent<RectTransform>().anchoredPosition;
+        m_image = GetComponent<Image>();
 
 
-        imageInitSize = GetComponent<RectTransform>().sizeDelta;
-        imageHoverSize = GetComponent<RectTransform>().sizeDelta * 2;
-        instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
+        m_imageInitSize = GetComponent<RectTransform>().sizeDelta;
+        m_imageHoverSize = GetComponent<RectTransform>().sizeDelta * 2;
+        m_instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
 
         //手札
-        hands = GameObject.Find ("Hands");
+        m_hands = GameObject.Find ("Hands");
         //カード情報UI
-        cardInfoUI = GameObject.Find("CardInfo");
+        m_cardInfoUI = GameObject.Find("CardInfo");
         //透明部分をレイキャストに当たらない（スプライトから「Read\Write」をチェックする）
-        image.alphaHitTestMinimumThreshold = 0.5f;
+        m_image.alphaHitTestMinimumThreshold = 0.5f;
+        m_layerMask = LayerMask.GetMask("Floor");
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    protected virtual void Update()
     {
-        
-        
-        
         //一枚でもホバーしているか
         bool oneceHorvered = false;
-        foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
+        foreach (Card obj in m_hands.GetComponent<Hands>().GetHandsCard())
         {
-            if(obj.handsCardNum == handsCardNum)continue;
-            if(obj.hovered == true)
+            if(obj.m_handsCardNum == m_handsCardNum)continue;
+            if(obj.m_hovered == true)
             {
                 oneceHorvered = true;
             }
@@ -85,10 +128,10 @@ public class Card : MonoBehaviour
         //horverd = CheckMouseOnCard();
         //Debug.Log(gameObject.name + " : " + horverd);
 
-        if(hovered == true && oneceHorvered == false)
+        if(m_hovered == true && oneceHorvered == false)
         {
            //画像の大きさ変更
-           GetComponent<RectTransform>().sizeDelta = imageHoverSize;
+           GetComponent<RectTransform>().sizeDelta = m_imageHoverSize;
 
             if(Input.GetMouseButton(0))
             {
@@ -106,14 +149,14 @@ public class Card : MonoBehaviour
         else
         {
             //画像の大きさ変更
-            GetComponent<RectTransform>().sizeDelta = imageInitSize;
+            GetComponent<RectTransform>().sizeDelta = m_imageInitSize;
             
             //一枚でもホバーしているか
             oneceHorvered = false;
-            foreach (Card obj in hands.GetComponent<Hands>().GetHandsCard())
+            foreach (Card obj in m_hands.GetComponent<Hands>().GetHandsCard())
             {
-                if(obj.handsCardNum == handsCardNum)continue;
-                if(obj.hovered)
+                if(obj.m_handsCardNum == m_handsCardNum)continue;
+                if(obj.m_hovered)
                 {
                     oneceHorvered = true;
                 }
@@ -123,12 +166,12 @@ public class Card : MonoBehaviour
             {
                 //Debug.Log(GameObject.Find("CardInfo"));
                 //カードテキスト非表示
-                cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(false,"","");
+                m_cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(false,"","");
             }
            
         }
         
-        if(pressed)
+        if(m_pressed)
         {
             //CanvasScaler canvasScaler = GetComponentInParent<CanvasScaler>();
             float scale = (float)Screen.width / 1920;
@@ -138,63 +181,75 @@ public class Card : MonoBehaviour
     }
 
      //効果発動
-    public virtual  void CardEffect(RaycastHit hit)
+    protected virtual  void CardEffect(RaycastHit hit)
     {
         ;
     }
 
-    //押されたら
-     void press()
+    /// <summary>
+    /// 押されたら
+    /// </summary>
+    private void press()
     {
-        pressed = true;
+        m_pressed = true;
     }
 
-    //離したら
-    public void release()
+    /// <summary>
+    /// 離したら
+    /// </summary>
+    private void release()
     {
-        pressed = false;
+        m_pressed = false;
 
         if(GetComponent<RectTransform>().anchoredPosition.y > 200)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            if (Physics.Raycast(ray, out hit, 100.0f, m_layerMask))
             {
                 CardEffect(hit);
 
                 //デバッグヒットしたオブジェクトの名前  
-                Debug.Log(hit.collider.gameObject.name);
+                //Debug.Log(hit.collider.gameObject.name);
             }
         }
 
-        GetComponent<RectTransform>().anchoredPosition = initPos;
+        GetComponent<RectTransform>().anchoredPosition = m_initPos;
     }
 
-    //何枚目か設定
+    /// <summary>
+    /// 何枚目か設定
+    /// </summary>
+    /// <param name="n"></param>
     public void SetHandsCardNum(int n)
     {
-        handsCardNum = n;
+        m_handsCardNum = n;
     }
 
-    //初期位置変更
+    /// <summary>
+    /// 初期位置変更
+    /// </summary>
+    /// <param name="pos"></param>
     public void SetInitPos(Vector2 pos)
     {
-        initPos = pos;
+        m_initPos = pos;
     }
 
     protected virtual void SetCardInfoText(){}
     
-
-    //カードの上にマウスがあるか判断
-    bool CheckMouseOnCard()
+    /// <summary>
+    /// カードの上にマウスがあるか判断
+    /// </summary>
+    /// <returns></returns>
+    private bool CheckMouseOnCard()
     {
         Vector2 CardPos = GetComponent<RectTransform>().anchoredPosition;
-        mousePos = Input.mousePosition;
+        m_mousePos = Input.mousePosition;
         //Debug.Log(mousePos);
         var CardSize = GetComponent<RectTransform>().sizeDelta;
 
-        if(CardPos.x + CardSize.x > mousePos.x && CardPos.x - CardSize.x < mousePos.x &&
-        CardPos.y + CardSize.y > mousePos.y && CardPos.y - CardSize.y < mousePos.y)
+        if(CardPos.x + CardSize.x > m_mousePos.x && CardPos.x - CardSize.x < m_mousePos.x &&
+        CardPos.y + CardSize.y > m_mousePos.y && CardPos.y - CardSize.y < m_mousePos.y)
         {
             return true;
         }

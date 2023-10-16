@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class PlayerBossMonster : PlayerMonster
 {
+    /// <summary>
+    /// ダメージ持続時間（-1:永続的）
+    /// </summary>
     [Header("ダメージ持続時間（-1:永続的）")]
-    [SerializeField]private float damageTime = -1;
+    [SerializeField]private float m_damageTime = -1;
 
     // Start is called before the first frame update
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
         
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
        CheckVisible();
     }
@@ -34,7 +37,7 @@ public class PlayerBossMonster : PlayerMonster
     public override void ChangeHP(float val)
     {
         base.ChangeHP(val);
-        CPULoad cpuLoad = new CPULoad{raiseRate = val, impactTime = damageTime};
+        CPULoad cpuLoad = new CPULoad{raiseRate = val, impactTime = m_damageTime};
         cpuMain.UsageRegister(cpuLoad);
     }
 

@@ -8,24 +8,34 @@ public class PlayerMonster : Monster
     //カメラ
     Camera mainCamera;
     //画面内にいる敵
-    public List<GameObject> objectsInView = new List<GameObject>();
+    [SerializeField] List<GameObject> m_objectsInView = new List<GameObject>();
+
+    /// <summary>
+    /// 範囲攻撃のスクリプト
+    /// </summary>
+    [SerializeField]private RangeAttackZone m_rangeAttackZone;
+
+    /// <summary>
+    /// 範囲攻撃受ける時生成する爆風オブジェクト
+    /// </summary>
+    [SerializeField]private GameObject m_explosion;
 
     // Start is called before the first frame update
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
         mainCamera = Camera.main;
 
         //ステータス設定
-        status = Status.move;
+        m_status = Status.move;
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
 
-        switch(status)
+        switch(m_status)
         {
             //target = GetClosestObject();
             //if(target == null)
@@ -79,25 +89,37 @@ public class PlayerMonster : Monster
     //ターゲットへ攻撃
     public override void Action()
     {
-        attackFlag = false;
+        m_attackFlag = false;
         
-        if(target != null && paramerter.attackDistance >= targetDistance)
+        if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
         {
-            target.GetComponent<EnemyMonster>().ChangeHP(paramerter.attack);
+            m_target.GetComponent<EnemyMonster>().ChangeHP(m_parameter.attack);
             
-            cpuMain.UsageRegister(paramerter.attackLoad);
+            cpuMain.UsageRegister(m_parameter.attackLoad);
             //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
-            target = null;
+            m_target = null;
+        }
+        else
+        {
+            m_status = Status.idle;
         }
         
     }
-
+    
     public override void Death()
     {
-        if(visibleFlag){
+        if(isDead)return;
+        if(m_visibleFlag){
             OnBecameInvisibleFromCamera();
+            m_visibleFlag = false;
         }
+        cpuMain.UsageRegister(m_parameter.DestroyLoad);
+        //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
+        CPULoad constant = new CPULoad{raiseRate = -1 * m_parameter.constantLoad.raiseRate, impactTime = -1};
+        cpuMain.UsageRegister(constant);
+        isDead = true;
+        //Debug.Log("death");
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
         instantiateManager.DestroyMonster(this.gameObject);
     }
@@ -108,12 +130,12 @@ public class PlayerMonster : Monster
     bool DetectEnemiesInScreen()
     {
         bool view = false;
-        objectsInView.Clear();
+        m_objectsInView.Clear();
         foreach(GameObject obj in visibleList.GetVisibleList())
         {
             if(obj == null)continue;
             if(obj.GetComponent<EnemyMonster>()){
-                objectsInView.Add(obj);
+                m_objectsInView.Add(obj);
                 view = true;
             }
         }
@@ -144,8 +166,9 @@ public class PlayerMonster : Monster
     {
         GameObject closestObject = null;
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
-        foreach (GameObject obj in objectsInView)
+        foreach (GameObject obj in m_objectsInView)
         {
+            if(obj == null)continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && !obj.GetComponent<EnemyBossMonster>())
             {
@@ -161,8 +184,9 @@ public class PlayerMonster : Monster
     {
         GameObject closestObject = null;
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
-        foreach (GameObject obj in objectsInView)
+        foreach (GameObject obj in m_objectsInView)
         {
+            if(obj == null)continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && obj.GetComponent<EnemyBossMonster>())
             {
@@ -179,7 +203,7 @@ public class PlayerMonster : Monster
         //画面チェック
         if(DetectEnemiesInScreen())
         {
-            status = Status.move;
+            m_status = Status.move;
         }
     }
 
@@ -189,65 +213,65 @@ public class PlayerMonster : Monster
         //画面チェック
         if(DetectEnemiesInScreen())
         {
-            target = GetClosestObject();
-            if(target == null)
+            m_target = GetClosestObject();
+            if(m_target == null)
             //待機
             {
-                status = Status.idle;
+                m_status = Status.idle;
             }
             //移動
             else
             {
                 //進行方向
-                Vector3 moveVec = target.transform.position - transform.position;
+                Vector3 moveVec = m_target.transform.position - transform.position;
                 moveVec = moveVec.normalized;
 
                 //ターゲットの距離
-                targetDistance = Vector3.Distance(target.transform.position,transform.position);
+                m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
 
-                if(paramerter.attackDistance < targetDistance)
+                if(m_parameter.attackDistance < m_targetDistance)
                 {
                     //ターゲット移動
-                    transform.position += paramerter.speed * moveVec * Time.deltaTime;
+                    transform.position += m_parameter.speed * moveVec * Time.deltaTime;
                 }
                 //攻撃中じゃなければ攻撃
-                else if(attackFlag == false && paramerter.attackDistance > targetDistance)
+                else if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
                 {                
-                    status = Status.attack;
+                    m_status = Status.attack;
                 }
             }
         }
         else
         {
             //画面に敵がいなければIdleへ
-            status = Status.idle;
+            m_status = Status.idle;
         }
     }
 
     //攻撃
     void Attack()
     {
-        target = GetClosestObject();
-        if(target == null)
+        m_target = GetClosestObject();
+        if(m_target == null)
         //待機
         {
-            status = Status.idle;
+            m_status = Status.idle;
         }
         //攻撃
-        else
+        else if(m_target != null)
         {
-            targetDistance = Vector3.Distance(target.transform.position,transform.position);
+            m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             
-            if(attackFlag == false && paramerter.attackDistance > targetDistance)
+            if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
             {                
-                Invoke("Action",paramerter.attackInterval);
+                Invoke("Action",m_parameter.attackInterval);
                 {
-                    attackFlag = true;
+                    m_attackFlag = true;
                 }
             }
             else
             {
-                status = Status.move;
+                m_status = Status.move;
             }
         }
     }
@@ -255,35 +279,35 @@ public class PlayerMonster : Monster
     //ユニバーサルクロス用移動
     void UCMove()
     {
-        if(target == null)
+        if(m_target == null)
         {
-            status = Status.idle;
+            m_status = Status.idle;
             return;
         }
 
         //進行方向
-        Vector3 moveVec = target.transform.position - transform.position;
+        Vector3 moveVec = m_target.transform.position - transform.position;
         moveVec = moveVec.normalized;
 
         //ターゲットの距離
-        targetDistance = Vector3.Distance(target.transform.position,transform.position);
+        m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
 
-        if(paramerter.attackDistance < targetDistance)
+        if(m_parameter.attackDistance < m_targetDistance)
         {
             //ターゲット移動
-           transform.position += paramerter.speed * moveVec * Time.deltaTime;
+           transform.position += m_parameter.speed * moveVec * Time.deltaTime;
         }
         else
         {
-            if(target.GetComponent<EnemyMonster>() != null)
+            if(m_target.GetComponent<EnemyMonster>() != null)
             {
                 //ターゲットが敵だったらucaへ
-                status = Status.uca;
+                m_status = Status.uca;
             }
             else
             {
                 //ターゲットが敵ではなければidleへ
-                status = Status.idle;
+                m_status = Status.idle;
             }
             
         }
@@ -292,25 +316,36 @@ public class PlayerMonster : Monster
     //ユニバーサルクロス用攻撃
     void UCAttack()
     {
-        if(target == null)
+        if(m_target == null)
         {
             //死んでいたらidleへ
-            status = Status.idle;
+            m_status = Status.idle;
             return;
         }
 
-        targetDistance = Vector3.Distance(target.transform.position,transform.position);
+        m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             
-        if(attackFlag == false && paramerter.attackDistance > targetDistance)
+        if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
         {                
-            Invoke("Action",paramerter.attackInterval);
+            Invoke("Action",m_parameter.attackInterval);
             {
-                attackFlag = true;
+                m_attackFlag = true;
             }
         }
         else
         {
-            status = Status.ucm;
+            m_status = Status.ucm;
+        }
+    }
+
+    /// <summary>
+    /// 範囲内の味方もダメージを食らう
+    /// </summary>
+    /// <param name="val">ダメージ量</param>
+    public void ChangeHPInRange(float val){
+        Instantiate(m_explosion, transform.position, Quaternion.identity);
+        foreach(PlayerMonster pm in m_rangeAttackZone.GetPlayerMonstersInRange()){
+            pm.ChangeHP(val);
         }
     }
 }

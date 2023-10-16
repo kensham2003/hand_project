@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-//使用されない：CpuUsageGaugeUIを使う
+/// <summary>
+/// 使用されない：CpuUsageGaugeUIを使う
+/// </summary>
 public class CpuUsageUI : MonoBehaviour
 {
     [SerializeField] CpuMain cpuMain;

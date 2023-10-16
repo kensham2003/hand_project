@@ -3,67 +3,113 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// ゲームマネージャ
+/// </summary>
 public class GameManager : MonoBehaviour
 {
-    bool clearFlag = false;
+    #region public/serialized
+    /// <summary>
+    /// CPU使用量とラグ間隔の関係カーブ
+    /// </summary>
+    [Header("CPU-ラグ間隔の関係カーブ")]
+    public AnimationCurve m_cpuUsage_LagIntervalCurve;
 
-    [Range(0f, 0.1f)]
-    [SerializeField] float lagInterval = 0.0f;
+    /// <summary>
+    /// CPUメイン
+    /// </summary>
+    [Header("CPUメイン")]
+    [SerializeField] CpuMain m_cpuMain;
 
-    public AnimationCurve cpuUsage_LagIntervalCurve;
+    /// <summary>
+    /// SceneChangeを持っているオブジェ（現在はCanvas）
+    /// </summary>
+    [Header("Canvas")]
+    [SerializeField] SceneChange m_canvas;
 
-    [SerializeField]   CpuMain cpuMain;
-    [SerializeField]  GameObject clearText;
-    //リトライ用のボタン
-    [SerializeField] GameObject retryButton;
-    Coroutine lagCoroutine = null;
+    /// <summary>
+    /// ゲームオーバーのシーン名
+    /// </summary>
+    [Header("ゲームオーバーのシーン名")]
+    [SerializeField] string m_gameoverSceneName;
 
-    void Start()
+    /// <summary>
+    /// ゲームクリアのシーン名
+    /// </summary>
+    [Header("ゲームクリアのシーン名")]
+    [SerializeField] string m_clearSceneName;
+
+    #endregion
+    
+    #region private
+    /// <summary>
+    /// クリアしたかどうか
+    /// </summary>
+    private bool m_clearFlag = false;
+
+    /// <summary>
+    /// ラグ間隔
+    /// </summary>
+    private float m_lagInterval = 0.0f;
+
+    /// <summary>
+    /// ラグを模擬するコルーチン
+    /// </summary>
+    Coroutine m_lagCoroutine = null;
+    #endregion
+
+
+    private void Start()
     {
         Time.timeScale = 1f;
-        cpuMain.OnUsageFull += GameOver;
-        lagCoroutine = StartCoroutine(LagSimulate());
+        m_cpuMain.OnUsageFull += GameOver;
+        m_lagCoroutine = StartCoroutine(LagSimulate());
     }
 
-    private void OnDestroy() {
-        //cpuMain.OnUsageFull -= GameClear;
-        //Debug.Log("unsub");
-    }
-    void Update()
+    private void Update()
     {
-        if(clearFlag){return;}
-        EvaluateLagInterval(cpuMain.Usage);
+        if(m_clearFlag){return;}
+        EvaluateLagInterval(m_cpuMain.Usage);
         
     }
 
-    //ラグ間隔取得
+    /// <summary>
+    /// カーブからラグ間隔を計算
+    /// </summary>
+    /// <param name="cpu">CPU使用量</param>
     void EvaluateLagInterval(float cpu){
-        lagInterval = cpuUsage_LagIntervalCurve.Evaluate(cpu / (float)100);
+        m_lagInterval = m_cpuUsage_LagIntervalCurve.Evaluate(cpu / (float)100);
     }
 
-    //クリア処理
+    /// <summary>
+    /// クリア処理
+    /// </summary>
     public void GameOver(){
-        clearFlag = true;
-        clearText.SetActive(true);
-        retryButton.SetActive(true);
-        StopCoroutine(lagCoroutine);
-        Time.timeScale = 0f;
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StopCoroutine(m_lagCoroutine);
+        //シーン遷移を一回だけ呼ぶ
+        if(!m_clearFlag){
+            m_canvas.ChangeScene(m_gameoverSceneName);
+        }
+        m_clearFlag = true;
     }
 
+    /// <summary>
+    /// ラグのシミュレーション
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LagSimulate(){
         while(true){
             //0なら処理しない
-            if(lagInterval <= 0.0f){
+            if(m_lagInterval <= 0.0f){
                 yield return null;
                 continue;
             }
             //止まったり動いたりする
             Time.timeScale = 0f;
             //WaitForSecondsをキャッシュして使う
-            yield return LagTimer.Get(lagInterval); //+ランダムノイズでも？
+            yield return LagTimer.Get(m_lagInterval); //+ランダムノイズでも？
             Time.timeScale = 1f;
-            yield return LagTimer.Get(lagInterval);
+            yield return LagTimer.Get(m_lagInterval);
         }
     }
 }

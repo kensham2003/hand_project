@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// モンスターの行動パターン 
+/// </summary>
 public enum EnemyMonsterType
 {
     A,
@@ -11,34 +14,45 @@ public enum EnemyMonsterType
 
 public class EnemyMonster : Monster
 {
-    //敵の基本仕様
-    [Tooltip("敵の基本仕様")]
-    public EnemyMonsterType enemyMonsterType;
+    /// <summary>
+    /// 敵の行動パターン
+    /// </summary>
+    [Tooltip("敵の行動パターン")]
+    public EnemyMonsterType m_enemyMonsterType;
 
-    //カメラ
-    Camera mainCamera;
-    //画面内にいるPlayerMonster
-    public List<GameObject> objectsInView = new List<GameObject>();
+    /// <summary>
+    /// メインカメラ
+    /// </summary>
+    private Camera m_mainCamera;
+    
+    /// <summary>
+    /// 画面内にいるPlayerMonster
+    /// </summary>
+    /// <typeparam name="GameObject"></typeparam>
+    /// <returns></returns>
+    [SerializeField] private List<GameObject> m_objectsInView = new List<GameObject>();
 
-    //CPU
-    CpuMain cpumain;
+    /// <summary>
+    /// CPU
+    /// </summary>
+    private CpuMain m_cpumain;
 
     // Start is called before the first frame update
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
-        mainCamera = Camera.main;
+        m_mainCamera = Camera.main;
 
-        status = Status.idle;
+        m_status = Status.idle;
 
-        cpumain = GameObject.Find("Managers").GetComponent<CpuMain>();
+        m_cpumain = GameObject.Find("Managers").GetComponent<CpuMain>();
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
-        switch(status)
+        switch(m_status)
         {
             
             case Status.idle:
@@ -58,52 +72,60 @@ public class EnemyMonster : Monster
 
     public override void Action()
     {
-        attackFlag = false;
-        if(target != null && paramerter.attackDistance >= targetDistance)
+        m_attackFlag = false;
+        m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
+        if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
         {
-            target.GetComponent<PlayerMonster>().ChangeHP(paramerter.attack);
+            if(m_parameter.attackDistance < 5.99f){
+                m_target.GetComponent<PlayerMonster>().ChangeHP(m_parameter.attack);
+            }
+            else{
+                m_target.GetComponent<PlayerMonster>().ChangeHPInRange(m_parameter.attack);
+            }
+            cpuMain.UsageRegister(m_parameter.attackLoad);
+            //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
-            cpuMain.UsageRegister(paramerter.attackLoad);
-            Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
-
-            target = null;
+            m_target = null;
         }
     }
 
     public override void Death()
     {
-        if(visibleFlag){
+        if(isDead)return;
+        if(m_visibleFlag){
             OnBecameInvisibleFromCamera();
         }
-        cpuMain.UsageRegister(paramerter.DestroyLoad);
-        Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
+        cpuMain.UsageRegister(m_parameter.DestroyLoad);
+        //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
+        CPULoad constant = new CPULoad{raiseRate = -1 * m_parameter.constantLoad.raiseRate, impactTime = -1};
+        cpuMain.UsageRegister(constant);
         Destroy(this.gameObject);
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
     }
 
     //AタイプのUpdate
-    void UpdateTypeA()
+    private void UpdateTypeA()
     {
         if(DetectEnemiesInScreen())
         {
-            target = GetClosestBossPlayerMonster();
+            m_target = GetClosestBossPlayerMonster();
 
             //進行方向
-           Vector3 moveVec = target.transform.position - transform.position;
+           Vector3 moveVec = m_target.transform.position - transform.position;
            moveVec = moveVec.normalized;
 
              //ターゲットの距離
-            targetDistance = Vector3.Distance(target.transform.position,transform.position);
-            if(paramerter.attackDistance < targetDistance)
+            m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
+            if(m_parameter.attackDistance < m_targetDistance)
             {
                 //ターゲット移動
-                transform.position += paramerter.speed * moveVec * Time.deltaTime;
+                transform.position += m_parameter.speed * moveVec * Time.deltaTime;
                 
             }
             //攻撃中じゃなければ攻撃
-            else if(attackFlag == false &&paramerter.attackDistance >= targetDistance)
+            else if(m_attackFlag == false &&m_parameter.attackDistance >= m_targetDistance)
             {                
-                status = Status.attack;
+                m_status = Status.attack;
             }
            
 
@@ -111,34 +133,34 @@ public class EnemyMonster : Monster
         else
         {
             //前進
-            transform.position -= paramerter.speed * transform.forward * Time.deltaTime;
+            transform.position -= m_parameter.speed * transform.forward * Time.deltaTime;
         }
     }
 
     //BタイプのUpdate
-    void UpdateTypeB()
+    private void UpdateTypeB()
     {
          if(DetectEnemiesInScreen())
         {
-            target = GetClosestObject();
+            m_target = GetClosestObject();
 
-
+            //Debug.Log(target.gameObject.name);
             //進行方向
-           Vector3 moveVec = target.transform.position - transform.position;
+           Vector3 moveVec = m_target.transform.position - transform.position;
            moveVec = moveVec.normalized;
 
              //ターゲットの距離
-            float targetDistance = Vector3.Distance(target.transform.position,transform.position);
+            float targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
 
-            if(paramerter.attackDistance < targetDistance)
+            if(m_parameter.attackDistance < targetDistance)
             {
                 //ターゲット移動
-                transform.position += paramerter.speed * moveVec * Time.deltaTime;
+                transform.position += m_parameter.speed * moveVec * Time.deltaTime;
             }
             //攻撃中じゃなければ攻撃
-            else if(attackFlag == false &&paramerter.attackDistance >= targetDistance)
+            else if(m_attackFlag == false &&m_parameter.attackDistance >= targetDistance)
             {                
-                status = Status.attack;
+                m_status = Status.attack;
             }
            
 
@@ -146,21 +168,22 @@ public class EnemyMonster : Monster
         else
         {
             //前進
-            transform.position -= paramerter.speed * transform.forward * Time.deltaTime;
+            transform.position -= m_parameter.speed * transform.forward * Time.deltaTime;
         }
     }
 
     //---------------------------------------------------ここから下は仮後でマネージャーにまとめる
     //画面内に敵がいるかチェック
     //いなければfalse
-    bool DetectEnemiesInScreen()
+    private bool DetectEnemiesInScreen()
     {
         bool view = false;
-        objectsInView.Clear();
+        m_objectsInView.Clear();
+        //Debug.Log("visible list = " + visibleList.GetVisibleList().Count);
         foreach(GameObject obj in visibleList.GetVisibleList()){
             if(obj == null)continue;
             if(obj.GetComponent<PlayerMonster>()){
-                objectsInView.Add(obj);
+                m_objectsInView.Add(obj);
                 view = true;
             }
         }
@@ -168,7 +191,7 @@ public class EnemyMonster : Monster
     }
 
     //一番近いオブジェクトを取得
-    public GameObject GetClosestObject()
+    private GameObject GetClosestObject()
     {
         //一番近いプレイヤーモンスター
         GameObject closestPlayerMonster = GetClosestPlayerMonster();
@@ -178,22 +201,26 @@ public class EnemyMonster : Monster
         //通常のプレイヤーモンスターがいなければボスをターゲット
         if(closestPlayerMonster == null)
         {
+            //Debug.Log("no player monster");
             return closestBossPlayerMonster;
         }
         //通常のプレイヤーモンスターがいれば一番近い通常の敵をターゲット
         else
         {
+            //Debug.Log("player monster");
             return closestPlayerMonster;
         }
     }
 
     //一番近いPlatyerMonster取得
-    public GameObject GetClosestPlayerMonster()
+    private GameObject GetClosestPlayerMonster()
     {
+        //Debug.Log(objectsInView.Count);
         GameObject closestObject = null;
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
-        foreach (GameObject obj in objectsInView)
+        foreach (GameObject obj in m_objectsInView)
         {
+            if(obj == null) continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && !obj.GetComponent<PlayerBossMonster>())
             {
@@ -205,12 +232,13 @@ public class EnemyMonster : Monster
     }
 
     //一番近いBossEnemy取得
-    public GameObject GetClosestBossPlayerMonster()
+    private GameObject GetClosestBossPlayerMonster()
     {
         GameObject closestObject = null;
         float shortestDistance = Mathf.Infinity; // 最初は無限大として設定
-        foreach (GameObject obj in objectsInView)
+        foreach (GameObject obj in m_objectsInView)
         {
+            if(obj == null) continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < shortestDistance && obj.GetComponent<PlayerBossMonster>())
             {
@@ -222,15 +250,15 @@ public class EnemyMonster : Monster
     }
 
     //待機
-    void Idle()
+    private void Idle()
     {
-        status = Status.move;
+        m_status = Status.move;
     }
 
     //移動
-    void Move()
+    private void Move()
     {
-        switch(enemyMonsterType)
+        switch(m_enemyMonsterType)
         {
             //Aタイプ
             case EnemyMonsterType.A:
@@ -245,27 +273,27 @@ public class EnemyMonster : Monster
     }
 
     //攻撃
-    void Attack()
+    private void Attack()
     {
         if(DetectEnemiesInScreen())
         {
-            target = GetClosestObject();
-
+            m_target = GetClosestObject();
+            
             //進行方向
-           Vector3 moveVec = target.transform.position - transform.position;
+           Vector3 moveVec = m_target.transform.position - transform.position;
            moveVec = moveVec.normalized;
 
              //ターゲットの距離
-            targetDistance = Vector3.Distance(target.transform.position,transform.position);
-            if(attackFlag == false &&paramerter.attackDistance >= targetDistance)
+            m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
+            if(m_attackFlag == false &&m_parameter.attackDistance >= m_targetDistance)
             {                
-                Invoke("Action",paramerter.attackInterval);
+                Invoke("Action",m_parameter.attackInterval);
 
-                attackFlag = true;
+                m_attackFlag = true;
             }
             else
             {
-                status = Status.move;
+                m_status = Status.move;
             }
 
            
@@ -273,7 +301,7 @@ public class EnemyMonster : Monster
         }
         else
         {
-            status = Status.idle;
+            m_status = Status.idle;
         }
     }
 }

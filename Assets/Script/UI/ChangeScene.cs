@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 使用されない：SceneChangeを使う
+/// </summary>
 public class ChangeScene : MonoBehaviour
 {
     //遷移先

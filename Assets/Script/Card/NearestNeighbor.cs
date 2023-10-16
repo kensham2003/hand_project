@@ -17,79 +17,64 @@ public enum UpType
 public class NearestNeighbor : SpellCard
 {
 
-    //上昇対象
+    /// <summary>
+    /// 上昇対象
+    /// </summary>
     [Tooltip("上昇対象")]
-    [SerializeField] UpType type;
+    [SerializeField] private UpType m_type;
 
-    //上昇量
+    /// <summary>
+    /// 上昇量
+    /// </summary>
     [Tooltip("上昇量")]
-    [SerializeField] float value;
+    [SerializeField] private float m_value;
 
     // Start is called before the first frame update
-    public override void  Start()
+    protected override void  Start()
     {
         base.Start();
     }
     
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
     //効果発動
-    public override void CardEffect(RaycastHit hit)
+    protected override void CardEffect(RaycastHit hit)
     {
-        
         if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null && hit.collider.gameObject.GetComponent<PlayerBossMonster>() == null)
         {
-            //PlayerMonster対象
-            //デバッグ用演出
-            GameObject spawnText = Instantiate(damageText,hit.point + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
-
             //パラメータによって演出を変更
-            switch(type)
+            switch(m_type)
             {
                 case UpType.HP:
-                hit.collider.gameObject.GetComponent<PlayerMonster>().UpHP(value);
-                spawnText.GetComponent<TextMeshPro>().text = "+"+value.ToString();
-                spawnText.GetComponent<TextMeshPro>().color = new Color(0,255,0,1);
+                hit.collider.gameObject.GetComponent<PlayerMonster>().UpHP(m_value);
                 break;
 
                 case UpType.Speed:
-                hit.collider.gameObject.GetComponent<PlayerMonster>().UpSpeed(value);
-                spawnText.GetComponent<TextMeshPro>().text = "+"+value.ToString();
-                spawnText.GetComponent<TextMeshPro>().color = new Color(0,0,255,1);
+                hit.collider.gameObject.GetComponent<PlayerMonster>().UpSpeed(m_value);
                 break;
 
                 case UpType.Attack:
-                hit.collider.gameObject.GetComponent<PlayerMonster>().UpAttack(value);
-                spawnText.GetComponent<TextMeshPro>().text = "+"+value.ToString();
-                spawnText.GetComponent<TextMeshPro>().color = new Color(255,0,0,1);
+                hit.collider.gameObject.GetComponent<PlayerMonster>().UpAttack(m_value);
                 break;
 
                 case UpType.CoolTime:
-                hit.collider.gameObject.GetComponent<PlayerMonster>().UpCoolTime(value);
-                spawnText.GetComponent<TextMeshPro>().text = "-"+value.ToString();
-                spawnText.GetComponent<TextMeshPro>().color = new Color(255,255,0,1);
+                hit.collider.gameObject.GetComponent<PlayerMonster>().UpCoolTime(m_value);
                 break;
 
             }
-
-            hands.GetComponent<Hands>().RemoveCard(handsCardNum);
+            m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
         else if(hit.collider.gameObject.GetComponent<PlayerBossMonster>() != null)
         {
             //CPU対象
-            foreach (GameObject obj in UnityEngine.Object.FindObjectsOfType(typeof(GameObject)))
-            {
-                if(obj.GetComponent<PlayerMonster>() != null)
-                {
-                    //A
-                }
-            }
+            //obj生成＆パラメータ設定（種類、上昇量）
+            GameObject obj =  m_instantiateManager.InstantiateMonster(11, hit.point, Quaternion.identity);
+            obj.GetComponent<CPUTargetNearestNeighbor>().SetParamerter(m_type,m_value);
+            m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
-
-        
     }
 }
