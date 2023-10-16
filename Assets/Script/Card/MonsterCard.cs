@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 
 public class MonsterCard : Card
@@ -62,10 +63,7 @@ public class MonsterCard : Card
         // cpuLoad.raiseRate = 10.0f;
         // cpuLoad.impactTime = 7.0f;
         // CpuMain.Instance.UsageRegister(cpuLoad);
-        
-        //スポーン
-        // GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
-        // InstantiateMonster(cardID, hit.point, Quaternion.identity);
+
         m_instantiateManager.InstantiateMonster(m_cardID, hit.point + new Vector3(0,1.0f,0.0f), Quaternion.identity);
 
         m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);

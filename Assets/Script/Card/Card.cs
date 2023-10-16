@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 using UnityEngine.UI;
 using TMPro;
+
 
 public class Card : MonoBehaviour
 {
@@ -49,7 +52,7 @@ public class Card : MonoBehaviour
     /// <summary>
     /// カードのImage
     /// </summary>
-    protected Image m_image;
+    protected UnityEngine.UI.Image m_image;
 
     /// <summary>
     /// imageの初期サイズ
@@ -94,7 +97,7 @@ public class Card : MonoBehaviour
     protected virtual void Start()
     {
         m_initPos = GetComponent<RectTransform>().anchoredPosition;
-        m_image = GetComponent<Image>();
+        m_image = GetComponent<UnityEngine.UI.Image>();
 
 
         m_imageInitSize = GetComponent<RectTransform>().sizeDelta;
@@ -137,7 +140,7 @@ public class Card : MonoBehaviour
             {
                 press();
             }
-            else
+            else if(m_pressed)
             {
                 release();
             }
@@ -205,17 +208,59 @@ public class Card : MonoBehaviour
     {
         m_pressed = false;
 
-        if(GetComponent<RectTransform>().anchoredPosition.y > 200)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100.0f, m_layerMask))
-            {
-                CardEffect(hit);
+        //RaycastAllの引数（PointerEventData）作成
+        PointerEventData pointData = new PointerEventData(EventSystem.current);
 
-                //デバッグヒットしたオブジェクトの名前  
-                //Debug.Log(hit.collider.gameObject.name);
+        List<RaycastResult> rayResult = new List<RaycastResult>();
+
+        //PointerEventDataにマウスの位置をセット
+        pointData.position = Input.mousePosition;
+        //RayCast（スクリーン座標）
+        EventSystem.current.RaycastAll(pointData ,rayResult);
+
+        //フラグ関連
+        bool cardEffectFalg = false;
+        bool trashFlag = false;
+        foreach(RaycastResult result in rayResult)
+        {
+            //カード効果
+            if(result.gameObject.name == "SpawnField")
+            {
+                cardEffectFalg = true;
+
+                break;
             }
+
+            //削除
+            if(result.gameObject.name == "TrashBox")
+            {
+                trashFlag = true;
+
+                break;
+            }
+        }
+
+
+        if(cardEffectFalg)
+        {
+            if(GetComponent<RectTransform>().anchoredPosition.y > 200)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 100.0f, m_layerMask))
+                {
+                    CardEffect(hit);
+
+                    //デバッグヒットしたオブジェクトの名前  
+                    //Debug.Log(hit.collider.gameObject.name);
+                }
+            }
+        }
+
+        //削除
+        if(trashFlag)
+        {
+            m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
 
         GetComponent<RectTransform>().anchoredPosition = m_initPos;
