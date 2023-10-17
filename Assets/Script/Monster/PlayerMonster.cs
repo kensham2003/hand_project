@@ -33,6 +33,7 @@ public class PlayerMonster : Monster
     // Update is called once per frame
     protected override void Update()
     {
+        if(LagManager.Instance.canUpdate == false)return;
         base.Update();
 
         if(m_preview)return;

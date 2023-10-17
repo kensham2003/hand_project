@@ -56,6 +56,7 @@ public class EnemyMonster : Monster
     // Update is called once per frame
     protected override void Update()
     {
+        if(LagManager.Instance.canUpdate == false)return;
         base.Update();
 
         if(m_preview)return;
@@ -81,7 +82,7 @@ public class EnemyMonster : Monster
     public override void Action()
     {
         m_attackFlag = false;
-        
+        if(m_target == null)return;
         //距離を計算
         Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
         m_targetDistance = Vector3.Distance(closestPoint, transform.position);

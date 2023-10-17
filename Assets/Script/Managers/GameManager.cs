@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if(m_clearFlag){return;}
-        EvaluateLagInterval(m_cpuMain.Usage);
+        LagManager.Instance.lagInterval = EvaluateLagInterval(m_cpuMain.Usage);
         
     }
 
@@ -89,8 +89,9 @@ public class GameManager : MonoBehaviour
     /// カーブからラグ間隔を計算
     /// </summary>
     /// <param name="cpu">CPU使用量</param>
-    void EvaluateLagInterval(float cpu){
-        m_lagInterval = m_cpuUsage_LagIntervalCurve.Evaluate(cpu / (float)100);
+    float EvaluateLagInterval(float cpu){
+        //m_lagInterval = m_cpuUsage_LagIntervalCurve.Evaluate(cpu / (float)100);
+        return m_cpuUsage_LagIntervalCurve.Evaluate(cpu / (float)100);
     }
 
     /// <summary>
