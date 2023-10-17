@@ -145,7 +145,7 @@ MonoBehaviour:
   m_damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
-  m_enemyMonsterType: 0
+  m_enemyMonsterType: 1
   m_objectsInView: []
   m_enemyManager: {fileID: 0}
 --- !u!54 &5114570568138440191

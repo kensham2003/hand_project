@@ -17,7 +17,7 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 2
---- !u!114 &-8407878466446659635
+--- !u!114 &-8175480723097026102
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,12 +29,30 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Signal Emitter With Two Int
   m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 10
+  m_Time: 60
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
+  parameter1: 12
+  parameter2: 1
+--- !u!114 &-7398279673057566325
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Signal Emitter With Two Int
+  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
+  m_Time: 40
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter1: 2
-  parameter2: 5
+  parameter2: 20
 --- !u!114 &-7146822817378613597
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,24 +172,6 @@ MonoBehaviour:
   m_EmitOnce: 1
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 2
---- !u!114 &-5023419696635394251
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Signal Emitter With Two Int
-  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 1
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 2
-  parameter2: 10
 --- !u!114 &-4758111605252539464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,24 +189,6 @@ MonoBehaviour:
   m_EmitOnce: 1
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 10
---- !u!114 &-4301138408858035071
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Signal Emitter With Two Int
-  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 7
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 2
-  parameter2: 20
 --- !u!114 &-3671334602537662841
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,7 +240,7 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 2
---- !u!114 &-3177045722764725475
+--- !u!114 &-2329770634441624949
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,13 +252,13 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Signal Emitter With Two Int
   m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 0
+  m_Time: 30
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter1: 2
-  parameter2: 20
---- !u!114 &-2767179250970571512
+  parameter2: 50
+--- !u!114 &-2232452563669299274
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,29 +270,11 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Signal Emitter With Two Int
   m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 8
+  m_Time: 5
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter1: 2
-  parameter2: 20
---- !u!114 &-2186477818108128102
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Signal Emitter With Two Int
-  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 4
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 10
   parameter2: 10
 --- !u!114 &-2009589631620621261
 MonoBehaviour:
@@ -363,24 +327,6 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 10
---- !u!114 &-1028746783485718312
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Signal Emitter With Two Int
-  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 6
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 10
-  parameter2: 10
 --- !u!114 &-636273945370017723
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -437,7 +383,7 @@ MonoBehaviour:
   m_EmitOnce: 1
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 2
---- !u!114 &546576393658058136
+--- !u!114 &709249723152157929
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -449,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Signal Emitter With Two Int
   m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 5
+  m_Time: 25
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
@@ -489,6 +435,24 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 2
+--- !u!114 &1755186587384351184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Signal Emitter With Two Int
+  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
+  m_Time: 60
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
+  parameter1: 2
+  parameter2: 50
 --- !u!114 &1765916573361009148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -506,7 +470,7 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 2
---- !u!114 &1832004027420974770
+--- !u!114 &2400368633083957902
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -518,30 +482,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Signal Emitter With Two Int
   m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 2
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 10
-  parameter2: 10
---- !u!114 &2477426260705625196
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Signal Emitter With Two Int
-  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 4
+  m_Time: 50
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter1: 2
-  parameter2: 10
+  parameter2: 20
 --- !u!114 &2551732082802963591
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -565,9 +511,43 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects:
-    - {fileID: 1832004027420974770}
-    - {fileID: -2186477818108128102}
-    - {fileID: -1028746783485718312}
+    - {fileID: -8175480723097026102}
+--- !u!114 &2840037972164109093
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Signal Emitter With Two Int
+  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
+  parameter1: 2
+  parameter2: 10
+--- !u!114 &2969608848042165849
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Signal Emitter With Two Int
+  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
+  m_Time: 15
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
+  parameter1: 2
+  parameter2: 10
 --- !u!114 &3149204699835930882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -591,16 +571,14 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects:
-    - {fileID: -5023419696635394251}
-    - {fileID: 4796563200786868521}
-    - {fileID: 7947922460538987843}
-    - {fileID: 2477426260705625196}
-    - {fileID: 546576393658058136}
-    - {fileID: 8823546701882141954}
-    - {fileID: -4301138408858035071}
-    - {fileID: -2767179250970571512}
-    - {fileID: -3177045722764725475}
-    - {fileID: -8407878466446659635}
+    - {fileID: -2232452563669299274}
+    - {fileID: 2969608848042165849}
+    - {fileID: 709249723152157929}
+    - {fileID: -2329770634441624949}
+    - {fileID: -7398279673057566325}
+    - {fileID: 2400368633083957902}
+    - {fileID: 1755186587384351184}
+    - {fileID: 2840037972164109093}
 --- !u!114 &3693954989823143778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -635,24 +613,6 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 2
---- !u!114 &4796563200786868521
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Signal Emitter With Two Int
-  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 2
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 2
-  parameter2: 10
 --- !u!114 &5327153897149784248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -738,24 +698,6 @@ MonoBehaviour:
   m_EmitOnce: 1
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 10
---- !u!114 &7947922460538987843
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Signal Emitter With Two Int
-  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 3
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 2
-  parameter2: 10
 --- !u!114 &8107468169691606664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -773,21 +715,3 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter: 2
---- !u!114 &8823546701882141954
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Signal Emitter With Two Int
-  m_EditorClassIdentifier: Assembly-CSharp::SignalEmitterWithTwoInt
-  m_Time: 6
-  m_Retroactive: 0
-  m_EmitOnce: 0
-  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
-  parameter1: 2
-  parameter2: 10
