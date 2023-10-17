@@ -30,6 +30,7 @@ public class PoolManager : SingletonMonoBehaviour<PoolManager>
     /// </summary>
     /// <returns></returns>
     GameObject OnCreatePooledObject(){
+        //return Instantiate(m_prefab, m_parent.transform);
         return Instantiate(m_prefab);
     }
 
@@ -54,7 +55,7 @@ public class PoolManager : SingletonMonoBehaviour<PoolManager>
     /// </summary>
     /// <param name="obj"></param>
     void OnDestroyPooledObject(GameObject obj){
-        OnDestroyPooledObject(obj);
+        Destroy(obj);
     }
 
     /// <summary>
@@ -87,6 +88,13 @@ public class PoolManager : SingletonMonoBehaviour<PoolManager>
             m_poolDict[obj.name].Release(obj);
         }
         //pool.Release(obj);
+    }
+
+    public void ReleaseAllGameObjects(){
+        foreach(string key in m_poolDict.Keys){
+            m_poolDict[key].Clear();
+        }
+        m_poolDict.Clear();
     }
 
     // デバッグ用

@@ -28,6 +28,7 @@ public class Card : MonoBehaviour
     /// カードID
     /// </summary>
     [SerializeField] protected int m_cardID;
+    public int CardId{ get{return m_cardID;} }
     
     /// <summary>
     /// 押されているフラグ
@@ -228,7 +229,40 @@ public class Card : MonoBehaviour
     {
         m_pressed = false;
 
-        if(m_spawnFied)
+        //RaycastAllの引数（PointerEventData）作成
+        PointerEventData pointData = new PointerEventData(EventSystem.current);
+
+        List<RaycastResult> rayResult = new List<RaycastResult>();
+
+        //PointerEventDataにマウスの位置をセット
+        pointData.position = Input.mousePosition;
+        //RayCast（スクリーン座標）
+        EventSystem.current.RaycastAll(pointData ,rayResult);
+
+        //フラグ関連
+        bool cardEffectFlag = false;
+        bool trashFlag = false;
+        foreach(RaycastResult result in rayResult)
+        {
+            //カード効果
+            if(result.gameObject.name == "SpawnField")
+            {
+                cardEffectFlag = true;
+
+                break;
+            }
+
+            //削除
+            if(result.gameObject.name == "TrashBox")
+            {
+                trashFlag = true;
+
+                break;
+            }
+        }
+
+
+        if(cardEffectFlag)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
