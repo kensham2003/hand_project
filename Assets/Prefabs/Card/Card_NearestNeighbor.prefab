@@ -97,5 +97,6 @@ MonoBehaviour:
   m_cardID: 0
   m_hovered: 0
   m_damageText: {fileID: 0}
+  m_targetEmphasisObject: {fileID: 7144715870794617344, guid: 8a6ccc1c7fa7508438b1e17e03661d85, type: 3}
   m_type: 2
   m_value: 2

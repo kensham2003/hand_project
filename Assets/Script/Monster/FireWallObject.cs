@@ -31,6 +31,13 @@ public class FireWallObject : EffectMonster
     /// <typeparam name="GameObject"></typeparam>
     /// <returns></returns>
     List<GameObject> m_targetEnemys = new List<GameObject>();
+
+    /// <summary>
+    /// ターゲットの初期スピード
+    /// </summary>
+    /// <typeparam name="float"></typeparam>
+    /// <returns></returns>
+    List<float> m_targetInitSpeed = new List<float>();
     
     /// <summary>
     /// ダメージを与えるフラグ
@@ -42,14 +49,24 @@ public class FireWallObject : EffectMonster
         Invoke("Death", m_lifeTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other) 
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
-            if (!m_targetEnemys.Contains(collision.gameObject))
+            if (!m_targetEnemys.Contains(other.gameObject))
             {
                 //ターゲットに追加
-                m_targetEnemys.Add(collision.gameObject);
+                m_targetEnemys.Add(other.gameObject);
+                
+                //ターゲット
+                EnemyMonster em = other.gameObject.GetComponent<EnemyMonster>();
+
+                //速度を0にする
+                MonsterParamerter par = em.GetParamerter();
+                m_targetInitSpeed.Add(par.speed);
+                par.speed = 0;
+                em.SetParamerter(par);
+                
                 if (!m_damageFlag)
                 {
                     m_damageFlag = true;
@@ -58,7 +75,7 @@ public class FireWallObject : EffectMonster
             }
         }
     }
-    
+
     private void Damage()
     {
         foreach (GameObject obj in m_targetEnemys) 
@@ -69,5 +86,22 @@ public class FireWallObject : EffectMonster
                 obj.GetComponent<EnemyMonster>().ChangeHP(m_damage);
             }
         }
+    }
+
+    public override void Death()
+    {
+        int i = 0;
+
+        foreach(GameObject obj in m_targetEnemys)
+        {
+            EnemyMonster em = obj.GetComponent<EnemyMonster>();
+            MonsterParamerter par = em.GetParamerter();
+            par.speed = m_targetInitSpeed[i];
+            em.SetParamerter(par);
+
+            i++;
+        }
+
+        Destroy(this.gameObject);
     }
 }

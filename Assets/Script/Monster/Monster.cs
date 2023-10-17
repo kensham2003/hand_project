@@ -304,4 +304,16 @@ public class Monster : MonoBehaviour
     {
         m_preview = b;
     }
+
+    //パラメーター取得
+    public MonsterParamerter GetParamerter()
+    {
+        return m_parameter;
+    }
+
+    //パラメーター設定
+    public void SetParamerter(MonsterParamerter par)
+    {
+        m_parameter = par;
+    }
 }

@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class SpellCard : Card
 {
+
+    /// <summary>
+    /// 強調オブジェクト
+    /// </summary>
+    [SerializeField] private GameObject m_targetEmphasisObject;
+
+    /// <summary>
+    /// 生成した強調オブジェクト
+    /// </summary>
+    private GameObject m_spawnEmpasis;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -15,6 +26,15 @@ public class SpellCard : Card
     protected override void Update()
     {
         base.Update();
+
+        if(m_spawnFied && m_pressed)
+        {
+            m_image.enabled = false;
+        }
+        else
+        {
+            m_image.enabled = true;
+        }
     }
 
     /// <summary>
@@ -35,5 +55,52 @@ public class SpellCard : Card
     {
         //カードテキスト表示
         m_cardInfoUI.GetComponent<CardInfo>().SetVisibleCardInfo(true,m_cardName,m_cardText);
+    }
+
+        //ターゲットモンスター強調
+    protected void EmphasisTarget(GameObject target)
+    {
+        if(m_spawnEmpasis == null)
+        {
+            m_spawnEmpasis = Instantiate(m_targetEmphasisObject,target.transform.position,Quaternion.identity);
+        }
+        else
+        {
+            m_spawnEmpasis.transform.position = target.transform.position;
+        }
+    }
+
+    //ターゲットモンスター強調
+    protected void UnEmphasisTarget()
+    {
+        if(m_spawnEmpasis != null)
+        {
+            Destroy(m_spawnEmpasis); 
+        }
+    }
+
+    protected void CheckEmphasis()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        bool playerHit = false;
+
+        if (Physics.Raycast(ray, out hit, 100.0f,m_layerMask) && m_pressed)
+        {
+            if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null)
+            {
+                //ターゲット強調
+                EmphasisTarget(hit.collider.gameObject);
+
+                playerHit = true;
+            }
+        }
+        
+        if(playerHit == false && m_pressed == true)
+        {
+            //強調解除
+            UnEmphasisTarget();
+        }
     }
 }

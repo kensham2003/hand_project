@@ -39,6 +39,10 @@ public class NearestNeighbor : SpellCard
     protected override void Update()
     {
         base.Update();
+
+        //ターゲット強調
+        CheckEmphasis();
+
     }
 
     //効果発動
@@ -67,6 +71,9 @@ public class NearestNeighbor : SpellCard
 
             }
             m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
+
+            //強調削除
+            UnEmphasisTarget();
         }
         else if(hit.collider.gameObject.GetComponent<PlayerBossMonster>() != null)
         {
@@ -75,6 +82,9 @@ public class NearestNeighbor : SpellCard
             GameObject obj =  m_instantiateManager.InstantiateMonster(11, hit.point, Quaternion.identity);
             obj.GetComponent<CPUTargetNearestNeighbor>().SetParamerter(m_type,m_value);
             m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
+
+            //強調削除
+            UnEmphasisTarget();
         }
     }
 }
