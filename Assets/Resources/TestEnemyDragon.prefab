@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 7589737548005725556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.53, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 55162184331322527}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64ce4ad48535c3429094b9664a8252e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_paramerter:
+  m_parameter:
     hp: 0
     maxHp: 0
     speed: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_debugMaterial: {fileID: 0}
   m_enemyMonsterType: 0
   m_objectsInView: []
+  m_enemyManager: {fileID: 0}
 --- !u!54 &5114570568138440191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.215
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalPosition.z
@@ -208,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalRotation.x
@@ -216,11 +217,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -228,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
