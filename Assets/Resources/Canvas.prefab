@@ -369,12 +369,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad31a83cf475484458f6007159880a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: test3
-  cardText: test3
-  sprite: {fileID: 0}
-  cardID: 3
-  hovered: 0
-  damageText: {fileID: 0}
+  m_cardName: 
+  m_cardText: 
+  m_sprite: {fileID: 0}
+  m_cardID: 0
+  m_hovered: 0
+  m_damageText: {fileID: 0}
+  m_targetEmphasisText: {fileID: 0}
 --- !u!1 &5411835483730212574
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +523,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3a5a6c3762982408f486ec412ead13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cpuMain: {fileID: 0}
+  m_cpuMain: {fileID: 0}
+  m_shakeDistance: 4
+  m_changedTextPrefab: {fileID: 0}
+  m_changedTextFolder: {fileID: 0}
 --- !u!1 &5777109646678291163
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24759ed486007c84bbd25a3099cb6739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_cpuUsageChangePreview: {fileID: 4234633292797661479}
 --- !u!114 &8184982404647908062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,6 +1026,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 334238602572878018, guid: 1bce22a887ef869438d7bb92887551ef, type: 3}
   m_PrefabInstance: {fileID: 2226917007414325218}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4234633292797661479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2604181964559466181, guid: 1bce22a887ef869438d7bb92887551ef, type: 3}
+  m_PrefabInstance: {fileID: 2226917007414325218}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d6c1b8bde527545bc514193e8d0ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6884164481428153229
 PrefabInstance:
   m_ObjectHideFlags: 0

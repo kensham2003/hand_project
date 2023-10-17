@@ -28,6 +28,7 @@ public class Card : MonoBehaviour
     /// カードID
     /// </summary>
     [SerializeField] protected int m_cardID;
+    public int CardId{ get{return m_cardID;} }
     
     /// <summary>
     /// 押されているフラグ

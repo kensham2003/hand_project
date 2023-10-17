@@ -55,9 +55,9 @@ public class CpuUsageUI : MonoBehaviour
         m_oldUsage = (int)m_cpuMain.Usage;
     }
 
-    private void OnDestroy() {
-        m_cpuMain.OnUsageChanged -= ChangeUsageUI;
-    }
+    // private void OnDestroy() {
+    //     //m_cpuMain.OnUsageChanged -= ChangeUsageUI;
+    // }
 
     /// <summary>
     /// UI数値更新

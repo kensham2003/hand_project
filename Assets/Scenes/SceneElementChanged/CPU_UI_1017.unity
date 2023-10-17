@@ -1144,6 +1144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestBossMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 8557028607211462719, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

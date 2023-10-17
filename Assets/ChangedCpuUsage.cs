@@ -26,6 +26,7 @@ public class ChangedCpuUsage : MonoBehaviour
     private TextMeshProUGUI m_text;
     private RectTransform m_rectTransform;
     private float m_currentTime;
+    private float m_ySpeedWithDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -52,10 +53,12 @@ public class ChangedCpuUsage : MonoBehaviour
         if(changed > 0){
             m_text.color = Color.red;
             text += "+";
+            m_ySpeedWithDirection = m_ySpeed;
         }
         else{
             m_text.color = Color.blue;
             text += "-";
+            m_ySpeedWithDirection = -1 * m_ySpeed;
         }
         text += Mathf.Abs(changed).ToString() + "%";
         
@@ -68,8 +71,7 @@ public class ChangedCpuUsage : MonoBehaviour
     private void TextFade(){
         //位置
         Vector2 pos = m_rectTransform.anchoredPosition;
-        Debug.Log(pos.y);
-        pos.y += m_ySpeed;
+        pos.y += m_ySpeedWithDirection;
         m_rectTransform.anchoredPosition = pos;
         //α値
         float alpha = m_textAlpha.Evaluate(m_currentTime / m_fadeTime);
