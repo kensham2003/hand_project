@@ -51,7 +51,35 @@ public class Hands : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+
+        //クリックした対象をターゲットにする（ユニバーサルクロス）
+        if(Input.GetMouseButtonUp(0) && GetHorverHandsCard() == false)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+
+                if(hit.collider.gameObject.GetComponent<EnemyMonster>() != null || hit.collider.gameObject.GetComponent<PlayerBossMonster>() != null)
+                {
+                    int i = 0;
+                    //シーン上のPlayerMonster収集&生成
+                    foreach(GameObject obj in GameObject.Find("Managers").GetComponent<VisibleList>().GetVisibleList())
+                    {
+                        
+                        if(obj == null)continue;
+                        if(obj.GetComponent<PlayerMonster>() != null && obj.GetComponent<PlayerBossMonster>() == null)
+                        {
+                            i++;
+                            obj.GetComponent<PlayerMonster>().SetStatus(Status.ucm);
+                            obj.GetComponent<PlayerMonster>().SetTarget(hit.collider.gameObject);
+                        }
+                    }
+
+                    
+                }
+            }
+        }
     }
 
     public void RemoveCard(int n)
@@ -130,5 +158,22 @@ public class Hands : MonoBehaviour
     public List<Card>GetHandsCard()
     {
         return m_handsCard;
+    }
+
+    /// <summary>
+    /// 手札の中に一枚でもホバーしているか
+    /// </summary>
+    /// <returns></returns>
+    private bool GetHorverHandsCard()
+    {
+        foreach(Card card in m_handsCard)
+        {
+            if(card.m_hovered)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

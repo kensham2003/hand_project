@@ -35,6 +35,8 @@ public class PlayerMonster : Monster
     {
         base.Update();
 
+        if(m_preview)return;
+        
         switch(m_status)
         {
             //target = GetClosestObject();
@@ -100,7 +102,7 @@ public class PlayerMonster : Monster
 
             m_target = null;
         }
-        else
+        else if(m_status != Status.ucm)
         {
             m_status = Status.idle;
         }
@@ -282,9 +284,10 @@ public class PlayerMonster : Monster
         if(m_target == null)
         {
             m_status = Status.idle;
+            
             return;
         }
-
+        
         //進行方向
         Vector3 moveVec = m_target.transform.position - transform.position;
         moveVec = moveVec.normalized;

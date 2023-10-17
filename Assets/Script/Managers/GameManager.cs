@@ -39,6 +39,12 @@ public class GameManager : MonoBehaviour
     [Header("ゲームクリアのシーン名")]
     [SerializeField] string m_clearSceneName;
 
+    [Header("エネミーマネージャ")]
+    [SerializeField] EnemyManager m_enemyManager;
+
+    [Header("UIタイマー")]
+    [SerializeField] UITimer m_uiTimer;
+
     #endregion
     
     #region private
@@ -63,6 +69,12 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         m_cpuMain.OnUsageFull += GameOver;
+        if(m_enemyManager){
+            m_enemyManager.OnAllEnemyCleared += GameClear;
+        }
+        if(m_uiTimer){
+            m_uiTimer.OnTimerZero += GameClear;
+        }
         m_lagCoroutine = StartCoroutine(LagSimulate());
     }
 
@@ -82,13 +94,25 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// クリア処理
+    /// ゲームオーバー処理
     /// </summary>
     public void GameOver(){
         StopCoroutine(m_lagCoroutine);
         //シーン遷移を一回だけ呼ぶ
         if(!m_clearFlag){
             m_canvas.ChangeScene(m_gameoverSceneName);
+        }
+        m_clearFlag = true;
+    }
+
+    /// <summary>
+    /// ゲームクリア処理
+    /// </summary>
+    public void GameClear(){
+        StopCoroutine(m_lagCoroutine);
+        //シーン遷移を一回だけ呼ぶ
+        if(!m_clearFlag){
+            m_canvas.ChangeScene(m_clearSceneName);
         }
         m_clearFlag = true;
     }
