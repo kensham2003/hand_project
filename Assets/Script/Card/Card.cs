@@ -233,14 +233,14 @@ public class Card : MonoBehaviour
         EventSystem.current.RaycastAll(pointData ,rayResult);
 
         //フラグ関連
-        bool cardEffectFalg = false;
+        bool cardEffectFlag = false;
         bool trashFlag = false;
         foreach(RaycastResult result in rayResult)
         {
             //カード効果
             if(result.gameObject.name == "SpawnField")
             {
-                cardEffectFalg = true;
+                cardEffectFlag = true;
 
                 break;
             }
@@ -255,7 +255,7 @@ public class Card : MonoBehaviour
         }
 
 
-        if(cardEffectFalg)
+        if(cardEffectFlag)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

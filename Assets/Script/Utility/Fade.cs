@@ -90,6 +90,7 @@ public class Fade : MonoBehaviour
                         return;
                     }
                     else{
+                        PoolManager.Instance.ReleaseAllGameObjects();
                         SceneManager.LoadScene(m_nextSceneName);
                     }
                 }
