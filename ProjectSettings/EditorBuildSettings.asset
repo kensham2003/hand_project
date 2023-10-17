@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Prototype_title.unity
+    path: Assets/Scenes/Prototype/Prototype_title.unity
     guid: d9e95668e7300b84cb5c10833b0e0472
   - enabled: 1
-    path: Assets/Scenes/Prototype_game.unity
+    path: Assets/Scenes/Prototype/Prototype_game.unity
     guid: 71dc224ed9d72af4bad78f9dac2db207
   - enabled: 1
-    path: Assets/Scenes/Prototype_clear.unity
+    path: Assets/Scenes/Prototype/Prototype_clear.unity
     guid: 310f38965ea264a49a91c12ccabcc79f
   - enabled: 1
-    path: Assets/Scenes/Prototype_gameover.unity
-    guid: 257c398c9acac984d8902685ceedc316
+    path: Assets/Scenes/Prototype/Prototype_gameover.unity
+    guid: 8455c51f5657bb943996f6812c96a532
   m_configObjects: {}
