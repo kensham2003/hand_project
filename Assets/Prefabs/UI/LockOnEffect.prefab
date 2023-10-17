@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661329243908533196}
+  - component: {fileID: 436928892480821444}
   m_Layer: 0
   m_Name: LockOnEffect
   m_TagString: Untagged
@@ -32,6 +33,18 @@ Transform:
   - {fileID: 6163792929357098994}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &436928892480821444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316881878268189752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6176fc23d71bbd746bae3ae82cc9f59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5908872787633211417
 PrefabInstance:
   m_ObjectHideFlags: 0

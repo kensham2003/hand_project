@@ -93,6 +93,7 @@ public class Hands : MonoBehaviour
                     }
                     //ロックオンエフェクト生成
                     m_spawLockEffect = Instantiate(m_lockOnEffect,hit.collider.gameObject.transform.position,Quaternion.identity);
+                    m_spawLockEffect.GetComponent<LockOnEffect>().SetTarget(hit.collider.gameObject);
                 }
             }
         }
