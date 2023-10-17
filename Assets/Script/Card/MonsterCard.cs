@@ -26,8 +26,8 @@ public class MonsterCard : Card
     {
         base.Update();
 
-        //image表示＆非表示を設定
-        m_image.enabled = !m_pressed;
+        //イメージを表示に設定
+        m_image.enabled = true;
 
         if(m_pressed)
         {
@@ -41,9 +41,18 @@ public class MonsterCard : Card
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100.0f, (1 << LayerMask.NameToLayer("Floor"))))
+            if (Physics.Raycast(ray, out hit, 100.0f,1 << LayerMask.NameToLayer("Floor")))
             {
+                
                 m_previewObject.transform.position = hit.point;
+                
+            }
+            
+            //カードがフィールド上にあれば非表示
+            if(m_spawnFied == true)
+            {
+                //image非表示に設定
+                m_image.enabled = false;
             }
         }
         else

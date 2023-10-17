@@ -21,26 +21,13 @@ public class CopyPaste : SpellCard
     {
         base.Update();
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100.0f,m_layerMask) && m_pressed)
-        {
-            Debug.Log(hit.collider.gameObject);
-            if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null)
-            {
-                EmphasisTarget(hit.collider.gameObject);
-            }
-            else
-            {
-                UnEmphasisTarget();
-            }
-        }
+        //強調
+        CheckEmphasis();
     }
 
     //効果発動
     protected override void CardEffect(RaycastHit hit)
     {
-        Debug.Log(hit.collider.gameObject);
         if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null)
         {
             

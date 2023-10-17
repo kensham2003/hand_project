@@ -100,5 +100,5 @@ MonoBehaviour:
   m_cardID: 0
   m_hovered: 0
   m_damageText: {fileID: 0}
-  m_targetEmphasisText: {fileID: 4253757061017184761, guid: 1567a91c4c1d3dc46a154927e39de0dd, type: 3}
+  m_targetEmphasisObject: {fileID: 7144715870794617344, guid: 8a6ccc1c7fa7508438b1e17e03661d85, type: 3}
   m_spawnRange: 2
