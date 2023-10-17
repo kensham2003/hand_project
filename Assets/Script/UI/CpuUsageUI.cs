@@ -46,6 +46,8 @@ public class CpuUsageUI : MonoBehaviour
     /// </summary>
     private int m_oldUsage;
 
+    private bool m_cleared;
+
     void Awake(){
         m_cpuMain.OnUsageChanged += ChangeUsageUI;
         m_text = GetComponent<TextMeshProUGUI>();
@@ -53,6 +55,7 @@ public class CpuUsageUI : MonoBehaviour
         m_rectTransform = GetComponent<RectTransform>();
         m_originalPosition = m_rectTransform.anchoredPosition;
         m_oldUsage = (int)m_cpuMain.Usage;
+        m_cleared = false;
     }
 
     // private void OnDestroy() {
@@ -64,6 +67,7 @@ public class CpuUsageUI : MonoBehaviour
     /// </summary>
     /// <param name="usage"></param>
     public void ChangeUsageUI(float usage){
+        if(m_cleared)return;
         m_text.text = ((int)usage).ToString() + "%";
         if(usage > 75){
             m_text.color = Color.red;
@@ -72,11 +76,12 @@ public class CpuUsageUI : MonoBehaviour
         else if(usage > 25){m_text.color = Color.yellow;}
         else{m_text.color = Color.green;}
         m_rectTransform.anchoredPosition = m_originalPosition;
-        //Instantiate(m_changedTextPrefab, m_changedTextFolder).GetComponent<ChangedCpuUsage>().SetText((int)usage);
+        if(usage >= 100){m_cleared = true;}
     }
 
     private void Update() {
         ShakeText();
+        if(m_cleared)return;
         if(Time.frameCount % 3 == 0){
             int newUsage = (int)m_cpuMain.Usage;
             if(newUsage != m_oldUsage){

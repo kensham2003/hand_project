@@ -57,4 +57,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf13303ee1c976d469b8a970e39cb2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cardMonsterCSV: {fileID: 4900000, guid: 596f663efd30fe34ea4dc217928f85d2, type: 3}
+  m_cardMonsterCSV: {fileID: 4900000, guid: 520ed71b68e2a1940869e176211c2dde, type: 3}
