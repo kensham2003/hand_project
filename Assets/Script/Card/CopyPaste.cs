@@ -21,7 +21,7 @@ public class CopyPaste : SpellCard
     {
         base.Update();
 
-        //強調
+        //ターゲット強調
         CheckEmphasis();
     }
 
