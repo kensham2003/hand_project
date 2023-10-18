@@ -93,6 +93,8 @@ public class PlayerMonster : Monster
     public override void Action()
     {
         m_attackFlag = false;
+        if(m_target == null)return;
+        if(m_target.activeSelf == false)return;
         
         if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
         {

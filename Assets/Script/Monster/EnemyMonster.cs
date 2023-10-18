@@ -93,6 +93,7 @@ public class EnemyMonster : Monster
     {
         m_attackFlag = false;
         if(m_target == null)return;
+        if(m_target.activeSelf == false)return;
         //距離を計算
         Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
         m_targetDistance = Vector3.Distance(closestPoint, transform.position);

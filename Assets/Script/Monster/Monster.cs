@@ -87,6 +87,10 @@ public class Monster : MonoBehaviour
      //デバッグ用ダメージ演出オブジェクト
      [Tooltip("デバッグ用ダメージ演出オブジェクト")]
     [SerializeField] protected GameObject m_damageText;
+
+    [SerializeField] protected MonsterHPGauge m_monsterHPGauge;
+
+    private int m_showHPGaugeCoroutineCount = 0;
     
     //初期マテリアル
     public Material m_initMaterial;
@@ -155,12 +159,13 @@ public class Monster : MonoBehaviour
     public virtual void ChangeHP(float val)
     {
         m_parameter.hp -= val;
+        ShowHPGauge();
 
         //デバッグ用ダメージ演出
         GameObject spawnText = Instantiate(m_damageText,transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
         spawnText.GetComponent<TextMeshPro>().text = val.ToString();
 
-        if(m_parameter.hp < 0)
+        if(m_parameter.hp <= 0)
         {
             m_parameter.hp = 0;
             Death();
@@ -315,5 +320,26 @@ public class Monster : MonoBehaviour
     public void SetParamerter(MonsterParamerter par)
     {
         m_parameter = par;
+    }
+
+    protected void ShowHPGauge(){
+        StartCoroutine(ShowHPGaugeCoroutine(2f));
+    }
+
+    IEnumerator ShowHPGaugeCoroutine(float time){
+        //Debug.Log("before adding count = " + m_showHPGaugeCoroutineCount);
+        if(m_showHPGaugeCoroutineCount <= 0){
+            m_monsterHPGauge.gameObject.SetActive(true);
+            m_showHPGaugeCoroutineCount = 0;
+        }
+        m_showHPGaugeCoroutineCount++;
+        m_monsterHPGauge.SetGaugeFill();
+        yield return LagTimer.Get(time);
+        if(m_showHPGaugeCoroutineCount <= 1){
+            m_monsterHPGauge.gameObject.SetActive(false);
+        }
+        //Debug.Log("before subbing count = " + m_showHPGaugeCoroutineCount);
+        m_showHPGaugeCoroutineCount--;
+        if(m_showHPGaugeCoroutineCount < 0) m_showHPGaugeCoroutineCount = 0;
     }
 }
