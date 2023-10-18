@@ -30,7 +30,18 @@ public class Hands : MonoBehaviour
     /// </summary>
     private GameObject m_deck;
 
+    /// <summary>
+    /// ドロー間隔
+    /// </summary>
     [SerializeField] private float m_drawInterval = 1.0f;
+
+    /// <summary>
+    /// ロックオンエフェクト
+    /// </summary>
+    [SerializeField] private GameObject m_lockOnEffect;
+
+    [SerializeField] private GameObject m_spawLockEffect = null;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -57,7 +68,7 @@ public class Hands : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            if (Physics.Raycast(ray, out hit, 100.0f,(1 << LayerMask.NameToLayer("Enemy")) | (1 << LayerMask.NameToLayer("PlayerMonster"))))
             {
 
                 if(hit.collider.gameObject.GetComponent<EnemyMonster>() != null || hit.collider.gameObject.GetComponent<PlayerBossMonster>() != null)
@@ -76,7 +87,13 @@ public class Hands : MonoBehaviour
                         }
                     }
 
-                    
+                    if(m_spawLockEffect != null)
+                    {
+                        Destroy(m_spawLockEffect);
+                    }
+                    //ロックオンエフェクト生成
+                    m_spawLockEffect = Instantiate(m_lockOnEffect,hit.collider.gameObject.transform.position,Quaternion.identity);
+                    m_spawLockEffect.GetComponent<LockOnEffect>().SetTarget(hit.collider.gameObject);
                 }
             }
         }
