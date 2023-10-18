@@ -121,4 +121,4 @@ MonoBehaviour:
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
   parameter1: 2
-  parameter2: 3
+  parameter2: 10

@@ -45,8 +45,8 @@ public class EnemySpawner : MonoBehaviour
         );
     }
 
-    private void Start() {
-        Debug.Log(GetComponent<SignalReceiverWithTwoInt>());
-        Debug.Log(GetComponent<SignalReceiverWithInt>());
-    }
+    // private void Start() {
+    //     //Debug.Log(GetComponent<SignalReceiverWithTwoInt>());
+    //     //Debug.Log(GetComponent<SignalReceiverWithInt>());
+    // }
 }
