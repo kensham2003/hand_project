@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6587653374661900029}
   - component: {fileID: 9060366760441066779}
   - component: {fileID: 3013231565173127741}
+  - component: {fileID: 9159080760227343096}
   m_Layer: 0
   m_Name: Singletons
   m_TagString: Untagged
@@ -57,4 +58,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf13303ee1c976d469b8a970e39cb2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cardMonsterCSV: {fileID: 4900000, guid: 596f663efd30fe34ea4dc217928f85d2, type: 3}
+  m_cardMonsterCSV: {fileID: 4900000, guid: 520ed71b68e2a1940869e176211c2dde, type: 3}
+--- !u!114 &9159080760227343096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4225630124224590462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11457ec653d43b640a2d07f6d3223f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

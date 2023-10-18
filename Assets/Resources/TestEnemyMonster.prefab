@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64ce4ad48535c3429094b9664a8252e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_paramerter:
+  m_parameter:
     hp: 0
     maxHp: 0
     speed: 0
@@ -145,8 +145,9 @@ MonoBehaviour:
   m_damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
-  m_enemyMonsterType: 0
+  m_enemyMonsterType: 1
   m_objectsInView: []
+  m_enemyManager: {fileID: 0}
 --- !u!54 &5114570568138440191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,7 +173,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1001 &1476705459473897193
 PrefabInstance:

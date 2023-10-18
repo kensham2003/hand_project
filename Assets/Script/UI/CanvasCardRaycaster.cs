@@ -10,6 +10,12 @@ using UnityEngine.UIElements;
 public class CanvasCardRaycaster : MonoBehaviour
 {
     /// <summary>
+    /// CPU使用量変更プレビューUI
+    /// </summary>
+    [Header("CPU使用量変更プレビューUI")]
+    [SerializeField] CpuUsageChangePreview m_cpuUsageChangePreview;
+
+    /// <summary>
     /// 今ホバーしているカード
     /// </summary>
     private Card m_nowHovering = null;
@@ -45,6 +51,13 @@ public class CanvasCardRaycaster : MonoBehaviour
         //なにもホバーしていないならnullに
         if(!isHoveringCard){
             m_nowHovering = null;
+        }
+        if(m_nowHovering){
+            float constantLoad = CardMonsterDictionary.Instance.GetMonsterParamerter(m_nowHovering.CardId).constantLoad.raiseRate;
+            m_cpuUsageChangePreview.SetText(constantLoad);
+        }
+        else{
+            m_cpuUsageChangePreview.SetText(0);
         }
     }
 

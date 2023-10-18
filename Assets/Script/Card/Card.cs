@@ -28,6 +28,7 @@ public class Card : MonoBehaviour
     /// カードID
     /// </summary>
     [SerializeField] protected int m_cardID;
+    public int CardId{ get{return m_cardID;} }
     
     /// <summary>
     /// 押されているフラグ
@@ -95,16 +96,19 @@ public class Card : MonoBehaviour
     protected int m_layerMask;
     
     /// <summary>
-    /// ターゲット強調テキスト
+    /// カードがフィールド上にあるか
+    /// </summary> <summary>
+    /// 
     /// </summary>
-    [SerializeField] private GameObject m_targetEmphasisText;
-
+    protected bool m_spawnFied;
+    
     /// <summary>
-    /// スポーン下強調テキスト
+    /// カードがゴミ箱状にあるか
     /// </summary>
-    private GameObject m_spawnEmpasis;
+    protected bool m_trashFlag = false;
 
-    private Canvas m_canvas;
+    protected Canvas m_canvas;
+
     protected virtual void Start()
     {
         m_initPos = GetComponent<RectTransform>().anchoredPosition;
@@ -140,6 +144,9 @@ public class Card : MonoBehaviour
                 oneceHorvered = true;
             }
         }
+
+        //マウスがどのUIの上にいるか確認
+        DetectUIUnderMouse();
 
         //マウスがカードの上にあるか判断
         //horverd = CheckMouseOnCard();
@@ -233,14 +240,14 @@ public class Card : MonoBehaviour
         EventSystem.current.RaycastAll(pointData ,rayResult);
 
         //フラグ関連
-        bool cardEffectFalg = false;
+        bool cardEffectFlag = false;
         bool trashFlag = false;
         foreach(RaycastResult result in rayResult)
         {
             //カード効果
             if(result.gameObject.name == "SpawnField")
             {
-                cardEffectFalg = true;
+                cardEffectFlag = true;
 
                 break;
             }
@@ -255,7 +262,7 @@ public class Card : MonoBehaviour
         }
 
 
-        if(cardEffectFalg)
+        if(cardEffectFlag)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -269,7 +276,7 @@ public class Card : MonoBehaviour
         }
 
         //削除
-        if(trashFlag)
+        if(m_trashFlag)
         {
             m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
         }
@@ -319,22 +326,46 @@ public class Card : MonoBehaviour
         }
     }
 
-    //ターゲットモンスター強調
-    protected void EmphasisTarget(GameObject target)
+    /// <summary>
+    /// //マウスがどのUIオブジェクトの上にあるか確認
+    /// </summary>
+    GameObject DetectUIUnderMouse()
     {
-        if(m_spawnEmpasis == null)
+        //RaycastAllの引数（PointerEventData）作成
+        PointerEventData pointData = new PointerEventData(EventSystem.current);
+        List<RaycastResult> rayResult = new List<RaycastResult>();
+
+        //PointerEventDataにマウスの位置をセット
+        pointData.position = Input.mousePosition;
+        //RayCast（スクリーン座標）
+        EventSystem.current.RaycastAll(pointData ,rayResult);
+
+        m_spawnFied = false;
+        m_trashFlag = false;
+
+        GameObject hitObject = null;
+
+        foreach(RaycastResult result in rayResult)
         {
-            m_spawnEmpasis = Instantiate(m_targetEmphasisText,m_canvas.transform);
+            
+            //カード効果
+            if(result.gameObject.name == "SpawnField")
+            {
+                m_spawnFied = true;
+                hitObject = result.gameObject;
+                break;
+            }
+
+            //削除
+            if(result.gameObject.name == "TrashBox")
+            {
+                m_trashFlag = true;
+                hitObject = result.gameObject;
+                break;
+            }
         }
-        else
-        {
-            m_spawnEmpasis.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
-        }
+
+        return hitObject;
     }
 
-    //ターゲットモンスター強調
-    protected void UnEmphasisTarget()
-    {
-        Destroy(m_spawnEmpasis);   
-    }
 }
