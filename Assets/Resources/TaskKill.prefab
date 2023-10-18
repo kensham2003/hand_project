@@ -71,4 +71,4 @@ MonoBehaviour:
   m_debugMaterial: {fileID: 0}
   m_cpuLoad:
     raiseRate: -10
-    impactTime: 0.1
+    impactTime: -1

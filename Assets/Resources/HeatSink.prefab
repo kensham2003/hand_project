@@ -44,8 +44,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670e1505e7c05d14fa6d422dd88f5fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_parameter:
+    hp: 0
+    maxHp: 0
+    speed: 0
+    monsterID: 0
+    attack: 0
+    attackDistance: 0
+    attackInterval: 0
+    constantLoad:
+      raiseRate: 0
+      impactTime: 0
+    spawnLoad:
+      raiseRate: 0
+      impactTime: 0
+    attackLoad:
+      raiseRate: 0
+      impactTime: 0
+    DestroyLoad:
+      raiseRate: 0
+      impactTime: 0
+  m_status: 0
+  m_target: {fileID: 0}
+  m_damageText: {fileID: 0}
+  m_initMaterial: {fileID: 0}
+  m_debugMaterial: {fileID: 0}
   m_cpuLoad:
-    raiseRate: -10
-    impactTime: 0.1
+    raiseRate: -20
+    impactTime: -1
   m_cpuDownInterval: 1
   m_lifeTime: 10
