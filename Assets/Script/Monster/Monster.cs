@@ -91,6 +91,10 @@ public class Monster : MonoBehaviour
     [SerializeField] protected MonsterHPGauge m_monsterHPGauge;
 
     private int m_showHPGaugeCoroutineCount = 0;
+
+    [SerializeField] protected GameObject m_model;
+    [Header("モデルの前方向への回転補正")]
+    [SerializeField] protected float m_rotationOffset = 0f;
     
     //初期マテリアル
     public Material m_initMaterial;

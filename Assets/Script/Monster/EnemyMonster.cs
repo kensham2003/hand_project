@@ -139,12 +139,13 @@ public class EnemyMonster : Monster
             m_target = GetClosestBossPlayerMonster();
 
             //進行方向
-           Vector3 moveVec = m_target.transform.position - transform.position;
-           //進行方向へ回転
-            transform.rotation = Quaternion.LookRotation(-moveVec,Vector3.up);
-           moveVec = moveVec.normalized;
+            Vector3 moveVec = m_target.transform.position - transform.position;
+            //進行方向へ回転
+            m_model.transform.rotation = Quaternion.LookRotation(-moveVec,Vector3.up);
+            m_model.transform.Rotate(new Vector3(0f, m_rotationOffset, 0f));
+            moveVec = moveVec.normalized;
 
-             //ターゲットの距離
+            //ターゲットの距離
             //m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             //距離を計算
             Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
@@ -181,7 +182,8 @@ public class EnemyMonster : Monster
             //進行方向
            Vector3 moveVec = m_target.transform.position - transform.position;
            //進行方向へ回転
-            transform.rotation = Quaternion.LookRotation(-moveVec,Vector3.up);
+            m_model.transform.rotation = Quaternion.LookRotation(-moveVec,Vector3.up);
+            m_model.transform.Rotate(new Vector3(0f, m_rotationOffset, 0f));
            moveVec = moveVec.normalized;
 
              //ターゲットの距離

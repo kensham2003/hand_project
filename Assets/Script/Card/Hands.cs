@@ -4,7 +4,7 @@ using UnityEngine;
 
 enum DrawType
 {
-    standart,
+    standard,
     random
 }
 
@@ -35,7 +35,7 @@ public class Hands : MonoBehaviour
     /// <summary>
     /// デッキ
     /// </summary>
-    private GameObject m_deck;
+    private Deck m_deck;
 
     /// <summary>
     /// ドロー間隔
@@ -65,7 +65,7 @@ public class Hands : MonoBehaviour
         m_handsCard = new List<Card>(m_maxCount);
         
         m_canvas = GameObject.Find ("Cards");
-        m_deck = GameObject.Find ("Deck");
+        m_deck = GameObject.Find("Deck").GetComponent<Deck>();
         
         //限界までドロー
         if(m_drawType == DrawType.random)
@@ -76,11 +76,11 @@ public class Hands : MonoBehaviour
             }
             InvokeRepeating("RandomDraw",0.0f,m_drawInterval);
         }
-        else if(m_drawType == DrawType.standart)
+        else if(m_drawType == DrawType.standard)
         {
             for(int i = 0;i < m_maxCount;i++)
             {
-                StandartDraw(i);
+                StandardDraw(i);
             }
         }   
 
@@ -142,20 +142,20 @@ public class Hands : MonoBehaviour
             m_cardCount--;
             ChangePosition();
         }
-        else if(m_drawType == DrawType.standart)
+        else if(m_drawType == DrawType.standard)
         {
-            StandartDraw(n);
+            StandardDraw(n);
         }
     }
 
     /// <summary>
     /// デッキからカード生成
     /// </summary>
-    public void StandartDraw(int num)
+    public void StandardDraw(int num)
     {
         if(m_cardCount < m_maxCount)
         {
-            GameObject temp = m_deck.GetComponent<Deck>().Draw(num);
+            GameObject temp = m_deck.Draw(num);
             if(m_handsCard.Count <= num)
             {
                 m_handsCard.Add(temp.GetComponent<Card>());
@@ -177,7 +177,7 @@ public class Hands : MonoBehaviour
     {
         if(m_cardCount < m_maxCount)
         {
-            GameObject temp = m_deck.GetComponent<Deck>().Draw();
+            GameObject temp = m_deck.Draw();
             m_handsCard.Add(temp.GetComponent<Card>());
             temp.transform.SetParent (m_canvas.transform,false); 
             temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(m_cardCount * 280 + 140 , 100 );
@@ -191,7 +191,7 @@ public class Hands : MonoBehaviour
     /// </summary>
     public void MersenneTwisterDraw()
     {
-        GameObject temp = m_deck.GetComponent<Deck>().Draw();
+        GameObject temp = m_deck.Draw();
         m_handsCard.Add(temp.GetComponent<Card>());
         temp.transform.SetParent (m_canvas.transform,false); 
         temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(m_cardCount * 280 + 140 , 100 );

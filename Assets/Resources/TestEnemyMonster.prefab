@@ -146,6 +146,8 @@ MonoBehaviour:
   m_target: {fileID: 0}
   m_damageText: {fileID: 3206078379885321107, guid: d037202d65336d04e872c5b64fc6f330, type: 3}
   m_monsterHPGauge: {fileID: 8604328921546982308}
+  m_model: {fileID: 1783185876912663480}
+  m_rotationOffset: 180
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
   m_enemyMonsterType: 1
@@ -240,6 +242,11 @@ PrefabInstance:
 --- !u!4 &1438045450693193986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
+  m_PrefabInstance: {fileID: 1476705459473897193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1783185876912663480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
   m_PrefabInstance: {fileID: 1476705459473897193}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8365057524050251398
