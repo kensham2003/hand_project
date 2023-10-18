@@ -20,8 +20,24 @@ public class Deck : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// デッキからドロー
+    /// </summary>
+    /// <param name="random"></param>
+    /// <param name="num"></param>
+    /// <returns></returns> <summary>
+    /// 
+    /// </summary>
+    /// <param name="random"></param>
+    /// <param name="num"></param>
+    /// <returns></returns>
     public GameObject Draw()
     {
         return  Instantiate (cardsPrefab[(Random.Range(0, cardsPrefab.Count))]);
+    }
+
+    public GameObject Draw(int num)
+    {
+        return  Instantiate (cardsPrefab[num]);
     }
 }

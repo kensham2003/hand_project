@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum DrawType
+{
+    standart,
+    random
+}
+
+
 public class Hands : MonoBehaviour
 {
     /// <summary>
@@ -18,7 +25,7 @@ public class Hands : MonoBehaviour
     /// <summary>
     /// 所持カード
     /// </summary>
-    private List<Card> m_handsCard;
+    [SerializeField]private List<Card> m_handsCard;
     
     /// <summary>
     /// キャンバス
@@ -40,7 +47,17 @@ public class Hands : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject m_lockOnEffect;
 
-    [SerializeField] private GameObject m_spawLockEffect = null;
+    /// <summary>
+    /// 生成したロックオンエフェクト
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    private GameObject m_spawLockEffect = null;
+
+    /// <summary>
+    /// ドローの種類
+    /// </summary>
+    [SerializeField] private DrawType m_drawType;
 
     // Start is called before the first frame update
     private void Start()
@@ -51,18 +68,28 @@ public class Hands : MonoBehaviour
         m_deck = GameObject.Find ("Deck");
         
         //限界までドロー
-        for(int i = 0;i < m_maxCount;i++)
+        if(m_drawType == DrawType.random)
         {
-            Draw();
+            for(int i = 0;i < m_maxCount;i++)
+            {
+                RandomDraw();
+            }
+            InvokeRepeating("RandomDraw",0.0f,m_drawInterval);
         }
+        else if(m_drawType == DrawType.standart)
+        {
+            for(int i = 0;i < m_maxCount;i++)
+            {
+                StandartDraw(i);
+            }
+        }   
 
-        InvokeRepeating("Draw",0.0f,m_drawInterval);
+        
     }
 
     // Update is called once per frame
     private void Update()
     {
-
         //クリックした対象をターゲットにする（ユニバーサルクロス）
         if(Input.GetMouseButtonUp(0) && GetHorverHandsCard() == false)
         {
@@ -99,20 +126,54 @@ public class Hands : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 手札からカードを捨てる
+    /// </summary>
+    /// <param name="n"></param> <summary>
+    /// 
+    /// </summary>
+    /// <param name="n"></param>
     public void RemoveCard(int n)
     {
-        Destroy(m_handsCard[n].gameObject);
-        m_handsCard.RemoveAt(n);
-        m_cardCount--;
-
-        ChangePosition();
-        
+        if(m_drawType == DrawType.random)
+        {
+            Destroy(m_handsCard[n].gameObject);
+            m_handsCard.RemoveAt(n);
+            m_cardCount--;
+            ChangePosition();
+        }
+        else if(m_drawType == DrawType.standart)
+        {
+            StandartDraw(n);
+        }
     }
 
     /// <summary>
     /// デッキからカード生成
     /// </summary>
-    public void Draw()
+    public void StandartDraw(int num)
+    {
+        if(m_cardCount < m_maxCount)
+        {
+            GameObject temp = m_deck.GetComponent<Deck>().Draw(num);
+            if(m_handsCard.Count <= num)
+            {
+                m_handsCard.Add(temp.GetComponent<Card>());
+            }
+            else
+            {
+                Card t = m_handsCard[num];
+                Destroy(t);
+                m_handsCard[num] = temp.GetComponent<Card>();
+            }
+            temp.transform.SetParent (m_canvas.transform,false); 
+            temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(num * 280 + 140 , 100 );
+            temp.GetComponent<Card>().SetHandsCardNum(num);
+            m_cardCount++;
+        }
+    }
+
+    public void RandomDraw()
     {
         if(m_cardCount < m_maxCount)
         {
@@ -123,7 +184,6 @@ public class Hands : MonoBehaviour
             temp.GetComponent<Card>().SetHandsCardNum(m_cardCount);
             m_cardCount++;
         }
-
     }
 
     /// <summary>

@@ -88,6 +88,8 @@ public class SpellCard : Card
 
         if (Physics.Raycast(ray, out hit, 100.0f,m_layerMask) && m_pressed)
         {
+            Debug.Log(hit.collider.gameObject);
+
             if(hit.collider.gameObject.GetComponent<PlayerMonster>() != null)
             {
                 //ターゲット強調

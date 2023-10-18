@@ -227,6 +227,8 @@ public class PlayerMonster : Monster
             {
                 //進行方向
                 Vector3 moveVec = m_target.transform.position - transform.position;
+                //進行方向へ回転
+                transform.rotation = Quaternion.LookRotation(moveVec,Vector3.up);
                 moveVec = moveVec.normalized;
 
                 //ターゲットの距離
