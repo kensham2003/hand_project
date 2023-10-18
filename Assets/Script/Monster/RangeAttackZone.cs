@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 範囲攻撃を受けるモンスターを管理するクラス
+/// 範囲攻撃を受けるプレイヤーモンスターを管理するクラス
 /// </summary>
 public class RangeAttackZone : MonoBehaviour
 {
@@ -19,7 +19,8 @@ public class RangeAttackZone : MonoBehaviour
         return m_playerMonstersInRange;
     }
 
-    private void Start() {
+    private void OnEnable() {
+        m_playerMonstersInRange = new List<PlayerMonster>();
         AddToList(m_playerMonster);
     }
 
@@ -28,6 +29,7 @@ public class RangeAttackZone : MonoBehaviour
             PlayerMonster pm = other.GetComponent<PlayerMonster>();
             if(pm){
                 AddToList(pm);
+                ReliableOnTriggerExit.NotifyTriggerEnter(other, gameObject, OnTriggerExit);
             }
         }
     }
@@ -37,6 +39,7 @@ public class RangeAttackZone : MonoBehaviour
             PlayerMonster pm = other.GetComponent<PlayerMonster>();
             if(pm){
                 RemoveFromList(pm);
+                ReliableOnTriggerExit.NotifyTriggerExit(other, gameObject);
             }
         }
     }

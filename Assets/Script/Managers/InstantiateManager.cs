@@ -53,9 +53,21 @@ public class InstantiateManager : MonoBehaviour
     /// </summary>
     /// <param name="monster">モンスターのインスタンス</param>
     public void DestroyMonster(GameObject monster){
-        PoolManager.Instance.ReleaseGameObject(monster);
+        //PoolManager.Instance.ReleaseGameObject(monster);
         m_cpuMain.UsageRegister(monster.GetComponent<Monster>().m_parameter.DestroyLoad);
+        StartCoroutine(DestroyMonsterCoroutine(monster));
         //Debug.Log("消失 : " + monster.GetComponent<Monster>().paramerter.DestroyLoad.raiseRate);
+    }
+
+    /// <summary>
+    /// モンスターが消える時のコルーチン<para>直接DisableするとOnTriggerExitが正常に呼び出せないので</para>
+    /// </summary>
+    /// <param name="monster"></param>
+    /// <returns></returns>
+    IEnumerator DestroyMonsterCoroutine(GameObject monster){
+        monster.transform.position = new Vector3(500, -100, 500);
+        yield return null;
+        PoolManager.Instance.ReleaseGameObject(monster);
     }
 
     /// <summary>

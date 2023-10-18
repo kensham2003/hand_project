@@ -96,7 +96,12 @@ public class PlayerMonster : Monster
         
         if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
         {
-            m_target.GetComponent<EnemyMonster>().ChangeHP(m_parameter.attack);
+            if(m_parameter.attackDistance < 5.99f || m_target.GetComponent<EnemyBossMonster>() != null){
+                m_target.GetComponent<EnemyMonster>().ChangeHP(m_parameter.attack);
+            }
+            else{
+                m_target.GetComponent<EnemyMonster>().ChangeHPInRange(m_parameter.attack);
+            }
             
             cpuMain.UsageRegister(m_parameter.attackLoad);
             //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
@@ -347,9 +352,14 @@ public class PlayerMonster : Monster
     /// </summary>
     /// <param name="val">ダメージ量</param>
     public void ChangeHPInRange(float val){
-        Instantiate(m_explosion, transform.position, Quaternion.identity);
-        foreach(PlayerMonster pm in m_rangeAttackZone.GetPlayerMonstersInRange()){
-            pm.ChangeHP(val);
+        if(m_rangeAttackZone){
+            Instantiate(m_explosion, transform.position, Quaternion.identity);
+            foreach(PlayerMonster pm in m_rangeAttackZone.GetPlayerMonstersInRange()){
+                pm.ChangeHP(val);
+            }
+        }
+        else{
+            this.ChangeHP(val);
         }
     }
 }

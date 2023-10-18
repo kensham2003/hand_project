@@ -21,6 +21,16 @@ public class EnemyMonster : Monster
     public EnemyMonsterType m_enemyMonsterType;
 
     /// <summary>
+    /// 範囲攻撃のスクリプト
+    /// </summary>
+    [SerializeField]private RangeAttackZoneEnemy m_rangeAttackZoneEnemy;
+
+    /// <summary>
+    /// 範囲攻撃受ける時生成する爆風オブジェクト
+    /// </summary>
+    [SerializeField]private GameObject m_explosion;
+
+    /// <summary>
     /// メインカメラ
     /// </summary>
     private Camera m_mainCamera;
@@ -327,6 +337,22 @@ public class EnemyMonster : Monster
         else
         {
             m_status = Status.idle;
+        }
+    }
+
+    /// <summary>
+    /// 範囲内の敵もダメージを食らう
+    /// </summary>
+    /// <param name="val">ダメージ量</param>
+    public void ChangeHPInRange(float val){
+        if(m_rangeAttackZoneEnemy){
+            Instantiate(m_explosion, transform.position, Quaternion.identity);
+            foreach(EnemyMonster em in m_rangeAttackZoneEnemy.GetEnemyMonstersInRange()){
+                em.ChangeHP(val);
+            }
+        }
+        else{
+            this.ChangeHP(val);
         }
     }
 }
