@@ -39,6 +39,36 @@ public class SceneChange : MonoBehaviour
     }
 
     /// <summary>
+    /// ステージ選択
+    /// </summary>
+    /// <param name="sceneName">ステージ数を含んだシーン名</param>
+    public void GotoStage(string sceneName){
+        string nextStageName = sceneName;
+        StageManager.Instance.currentStage = nextStageName[nextStageName.Length-1] - '0';
+        m_fade.SetFadeOut(1f, nextStageName);
+    }
+
+    /// <summary>
+    /// 「次のステージへ」
+    /// </summary>
+    /// <param name="sceneName">ステージ数をのぞいたシーン名</param>
+    public void GotoNextStage(string sceneName){
+        int nextStageNum = StageManager.Instance.GetNextStage();
+        string nextStageName = sceneName + nextStageNum.ToString();
+        StageManager.Instance.currentStage = nextStageNum;
+        m_fade.SetFadeOut(1f, nextStageName);
+    }
+
+    /// <summary>
+    /// 「リトライ」
+    /// </summary>
+    /// <param name="sceneName">ステージ数をのぞいたシーン名</param>
+    public void RetryStage(string sceneName){
+        string nextStageName = sceneName + StageManager.Instance.currentStage.ToString();
+        m_fade.SetFadeOut(1f, nextStageName);
+    }
+
+    /// <summary>
     /// 終了確認パネルを有効・無効化
     /// </summary>
     /// <param name="b"></param>

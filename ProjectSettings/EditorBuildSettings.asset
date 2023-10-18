@@ -12,8 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Prototype/Prototype_select.unity
     guid: f9b3b50417b03c84fa43075d96a01282
   - enabled: 1
-    path: Assets/Scenes/Prototype/Prototype_game.unity
-    guid: 71dc224ed9d72af4bad78f9dac2db207
+    path: Assets/Scenes/Prototype/Prototype_stage1.unity
+    guid: a641ca15094331d4a8499c527abe3280
+  - enabled: 1
+    path: Assets/Scenes/Prototype/Prototype_stage2.unity
+    guid: 399d328fde65ed64cb02dcc270203eef
+  - enabled: 1
+    path: Assets/Scenes/Prototype/Prototype_stage3.unity
+    guid: 5e47dde6d03d6ab45bb4bb4c0061e4ef
   - enabled: 1
     path: Assets/Scenes/Prototype/Prototype_clear.unity
     guid: 310f38965ea264a49a91c12ccabcc79f

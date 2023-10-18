@@ -44,4 +44,9 @@ public class EnemySpawner : MonoBehaviour
             Random.Range(bounds.min.z, bounds.max.z)
         );
     }
+
+    private void Start() {
+        Debug.Log(GetComponent<SignalReceiverWithTwoInt>());
+        Debug.Log(GetComponent<SignalReceiverWithInt>());
+    }
 }

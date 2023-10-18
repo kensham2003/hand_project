@@ -487,14 +487,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 228804391}
         m_TargetAssemblyTypeName: SceneChange, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: RetryStage
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Prototype_game
+          m_StringArgument: Prototype_stage
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &474399607
