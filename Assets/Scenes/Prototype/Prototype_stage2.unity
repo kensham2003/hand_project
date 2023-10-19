@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -964,9 +964,14 @@ MonoBehaviour:
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
-  - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: c77d0e09c3a43c846b73125bdcd1920f, type: 3}
+  - {fileID: 1205900353765170463, guid: c77d0e09c3a43c846b73125bdcd1920f, type: 3}
+  - {fileID: 2666206380844969574, guid: 02c711e35fe20a841a72d12c4479ccc8, type: 3}
 --- !u!4 &1356730244
 Transform:
   m_ObjectHideFlags: 0
@@ -1045,7 +1050,7 @@ PrefabInstance:
     - target: {fileID: 3610615197509224566, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
       propertyPath: m_PlayableAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 950ef08e7c04e984aaf6955fe0209040, type: 2}
+      objectReference: {fileID: 11400000, guid: 11300d05f52c2b54cadb1ab1fc507936, type: 2}
     - target: {fileID: 3610615197509224566, guid: 5dfc0e587e45b614886eb44b0dc24047, type: 3}
       propertyPath: m_SceneBindings.Array.size
       value: 8
@@ -1250,10 +1255,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1693dacdf8c0e3b458b80dbce7dc35f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxCount: 3
-  m_drawInterval: 0.1
+  m_maxCount: 5
+  m_handsCard: []
+  m_drawInterval: 1
   m_lockOnEffect: {fileID: 0}
-  m_spawLockEffect: {fileID: 0}
+  m_drawType: 1
 --- !u!4 &1708244789
 Transform:
   m_ObjectHideFlags: 0
