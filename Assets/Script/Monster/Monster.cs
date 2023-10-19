@@ -314,6 +314,8 @@ public class Monster : MonoBehaviour
         m_preview = b;
     }
 
+    public bool GetPreview(){return m_preview;}
+
     //パラメーター取得
     public MonsterParamerter GetParamerter()
     {

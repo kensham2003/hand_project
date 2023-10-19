@@ -44,9 +44,28 @@ public class FireWallObject : EffectMonster
     /// </summary>
     private bool m_damageFlag = false;
 
+    /// <summary>
+    /// 点滅させるため
+    /// </summary>
+    private MeshRenderer m_meshRenderer;
+
+    /// <summary>
+    /// 生成から何秒後に点滅し始めるか
+    /// </summary>
+    [SerializeField] private float m_flashTime = 8.0f;
+
+    /// <summary>
+    /// 点滅する間隔
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    [SerializeField] private float m_FlashInterval = 0.1f;
     protected override void Start()
     {
+        m_meshRenderer = GetComponent<MeshRenderer>();
+
         Invoke("Death", m_lifeTime);
+        InvokeRepeating("Flash",m_flashTime,m_FlashInterval);
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -103,5 +122,13 @@ public class FireWallObject : EffectMonster
         }
 
         Destroy(this.gameObject);
+    }
+
+    /// <summary>
+    /// 点滅
+    /// </summary>
+    public void Flash()
+    {
+        m_meshRenderer.enabled = !m_meshRenderer.enabled;
     }
 }

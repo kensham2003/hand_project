@@ -261,10 +261,16 @@ public class EnemyMonster : Monster
         {
             if(obj == null) continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
-            if (distance < shortestDistance && !obj.GetComponent<PlayerBossMonster>())
+            
+            if (distance < shortestDistance && obj.gameObject.tag == "Player")
             {
-                closestObject = obj;
-                shortestDistance = distance;
+                PlayerMonster pm = obj.GetComponent<PlayerMonster>();
+                //モンスターがプレビュー状態だったら
+                if(!pm.GetPreview())
+                {
+                    closestObject = obj;
+                    shortestDistance = distance;
+                }
             }
         }
         return closestObject;
