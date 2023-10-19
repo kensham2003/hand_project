@@ -376,7 +376,7 @@ public class Monster : MonoBehaviour
     //通常攻撃
     protected void NearAttack()
     {
-        m_target.GetComponent<EnemyMonster>().ChangeHP(m_parameter.attack);
+        m_target.GetComponent<Monster>().ChangeHP(m_parameter.attack);
     }
 
     /// <summary>
@@ -390,7 +390,7 @@ public class Monster : MonoBehaviour
     {
         Collider collider = m_rangeAttackZone.GetComponent<Collider>();
         m_rangeAttackZone.transform.position = this.gameObject.transform.position;
-
+        
         if(m_prevRangeAttackFlag == false)
         {
             collider.enabled = true;
@@ -398,6 +398,17 @@ public class Monster : MonoBehaviour
         }
         else
         {
+            int i = 0;
+            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
+            {
+                if(m.gameObject.tag == tag)
+                {
+                    m.ChangeHP(m_parameter.attack);
+                    i++;
+                }
+            }
+
+            Debug.Log(i);
             collider.enabled = false;
             m_prevRangeAttackFlag = false;
         }
@@ -423,6 +434,13 @@ public class Monster : MonoBehaviour
         }
         else
         {
+            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
+            {
+                if(m.gameObject.tag == tag)
+                {
+                    m.ChangeHP(m_parameter.attack);
+                }
+            }
             collider.enabled = false;
             m_prevRangeAttackFlag = false;
         }

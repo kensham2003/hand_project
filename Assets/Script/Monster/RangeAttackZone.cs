@@ -34,17 +34,17 @@ public class RangeAttackZone : MonoBehaviour
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy")){
             Monster m = other.GetComponent<Monster>();
             if(m){
-                /* AddToList(m);
-                ReliableOnTriggerExit.NotifyTriggerEnter(other, gameObject, OnTriggerExit); */
+                AddToList(m);
+                ReliableOnTriggerExit.NotifyTriggerEnter(other, gameObject, OnTriggerExit);
 
-                m.ChangeHP(m_damageValue);
+                //m.ChangeHP(m_damageValue);
             }
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy")){
-            PlayerMonster pm = other.GetComponent<PlayerMonster>();
+            Monster pm = other.GetComponent<Monster>();
             if(pm){
                 RemoveFromList(pm);
                 ReliableOnTriggerExit.NotifyTriggerExit(other, gameObject);
