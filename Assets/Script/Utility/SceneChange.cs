@@ -15,6 +15,9 @@ public class SceneChange : MonoBehaviour
     [Header("フェードのスクリプト")]
     [SerializeField] private Fade m_fade;
 
+    /// <summary>
+    /// Windows風シーン遷移
+    /// </summary>
     [SerializeField] private WindowChangeFade m_windowChangeFade;
 
     /// <summary>

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Windows風シーン遷移
+/// </summary>
 public class WindowChangeFade : MonoBehaviour
 {
     /// <summary>
@@ -17,7 +20,12 @@ public class WindowChangeFade : MonoBehaviour
         FADE_NONE,
     }
 
+    [Header("普通のフェードインから入るならつけなくてOK")]
     [SerializeField] private Image m_blackOverlay;
+
+    /// <summary>
+    /// 最初からフェードするか
+    /// </summary>
     public bool m_fadeAtStart = true;
 
     #region private
@@ -61,6 +69,9 @@ public class WindowChangeFade : MonoBehaviour
     /// </summary>
     private FADE_MODE m_fadeMode;
 
+    /// <summary>
+    /// フェードインする画面は黒画面なのか
+    /// </summary>
     private bool m_blackIn = false;
     #endregion
 
