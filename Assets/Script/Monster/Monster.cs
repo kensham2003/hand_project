@@ -398,13 +398,6 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            /* foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
-            {
-                if(m.gameObject.tag == tag)
-                {
-                    m.ChangeHP(m_parameter.attack);
-                }
-            } */
             collider.enabled = false;
             m_prevRangeAttackFlag = false;
         }
@@ -430,13 +423,6 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            /* foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
-            {
-                if(m.gameObject.tag == tag)
-                {
-                    m.ChangeHP(m_parameter.attack);
-                }
-            } */
             collider.enabled = false;
             m_prevRangeAttackFlag = false;
         }

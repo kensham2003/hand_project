@@ -276,17 +276,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangeAttackZone_Sphere
       objectReference: {fileID: 0}
+    - target: {fileID: 8572375817903472638, guid: f5d5990b2915faf46a972c3c18c766a2, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9220362237788158993, guid: f5d5990b2915faf46a972c3c18c766a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.1140985
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9220362237788158993, guid: f5d5990b2915faf46a972c3c18c766a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.744291
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9220362237788158993, guid: f5d5990b2915faf46a972c3c18c766a2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.2476544
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9220362237788158993, guid: f5d5990b2915faf46a972c3c18c766a2, type: 3}
       propertyPath: m_LocalRotation.w
