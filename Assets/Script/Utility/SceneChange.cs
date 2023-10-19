@@ -33,12 +33,20 @@ public class SceneChange : MonoBehaviour
     }
 
     /// <summary>
-    /// シーン遷移を設定
+    /// シーン遷移を設定（ウインドウ閉じるような）
     /// </summary>
     /// <param name="sceneName">次のシーン名</param>
     public void WindowChangeScene(string sceneName){
         //m_fade.SetFadeOut(1f, sceneName);
         m_windowChangeFade.SetFadeOut(0.5f, sceneName);
+    }
+
+    /// <summary>
+    /// シーン遷移を設定（フェード）
+    /// </summary>
+    /// <param name="sceneName">次のシーン名</param>
+    public void FadeChangeScene(string sceneName){
+        m_fade.SetFadeOut(1f, sceneName);
     }
 
     /// <summary>
@@ -60,7 +68,7 @@ public class SceneChange : MonoBehaviour
         int nextStageNum = StageManager.Instance.GetNextStage();
         string nextStageName = sceneName + nextStageNum.ToString();
         StageManager.Instance.currentStage = nextStageNum;
-        m_fade.SetFadeOut(0.5f, nextStageName);
+        m_fade.SetFadeOut(1f, nextStageName);
     }
 
     /// <summary>
@@ -69,7 +77,7 @@ public class SceneChange : MonoBehaviour
     /// <param name="sceneName">ステージ数をのぞいたシーン名</param>
     public void RetryStage(string sceneName){
         string nextStageName = sceneName + StageManager.Instance.currentStage.ToString();
-        m_windowChangeFade.SetFadeOut(0.5f, nextStageName);
+        m_fade.SetFadeOut(1f, nextStageName);
     }
 
     /// <summary>

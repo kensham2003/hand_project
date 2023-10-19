@@ -18,6 +18,7 @@ public class WindowChangeFade : MonoBehaviour
     }
 
     [SerializeField] private Image m_blackOverlay;
+    public bool m_fadeAtStart = true;
 
     #region private
     /// <summary>
@@ -69,10 +70,14 @@ public class WindowChangeFade : MonoBehaviour
         // Color color = Color.black;
         // color.a = 0f;
         // m_blackOverlay.color = color;
-        m_blackOverlay.gameObject.SetActive(false);
+        if(m_blackOverlay){
+            m_blackOverlay.gameObject.SetActive(false);
+        }
         m_screen = GetComponent<RectTransform>();
         //m_image = GetComponent<Image>();
-        SetFadeIn(0.5f);
+        if(m_fadeAtStart){
+            SetFadeIn(0.5f);
+        }
     }
 
     private void Update()

@@ -1331,7 +1331,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 228804391}
         m_TargetAssemblyTypeName: SceneChange, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: WindowChangeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1639,6 +1639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_blackOverlay: {fileID: 46802509}
+  m_fadeAtStart: 1
 --- !u!224 &1328065929
 RectTransform:
   m_ObjectHideFlags: 0
