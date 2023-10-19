@@ -138,8 +138,8 @@ public class Monster : MonoBehaviour
     {
         
         m_initMaterial = GetComponent<Renderer>().material;
-        if(visibleList == null){
-            visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
+        if(m_visibleList == null){
+            m_visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
         }
         if(cpuMain == null){
             cpuMain = GameObject.Find("Managers").GetComponent<CpuMain>();
@@ -147,12 +147,13 @@ public class Monster : MonoBehaviour
 
         m_parameter.maxHp = m_parameter.hp;
         cpuMain.UsageRegister(m_parameter.constantLoad);
+        OnBecameVisibleFromCamera();
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        CheckVisible();
+        //CheckVisible();
     }
 
     public virtual void Action()
@@ -189,7 +190,8 @@ public class Monster : MonoBehaviour
 
     public virtual void Death()
     {
-        Destroy(this.gameObject);
+        OnBecameInvisibleFromCamera();
+        //Destroy(this.gameObject);
     }
 
     /// <summary>

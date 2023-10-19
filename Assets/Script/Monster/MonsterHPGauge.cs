@@ -27,9 +27,9 @@ public class MonsterHPGauge : MonoBehaviour
         m_hpGauge.fillAmount = amount;
     }
 
-    private void Update() {
-        Vector3 rot = m_rectTransform.rotation.eulerAngles;
-        rot.z = -1 * m_monster.transform.rotation.eulerAngles.y;
-        m_rectTransform.rotation = Quaternion.Euler(rot);
-    }
+    // private void Update() {
+    //     Vector3 rot = m_rectTransform.rotation.eulerAngles;
+    //     rot.z = -1 * m_monster.transform.rotation.eulerAngles.y;
+    //     m_rectTransform.rotation = Quaternion.Euler(rot);
+    // }
 }

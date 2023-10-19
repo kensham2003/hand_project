@@ -15,6 +15,8 @@ public class SceneChange : MonoBehaviour
     [Header("フェードのスクリプト")]
     [SerializeField] private Fade m_fade;
 
+    [SerializeField] private WindowChangeFade m_windowChangeFade;
+
     /// <summary>
     /// 終了確認パネル
     /// </summary>
@@ -34,8 +36,9 @@ public class SceneChange : MonoBehaviour
     /// シーン遷移を設定
     /// </summary>
     /// <param name="sceneName">次のシーン名</param>
-    public void ChangeScene(string sceneName){
-        m_fade.SetFadeOut(1f, sceneName);
+    public void WindowChangeScene(string sceneName){
+        //m_fade.SetFadeOut(1f, sceneName);
+        m_windowChangeFade.SetFadeOut(0.5f, sceneName);
     }
 
     /// <summary>
@@ -45,7 +48,8 @@ public class SceneChange : MonoBehaviour
     public void GotoStage(string sceneName){
         string nextStageName = sceneName;
         StageManager.Instance.currentStage = nextStageName[nextStageName.Length-1] - '0';
-        m_fade.SetFadeOut(1f, nextStageName);
+        //m_windowChangeFade.SetFadeOut(0.5f, nextStageName);
+        m_windowChangeFade.SetWindowOutBlackIn(0.5f, nextStageName);
     }
 
     /// <summary>
@@ -56,7 +60,7 @@ public class SceneChange : MonoBehaviour
         int nextStageNum = StageManager.Instance.GetNextStage();
         string nextStageName = sceneName + nextStageNum.ToString();
         StageManager.Instance.currentStage = nextStageNum;
-        m_fade.SetFadeOut(1f, nextStageName);
+        m_fade.SetFadeOut(0.5f, nextStageName);
     }
 
     /// <summary>
@@ -65,7 +69,7 @@ public class SceneChange : MonoBehaviour
     /// <param name="sceneName">ステージ数をのぞいたシーン名</param>
     public void RetryStage(string sceneName){
         string nextStageName = sceneName + StageManager.Instance.currentStage.ToString();
-        m_fade.SetFadeOut(1f, nextStageName);
+        m_windowChangeFade.SetFadeOut(0.5f, nextStageName);
     }
 
     /// <summary>
@@ -80,6 +84,7 @@ public class SceneChange : MonoBehaviour
     /// ゲーム終了
     /// </summary>
     public void EndGame(){
-        m_fade.SetFadeOut(1f, "ENDGAME");
+        //m_fade.SetFadeOut(1f, "ENDGAME");
+        m_windowChangeFade.SetFadeOut(0.5f, "ENDGAME");
     }
 }

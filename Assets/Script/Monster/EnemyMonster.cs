@@ -52,6 +52,12 @@ public class EnemyMonster : Monster
     /// </summary>
     public EnemyManager m_enemyManager;
 
+    /// <summary>
+    /// 攻撃範囲内に入ったらすぐ攻撃するか
+    /// </summary>
+    [Header("攻撃範囲内に入ったらすぐ攻撃するか")]
+    [SerializeField] private bool m_canFirstAttack = false;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -117,9 +123,10 @@ public class EnemyMonster : Monster
     public override void Death()
     {
         if(isDead)return;
-        if(m_visibleFlag){
-            OnBecameInvisibleFromCamera();
-        }
+        base.Death();
+        // if(m_visibleFlag){
+        //     OnBecameInvisibleFromCamera();
+        // }
         isDead = true;
         cpuMain.UsageRegister(m_parameter.DestroyLoad);
         //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
@@ -329,6 +336,7 @@ public class EnemyMonster : Monster
             m_targetDistance = Vector3.Distance(closestPoint, transform.position);
             if(m_attackFlag == false &&m_parameter.attackDistance >= m_targetDistance)
             {                
+                if(m_canFirstAttack){Action();}
                 Invoke("Action",m_parameter.attackInterval);
 
                 m_attackFlag = true;

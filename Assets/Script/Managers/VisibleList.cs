@@ -18,7 +18,7 @@ public class VisibleList : MonoBehaviour
     /// </summary>
     private List<int> m_emptyIndex = new List<int>(); //空いているスロットのリスト
 
-    private void Start(){
+    private void Awake(){
         m_visibleObjects = new List<GameObject>();
     }
 
@@ -55,6 +55,7 @@ public class VisibleList : MonoBehaviour
     /// </summary>
     /// <param name="index">オブジェクトが持っているリストインデックス</param>
     public void RemoveVisibleObject(int index){
+        if(m_visibleObjects[index] == null)return;
         m_visibleObjects[index] = null;
         //indexを空いているスロットに登録
         m_emptyIndex.Add(index);

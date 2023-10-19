@@ -958,15 +958,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsPrefab:
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
   - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
-  - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
+  - {fileID: 2666206380844969574, guid: 070807e40c443504d9bf267f6ded89cf, type: 3}
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 2666206380844969574, guid: 070807e40c443504d9bf267f6ded89cf, type: 3}
+  - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
+  - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
 --- !u!4 &1356730244
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,9 +1248,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxCount: 3
+  m_handsCard: []
   m_drawInterval: 0.1
   m_lockOnEffect: {fileID: 0}
-  m_spawLockEffect: {fileID: 0}
+  m_drawType: 0
 --- !u!4 &1708244789
 Transform:
   m_ObjectHideFlags: 0
@@ -1552,6 +1550,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 929559626104116560, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1016207295978007517, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
       propertyPath: cpuMain
       value: 
