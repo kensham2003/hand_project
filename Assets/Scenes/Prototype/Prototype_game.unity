@@ -958,10 +958,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsPrefab:
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+
   - {fileID: 1205900353765170463, guid: c77d0e09c3a43c846b73125bdcd1920f, type: 3}
   - {fileID: 1205900353765170463, guid: f9c6dd1719868d74b87b80105497422b, type: 3}
   - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
   - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
+
 --- !u!4 &1356730244
 Transform:
   m_ObjectHideFlags: 0
@@ -1511,6 +1513,10 @@ PrefabInstance:
     - target: {fileID: 6804468718962571076, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
       propertyPath: m_Name
       value: TestBossMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 6804468718962571076, guid: 353c9a48b453088458a69c0b7e15a9b3, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

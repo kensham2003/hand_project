@@ -101,14 +101,33 @@ public class EnemyMonster : Monster
         //m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
         if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
         {
-            if(m_parameter.attackDistance < 5.99f || m_target.GetComponent<PlayerBossMonster>() != null){
+            /* if(m_parameter.attackDistance < 5.99f || m_target.GetComponent<PlayerBossMonster>() != null){
                 m_target.GetComponent<PlayerMonster>().ChangeHP(m_parameter.attack);
             }
             else{
                 m_target.GetComponent<PlayerMonster>().ChangeHPInRange(m_parameter.attack);
+            } */
+
+            switch(m_attackType)
+            {
+                //通常
+                case AttackType.near:
+                NearAttack();
+                break;
+
+                //自分を基準とした範囲攻撃
+                case AttackType.middle:
+                MiddleAttack("Player");
+                break;
+
+                //ターゲットを基準とした範囲攻撃
+                case AttackType.far:
+                FarAttack("Player");
+                break;
             }
+
             cpuMain.UsageRegister(m_parameter.attackLoad);
-            //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
+            
 
             m_target = null;
         }
@@ -140,6 +159,8 @@ public class EnemyMonster : Monster
 
             //進行方向
             Vector3 moveVec = m_target.transform.position - transform.position;
+            moveVec.y = 0;
+
             //進行方向へ回転
             m_model.transform.rotation = Quaternion.LookRotation(-moveVec,Vector3.up);
             m_model.transform.Rotate(new Vector3(0f, m_rotationOffset, 0f));
@@ -181,6 +202,8 @@ public class EnemyMonster : Monster
             //Debug.Log(target.gameObject.name);
             //進行方向
            Vector3 moveVec = m_target.transform.position - transform.position;
+           moveVec.y = 0;
+
            //進行方向へ回転
             m_model.transform.rotation = Quaternion.LookRotation(-moveVec,Vector3.up);
             m_model.transform.Rotate(new Vector3(0f, m_rotationOffset, 0f));
@@ -261,10 +284,16 @@ public class EnemyMonster : Monster
         {
             if(obj == null) continue;
             float distance = Vector3.Distance(transform.position, obj.transform.position);
-            if (distance < shortestDistance && !obj.GetComponent<PlayerBossMonster>())
+            
+            if (distance < shortestDistance && obj.gameObject.tag == "Player")
             {
-                closestObject = obj;
-                shortestDistance = distance;
+                PlayerMonster pm = obj.GetComponent<PlayerMonster>();
+                //モンスターがプレビュー状態だったら
+                if(!pm.GetPreview())
+                {
+                    closestObject = obj;
+                    shortestDistance = distance;
+                }
             }
         }
         return closestObject;
