@@ -62,6 +62,8 @@ public class FireWallObject : EffectMonster
     [SerializeField] private float m_FlashInterval = 0.1f;
     protected override void Start()
     {
+        base.Start();
+        
         m_meshRenderer = GetComponent<MeshRenderer>();
 
         Invoke("Death", m_lifeTime);
