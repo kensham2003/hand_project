@@ -76,7 +76,7 @@ public class CpuUsageUI : MonoBehaviour
         else if(usage > 25){m_text.color = Color.yellow;}
         else{m_text.color = Color.green;}
         m_rectTransform.anchoredPosition = m_originalPosition;
-        if(usage >= 100){m_cleared = true;}
+        if(usage >= m_cpuMain.GetGameOverPercentage()){m_cleared = true;}
     }
 
     private void Update() {

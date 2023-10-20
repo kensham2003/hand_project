@@ -150,8 +150,9 @@ MonoBehaviour:
   m_rotationOffset: 180
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
+  m_attackType: 0
+  m_rangeAttackZone: {fileID: 0}
   m_enemyMonsterType: 1
-  m_rangeAttackZoneEnemy: {fileID: 164272916806066518}
   m_explosion: {fileID: 6773522324396596067, guid: bc00298cbce107e4fb3700dd89a58723, type: 3}
   m_objectsInView: []
   m_enemyManager: {fileID: 0}
@@ -353,6 +354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterHPGauge
       objectReference: {fileID: 0}
+    - target: {fileID: 8226680949846133727, guid: dda49352812c3f745914514d953d6fcb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -385,6 +390,10 @@ PrefabInstance:
     - target: {fileID: 537799503932113326, guid: 511f85158a870254382eeabc8d5720b2, type: 3}
       propertyPath: m_Name
       value: RangeAttackZoneEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 537799503932113326, guid: 511f85158a870254382eeabc8d5720b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 537799503932113326, guid: 511f85158a870254382eeabc8d5720b2, type: 3}
       propertyPath: m_TagString
@@ -439,17 +448,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 511f85158a870254382eeabc8d5720b2, type: 3}
---- !u!114 &164272916806066518 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8535195260511013714, guid: 511f85158a870254382eeabc8d5720b2, type: 3}
-  m_PrefabInstance: {fileID: 8373466620058282500}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adee1de4a2fc6e44584f2587ee778866, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2781150545589007914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5957178366311095342, guid: 511f85158a870254382eeabc8d5720b2, type: 3}

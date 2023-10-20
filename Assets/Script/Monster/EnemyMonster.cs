@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 /// <summary>
 /// モンスターの行動パターン 
@@ -19,11 +20,6 @@ public class EnemyMonster : Monster
     /// </summary>
     [Tooltip("敵の行動パターン")]
     public EnemyMonsterType m_enemyMonsterType;
-
-    /// <summary>
-    /// 範囲攻撃のスクリプト
-    /// </summary>
-    [SerializeField]private RangeAttackZoneEnemy m_rangeAttackZoneEnemy;
 
     /// <summary>
     /// 範囲攻撃受ける時生成する爆風オブジェクト
@@ -148,6 +144,8 @@ public class EnemyMonster : Monster
         m_instantiateManager.DestroyMonster(this.gameObject);
         //Destroy(this.gameObject);
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
+
+        //m_coroutine.Yield();
     }
 
     //AタイプのUpdate
@@ -381,7 +379,7 @@ public class EnemyMonster : Monster
     /// </summary>
     /// <param name="val">ダメージ量</param>
     public void ChangeHPInRange(float val){
-        if(m_rangeAttackZoneEnemy){
+        /* if(m_rangeAttackZone){
             Instantiate(m_explosion, transform.position, Quaternion.identity);
             foreach(EnemyMonster em in m_rangeAttackZoneEnemy.GetEnemyMonstersInRange()){
                 em.ChangeHP(val);
@@ -389,6 +387,6 @@ public class EnemyMonster : Monster
         }
         else{
             this.ChangeHP(val);
-        }
+        } */
     }
 }

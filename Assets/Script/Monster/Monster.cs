@@ -143,6 +143,8 @@ public class Monster : MonoBehaviour
 
     protected bool m_preview = false;
 
+    protected Coroutine m_coroutine = null;
+
     /// <summary>
     /// 攻撃種類
     /// </summary> <summary>
@@ -153,10 +155,11 @@ public class Monster : MonoBehaviour
     /// <summary>
     /// 範囲攻撃管理
     /// </summary>
-    [SerializeField]private RangeAttackZone m_rangeAttackZone;
+    [SerializeField]protected RangeAttackZone m_rangeAttackZone;
 
     private bool m_prevRangeAttackFlag;
 
+    
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -213,6 +216,7 @@ public class Monster : MonoBehaviour
 
     public virtual void Death()
     {
+
         Destroy(this.gameObject);
     }
 
@@ -352,8 +356,8 @@ public class Monster : MonoBehaviour
         m_parameter = par;
     }
 
-    protected void ShowHPGauge(){
-        StartCoroutine(ShowHPGaugeCoroutine(2f));
+    protected virtual  void ShowHPGauge(){
+        m_coroutine = StartCoroutine(ShowHPGaugeCoroutine(2f));
     }
 
     IEnumerator ShowHPGaugeCoroutine(float time){
@@ -391,26 +395,12 @@ public class Monster : MonoBehaviour
         Collider collider = m_rangeAttackZone.GetComponent<Collider>();
         m_rangeAttackZone.transform.position = this.gameObject.transform.position;
         
-        if(m_prevRangeAttackFlag == false)
+        if(m_prevRangeAttackFlag == false && transform.gameObject.active)
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
-        }
-        else
-        {
-            int i = 0;
-            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
-            {
-                if(m.gameObject.tag == tag)
-                {
-                    m.ChangeHP(m_parameter.attack);
-                    i++;
-                }
-            }
 
-            Debug.Log(i);
-            collider.enabled = false;
-            m_prevRangeAttackFlag = false;
+            m_coroutine = StartCoroutine(ResetColliderEnable());   
         }
         
     }
@@ -444,5 +434,16 @@ public class Monster : MonoBehaviour
             collider.enabled = false;
             m_prevRangeAttackFlag = false;
         }
+    }
+
+    private IEnumerator ResetColliderEnable()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Collider collider = m_rangeAttackZone.GetComponent<Collider>();
+
+        collider.enabled = false;
+        m_prevRangeAttackFlag = false;
+
+        yield break;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerMonster : Monster
 {
@@ -9,11 +10,6 @@ public class PlayerMonster : Monster
     Camera mainCamera;
     //画面内にいる敵
     [SerializeField] List<GameObject> m_objectsInView = new List<GameObject>();
-
-    /// <summary>
-    /// 範囲攻撃のスクリプト
-    /// </summary>
-    [SerializeField]private RangeAttackZone m_rangeAttackZone;
 
     /// <summary>
     /// 範囲攻撃受ける時生成する爆風オブジェクト
@@ -150,6 +146,8 @@ public class PlayerMonster : Monster
         //Debug.Log("death");
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
         instantiateManager.DestroyMonster(this.gameObject);
+
+        //m_coroutine.Yield();
     }
 
     //---------------------------------------------------ここから下は仮後でマネージャーにまとめる
