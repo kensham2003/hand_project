@@ -100,7 +100,7 @@ public class Monster : MonoBehaviour
 
     [SerializeField] protected MonsterHPGauge m_monsterHPGauge;
 
-    private int m_showHPGaugeCoroutineCount = 0;
+    protected int m_showHPGaugeCoroutineCount = 0;
 
     [SerializeField] protected GameObject m_model;
     [Header("モデルの前方向への回転補正")]
@@ -177,6 +177,20 @@ public class Monster : MonoBehaviour
         OnBecameVisibleFromCamera();
     }
 
+    protected void OnEnable() {
+        if(m_visibleList == null){
+            m_visibleList = GameObject.Find("Managers").GetComponent<VisibleList>();
+        }
+        if(cpuMain == null){
+            cpuMain = GameObject.Find("Managers").GetComponent<CpuMain>();
+        }
+        m_monsterHPGauge.gameObject.SetActive(false);
+        m_showHPGaugeCoroutineCount = 0;
+        m_parameter.maxHp = m_parameter.hp;
+        // //cpuMain.UsageRegister(m_parameter.constantLoad);
+        // OnBecameVisibleFromCamera();
+    }
+
     // Update is called once per frame
     protected virtual void Update()
     {
@@ -217,6 +231,7 @@ public class Monster : MonoBehaviour
 
     public virtual void Death()
     {
+
         OnBecameInvisibleFromCamera();
         //Destroy(this.gameObject);
     }
@@ -396,7 +411,7 @@ public class Monster : MonoBehaviour
         Collider collider = m_rangeAttackZone.GetComponent<Collider>();
         m_rangeAttackZone.transform.position = this.gameObject.transform.position;
         
-        if(m_prevRangeAttackFlag == false && transform.gameObject.active)
+        if(m_prevRangeAttackFlag == false && transform.gameObject.activeSelf)
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;

@@ -150,6 +150,8 @@ public class PlayerMonster : Monster
         CPULoad constant = new CPULoad{raiseRate = -1 * m_parameter.constantLoad.raiseRate, impactTime = -1};
         cpuMain.UsageRegister(constant);
         isDead = true;
+        m_monsterHPGauge.gameObject.SetActive(false);
+        m_showHPGaugeCoroutineCount = 0;
         //Debug.Log("death");
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
         instantiateManager.DestroyMonster(this.gameObject);

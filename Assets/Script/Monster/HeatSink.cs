@@ -23,7 +23,7 @@ public class HeatSink : EffectMonster
 
     [SerializeField] private float m_lifeTime = 10;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         m_cpu = GameObject.Find("Managers").GetComponent<CpuMain>();
 
@@ -32,7 +32,7 @@ public class HeatSink : EffectMonster
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         
     }

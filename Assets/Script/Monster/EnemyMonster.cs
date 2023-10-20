@@ -148,6 +148,8 @@ public class EnemyMonster : Monster
         CPULoad constant = new CPULoad{raiseRate = -1 * m_parameter.constantLoad.raiseRate, impactTime = -1};
         cpuMain.UsageRegister(constant);
         m_enemyManager.UnregisterEnemy();
+        m_monsterHPGauge.gameObject.SetActive(false);
+        m_showHPGaugeCoroutineCount = 0;
         m_instantiateManager.DestroyMonster(this.gameObject);
         //Destroy(this.gameObject);
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
