@@ -99,7 +99,7 @@ MonoBehaviour:
   m_rotationOffset: 0
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
-  m_attackType: 2
+  m_attackType: 1
   m_rangeAttackZone: {fileID: 1910476091102358029}
   m_objectsInView: []
   m_rangeAttackZone: {fileID: 0}

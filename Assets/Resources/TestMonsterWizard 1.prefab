@@ -150,6 +150,8 @@ MonoBehaviour:
   m_rotationOffset: 0
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
+  m_attackType: 2
+  m_rangeAttackZone: {fileID: 3849448636992640194}
   m_objectsInView: []
   m_rangeAttackZone: {fileID: 3849448636992640194}
   m_explosion: {fileID: 6773522324396596067, guid: bc00298cbce107e4fb3700dd89a58723, type: 3}

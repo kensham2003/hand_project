@@ -149,6 +149,8 @@ MonoBehaviour:
   m_rotationOffset: 180
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
+  m_attackType: 0
+  m_rangeAttackZone: {fileID: 0}
   m_enemyMonsterType: 0
   m_rangeAttackZoneEnemy: {fileID: 0}
   m_explosion: {fileID: 0}
@@ -207,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.215
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8fc010fc39942194c95833643e46b892, type: 3}
       propertyPath: m_LocalPosition.z
@@ -346,7 +348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3264855751441846906, guid: dda49352812c3f745914514d953d6fcb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.452
       objectReference: {fileID: 0}
     - target: {fileID: 3264855751441846906, guid: dda49352812c3f745914514d953d6fcb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
