@@ -16,6 +16,12 @@ public class PlayerMonster : Monster
     /// </summary>
     [SerializeField]private GameObject m_explosion;
 
+    /// <summary>
+    /// 攻撃範囲内に入ったらすぐ攻撃するか
+    /// </summary>
+    [Header("攻撃範囲内に入ったらすぐ攻撃するか")]
+    [SerializeField] private bool m_canFirstAttack = true;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -134,10 +140,11 @@ public class PlayerMonster : Monster
     public override void Death()
     {
         if(isDead)return;
-        if(m_visibleFlag){
-            OnBecameInvisibleFromCamera();
-            m_visibleFlag = false;
-        }
+        base.Death();
+        // if(m_visibleFlag){
+        //     OnBecameInvisibleFromCamera();
+        //     m_visibleFlag = false;
+        // }
         cpuMain.UsageRegister(m_parameter.DestroyLoad);
         //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
         CPULoad constant = new CPULoad{raiseRate = -1 * m_parameter.constantLoad.raiseRate, impactTime = -1};
@@ -294,6 +301,7 @@ public class PlayerMonster : Monster
             
             if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
             {                
+                if(m_canFirstAttack){Action();}
                 Invoke("Action",m_parameter.attackInterval);
                 {
                     m_attackFlag = true;

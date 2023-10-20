@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         StopCoroutine(m_lagCoroutine);
         //シーン遷移を一回だけ呼ぶ
         if(!m_clearFlag){
-            m_canvas.ChangeScene(m_gameoverSceneName);
+            m_canvas.FadeChangeScene(m_gameoverSceneName);
         }
         m_clearFlag = true;
     }
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
         StopCoroutine(m_lagCoroutine);
         //シーン遷移を一回だけ呼ぶ
         if(!m_clearFlag){
-            m_canvas.ChangeScene(m_clearSceneName);
+            m_canvas.FadeChangeScene(m_clearSceneName);
         }
         m_clearFlag = true;
     }

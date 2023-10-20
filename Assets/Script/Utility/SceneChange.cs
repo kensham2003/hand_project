@@ -16,6 +16,11 @@ public class SceneChange : MonoBehaviour
     [SerializeField] private Fade m_fade;
 
     /// <summary>
+    /// Windows風シーン遷移
+    /// </summary>
+    [SerializeField] private WindowChangeFade m_windowChangeFade;
+
+    /// <summary>
     /// 終了確認パネル
     /// </summary>
     [Header("終了確認パネル")]
@@ -31,10 +36,19 @@ public class SceneChange : MonoBehaviour
     }
 
     /// <summary>
-    /// シーン遷移を設定
+    /// シーン遷移を設定（ウインドウ閉じるような）
     /// </summary>
     /// <param name="sceneName">次のシーン名</param>
-    public void ChangeScene(string sceneName){
+    public void WindowChangeScene(string sceneName){
+        //m_fade.SetFadeOut(1f, sceneName);
+        m_windowChangeFade.SetFadeOut(0.5f, sceneName);
+    }
+
+    /// <summary>
+    /// シーン遷移を設定（フェード）
+    /// </summary>
+    /// <param name="sceneName">次のシーン名</param>
+    public void FadeChangeScene(string sceneName){
         m_fade.SetFadeOut(1f, sceneName);
     }
 
@@ -45,7 +59,8 @@ public class SceneChange : MonoBehaviour
     public void GotoStage(string sceneName){
         string nextStageName = sceneName;
         StageManager.Instance.currentStage = nextStageName[nextStageName.Length-1] - '0';
-        m_fade.SetFadeOut(1f, nextStageName);
+        //m_windowChangeFade.SetFadeOut(0.5f, nextStageName);
+        m_windowChangeFade.SetWindowOutBlackIn(0.5f, nextStageName);
     }
 
     /// <summary>
@@ -80,6 +95,7 @@ public class SceneChange : MonoBehaviour
     /// ゲーム終了
     /// </summary>
     public void EndGame(){
-        m_fade.SetFadeOut(1f, "ENDGAME");
+        //m_fade.SetFadeOut(1f, "ENDGAME");
+        m_windowChangeFade.SetFadeOut(0.5f, "ENDGAME");
     }
 }

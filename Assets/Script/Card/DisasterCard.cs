@@ -50,6 +50,7 @@ public class DisasterCard : SpellCard
         else
         {
             Destroy(m_spawRangeObject);
+            m_spawnFlag = false;
         }
     }
 }
