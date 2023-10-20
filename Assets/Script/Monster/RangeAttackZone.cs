@@ -7,36 +7,44 @@ using UnityEngine;
 /// </summary>
 public class RangeAttackZone : MonoBehaviour
 {
-    [SerializeField]private PlayerMonster m_playerMonster;
+    [SerializeField]private Monster m_monster;
 
-    private List<PlayerMonster> m_playerMonstersInRange = new List<PlayerMonster>();
+    private List<Monster> m_monstersInRange = new List<Monster>();
 
+    private float m_damageValue = 1;
     /// <summary>
     /// 範囲内のPlayerMonsterのリストを返す
     /// </summary>
     /// <returns></returns>
-    public List<PlayerMonster> GetPlayerMonstersInRange(){
-        return m_playerMonstersInRange;
+    
+    void Start()
+    {
+        m_damageValue = m_monster.m_parameter.attack;
+    }
+    public List<Monster> GetMonstersInRange(){
+        return m_monstersInRange;
     }
 
     private void OnEnable() {
-        m_playerMonstersInRange = new List<PlayerMonster>();
-        AddToList(m_playerMonster);
+        m_monstersInRange = new List<Monster>();
+        //AddToList(m_playerMonster);
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.CompareTag("Player")){
-            PlayerMonster pm = other.GetComponent<PlayerMonster>();
-            if(pm){
-                AddToList(pm);
+        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy")){
+            Monster m = other.GetComponent<Monster>();
+            if(m){
+                AddToList(m);
                 ReliableOnTriggerExit.NotifyTriggerEnter(other, gameObject, OnTriggerExit);
+
+                m.ChangeHP(m_damageValue);
             }
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        if(other.gameObject.CompareTag("Player")){
-            PlayerMonster pm = other.GetComponent<PlayerMonster>();
+        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy")){
+            Monster pm = other.GetComponent<Monster>();
             if(pm){
                 RemoveFromList(pm);
                 ReliableOnTriggerExit.NotifyTriggerExit(other, gameObject);
@@ -48,8 +56,10 @@ public class RangeAttackZone : MonoBehaviour
     /// PlayerMonsterをリストに追加
     /// </summary>
     /// <param name="playerMonster"></param>
-    private void AddToList(PlayerMonster playerMonster){
-        m_playerMonstersInRange.Add(playerMonster);
+    private void AddToList(Monster playerMonster){
+        m_monstersInRange.Add(playerMonster);
+
+        
     }
 
     /// <summary>
@@ -57,7 +67,7 @@ public class RangeAttackZone : MonoBehaviour
     /// </summary>
     /// <param name="playerMonster"></param>
     /// <returns>削除が成功したかどうか</returns>
-    private bool RemoveFromList(PlayerMonster playerMonster){
-        return m_playerMonstersInRange.Remove(playerMonster);
+    private bool RemoveFromList(Monster Monster){
+        return m_monstersInRange.Remove(Monster);
     }
 }

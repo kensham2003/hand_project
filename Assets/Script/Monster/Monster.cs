@@ -14,6 +14,16 @@ public enum Status
     uca
 }
 
+public enum AttackType
+{
+    //通常の攻撃
+    near,
+    //自分を基準とした範囲攻撃
+    middle,
+    //ターゲットを基準とした範囲攻撃
+    far
+}
+
 //CPU負荷単位
 [System.Serializable]
 public struct  CPULoad
@@ -133,6 +143,23 @@ public class Monster : MonoBehaviour
 
     protected bool m_preview = false;
 
+    protected Coroutine m_coroutine = null;
+
+    /// <summary>
+    /// 攻撃種類
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    [SerializeField]protected AttackType m_attackType;
+
+    /// <summary>
+    /// 範囲攻撃管理
+    /// </summary>
+    [SerializeField]protected RangeAttackZone m_rangeAttackZone;
+
+    private bool m_prevRangeAttackFlag;
+
+    
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -189,6 +216,7 @@ public class Monster : MonoBehaviour
 
     public virtual void Death()
     {
+
         Destroy(this.gameObject);
     }
 
@@ -314,6 +342,8 @@ public class Monster : MonoBehaviour
         m_preview = b;
     }
 
+    public bool GetPreview(){return m_preview;}
+
     //パラメーター取得
     public MonsterParamerter GetParamerter()
     {
@@ -326,8 +356,8 @@ public class Monster : MonoBehaviour
         m_parameter = par;
     }
 
-    protected void ShowHPGauge(){
-        StartCoroutine(ShowHPGaugeCoroutine(2f));
+    protected virtual  void ShowHPGauge(){
+        m_coroutine = StartCoroutine(ShowHPGaugeCoroutine(2f));
     }
 
     IEnumerator ShowHPGaugeCoroutine(float time){
@@ -345,5 +375,75 @@ public class Monster : MonoBehaviour
         //Debug.Log("before subbing count = " + m_showHPGaugeCoroutineCount);
         m_showHPGaugeCoroutineCount--;
         if(m_showHPGaugeCoroutineCount < 0) m_showHPGaugeCoroutineCount = 0;
+    }
+
+    //通常攻撃
+    protected void NearAttack()
+    {
+        m_target.GetComponent<Monster>().ChangeHP(m_parameter.attack);
+    }
+
+    /// <summary>
+    /// 自分を基準とした範囲攻撃
+    /// </summary>
+    /// <param name="tag"></param> <summary>
+    /// Playerか敵を判断するタグ
+    /// </summary>
+    /// <param name="tag"></param>
+    protected void MiddleAttack(string tag)
+    {
+        Collider collider = m_rangeAttackZone.GetComponent<Collider>();
+        m_rangeAttackZone.transform.position = this.gameObject.transform.position;
+        
+        if(m_prevRangeAttackFlag == false && transform.gameObject.active)
+        {
+            collider.enabled = true;
+            m_prevRangeAttackFlag = true;
+
+            m_coroutine = StartCoroutine(ResetColliderEnable());   
+        }
+        
+    }
+
+    /// <summary>
+    /// ターゲットを基準とした範囲攻撃
+    /// </summary>
+    /// <param name="tag"></param> <summary>
+    /// Playerか敵を判断するタグ
+    /// </summary>
+    /// <param name="tag"></param>
+    protected void FarAttack(string tag)
+    {
+        Collider collider = m_rangeAttackZone.GetComponent<Collider>();
+        m_rangeAttackZone.transform.position = m_target.transform.position;
+
+        if(m_prevRangeAttackFlag == false)
+        {
+            collider.enabled = true;
+            m_prevRangeAttackFlag = true;
+        }
+        else
+        {
+            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
+            {
+                if(m.gameObject.tag == tag)
+                {
+                    m.ChangeHP(m_parameter.attack);
+                }
+            }
+            collider.enabled = false;
+            m_prevRangeAttackFlag = false;
+        }
+    }
+
+    private IEnumerator ResetColliderEnable()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Collider collider = m_rangeAttackZone.GetComponent<Collider>();
+
+        collider.enabled = false;
+        m_prevRangeAttackFlag = false;
+
+        yield break;
     }
 }

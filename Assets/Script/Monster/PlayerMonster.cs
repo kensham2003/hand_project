@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerMonster : Monster
 {
@@ -9,11 +10,6 @@ public class PlayerMonster : Monster
     Camera mainCamera;
     //画面内にいる敵
     [SerializeField] List<GameObject> m_objectsInView = new List<GameObject>();
-
-    /// <summary>
-    /// 範囲攻撃のスクリプト
-    /// </summary>
-    [SerializeField]private RangeAttackZone m_rangeAttackZone;
 
     /// <summary>
     /// 範囲攻撃受ける時生成する爆風オブジェクト
@@ -98,11 +94,29 @@ public class PlayerMonster : Monster
         
         if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
         {
-            if(m_parameter.attackDistance < 5.99f || m_target.GetComponent<EnemyBossMonster>() != null){
+            /* if(m_parameter.attackDistance < 5.99f || m_target.GetComponent<EnemyBossMonster>() != null){
                 m_target.GetComponent<EnemyMonster>().ChangeHP(m_parameter.attack);
             }
             else{
                 m_target.GetComponent<EnemyMonster>().ChangeHPInRange(m_parameter.attack);
+            } */
+
+            switch(m_attackType)
+            {
+                //通常
+                case AttackType.near:
+                NearAttack();
+                break;
+
+                //自分を基準とした範囲攻撃
+                case AttackType.middle:
+                MiddleAttack("Enemy");
+                break;
+
+                //ターゲットを基準とした範囲攻撃
+                case AttackType.far:
+                FarAttack("Enemy");
+                break;
             }
             
             cpuMain.UsageRegister(m_parameter.attackLoad);
@@ -132,6 +146,8 @@ public class PlayerMonster : Monster
         //Debug.Log("death");
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
         instantiateManager.DestroyMonster(this.gameObject);
+
+        //m_coroutine.Yield();
     }
 
     //---------------------------------------------------ここから下は仮後でマネージャーにまとめる
@@ -234,6 +250,7 @@ public class PlayerMonster : Monster
             {
                 //進行方向
                 Vector3 moveVec = m_target.transform.position - transform.position;
+                moveVec.y = 0;
                 //進行方向へ回転
                 m_model.transform.rotation = Quaternion.LookRotation(moveVec,Vector3.up);
                 m_model.transform.Rotate(new Vector3(0f, m_rotationOffset, 0f));
@@ -359,7 +376,7 @@ public class PlayerMonster : Monster
     public void ChangeHPInRange(float val){
         if(m_rangeAttackZone){
             Instantiate(m_explosion, transform.position, Quaternion.identity);
-            foreach(PlayerMonster pm in m_rangeAttackZone.GetPlayerMonstersInRange()){
+            foreach(PlayerMonster pm in m_rangeAttackZone.GetMonstersInRange()){
                 pm.ChangeHP(val);
             }
         }
@@ -367,4 +384,6 @@ public class PlayerMonster : Monster
             this.ChangeHP(val);
         }
     }
+
+    
 }

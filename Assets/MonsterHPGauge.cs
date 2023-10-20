@@ -23,6 +23,7 @@ public class MonsterHPGauge : MonoBehaviour
     /// </summary>
     public void SetGaugeFill(){
         MonsterParamerter mp = m_monster.GetParamerter();
+        if(mp.maxHp == 0)return;
         float amount = mp.hp / mp.maxHp;
         m_hpGauge.fillAmount = amount;
     }

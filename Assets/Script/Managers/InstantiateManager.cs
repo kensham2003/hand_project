@@ -55,7 +55,8 @@ public class InstantiateManager : MonoBehaviour
     public void DestroyMonster(GameObject monster){
         //PoolManager.Instance.ReleaseGameObject(monster);
         m_cpuMain.UsageRegister(monster.GetComponent<Monster>().m_parameter.DestroyLoad);
-        StartCoroutine(DestroyMonsterCoroutine(monster));
+        PoolManager.Instance.ReleaseGameObject(monster);
+        //StartCoroutine(DestroyMonsterCoroutine(monster));
         //Debug.Log("消失 : " + monster.GetComponent<Monster>().paramerter.DestroyLoad.raiseRate);
     }
 
