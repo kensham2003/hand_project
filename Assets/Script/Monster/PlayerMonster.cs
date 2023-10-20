@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerMonster : Monster
 {
@@ -11,14 +12,15 @@ public class PlayerMonster : Monster
     [SerializeField] List<GameObject> m_objectsInView = new List<GameObject>();
 
     /// <summary>
-    /// 範囲攻撃のスクリプト
-    /// </summary>
-    [SerializeField]private RangeAttackZone m_rangeAttackZone;
-
-    /// <summary>
     /// 範囲攻撃受ける時生成する爆風オブジェクト
     /// </summary>
     [SerializeField]private GameObject m_explosion;
+
+    /// <summary>
+    /// 攻撃範囲内に入ったらすぐ攻撃するか
+    /// </summary>
+    [Header("攻撃範囲内に入ったらすぐ攻撃するか")]
+    [SerializeField] private bool m_canFirstAttack = true;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -93,10 +95,35 @@ public class PlayerMonster : Monster
     public override void Action()
     {
         m_attackFlag = false;
+        if(m_target == null)return;
+        if(m_target.activeSelf == false)return;
         
         if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
         {
-            m_target.GetComponent<EnemyMonster>().ChangeHP(m_parameter.attack);
+            /* if(m_parameter.attackDistance < 5.99f || m_target.GetComponent<EnemyBossMonster>() != null){
+                m_target.GetComponent<EnemyMonster>().ChangeHP(m_parameter.attack);
+            }
+            else{
+                m_target.GetComponent<EnemyMonster>().ChangeHPInRange(m_parameter.attack);
+            } */
+
+            switch(m_attackType)
+            {
+                //通常
+                case AttackType.near:
+                NearAttack();
+                break;
+
+                //自分を基準とした範囲攻撃
+                case AttackType.middle:
+                MiddleAttack("Enemy");
+                break;
+
+                //ターゲットを基準とした範囲攻撃
+                case AttackType.far:
+                FarAttack("Enemy");
+                break;
+            }
             
             cpuMain.UsageRegister(m_parameter.attackLoad);
             //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
@@ -113,18 +140,23 @@ public class PlayerMonster : Monster
     public override void Death()
     {
         if(isDead)return;
-        if(m_visibleFlag){
-            OnBecameInvisibleFromCamera();
-            m_visibleFlag = false;
-        }
+        base.Death();
+        // if(m_visibleFlag){
+        //     OnBecameInvisibleFromCamera();
+        //     m_visibleFlag = false;
+        // }
         cpuMain.UsageRegister(m_parameter.DestroyLoad);
         //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
         CPULoad constant = new CPULoad{raiseRate = -1 * m_parameter.constantLoad.raiseRate, impactTime = -1};
         cpuMain.UsageRegister(constant);
         isDead = true;
+        m_monsterHPGauge.gameObject.SetActive(false);
+        m_showHPGaugeCoroutineCount = 0;
         //Debug.Log("death");
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
         instantiateManager.DestroyMonster(this.gameObject);
+
+        //m_coroutine.Yield();
     }
 
     //---------------------------------------------------ここから下は仮後でマネージャーにまとめる
@@ -227,6 +259,10 @@ public class PlayerMonster : Monster
             {
                 //進行方向
                 Vector3 moveVec = m_target.transform.position - transform.position;
+                moveVec.y = 0;
+                //進行方向へ回転
+                m_model.transform.rotation = Quaternion.LookRotation(moveVec,Vector3.up);
+                m_model.transform.Rotate(new Vector3(0f, m_rotationOffset, 0f));
                 moveVec = moveVec.normalized;
 
                 //ターゲットの距離
@@ -267,6 +303,7 @@ public class PlayerMonster : Monster
             
             if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
             {                
+                if(m_canFirstAttack){Action();}
                 Invoke("Action",m_parameter.attackInterval);
                 {
                     m_attackFlag = true;
@@ -347,9 +384,16 @@ public class PlayerMonster : Monster
     /// </summary>
     /// <param name="val">ダメージ量</param>
     public void ChangeHPInRange(float val){
-        Instantiate(m_explosion, transform.position, Quaternion.identity);
-        foreach(PlayerMonster pm in m_rangeAttackZone.GetPlayerMonstersInRange()){
-            pm.ChangeHP(val);
+        if(m_rangeAttackZone){
+            Instantiate(m_explosion, transform.position, Quaternion.identity);
+            foreach(PlayerMonster pm in m_rangeAttackZone.GetMonstersInRange()){
+                pm.ChangeHP(val);
+            }
+        }
+        else{
+            this.ChangeHP(val);
         }
     }
+
+    
 }

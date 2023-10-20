@@ -41,4 +41,8 @@ public class PlayerBossMonster : PlayerMonster
         cpuMain.UsageRegister(cpuLoad);
     }
 
+    protected override void ShowHPGauge()
+    {
+
+    }
 }

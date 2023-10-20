@@ -84,6 +84,8 @@ public class PoolManager : SingletonMonoBehaviour<PoolManager>
     /// </summary>
     /// <param name="obj">インスタンス</param>
     public void ReleaseGameObject(GameObject obj){
+        //既にリリースされたら処理しない
+        if(!obj.activeSelf)return;
         if(m_poolDict.ContainsKey(obj.name)){
             m_poolDict[obj.name].Release(obj);
         }

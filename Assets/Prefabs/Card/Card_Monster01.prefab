@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad31a83cf475484458f6007159880a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cardName: "\u30C6\u30B9\u30C8\u7528\u30E2\u30F3\u30B9\u30BF\u30FC"
-  m_cardText: "\u30C6\u30B9\u30C8\u7528\u30E2\u30F3\u30B9\u30BF\u30FC"
+  m_cardName: "\u30C7\u30FC\u30E2\u30F3\u30CA\u30A4\u30C8"
+  m_cardText: "\u7BC4\u56F2\u653B\u6483\u30671\u4EBA\u30675\u4F53\u306E\u6575\u3092\u76F8\u624B\u306B\u3057\u3066\u6226\u3044\u524D\u7DDA\u3092\u7DAD\u6301\u3059\u308B\u3002"
   m_sprite: {fileID: 21300000, guid: 3d53936a8898356469911e156d96f48c, type: 3}
   m_cardID: 1
   m_hovered: 0

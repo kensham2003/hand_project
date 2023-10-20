@@ -31,7 +31,9 @@ public class LagManager : SingletonMonoBehaviour<LagManager>
     }
 
     private void OnDestroy() {
-        StopCoroutine(m_lagCoroutine);
+        if(m_lagCoroutine != null){
+            StopCoroutine(m_lagCoroutine);
+        }
     }
 
     IEnumerator LagSimulate(){

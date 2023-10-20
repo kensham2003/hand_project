@@ -241,7 +241,7 @@ public class Card : MonoBehaviour
 
         //フラグ関連
         bool cardEffectFlag = false;
-        bool trashFlag = false;
+        m_trashFlag = false;
         foreach(RaycastResult result in rayResult)
         {
             //カード効果
@@ -255,7 +255,7 @@ public class Card : MonoBehaviour
             //削除
             if(result.gameObject.name == "TrashBox")
             {
-                trashFlag = true;
+                m_trashFlag = true;
 
                 break;
             }

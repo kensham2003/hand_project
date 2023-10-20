@@ -141,6 +141,9 @@ MonoBehaviour:
   m_status: 0
   m_target: {fileID: 0}
   m_damageText: {fileID: 0}
+  m_monsterHPGauge: {fileID: 0}
+  m_model: {fileID: 0}
+  m_rotationOffset: 0
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
   m_lifeTime: 10
