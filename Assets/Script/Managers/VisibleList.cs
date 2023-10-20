@@ -11,7 +11,7 @@ public class VisibleList : MonoBehaviour
     /// <summary>
     /// 可視リスト
     /// </summary>
-    private List<GameObject> m_visibleObjects;
+    [SerializeField]private List<GameObject> m_visibleObjects;
 
     /// <summary>
     /// 可視リスト内の空き要素のリスト
@@ -43,6 +43,7 @@ public class VisibleList : MonoBehaviour
             Assert.IsNull(m_visibleObjects[lastEmptyIndex]);
             m_visibleObjects[lastEmptyIndex] = gameObject;
             m_emptyIndex.RemoveAt(m_emptyIndex.Count-1); //最後尾からの処理で速度がO(1)かな？
+            Debug.Log("Add");
             return lastEmptyIndex;
         }
         //空いていないなら最後に挿入

@@ -101,7 +101,7 @@ public class EnemyMonster : Monster
         m_targetDistance = Vector3.Distance(closestPoint, transform.position);
 
         //m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
-        if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
+        if(m_target != null && m_parameter.attackDistance >= m_targetDistance && gameObject.active)
         {
             /* if(m_parameter.attackDistance < 5.99f || m_target.GetComponent<PlayerBossMonster>() != null){
                 m_target.GetComponent<PlayerMonster>().ChangeHP(m_parameter.attack);

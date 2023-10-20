@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TaskKill : EffectMonster
@@ -17,8 +18,9 @@ public class TaskKill : EffectMonster
 
         foreach (GameObject obj in GameObject.Find("Managers").GetComponent<VisibleList>().GetVisibleList())
         {
+            if(obj == null)continue;
             
-            if(obj.gameObject.tag == "Player")
+            if(obj.gameObject.tag == "Player" || obj.gameObject.GetComponent<FireWallObject>() != null)
             {
                 Destroy(obj);
             }
