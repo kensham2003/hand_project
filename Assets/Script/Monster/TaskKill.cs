@@ -17,8 +17,8 @@ public class TaskKill : EffectMonster
 
         foreach (GameObject obj in GameObject.Find("Managers").GetComponent<VisibleList>().GetVisibleList())
         {
-            
-            if(obj.gameObject.tag == "Player")
+            if(obj == null)continue;
+            if(obj.gameObject.tag == "Player" || obj.gameObject.name == "FireWall")
             {
                 Destroy(obj);
             }

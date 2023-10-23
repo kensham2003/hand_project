@@ -184,9 +184,12 @@ public class Monster : MonoBehaviour
         if(cpuMain == null){
             cpuMain = GameObject.Find("Managers").GetComponent<CpuMain>();
         }
+
+        m_parameter.maxHp = m_parameter.hp;
+        if(m_monsterHPGauge == null)return;
         m_monsterHPGauge.gameObject.SetActive(false);
         m_showHPGaugeCoroutineCount = 0;
-        m_parameter.maxHp = m_parameter.hp;
+        
         // //cpuMain.UsageRegister(m_parameter.constantLoad);
         // OnBecameVisibleFromCamera();
     }
