@@ -154,7 +154,8 @@ public class PlayerMonster : Monster
         m_showHPGaugeCoroutineCount = 0;
         //Debug.Log("death");
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
-        instantiateManager.DestroyMonster(this.gameObject);
+        //Debug.Log(m_instantiateManager.gameObject.name);
+        m_instantiateManager.DestroyMonster(this.gameObject);
 
         //m_coroutine.Yield();
     }

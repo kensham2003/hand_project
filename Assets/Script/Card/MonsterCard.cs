@@ -48,7 +48,8 @@ public class MonsterCard : Card
                 
             }
             else{
-                Debug.Log("hi");
+                //画面上に出ないように
+                m_previewObject.transform.position = new Vector3(0, -50f, 0);
             }
             
             //カードがフィールド上にあれば非表示
@@ -65,7 +66,8 @@ public class MonsterCard : Card
             {   
                 //Destroy(m_previewObject);
                 m_previewObject.GetComponent<PlayerMonster>().SetPreview(false);
-                m_instantiateManager.DestroyMonster(m_previewObject);
+                m_previewObject.GetComponent<PlayerMonster>().Death();
+                //m_instantiateManager.DestroyMonster(m_previewObject);
                 m_previewObject = null;
             }
         }
