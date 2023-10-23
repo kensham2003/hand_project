@@ -55,6 +55,7 @@ public class VisibleList : MonoBehaviour
     /// </summary>
     /// <param name="index">オブジェクトが持っているリストインデックス</param>
     public void RemoveVisibleObject(int index){
+        Debug.Log("index = " + index);
         if(m_visibleObjects[index] == null)return;
         m_visibleObjects[index] = null;
         //indexを空いているスロットに登録

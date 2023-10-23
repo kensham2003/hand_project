@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 GetRandomPosition(Bounds bounds){
         return new Vector3(
             Random.Range(bounds.min.x, bounds.max.x),
-            bounds.min.y,
+            0.5f,
             Random.Range(bounds.min.z, bounds.max.z)
         );
     }

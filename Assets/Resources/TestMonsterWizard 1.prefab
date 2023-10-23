@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7589737548005725556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.53, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -153,8 +153,8 @@ MonoBehaviour:
   m_attackType: 0
   m_rangeAttackZone: {fileID: 3849448636992640194}
   m_objectsInView: []
-  m_rangeAttackZone: {fileID: 3849448636992640194}
   m_explosion: {fileID: 6773522324396596067, guid: bc00298cbce107e4fb3700dd89a58723, type: 3}
+  m_canFirstAttack: 1
 --- !u!54 &5114570568138440191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd47dec39030d224a89302ed57b1bc06, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd47dec39030d224a89302ed57b1bc06, type: 3}
       propertyPath: m_LocalPosition.z

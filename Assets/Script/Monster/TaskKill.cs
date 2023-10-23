@@ -20,7 +20,7 @@ public class TaskKill : EffectMonster
             if(obj == null)continue;
             if(obj.gameObject.tag == "Player" || obj.gameObject.name == "FireWall")
             {
-                Destroy(obj);
+                m_instantiateManager.DestroyMonster(obj);
             }
         }
 
