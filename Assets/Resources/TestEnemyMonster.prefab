@@ -231,10 +231,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4780072770720950627, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9ba2b3040634db4fab20826c5b7e58d, type: 2}
+    - target: {fileID: -4780072770720950627, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: a8e312366a513044b9a8dcb7600d1eeb, type: 2}
+    - target: {fileID: -4780072770720950627, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: e52f65399c27be94f8f6b6515a8e003a, type: 2}
+    - target: {fileID: -4780072770720950627, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: e52f65399c27be94f8f6b6515a8e003a, type: 2}
     - target: {fileID: 919132149155446097, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
       propertyPath: m_Name
       value: enemy_goburin
       objectReference: {fileID: 0}
+    - target: {fileID: 4253280567622488715, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e52f65399c27be94f8f6b6515a8e003a, type: 2}
+    - target: {fileID: 4253280567622488715, guid: ff9734b5bd107a54cb23ccb481b4a6aa, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: dfab63eee25082149979319863f0db6d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
