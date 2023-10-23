@@ -189,7 +189,6 @@ public class Monster : MonoBehaviour
         if(m_monsterHPGauge == null)return;
         m_monsterHPGauge.gameObject.SetActive(false);
         m_showHPGaugeCoroutineCount = 0;
-        
         // //cpuMain.UsageRegister(m_parameter.constantLoad);
         // OnBecameVisibleFromCamera();
     }

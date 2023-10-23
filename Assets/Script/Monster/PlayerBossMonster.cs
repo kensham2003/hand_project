@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerBossMonster : PlayerMonster
 {
@@ -36,7 +37,10 @@ public class PlayerBossMonster : PlayerMonster
 
     public override void ChangeHP(float val)
     {
-        base.ChangeHP(val);
+        //base.ChangeHP(val);
+        //デバッグ用ダメージ演出
+        GameObject spawnText = Instantiate(m_damageText,transform.position + new Vector3( 0.0f, 1.0f, 0.0f), Quaternion.identity);
+        spawnText.GetComponent<TextMeshPro>().text = val.ToString();
         CPULoad cpuLoad = new CPULoad{raiseRate = val, impactTime = m_damageTime};
         cpuMain.UsageRegister(cpuLoad);
     }
