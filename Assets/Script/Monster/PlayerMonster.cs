@@ -94,6 +94,7 @@ public class PlayerMonster : Monster
     //ターゲットへ攻撃
     public override void Action()
     {
+        if(!gameObject.activeSelf)return;
         m_attackFlag = false;
         if(m_target == null)return;
         if(m_target.activeSelf == false)return;
@@ -122,9 +123,9 @@ public class PlayerMonster : Monster
 
                 //ターゲットを基準とした範囲攻撃
                 case AttackType.far:
-                if(m_chargeEffect != null && m_spawnAttackEffetc == null)
+                if(m_chargeEffect != null && m_spawnAttackEffect == null)
                 {
-                    Instantiate(m_chargeEffect,transform.position,Quaternion.identity);
+                    m_spawnedChargeEffect = Instantiate(m_chargeEffect,transform.position,Quaternion.identity);
                     Invoke("SpawnAttackEffect",0.8f);
                 }
                 else if(m_chargeEffect == null)
@@ -154,6 +155,10 @@ public class PlayerMonster : Monster
         //     OnBecameInvisibleFromCamera();
         //     m_visibleFlag = false;
         // }
+        if(m_spawnedChargeEffect != null){
+            Destroy(m_spawnedChargeEffect);
+            Debug.Log("aaaa");
+        }
         cpuMain.UsageRegister(m_parameter.DestroyLoad);
         //Debug.Log("消失 : " + paramerter.DestroyLoad.raiseRate);
         CPULoad constant = new CPULoad{raiseRate = -1 * m_parameter.constantLoad.raiseRate, impactTime = -1};
@@ -161,6 +166,20 @@ public class PlayerMonster : Monster
         isDead = true;
         m_monsterHPGauge.gameObject.SetActive(false);
         m_showHPGaugeCoroutineCount = 0;
+        //Debug.Log("death");
+        //InstantiateManager.Instance.DestroyMonster(this.gameObject);
+        //Debug.Log(m_instantiateManager.gameObject.name);
+        m_instantiateManager.DestroyMonster(this.gameObject);
+
+        //m_coroutine.Yield();
+    }
+
+        public void PreviewDeath()
+    {
+        if(isDead)return;
+        base.Death();
+        isDead = true;
+        m_monsterHPGauge.gameObject.SetActive(false);
         //Debug.Log("death");
         //InstantiateManager.Instance.DestroyMonster(this.gameObject);
         //Debug.Log(m_instantiateManager.gameObject.name);
