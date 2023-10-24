@@ -215,7 +215,7 @@ public class Monster : MonoBehaviour
         if(m_visibleListIndex < 0){
             OnBecameVisibleFromCamera();
         }
-        // //cpuMain.UsageRegister(m_parameter.constantLoad);
+        //cpuMain.UsageRegister(m_parameter.constantLoad);
         // OnBecameVisibleFromCamera();
     }
 
