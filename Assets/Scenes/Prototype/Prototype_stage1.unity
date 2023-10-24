@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_maxCount: 4
   m_handsCard: []
   m_drawInterval: 0.1
-  m_lockOnEffect: {fileID: 0}
+  m_lockOnEffect: {fileID: 2316881878268189752, guid: 0b30a8df181065a4ca5d35282a1cdb43, type: 3}
   m_drawType: 0
 --- !u!4 &1708244789
 Transform:
