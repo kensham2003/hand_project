@@ -16,6 +16,12 @@ public class DisasterObject : EffectMonster
     [Tooltip("ダメージ量")]
     [SerializeField] private float m_damage = 3.0f;
 
+    /// <summary>
+    /// 爆発エフェクト
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    [SerializeField] private GameObject m_explosion;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -32,6 +38,8 @@ public class DisasterObject : EffectMonster
                 }
             }
         }
+
+        Instantiate(m_explosion,transform.position,Quaternion.identity);
 
         Death();
     }
