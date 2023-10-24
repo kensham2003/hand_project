@@ -108,6 +108,11 @@ public class Card : MonoBehaviour
     protected bool m_trashFlag = false;
 
     protected Canvas m_canvas;
+    
+    /// <summary>
+    /// ゴミ箱
+    /// </summary>
+    protected GameObject m_TrashBox;
 
     protected virtual void Start()
     {
@@ -129,6 +134,8 @@ public class Card : MonoBehaviour
         m_layerMask = (1 << LayerMask.NameToLayer("Floor")) | (1 << LayerMask.NameToLayer("PlayerMonster"));
         //キャンバス取得
         m_canvas = FindObjectOfType<Canvas>();
+        //ゴミ箱取得
+        m_TrashBox = GameObject.Find("TrashBox");
     }
 
     // Update is called once per frame
@@ -147,7 +154,15 @@ public class Card : MonoBehaviour
 
         //マウスがどのUIの上にいるか確認
         DetectUIUnderMouse();
-
+        if(m_trashFlag)
+        {
+            //ゴミ箱拡大
+            m_TrashBox.transform.localScale = new Vector3(1.2f,1.2f,1.2f);
+        }
+        else
+        {
+            m_TrashBox.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
+        }
         //マウスがカードの上にあるか判断
         //horverd = CheckMouseOnCard();
         //Debug.Log(gameObject.name + " : " + horverd);
