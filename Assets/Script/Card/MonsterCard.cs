@@ -66,7 +66,8 @@ public class MonsterCard : Card
             {   
                 //Destroy(m_previewObject);
                 m_previewObject.GetComponent<PlayerMonster>().SetPreview(false);
-                m_previewObject.GetComponent<PlayerMonster>().Death();
+                m_previewObject.GetComponent<PlayerMonster>().m_parameter.DestroyLoad.raiseRate = 0;
+                m_previewObject.GetComponent<PlayerMonster>().PreviewDeath();
                 //m_instantiateManager.DestroyMonster(m_previewObject);
                 m_previewObject = null;
             }
