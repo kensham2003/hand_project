@@ -15,7 +15,8 @@ public class MonsterHPGauge : MonoBehaviour
         //m_hpGauge = GetComponent<Image>();
         SetGaugeFill();
         m_rectTransform = GetComponent<RectTransform>();
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
+        //Debug.Log("false");
     }
 
     /// <summary>
