@@ -49,7 +49,11 @@ public class FiraWallCard : SpellCard
         }
         else
         {
-            Destroy(m_spawRangeObject);
+            if(m_spawRangeObject)
+            {
+                m_spawnFlag = false;
+                Destroy(m_spawRangeObject);
+            }
         }
     }
 }

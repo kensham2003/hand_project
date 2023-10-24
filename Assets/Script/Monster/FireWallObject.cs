@@ -50,6 +50,11 @@ public class FireWallObject : EffectMonster
     private MeshRenderer m_meshRenderer;
 
     /// <summary>
+    /// 点滅させるため
+    /// </summary>
+    private GameObject m_FlashObject;
+
+    /// <summary>
     /// 生成から何秒後に点滅し始めるか
     /// </summary>
     [SerializeField] private float m_flashTime = 8.0f;
@@ -63,9 +68,10 @@ public class FireWallObject : EffectMonster
     protected override void Start()
     {
         base.Start();
-        
-        m_meshRenderer = GetComponent<MeshRenderer>();
 
+        m_meshRenderer = GetComponent<MeshRenderer>();
+        m_FlashObject = transform.GetChild(0).gameObject;
+        
         Invoke("Death", m_lifeTime);
         InvokeRepeating("Flash",m_flashTime,m_FlashInterval);
     }
@@ -131,6 +137,6 @@ public class FireWallObject : EffectMonster
     /// </summary>
     public void Flash()
     {
-        m_meshRenderer.enabled = !m_meshRenderer.enabled;
+        m_FlashObject.active = !m_FlashObject.active;
     }
 }
