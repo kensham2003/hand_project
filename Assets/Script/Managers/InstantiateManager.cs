@@ -44,7 +44,30 @@ public class InstantiateManager : MonoBehaviour
         //追加　ID設定
         m.m_parameter.monsterID = cardId;
         m_cpuMain.UsageRegister(m.m_parameter.spawnLoad);
-        //Debug.Log("生成 : " + m.paramerter.spawnLoad.raiseRate);
+        //Debug.Log("生成 : " + m.m_parameter.spawnLoad.raiseRate);
+        return monsterObj;
+    }
+
+    /// <summary>
+    /// モンスターのプレビューを生成する
+    /// </summary>
+    /// <param name="cardId">カードID</param>
+    /// <param name="position">スポーン位置情報</param>
+    /// <param name="rotation">スポーン時の回転情報</param>
+    /// <returns>生成されたモンスター</returns>
+    public GameObject InstantiateMonsterPreview(int cardId, Vector3 position, Quaternion rotation){
+        GameObject monsterPrefab = CardMonsterDictionary.Instance.GetMonsterPrefab(cardId);
+        GameObject monsterObj = PoolManager.Instance.GetGameObject(monsterPrefab, position, rotation);
+        Monster m = monsterObj.GetComponent<Monster>();
+        m.visibleList = m_visibleList;
+        m.cpuMain = m_cpuMain;
+        m.instantiateManager = this;
+        m.m_parameter = CardMonsterDictionary.Instance.GetMonsterParamerter(cardId);
+        m.isDead = false;
+        //追加　ID設定
+        m.m_parameter.monsterID = cardId;
+        //m_cpuMain.UsageRegister(m.m_parameter.spawnLoad);
+        //Debug.Log("プレビュー生成 : ");
         return monsterObj;
     }
 

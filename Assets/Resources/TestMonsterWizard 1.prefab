@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7589737548005725556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.53, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -150,11 +150,14 @@ MonoBehaviour:
   m_rotationOffset: 0
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
-  m_attackType: 0
+  m_attackType: 2
   m_rangeAttackZone: {fileID: 3849448636992640194}
+  m_chargeEffect: {fileID: 6079107003473353304, guid: 300e85ecea2c1e0479386944a3552068, type: 3}
+  m_attackEffect: {fileID: 5507192688690570318, guid: 58b925ef66a456f4e875e5d6d23f3f46, type: 3}
+  m_spawnAttackEffetc: {fileID: 0}
   m_objectsInView: []
-  m_rangeAttackZone: {fileID: 3849448636992640194}
   m_explosion: {fileID: 6773522324396596067, guid: bc00298cbce107e4fb3700dd89a58723, type: 3}
+  m_canFirstAttack: 1
 --- !u!54 &5114570568138440191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -329,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd47dec39030d224a89302ed57b1bc06, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd47dec39030d224a89302ed57b1bc06, type: 3}
       propertyPath: m_LocalPosition.z
@@ -487,6 +490,10 @@ PrefabInstance:
       value: RangeAttackZone
       objectReference: {fileID: 0}
     - target: {fileID: 5360893934744041707, guid: d7badef46bbd09444957d287ffc78d41, type: 3}
+      propertyPath: m_monster
+      value: 
+      objectReference: {fileID: 1508291960093102218}
+    - target: {fileID: 5360893934744041707, guid: d7badef46bbd09444957d287ffc78d41, type: 3}
       propertyPath: m_playerMonster
       value: 
       objectReference: {fileID: 1508291960093102218}
@@ -528,6 +535,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5957178366311095342, guid: d7badef46bbd09444957d287ffc78d41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492596461544354382, guid: d7badef46bbd09444957d287ffc78d41, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

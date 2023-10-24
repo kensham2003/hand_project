@@ -34,7 +34,7 @@ public class MonsterCard : Card
             //プレビュー表示
             if(m_previewObject == null)
             {
-                m_previewObject = m_instantiateManager.InstantiateMonster(m_cardID,new Vector3(0,1.0f,0.0f), Quaternion.identity);
+                m_previewObject = m_instantiateManager.InstantiateMonsterPreview(m_cardID,new Vector3(0,1.0f,0.0f), Quaternion.identity);
                 m_previewObject.GetComponent<PlayerMonster>().SetPreview(true);
                 m_previewObject.GetComponent<Collider>().enabled = false;
             }
@@ -46,6 +46,10 @@ public class MonsterCard : Card
                 
                 m_previewObject.transform.position = hit.point;
                 
+            }
+            else{
+                //画面上に出ないように
+                m_previewObject.transform.position = new Vector3(0, -50f, 0);
             }
             
             //カードがフィールド上にあれば非表示
@@ -60,7 +64,11 @@ public class MonsterCard : Card
             //プレビュー非表示
             if(m_previewObject != null)
             {   
-                Destroy(m_previewObject);
+                //Destroy(m_previewObject);
+                m_previewObject.GetComponent<PlayerMonster>().SetPreview(false);
+                m_previewObject.GetComponent<PlayerMonster>().Death();
+                //m_instantiateManager.DestroyMonster(m_previewObject);
+                m_previewObject = null;
             }
         }
     }
@@ -74,7 +82,7 @@ public class MonsterCard : Card
         // cpuLoad.impactTime = 7.0f;
         // CpuMain.Instance.UsageRegister(cpuLoad);
 
-        m_instantiateManager.InstantiateMonster(m_cardID, hit.point + new Vector3(0,1.0f,0.0f), Quaternion.identity);
+        GameObject monsterObj = m_instantiateManager.InstantiateMonster(m_cardID, hit.point + new Vector3(0,0.5f,0.0f), Quaternion.identity);
 
         m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
     }

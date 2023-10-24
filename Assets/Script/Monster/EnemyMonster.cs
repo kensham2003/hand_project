@@ -54,6 +54,8 @@ public class EnemyMonster : Monster
     [Header("攻撃範囲内に入ったらすぐ攻撃するか")]
     [SerializeField] private bool m_canFirstAttack = false;
 
+
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -119,11 +121,13 @@ public class EnemyMonster : Monster
 
                 //自分を基準とした範囲攻撃
                 case AttackType.middle:
+                
                 MiddleAttack("Player");
                 break;
 
                 //ターゲットを基準とした範囲攻撃
                 case AttackType.far:
+                if(m_chargeEffect != null)Instantiate(m_chargeEffect,transform.position,Quaternion.identity);
                 FarAttack("Player");
                 break;
             }

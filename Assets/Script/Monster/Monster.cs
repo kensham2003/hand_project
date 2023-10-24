@@ -159,7 +159,24 @@ public class Monster : MonoBehaviour
 
     private bool m_prevRangeAttackFlag;
 
+        /// <summary>
+    /// チャージエフェクト
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    [SerializeField] protected GameObject m_chargeEffect;
+        /// <summary>
+    /// 攻撃エフェクト
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    [SerializeField] protected GameObject m_attackEffect;
     
+    /// <summary>
+    /// 生成した攻撃エフェクト
+    /// </summary>
+    [SerializeField] protected GameObject m_spawnAttackEffetc;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -189,6 +206,9 @@ public class Monster : MonoBehaviour
         if(m_monsterHPGauge == null)return;
         m_monsterHPGauge.gameObject.SetActive(false);
         m_showHPGaugeCoroutineCount = 0;
+        if(m_visibleListIndex < 0){
+            OnBecameVisibleFromCamera();
+        }
         // //cpuMain.UsageRegister(m_parameter.constantLoad);
         // OnBecameVisibleFromCamera();
     }
@@ -434,11 +454,11 @@ public class Monster : MonoBehaviour
     {
         Collider collider = m_rangeAttackZone.GetComponent<Collider>();
         m_rangeAttackZone.transform.position = m_target.transform.position;
-
         if(m_prevRangeAttackFlag == false)
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
+            Debug.Log("1");
         }
         else
         {
@@ -451,6 +471,7 @@ public class Monster : MonoBehaviour
             }
             collider.enabled = false;
             m_prevRangeAttackFlag = false;
+            Debug.Log("2");
         }
     }
 
@@ -463,5 +484,55 @@ public class Monster : MonoBehaviour
         m_prevRangeAttackFlag = false;
 
         yield break;
+    }
+
+    /// <summary>
+    /// 攻撃エフェクト生成
+    /// </summary> <summary>
+    /// 
+    /// </summary>
+    protected void SpawnAttackEffect()
+    {
+        if(m_spawnAttackEffetc != null)
+        {
+            return;
+        }
+        
+        m_spawnAttackEffetc = Instantiate(m_attackEffect,transform.position,Quaternion.identity);
+
+        if(m_target != null)
+        {
+            m_spawnAttackEffetc.transform.LookAt(m_target.transform);
+        }
+        
+        if(gameObject.tag == "Player")
+        {
+            StartCoroutine( AttackCoroutine(1.0f, "Enemy"));
+        }
+        else
+        {
+            StartCoroutine( AttackCoroutine(1.0f, "Player"));
+        }
+    }
+
+    private IEnumerator AttackCoroutine(float time,string tag)
+    {
+        switch(m_attackType)
+        {
+            case AttackType.near:
+            new WaitForSeconds(time);
+            NearAttack();
+            yield break;
+
+            case AttackType.middle:
+            new WaitForSeconds(time);
+            MiddleAttack(tag);
+            yield break;
+            case AttackType.far:
+            FarAttack(tag);
+            yield return new WaitForSeconds(time);
+            FarAttack(tag);
+            yield break;
+        }
     }
 }
