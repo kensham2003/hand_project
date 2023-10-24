@@ -83,6 +83,24 @@ MonoBehaviour:
     m_Objects:
     - {fileID: -3220625627355130282}
     - {fileID: -6441292518223847532}
+--- !u!114 &-5510842104655032175
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4cf9ef669dbf14da72200c4eaa7d7b, type: 3}
+  m_Name: Signal Emitter With Two Int(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  m_Time: 30
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 648454af555b5644395201d07d64c55a, type: 2}
+  parameter1: 12
+  parameter2: 1
 --- !u!114 &-3220625627355130282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,11 +129,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: New Timeline
+  m_Name: 2men Timeline
   m_EditorClassIdentifier: 
   m_Version: 0
   m_Tracks:
   - {fileID: -5725975026676910624}
+  - {fileID: 5732059411460679452}
   - {fileID: -6068416568804392738}
   m_FixedDuration: 0
   m_EditorSettings:
@@ -123,3 +142,27 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 0}
+--- !u!114 &5732059411460679452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track (2)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -5510842104655032175}
