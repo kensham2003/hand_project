@@ -34,7 +34,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: alp_mt_star
-  m_Shader: {fileID: -6465566751694194690, guid: cd5918e0d04141848a6bd48891c109de, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 19c701ad0ee6c9c469b19e9df7cab4e9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
