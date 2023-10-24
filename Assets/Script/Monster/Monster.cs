@@ -165,6 +165,12 @@ public class Monster : MonoBehaviour
     /// 
     /// </summary>
     [SerializeField] protected GameObject m_chargeEffect;
+
+    /// <summary>
+    /// 生成したチャージエフェクト
+    /// </summary>
+    protected GameObject m_spawnedChargeEffect;
+
         /// <summary>
     /// 攻撃エフェクト
     /// </summary> <summary>
@@ -175,7 +181,7 @@ public class Monster : MonoBehaviour
     /// <summary>
     /// 生成した攻撃エフェクト
     /// </summary>
-    [SerializeField] protected GameObject m_spawnAttackEffetc;
+    [SerializeField] protected GameObject m_spawnAttackEffect;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -190,7 +196,7 @@ public class Monster : MonoBehaviour
         }
 
         m_parameter.maxHp = m_parameter.hp;
-        cpuMain.UsageRegister(m_parameter.constantLoad);
+        //cpuMain.UsageRegister(m_parameter.constantLoad);
         OnBecameVisibleFromCamera();
     }
 
@@ -458,7 +464,6 @@ public class Monster : MonoBehaviour
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
-            Debug.Log("1");
         }
         else
         {
@@ -471,7 +476,6 @@ public class Monster : MonoBehaviour
             }
             collider.enabled = false;
             m_prevRangeAttackFlag = false;
-            Debug.Log("2");
         }
     }
 
@@ -493,16 +497,17 @@ public class Monster : MonoBehaviour
     /// </summary>
     protected void SpawnAttackEffect()
     {
-        if(m_spawnAttackEffetc != null)
+        if(m_spawnAttackEffect != null)
         {
             return;
         }
+        if(!gameObject.activeSelf)return;
         
-        m_spawnAttackEffetc = Instantiate(m_attackEffect,transform.position,Quaternion.identity);
+        m_spawnAttackEffect = Instantiate(m_attackEffect,transform.position,Quaternion.identity);
 
         if(m_target != null)
         {
-            m_spawnAttackEffetc.transform.LookAt(m_target.transform);
+            m_spawnAttackEffect.transform.LookAt(m_target.transform);
         }
         
         if(gameObject.tag == "Player")

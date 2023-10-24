@@ -67,8 +67,16 @@ MonoBehaviour:
   m_status: 0
   m_target: {fileID: 0}
   m_damageText: {fileID: 0}
+  m_monsterHPGauge: {fileID: 0}
+  m_model: {fileID: 0}
+  m_rotationOffset: 0
   m_initMaterial: {fileID: 0}
   m_debugMaterial: {fileID: 0}
+  m_attackType: 0
+  m_rangeAttackZone: {fileID: 0}
+  m_chargeEffect: {fileID: 0}
+  m_attackEffect: {fileID: 0}
+  m_spawnAttackEffetc: {fileID: 0}
   m_cpuLoad:
-    raiseRate: -10
+    raiseRate: 0
     impactTime: -1
