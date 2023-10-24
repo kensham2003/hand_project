@@ -458,7 +458,6 @@ public class Monster : MonoBehaviour
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
-            Debug.Log("1");
         }
         else
         {
@@ -471,7 +470,6 @@ public class Monster : MonoBehaviour
             }
             collider.enabled = false;
             m_prevRangeAttackFlag = false;
-            Debug.Log("2");
         }
     }
 
@@ -497,7 +495,7 @@ public class Monster : MonoBehaviour
         {
             return;
         }
-        
+
         m_spawnAttackEffetc = Instantiate(m_attackEffect,transform.position,Quaternion.identity);
 
         if(m_target != null)
