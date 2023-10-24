@@ -97,8 +97,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_cpuMain: {fileID: 1941683551076026537}
   m_canvas: {fileID: 0}
-  m_gameoverSceneName: 
-  m_clearSceneName: Prototype_clear
+  m_gameoverSceneName: Alpha_gameover
+  m_clearSceneName: Alpha_clear
   m_enemyManager: {fileID: 2075905877989200917}
   m_uiTimer: {fileID: 0}
 --- !u!114 &2687695624502221242
