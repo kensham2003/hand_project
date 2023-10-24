@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageManager : SingletonMonoBehaviour<StageManager>
 {
@@ -21,7 +22,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
     new private void Awake() {
         base.Awake();
-        m_currentStage = 1;
+        string nowScene = SceneManager.GetActiveScene().name;
+        char stageNum = nowScene[nowScene.Length - 1];
+        m_currentStage = stageNum - '0';
     }
 
     public int GetNextStage(){
