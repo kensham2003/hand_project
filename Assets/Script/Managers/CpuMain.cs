@@ -50,8 +50,15 @@ public class CpuMain : MonoBehaviour
     /// カウントダウンフラグ
     /// </summary>
     [SerializeField] bool m_countDown = false;
+
+    private AudioSource m_audioSource;
+
+    private bool m_isPlayedSound;
+
     private void Awake() {
         m_usage = 0;
+        m_audioSource = GetComponent<AudioSource>();
+        m_isPlayedSound = false;
     }
 
     /// <summary>
@@ -59,6 +66,13 @@ public class CpuMain : MonoBehaviour
     /// </summary>
     /// <param name="amount">変化量</param>
     private void UsageChange(float amount){
+        if(!m_isPlayedSound){
+            if(m_usage < 75f && m_usage + amount >= 75f){
+                m_audioSource.Play();
+                m_isPlayedSound = true;
+                Invoke("CanPlaySound", 1f);
+            }
+        }
         m_usage += amount;
         if(m_usage >= m_gameoverPercentage){
             m_usage = m_gameoverPercentage;
@@ -105,4 +119,6 @@ public class CpuMain : MonoBehaviour
     public float GetGameOverPercentage(){return m_gameoverPercentage;} 
     public bool GetCountDownFlag(){return m_countDown;}
     public float GetCotuntDownTime(){return m_countDownTime;}
+
+    private void CanPlaySound(){m_isPlayedSound = false;}
 }
