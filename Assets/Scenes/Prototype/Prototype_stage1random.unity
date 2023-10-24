@@ -1055,9 +1055,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsPrefab:
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
-  - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
+  - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
   - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
-  - {fileID: 2666206380844969574, guid: 4d586a636ead0cc42995a3220aab74d1, type: 3}
+  - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
 --- !u!4 &1356730244
 Transform:
   m_ObjectHideFlags: 0
@@ -1409,11 +1415,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1693dacdf8c0e3b458b80dbce7dc35f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxCount: 4
+  m_maxCount: 5
   m_handsCard: []
-  m_drawInterval: 0.1
+  m_drawInterval: 1
   m_lockOnEffect: {fileID: 0}
-  m_drawType: 0
+  m_drawType: 1
 --- !u!4 &1708244789
 Transform:
   m_ObjectHideFlags: 0
