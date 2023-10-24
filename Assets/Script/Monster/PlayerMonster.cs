@@ -116,12 +116,21 @@ public class PlayerMonster : Monster
 
                 //自分を基準とした範囲攻撃
                 case AttackType.middle:
+                
                 MiddleAttack("Enemy");
                 break;
 
                 //ターゲットを基準とした範囲攻撃
                 case AttackType.far:
-                FarAttack("Enemy");
+                if(m_chargeEffect != null && m_spawnAttackEffetc == null)
+                {
+                    Instantiate(m_chargeEffect,transform.position,Quaternion.identity);
+                    Invoke("SpawnAttackEffect",0.8f);
+                }
+                else if(m_chargeEffect == null)
+                {
+                    FarAttack("Enemy");
+                }
                 break;
             }
             
