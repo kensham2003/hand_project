@@ -128,7 +128,7 @@ public class EnemyMonster : Monster
                 //ターゲットを基準とした範囲攻撃
                 //ターゲットを基準とした範囲攻撃
                 case AttackType.far:
-                if(m_chargeEffect != null && m_spawnAttackEffetc == null)
+                if(m_chargeEffect != null && m_spawnAttackEffect == null)
                 {
                     Instantiate(m_chargeEffect,transform.position,Quaternion.identity);
                     Invoke("SpawnAttackEffect",0.8f);
