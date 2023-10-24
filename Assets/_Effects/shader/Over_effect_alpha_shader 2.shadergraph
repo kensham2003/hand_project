@@ -441,7 +441,7 @@
     },
     "m_ActiveTargets": [
         {
-            "m_Id": "ac71f39df9154432867d2c317324b396"
+            "m_Id": "cc632d855ef1489bb1bff34bb0bb65f5"
         }
     ]
 }
@@ -1287,6 +1287,12 @@
 }
 
 {
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
+    "m_ObjectId": "500b446c84a840fdbbe02de1ac9ff6ba"
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.UVMaterialSlot",
     "m_ObjectId": "54fd85c8b971429c9e7a6abd8a6a9c56",
@@ -1725,12 +1731,6 @@
         "z": 0.0,
         "w": 0.0
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.Rendering.BuiltIn.ShaderGraph.BuiltInUnlitSubTarget",
-    "m_ObjectId": "7c606f97654d4039bedba7107e47952b"
 }
 
 {
@@ -2359,23 +2359,6 @@
 }
 
 {
-    "m_SGVersion": 2,
-    "m_Type": "UnityEditor.Rendering.BuiltIn.ShaderGraph.BuiltInTarget",
-    "m_ObjectId": "ac71f39df9154432867d2c317324b396",
-    "m_ActiveSubTarget": {
-        "m_Id": "7c606f97654d4039bedba7107e47952b"
-    },
-    "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 1,
-    "m_ZWriteControl": 0,
-    "m_ZTestMode": 4,
-    "m_AlphaMode": 0,
-    "m_RenderFace": 0,
-    "m_AlphaClip": false,
-    "m_CustomEditorGUI": ""
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "b0225bc5a6244a36b012eceae7668580",
@@ -2643,6 +2626,28 @@
         "w": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
+    "m_ObjectId": "cc632d855ef1489bb1bff34bb0bb65f5",
+    "m_Datas": [],
+    "m_ActiveSubTarget": {
+        "m_Id": "500b446c84a840fdbbe02de1ac9ff6ba"
+    },
+    "m_AllowMaterialOverride": false,
+    "m_SurfaceType": 1,
+    "m_ZTestMode": 4,
+    "m_ZWriteControl": 0,
+    "m_AlphaMode": 0,
+    "m_RenderFace": 0,
+    "m_AlphaClip": false,
+    "m_CastShadows": true,
+    "m_ReceiveShadows": true,
+    "m_SupportsLODCrossFade": false,
+    "m_CustomEditorGUI": "",
+    "m_SupportVFX": false
 }
 
 {
