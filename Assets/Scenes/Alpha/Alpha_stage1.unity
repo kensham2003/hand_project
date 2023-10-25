@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_maxCount: 4
   m_handsCard: []
   m_drawInterval: 0.1
-  m_lockOnEffect: {fileID: 0}
+  m_lockOnEffect: {fileID: 2316881878268189752, guid: 0b30a8df181065a4ca5d35282a1cdb43, type: 3}
   m_drawType: 0
 --- !u!4 &1708244789
 Transform:
