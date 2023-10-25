@@ -467,13 +467,13 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
-            {
-                if(m.gameObject.tag == tag)
-                {
-                    m.ChangeHP(m_parameter.attack);
-                }
-            }
+            // foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
+            // {
+            //     if(m.gameObject.tag == tag)
+            //     {
+            //         m.ChangeHP(m_parameter.attack);
+            //     }
+            // }
         }
         
     }
