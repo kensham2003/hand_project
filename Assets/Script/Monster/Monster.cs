@@ -455,13 +455,23 @@ public class Monster : MonoBehaviour
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
-            
+
             if(m_attackEffect != null)
             {
                 Instantiate(m_attackEffect,transform.position,transform.rotation);
             }
 
             m_coroutine = StartCoroutine(ResetColliderEnable());   
+        }
+        else
+        {
+            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
+            {
+                if(m.gameObject.tag == tag)
+                {
+                    m.ChangeHP(m_parameter.attack);
+                }
+            }
         }
         
     }
