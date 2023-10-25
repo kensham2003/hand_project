@@ -94,8 +94,8 @@ public class PlayerMonster : Monster
     //ターゲットへ攻撃
     public override void Action()
     {
-        if(!gameObject.activeSelf)return;
         m_attackFlag = false;
+        if(!gameObject.activeSelf)return;
         if(m_target == null)return;
         if(m_target.activeSelf == false)return;
         
@@ -357,6 +357,8 @@ public class PlayerMonster : Monster
         
         //進行方向
         Vector3 moveVec = m_target.transform.position - transform.position;
+        m_model.transform.rotation = Quaternion.LookRotation(moveVec,Vector3.up);
+        m_model.transform.Rotate(new Vector3(0f, m_rotationOffset, 0f));
         moveVec = moveVec.normalized;
 
         //ターゲットの距離

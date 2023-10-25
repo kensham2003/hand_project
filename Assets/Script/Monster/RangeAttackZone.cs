@@ -37,7 +37,7 @@ public class RangeAttackZone : MonoBehaviour
                 AddToList(m);
                 ReliableOnTriggerExit.NotifyTriggerEnter(other, gameObject, OnTriggerExit);
 
-                m.ChangeHP(m_damageValue);
+                //m.ChangeHP(m_damageValue);
             }
         }
     }

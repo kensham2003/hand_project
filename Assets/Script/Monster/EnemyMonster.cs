@@ -95,8 +95,8 @@ public class EnemyMonster : Monster
 
     public override void Action()
     {
-        if(gameObject.activeSelf == false)return;
         m_attackFlag = false;
+        if(gameObject.activeSelf == false)return;
         if(m_target == null)return;
         if(m_target.activeSelf == false)return;
         //距離を計算
