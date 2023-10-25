@@ -17,6 +17,8 @@ public class CpuUsageChangePreview : MonoBehaviour
     /// </summary>
     /// <param name="change"></param>
     public void SetText(float change){
+        if(m_text == null)return;
+        
         if(change == 0){
             m_text.text = "";
             return;
