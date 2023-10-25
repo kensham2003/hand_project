@@ -46,7 +46,7 @@ public class ChangedCpuUsage : MonoBehaviour
         }
     }
 
-    public void SetText(int changed){
+    public void SetText(float changed){
         if(changed == 0)return;
         m_text = GetComponent<TextMeshProUGUI>();
         string text = "";
@@ -60,7 +60,7 @@ public class ChangedCpuUsage : MonoBehaviour
             text += "-";
             m_ySpeedWithDirection = -1 * m_ySpeed;
         }
-        text += Mathf.Abs(changed).ToString() + "%";
+        text += Mathf.Abs(changed).ToString("F1") + "%";
         
         m_text.text = text;
     }

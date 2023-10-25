@@ -14,11 +14,15 @@ public class MonsterCard : Card
     /// 
     /// </summary>
     private GameObject m_previewObject;
+
+    private AudioSource m_audioSource;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         m_image.sprite = m_sprite;
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -84,7 +88,7 @@ public class MonsterCard : Card
         // CpuMain.Instance.UsageRegister(cpuLoad);
 
         GameObject monsterObj = m_instantiateManager.InstantiateMonster(m_cardID, hit.point + new Vector3(0,0.5f,0.0f), Quaternion.identity);
-
+        m_audioSource.Play();
         m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
     }
 

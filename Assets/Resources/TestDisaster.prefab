@@ -74,5 +74,9 @@ MonoBehaviour:
   m_debugMaterial: {fileID: 0}
   m_attackType: 0
   m_rangeAttackZone: {fileID: 0}
+  m_chargeEffect: {fileID: 0}
+  m_attackEffect: {fileID: 0}
+  m_spawnAttackEffect: {fileID: 0}
   m_damageRange: 3
   m_damage: 10
+  m_explosion: {fileID: 979724645708640546, guid: 4d037bf9bdfe880498a1e3e2bd473be1, type: 3}

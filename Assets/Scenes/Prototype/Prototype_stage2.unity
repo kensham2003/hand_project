@@ -983,8 +983,8 @@ MonoBehaviour:
   cardsPrefab:
   - {fileID: 1205900353765170463, guid: f06c98badebbeb3458925c1fd2901930, type: 3}
   - {fileID: 1205900353765170463, guid: c77d0e09c3a43c846b73125bdcd1920f, type: 3}
-  - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
   - {fileID: 2666206380844969574, guid: 7afffc5e5c7c2ad4db2202f8bc278475, type: 3}
+  - {fileID: 2666206380844969574, guid: 69bf2e67a96074e4abbe7120d8f2bb37, type: 3}
   - {fileID: 2666206380844969574, guid: 4d586a636ead0cc42995a3220aab74d1, type: 3}
 --- !u!4 &1356730244
 Transform:
@@ -1201,6 +1201,10 @@ PrefabInstance:
     - target: {fileID: 1451758689323650897, guid: 5dfa3d9e0bf41bd4db4b7d28352445c8, type: 3}
       propertyPath: m_Name
       value: Managers
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941683551076026537, guid: 5dfa3d9e0bf41bd4db4b7d28352445c8, type: 3}
+      propertyPath: m_gameoverPercentage
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5678151472852387375, guid: 5dfa3d9e0bf41bd4db4b7d28352445c8, type: 3}
       propertyPath: m_canvas
@@ -1628,10 +1632,26 @@ PrefabInstance:
       propertyPath: m_cpuMain
       value: 
       objectReference: {fileID: 1650062576}
+    - target: {fileID: 1689595221885775900, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_cpu
+      value: 
+      objectReference: {fileID: 1650062576}
+    - target: {fileID: 1892898348254412576, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -203
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892898348254412576, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -307
+      objectReference: {fileID: 0}
     - target: {fileID: 2588919186079798516, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 2811988931267204953, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -16.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2932421901282650833, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
       propertyPath: m_cpuMain
       value: 
@@ -1640,6 +1660,18 @@ PrefabInstance:
       propertyPath: cpuMain
       value: 
       objectReference: {fileID: 1650062576}
+    - target: {fileID: 4014436028882062093, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4014436028882062093, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4014436028882062093, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5777109646678291163, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1652,6 +1684,10 @@ PrefabInstance:
       propertyPath: monsterUI
       value: 
       objectReference: {fileID: 21300000, guid: f4828e13103559f44896107791ef6c87, type: 3}
+    - target: {fileID: 7962291991864214002, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8569898126896594391, guid: e51ebc6b1039d8a4eb4b32dc61883edc, type: 3}
       propertyPath: m_Pivot.x
       value: 0

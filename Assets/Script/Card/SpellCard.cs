@@ -15,11 +15,14 @@ public class SpellCard : Card
     /// </summary>
     private GameObject m_spawnEmpasis;
 
+    private AudioSource m_audioSource;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         m_image.sprite = m_sprite;
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -47,7 +50,9 @@ public class SpellCard : Card
         // GameObject.Find("InstantiateManager").GetComponent<InstantiateManager>().
         // InstantiateMonster(cardID, hit.point, Quaternion.identity);
         m_instantiateManager.InstantiateMonster(m_cardID, hit.point, Quaternion.identity);
-
+        if(m_audioSource){
+            m_audioSource.Play();
+        }
         m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
     }
 

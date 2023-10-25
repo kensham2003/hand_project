@@ -6,24 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Prototype/Prototype_title.unity
-    guid: d9e95668e7300b84cb5c10833b0e0472
+    path: Assets/Scenes/Alpha/Alpha_title.unity
+    guid: f3790e13ce702164a96a01e7d27504f1
   - enabled: 1
-    path: Assets/Scenes/Prototype/Prototype_select.unity
-    guid: f9b3b50417b03c84fa43075d96a01282
+    path: Assets/Scenes/Alpha/Alpha_select.unity
+    guid: cc1fa20ba7e03694581fa0690577f808
   - enabled: 1
-    path: Assets/Scenes/Prototype/Prototype_stage1.unity
-    guid: a641ca15094331d4a8499c527abe3280
+    path: Assets/Scenes/Alpha/Alpha_stage1.unity
+    guid: ace1a58469a540d448cefc6a5f2ee4c2
   - enabled: 1
-    path: Assets/Scenes/Prototype/Prototype_stage2.unity
-    guid: 399d328fde65ed64cb02dcc270203eef
+    path: Assets/Scenes/Alpha/Alpha_stage2.unity
+    guid: 7030f67ce585f2945a2d07e143f60397
   - enabled: 1
-    path: Assets/Scenes/Prototype/Prototype_stage3.unity
-    guid: 5e47dde6d03d6ab45bb4bb4c0061e4ef
+    path: Assets/Scenes/Alpha/Alpha_stage3.unity
+    guid: c21b502d8c33b8f4a8b4c469c8c8c43a
   - enabled: 1
-    path: Assets/Scenes/Prototype/Prototype_clear.unity
-    guid: 310f38965ea264a49a91c12ccabcc79f
+    path: Assets/Scenes/Alpha/Alpha_clear.unity
+    guid: 7b2881e6fd1b0e5459dd64efff49e073
   - enabled: 1
-    path: Assets/Scenes/Prototype/Prototype_gameover.unity
-    guid: 8455c51f5657bb943996f6812c96a532
+    path: Assets/Scenes/Alpha/Alpha_gameover.unity
+    guid: 3c452c3f508fa444590d81dfc15dc019
   m_configObjects: {}

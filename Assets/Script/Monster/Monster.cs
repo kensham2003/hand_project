@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 public enum Status
 {
     idle,
@@ -183,6 +184,8 @@ public class Monster : MonoBehaviour
     /// </summary>
     [SerializeField] protected GameObject m_spawnAttackEffect;
 
+    protected AudioSource m_audioSource;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -196,6 +199,7 @@ public class Monster : MonoBehaviour
         }
 
         m_parameter.maxHp = m_parameter.hp;
+        m_audioSource = GetComponent<AudioSource>();
         //cpuMain.UsageRegister(m_parameter.constantLoad);
         OnBecameVisibleFromCamera();
     }
@@ -215,7 +219,7 @@ public class Monster : MonoBehaviour
         if(m_visibleListIndex < 0){
             OnBecameVisibleFromCamera();
         }
-        // //cpuMain.UsageRegister(m_parameter.constantLoad);
+        //cpuMain.UsageRegister(m_parameter.constantLoad);
         // OnBecameVisibleFromCamera();
     }
 
@@ -401,7 +405,7 @@ public class Monster : MonoBehaviour
     }
 
     protected virtual  void ShowHPGauge(){
-        m_coroutine = StartCoroutine(ShowHPGaugeCoroutine(2f));
+        StartCoroutine(ShowHPGaugeCoroutine(2f));
     }
 
     IEnumerator ShowHPGaugeCoroutine(float time){
@@ -412,18 +416,23 @@ public class Monster : MonoBehaviour
         }
         m_showHPGaugeCoroutineCount++;
         m_monsterHPGauge.SetGaugeFill();
-        yield return LagTimer.Get(time);
-        if(m_showHPGaugeCoroutineCount <= 1){
+        //yield return LagTimer.Get(time);
+        yield return new WaitForSecondsRealtime(time);
+        m_showHPGaugeCoroutineCount--;
+        if(m_showHPGaugeCoroutineCount <= 0){
             m_monsterHPGauge.gameObject.SetActive(false);
         }
         //Debug.Log("before subbing count = " + m_showHPGaugeCoroutineCount);
-        m_showHPGaugeCoroutineCount--;
+        
         if(m_showHPGaugeCoroutineCount < 0) m_showHPGaugeCoroutineCount = 0;
     }
 
     //通常攻撃
     protected void NearAttack()
     {
+        if(m_audioSource){
+            m_audioSource.Play();
+        }
         m_target.GetComponent<Monster>().ChangeHP(m_parameter.attack);
     }
 
@@ -436,6 +445,9 @@ public class Monster : MonoBehaviour
     /// <param name="tag"></param>
     protected void MiddleAttack(string tag)
     {
+        if(m_audioSource){
+            m_audioSource.Play();
+        }
         Collider collider = m_rangeAttackZone.GetComponent<Collider>();
         m_rangeAttackZone.transform.position = this.gameObject.transform.position;
         
@@ -444,7 +456,22 @@ public class Monster : MonoBehaviour
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
 
+            if(m_attackEffect != null)
+            {
+                Instantiate(m_attackEffect,transform.position,transform.rotation);
+            }
+
             m_coroutine = StartCoroutine(ResetColliderEnable());   
+        }
+        else
+        {
+            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
+            {
+                if(m.gameObject.tag == tag)
+                {
+                    m.ChangeHP(m_parameter.attack);
+                }
+            }
         }
         
     }
@@ -534,6 +561,9 @@ public class Monster : MonoBehaviour
             MiddleAttack(tag);
             yield break;
             case AttackType.far:
+            if(m_audioSource){
+                m_audioSource.Play();
+            }
             FarAttack(tag);
             yield return new WaitForSeconds(time);
             FarAttack(tag);

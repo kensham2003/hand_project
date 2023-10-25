@@ -44,7 +44,7 @@ public class CpuUsageUI : MonoBehaviour
     /// <summary>
     /// 前回取得したCPU使用量
     /// </summary>
-    private int m_oldUsage;
+    private float m_oldUsage;
 
     private bool m_cleared;
 
@@ -54,7 +54,7 @@ public class CpuUsageUI : MonoBehaviour
         m_text.text = ((int)m_cpuMain.Usage).ToString() + "%";
         m_rectTransform = GetComponent<RectTransform>();
         m_originalPosition = m_rectTransform.anchoredPosition;
-        m_oldUsage = (int)m_cpuMain.Usage;
+        m_oldUsage = m_cpuMain.Usage;
         m_cleared = false;
     }
 
@@ -68,7 +68,7 @@ public class CpuUsageUI : MonoBehaviour
     /// <param name="usage"></param>
     public void ChangeUsageUI(float usage){
         if(m_cleared)return;
-        m_text.text = ((int)usage).ToString() + "%";
+        m_text.text = usage.ToString("F1") + "%";
         if(usage > 75){
             m_text.color = Color.red;
         }
@@ -83,8 +83,8 @@ public class CpuUsageUI : MonoBehaviour
         ShakeText();
         if(m_cleared)return;
         if(Time.frameCount % 3 == 0){
-            int newUsage = (int)m_cpuMain.Usage;
-            if(newUsage != m_oldUsage){
+            float newUsage = m_cpuMain.Usage;
+            if(Mathf.Abs(newUsage - m_oldUsage) > 0.005f){
                 Instantiate(m_changedTextPrefab, m_changedTextFolder).GetComponent<ChangedCpuUsage>().SetText(newUsage - m_oldUsage);
                 m_oldUsage = newUsage;
             }
