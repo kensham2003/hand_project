@@ -465,17 +465,6 @@ public class Monster : MonoBehaviour
 
             m_coroutine = StartCoroutine(ResetColliderEnable());   
         }
-        else
-        {
-            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
-            {
-                if(m.gameObject.tag == tag)
-                {
-                    m.ChangeHP(m_parameter.attack);
-                }
-            }
-        }
-        
     }
 
     /// <summary>
@@ -493,18 +482,6 @@ public class Monster : MonoBehaviour
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
-        }
-        else
-        {
-            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
-            {
-                if(m.gameObject.tag == tag)
-                {
-                    m.ChangeHP(m_parameter.attack);
-                }
-            }
-            collider.enabled = false;
-            m_prevRangeAttackFlag = false;
         }
     }
 
