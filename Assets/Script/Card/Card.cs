@@ -71,7 +71,7 @@ public class Card : MonoBehaviour
     /// </summary>
     [SerializeField] protected GameObject m_damageText;
 
-    protected InstantiateManager m_instantiateManager;
+    [SerializeField]protected InstantiateManager m_instantiateManager;
     
     /// <summary>
     /// 手札

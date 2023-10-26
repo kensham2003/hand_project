@@ -18,8 +18,18 @@ public class Deck : MonoBehaviour
 
     [SerializeField]private CustomDeckInfo m_customDeck;
 
+    void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    public void CustomDeckInit()
     {
         if(m_customFlag)
         {
@@ -35,7 +45,7 @@ public class Deck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /// <summary>

@@ -26,11 +26,10 @@ public class CustomDeck : MonoBehaviour
         {   
             if(m_customDeckSlot[i].GetSlot() == null)
             {
-                Debug.Log("null");
+        
             }
             else
             {
-                Debug.Log("not null");
                 m_customDeckCard[i] = m_customDeckSlot[i].GetSlot().name.Remove(m_customDeckSlot[i].GetSlot().name.Length - 7);
             }
         } 
