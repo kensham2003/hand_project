@@ -78,6 +78,7 @@ public class Hands : MonoBehaviour
         }
         else if(m_drawType == DrawType.standard)
         {
+            m_deck.CustomDeckInit();
             for(int i = 0;i < m_maxCount;i++)
             {
                 StandardDraw(i);

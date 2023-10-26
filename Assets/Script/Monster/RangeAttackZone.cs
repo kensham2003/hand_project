@@ -9,7 +9,7 @@ public class RangeAttackZone : MonoBehaviour
 {
     [SerializeField]private Monster m_monster;
 
-    private List<Monster> m_monstersInRange = new List<Monster>();
+    [SerializeField]private List<Monster> m_monstersInRange = new List<Monster>();
 
     private float m_damageValue = 1;
     /// <summary>
@@ -17,9 +17,22 @@ public class RangeAttackZone : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     
+    /// <summary>
+    /// 攻撃対象タグ
+    /// </summary>
+    private string m_tag;
     void Start()
     {
         m_damageValue = m_monster.m_parameter.attack;
+
+        if(transform.parent.tag == "Player")
+        {
+            m_tag = "Enemy";
+        }
+        else
+        {
+            m_tag = "Player";
+        }
     }
     public List<Monster> GetMonstersInRange(){
         return m_monstersInRange;
@@ -37,7 +50,10 @@ public class RangeAttackZone : MonoBehaviour
                 AddToList(m);
                 ReliableOnTriggerExit.NotifyTriggerEnter(other, gameObject, OnTriggerExit);
 
-                m.ChangeHP(m_damageValue);
+                if(m_tag == m.tag)
+                {
+                    m.ChangeHP(m_damageValue);
+                }
             }
         }
     }

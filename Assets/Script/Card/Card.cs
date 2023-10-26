@@ -71,7 +71,7 @@ public class Card : MonoBehaviour
     /// </summary>
     [SerializeField] protected GameObject m_damageText;
 
-    protected InstantiateManager m_instantiateManager;
+    [SerializeField]protected InstantiateManager m_instantiateManager;
     
     /// <summary>
     /// 手札
@@ -114,6 +114,12 @@ public class Card : MonoBehaviour
     /// </summary>
     protected GameObject m_TrashBox;
 
+
+    //CPU上昇テキスト
+    protected RectTransform m_cpuUpText;
+    
+    //初期位置
+    protected Vector3 m_InitCpuUpPos;
     protected virtual void Start()
     {
         m_initPos = GetComponent<RectTransform>().anchoredPosition;
@@ -123,7 +129,7 @@ public class Card : MonoBehaviour
         m_imageInitSize = GetComponent<RectTransform>().sizeDelta;
         m_imageHoverSize = GetComponent<RectTransform>().sizeDelta * 2;
         m_instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
-
+        
         //手札
         m_hands = GameObject.Find ("Hands");
         //カード情報UI
@@ -136,6 +142,14 @@ public class Card : MonoBehaviour
         m_canvas = FindObjectOfType<Canvas>();
         //ゴミ箱取得
         m_TrashBox = GameObject.Find("TrashBox");
+
+        
+        if(transform.childCount > 0)
+        {
+            m_cpuUpText = transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+            m_InitCpuUpPos = m_cpuUpText.anchoredPosition;
+            Debug.Log(m_InitCpuUpPos);
+        }
     }
 
     // Update is called once per frame
@@ -143,25 +157,30 @@ public class Card : MonoBehaviour
     {
         //一枚でもホバーしているか
         bool oneceHorvered = false;
-        foreach (Card obj in m_hands.GetComponent<Hands>().GetHandsCard())
+        if(m_hands != null)
         {
-            if(obj.m_handsCardNum == m_handsCardNum)continue;
-            if(obj.m_hovered == true)
+            foreach (Card obj in m_hands.GetComponent<Hands>().GetHandsCard())
             {
-                oneceHorvered = true;
+                if(obj.m_handsCardNum == m_handsCardNum)continue;
+                if(obj.m_hovered == true)
+                {
+                    oneceHorvered = true;
+                }
             }
         }
 
         //マウスがどのUIの上にいるか確認
         DetectUIUnderMouse();
-        if(m_trashFlag)
-        {
-            //ゴミ箱拡大
-            m_TrashBox.transform.localScale = new Vector3(1.2f,1.2f,1.2f);
-        }
-        else
-        {
-            m_TrashBox.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
+        if(m_TrashBox){
+            if(m_trashFlag)
+            {
+                //ゴミ箱拡大
+                m_TrashBox.transform.localScale = new Vector3(1.2f,1.2f,1.2f);
+            }
+            else
+            {
+                m_TrashBox.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
+            }
         }
         //マウスがカードの上にあるか判断
         //horverd = CheckMouseOnCard();
@@ -171,6 +190,11 @@ public class Card : MonoBehaviour
         {
            //画像の大きさ変更
            GetComponent<RectTransform>().sizeDelta = m_imageHoverSize;
+           if(m_cpuUpText != null)
+           {
+                m_cpuUpText.anchoredPosition = m_InitCpuUpPos * 2;
+                m_cpuUpText.localScale = new Vector3(2,2,2);
+           }
 
             if(Input.GetMouseButton(0))
             {
@@ -189,15 +213,23 @@ public class Card : MonoBehaviour
         {
             //画像の大きさ変更
             GetComponent<RectTransform>().sizeDelta = m_imageInitSize;
-            
+            if(m_cpuUpText != null)
+           {
+                m_cpuUpText.anchoredPosition = m_InitCpuUpPos;
+                m_cpuUpText.localScale = new Vector3(1,1,1);
+           }
+
             //一枚でもホバーしているか
             oneceHorvered = false;
-            foreach (Card obj in m_hands.GetComponent<Hands>().GetHandsCard())
+            if(m_hands != null)
             {
-                if(obj.m_handsCardNum == m_handsCardNum)continue;
-                if(obj.m_hovered)
+                foreach (Card obj in m_hands.GetComponent<Hands>().GetHandsCard())
                 {
-                    oneceHorvered = true;
+                    if(obj.m_handsCardNum == m_handsCardNum)continue;
+                    if(obj.m_hovered)
+                    {
+                        oneceHorvered = true;
+                    }
                 }
             }
 
@@ -218,9 +250,8 @@ public class Card : MonoBehaviour
             float scale = (float)Screen.width / 1920;
             //Debug.Log(scale);
             GetComponent<RectTransform>().anchoredPosition = Input.mousePosition / scale;
-
-            
         }
+
     }
 
      //効果発動
@@ -257,6 +288,9 @@ public class Card : MonoBehaviour
         //フラグ関連
         bool cardEffectFlag = false;
         m_trashFlag = false;
+        bool deckFlag = false;
+        GameObject hitObject = null;
+
         foreach(RaycastResult result in rayResult)
         {
             //カード効果
@@ -274,8 +308,15 @@ public class Card : MonoBehaviour
 
                 break;
             }
-        }
 
+            if(result.gameObject.tag == "Deck")
+            {
+                deckFlag = true;
+                hitObject = result.gameObject;
+
+                break;
+            }
+        }
 
         if(cardEffectFlag)
         {
@@ -294,6 +335,13 @@ public class Card : MonoBehaviour
         if(m_trashFlag)
         {
             m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
+        }
+
+        //デッキ登録
+        if(deckFlag && hitObject != null)
+        {
+            hitObject.GetComponent<UnityEngine.UI.Image>().sprite = m_sprite;
+            hitObject.GetComponent<DeckSlot>().SetSlot(this.gameObject);
         }
 
         GetComponent<RectTransform>().anchoredPosition = m_initPos;
@@ -362,12 +410,13 @@ public class Card : MonoBehaviour
 
         foreach(RaycastResult result in rayResult)
         {
-            
+
             //カード効果
             if(result.gameObject.name == "SpawnField")
             {
                 m_spawnFied = true;
                 hitObject = result.gameObject;
+    
                 break;
             }
 

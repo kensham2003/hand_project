@@ -40,6 +40,7 @@ public class InstantiateManager : MonoBehaviour
         m.cpuMain = m_cpuMain;
         m.instantiateManager = this;
         m.m_parameter = CardMonsterDictionary.Instance.GetMonsterParamerter(cardId);
+        m.m_parameter.maxHp = m.m_parameter.hp;
         m.isDead = false;
         //追加　ID設定
         m.m_parameter.monsterID = cardId;
@@ -59,6 +60,7 @@ public class InstantiateManager : MonoBehaviour
     public GameObject InstantiateMonsterPreview(int cardId, Vector3 position, Quaternion rotation){
         GameObject monsterPrefab = CardMonsterDictionary.Instance.GetMonsterPrefab(cardId);
         GameObject monsterObj = PoolManager.Instance.GetGameObject(monsterPrefab, position, rotation);
+        
         Monster m = monsterObj.GetComponent<Monster>();
         m.visibleList = m_visibleList;
         m.cpuMain = m_cpuMain;

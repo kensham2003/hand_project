@@ -101,6 +101,10 @@ MonoBehaviour:
   m_clearSceneName: Alpha_clear
   m_enemyManager: {fileID: 2075905877989200917}
   m_uiTimer: {fileID: 0}
+  m_cpuBase: {fileID: 0}
+  m_gameoverExplosion: {fileID: 1240795019686723676, guid: fd8cd491d3d7b1e419a6613f2e562e1d, type: 3}
+  m_gameoverExplosionOnStage: {fileID: 979724645708640546, guid: 4d037bf9bdfe880498a1e3e2bd473be1, type: 3}
+  m_stage: {fileID: 0}
 --- !u!114 &2687695624502221242
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -94,7 +94,7 @@ public class PlayerMonster : Monster
     //ターゲットへ攻撃
     public override void Action()
     {
-	m_attackFlag = false;
+        m_attackFlag = false;
         if(!gameObject.activeSelf)return;
         if(m_target == null)return;
         if(m_target.activeSelf == false)return;
@@ -295,7 +295,7 @@ public class PlayerMonster : Monster
                 moveVec = moveVec.normalized;
 
                 //ターゲットの距離
-                m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
+                m_targetDistance = Vector2.Distance(new Vector2(m_target.transform.position.x,m_target.transform.position.z),new Vector2(transform.position.x,transform.position.z));
 
                 if(m_parameter.attackDistance < m_targetDistance)
                 {
@@ -328,7 +328,7 @@ public class PlayerMonster : Monster
         //攻撃
         else if(m_target != null)
         {
-            m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
+            m_targetDistance = Vector2.Distance(new Vector2(m_target.transform.position.x,m_target.transform.position.z),new Vector2(transform.position.x,transform.position.z));
             
             if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
             {                
@@ -357,10 +357,13 @@ public class PlayerMonster : Monster
         
         //進行方向
         Vector3 moveVec = m_target.transform.position - transform.position;
+        moveVec.y = 0;
+        m_model.transform.rotation = Quaternion.LookRotation(moveVec,Vector3.up);
+        m_model.transform.Rotate(new Vector3(0f, m_rotationOffset, 0f));
         moveVec = moveVec.normalized;
 
         //ターゲットの距離
-        m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
+        m_targetDistance = Vector2.Distance(new Vector2(m_target.transform.position.x,m_target.transform.position.z),new Vector2(transform.position.x,transform.position.z));
 
         if(m_parameter.attackDistance < m_targetDistance)
         {
@@ -393,7 +396,7 @@ public class PlayerMonster : Monster
             return;
         }
 
-        m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
+        m_targetDistance = Vector2.Distance(new Vector2(m_target.transform.position.x,m_target.transform.position.z),new Vector2(transform.position.x,transform.position.z));
             
         if(m_attackFlag == false && m_parameter.attackDistance > m_targetDistance)
         {                

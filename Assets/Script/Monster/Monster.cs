@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 public enum Status
 {
     idle,
@@ -198,6 +199,7 @@ public class Monster : MonoBehaviour
         }
 
         m_parameter.maxHp = m_parameter.hp;
+        //Debug.Log("maxHP = " + m_parameter.maxHp);
         m_audioSource = GetComponent<AudioSource>();
         //cpuMain.UsageRegister(m_parameter.constantLoad);
         OnBecameVisibleFromCamera();
@@ -211,7 +213,8 @@ public class Monster : MonoBehaviour
             cpuMain = GameObject.Find("Managers").GetComponent<CpuMain>();
         }
 
-        m_parameter.maxHp = m_parameter.hp;
+        //m_parameter.maxHp = m_parameter.hp;
+        //Debug.Log("maxHP = " + m_parameter.maxHp);
         if(m_monsterHPGauge == null)return;
         m_monsterHPGauge.gameObject.SetActive(false);
         m_showHPGaugeCoroutineCount = 0;
@@ -404,7 +407,11 @@ public class Monster : MonoBehaviour
     }
 
     protected virtual  void ShowHPGauge(){
-        StartCoroutine(ShowHPGaugeCoroutine(2f));
+        if(gameObject.activeSelf)
+        {
+            StartCoroutine(ShowHPGaugeCoroutine(2f));
+        }
+        
     }
 
     IEnumerator ShowHPGaugeCoroutine(float time){
@@ -455,9 +462,13 @@ public class Monster : MonoBehaviour
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
 
+            if(m_attackEffect != null)
+            {
+                Instantiate(m_attackEffect,transform.position,transform.rotation);
+            }
+
             m_coroutine = StartCoroutine(ResetColliderEnable());   
         }
-        
     }
 
     /// <summary>
@@ -475,18 +486,7 @@ public class Monster : MonoBehaviour
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
-        }
-        else
-        {
-            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
-            {
-                if(m.gameObject.tag == tag)
-                {
-                    m.ChangeHP(m_parameter.attack);
-                }
-            }
-            collider.enabled = false;
-            m_prevRangeAttackFlag = false;
+            StartCoroutine(ResetColliderEnable());
         }
     }
 
@@ -550,7 +550,7 @@ public class Monster : MonoBehaviour
             }
             FarAttack(tag);
             yield return new WaitForSeconds(time);
-            FarAttack(tag);
+            //FarAttack(tag);
             yield break;
         }
     }

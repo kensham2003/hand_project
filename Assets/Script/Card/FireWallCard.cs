@@ -41,7 +41,7 @@ public class FiraWallCard : SpellCard
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            if (Physics.Raycast(ray, out hit, 100.0f,1 << LayerMask.NameToLayer("Floor")))
             {
                 m_spawRangeObject.transform.position = hit.point;
             }

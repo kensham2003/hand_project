@@ -82,6 +82,8 @@ public class FireWallObject : EffectMonster
         {
             if (!m_targetEnemys.Contains(other.gameObject))
             {
+                ReliableOnTriggerExit.NotifyTriggerEnter(other, gameObject, OnTriggerExit);
+
                 //ターゲットに追加
                 m_targetEnemys.Add(other.gameObject);
                 
@@ -99,6 +101,17 @@ public class FireWallObject : EffectMonster
                     m_damageFlag = true;
                     InvokeRepeating("Damage", m_damageInterval, m_damageInterval);
                 }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == "Enemy")
+        {
+            if (!m_targetEnemys.Contains(other.gameObject))
+            {
+                m_targetEnemys.Remove(other.gameObject);
+                ReliableOnTriggerExit.NotifyTriggerExit(other, gameObject);
             }
         }
     }
@@ -137,6 +150,6 @@ public class FireWallObject : EffectMonster
     /// </summary>
     public void Flash()
     {
-        m_FlashObject.active = !m_FlashObject.active;
+        m_FlashObject.SetActive(!m_FlashObject.activeSelf);
     }
 }

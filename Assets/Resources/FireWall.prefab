@@ -151,7 +151,7 @@ MonoBehaviour:
   m_rangeAttackZone: {fileID: 0}
   m_chargeEffect: {fileID: 0}
   m_attackEffect: {fileID: 0}
-  m_spawnAttackEffetc: {fileID: 0}
+  m_spawnAttackEffect: {fileID: 0}
   m_lifeTime: 10
   m_damageInterval: 2
   m_damage: 2

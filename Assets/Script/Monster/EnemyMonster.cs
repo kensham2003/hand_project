@@ -95,23 +95,18 @@ public class EnemyMonster : Monster
 
     public override void Action()
     {
-	m_attackFlag = false;
-        if(gameObject.activeSelf == false)return;
-        
+        m_attackFlag = false;
+        if(!gameObject.activeSelf)return;
         if(m_target == null)return;
         if(m_target.activeSelf == false)return;
-        //距離を計算
-        Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
-        m_targetDistance = Vector3.Distance(closestPoint, transform.position);
-
-        //m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
+        
         if(m_target != null && m_parameter.attackDistance >= m_targetDistance)
         {
-            /* if(m_parameter.attackDistance < 5.99f || m_target.GetComponent<PlayerBossMonster>() != null){
-                m_target.GetComponent<PlayerMonster>().ChangeHP(m_parameter.attack);
+            /* if(m_parameter.attackDistance < 5.99f || m_target.GetComponent<EnemyBossMonster>() != null){
+                m_target.GetComponent<EnemyMonster>().ChangeHP(m_parameter.attack);
             }
             else{
-                m_target.GetComponent<PlayerMonster>().ChangeHPInRange(m_parameter.attack);
+                m_target.GetComponent<EnemyMonster>().ChangeHPInRange(m_parameter.attack);
             } */
 
             switch(m_attackType)
@@ -128,11 +123,10 @@ public class EnemyMonster : Monster
                 break;
 
                 //ターゲットを基準とした範囲攻撃
-                //ターゲットを基準とした範囲攻撃
                 case AttackType.far:
                 if(m_chargeEffect != null && m_spawnAttackEffect == null)
                 {
-                    Instantiate(m_chargeEffect,transform.position,Quaternion.identity);
+                    m_spawnedChargeEffect = Instantiate(m_chargeEffect,transform.position,Quaternion.identity);
                     Invoke("SpawnAttackEffect",0.8f);
                 }
                 else if(m_chargeEffect == null)
@@ -141,11 +135,15 @@ public class EnemyMonster : Monster
                 }
                 break;
             }
-
-            cpuMain.UsageRegister(m_parameter.attackLoad);
             
+            cpuMain.UsageRegister(m_parameter.attackLoad);
+            //Debug.Log("攻撃 : " + paramerter.attackLoad.raiseRate);
 
             m_target = null;
+        }
+        else if(m_status != Status.ucm)
+        {
+            m_status = Status.idle;
         }
     }
 
@@ -191,7 +189,7 @@ public class EnemyMonster : Monster
             //m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             //距離を計算
             Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
-            m_targetDistance = Vector3.Distance(closestPoint, transform.position);
+            m_targetDistance = Vector2.Distance(new Vector2(closestPoint.x,closestPoint.z),new Vector2(transform.position.x,transform.position.z));
             if(m_parameter.attackDistance < m_targetDistance)
             {
                 //ターゲット移動
@@ -234,7 +232,7 @@ public class EnemyMonster : Monster
             //float targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             //距離を計算
             Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
-            m_targetDistance = Vector3.Distance(closestPoint, transform.position);
+            m_targetDistance = Vector2.Distance(new Vector2(closestPoint.x,closestPoint.z),new Vector2(transform.position.x,transform.position.z));
             if(m_parameter.attackDistance < m_targetDistance)
             {
                 //ターゲット移動
@@ -376,7 +374,7 @@ public class EnemyMonster : Monster
             //m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             //距離を計算
             Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
-            m_targetDistance = Vector3.Distance(closestPoint, transform.position);
+            m_targetDistance = Vector2.Distance(new Vector2(closestPoint.x,closestPoint.z),new Vector2(transform.position.x,transform.position.z));
             if(m_attackFlag == false &&m_parameter.attackDistance >= m_targetDistance)
             {                
                 if(m_canFirstAttack){Action();}
