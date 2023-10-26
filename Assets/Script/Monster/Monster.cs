@@ -411,7 +411,6 @@ public class Monster : MonoBehaviour
         {
             StartCoroutine(ShowHPGaugeCoroutine(2f));
         }
-        
     }
 
     IEnumerator ShowHPGaugeCoroutine(float time){
