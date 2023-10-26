@@ -33,6 +33,7 @@ public class CpuUsageGaugeUI : MonoBehaviour
         m_image = GetComponent<Image>();
         //イベント登録
         m_cpuMain.OnUsageChanged += ChangeUsageUI;
+        m_image.fillAmount = 0f;
     }
 
     // private void Update() {
