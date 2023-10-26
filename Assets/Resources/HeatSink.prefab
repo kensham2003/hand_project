@@ -81,4 +81,4 @@ MonoBehaviour:
     raiseRate: -2
     impactTime: -1
   m_cpuDownInterval: 2
-  m_lifeTime: 10
+  m_lifeTime: 5
