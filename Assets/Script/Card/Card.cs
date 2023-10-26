@@ -154,14 +154,16 @@ public class Card : MonoBehaviour
 
         //マウスがどのUIの上にいるか確認
         DetectUIUnderMouse();
-        if(m_trashFlag)
-        {
-            //ゴミ箱拡大
-            m_TrashBox.transform.localScale = new Vector3(1.2f,1.2f,1.2f);
-        }
-        else
-        {
-            m_TrashBox.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
+        if(m_TrashBox){
+            if(m_trashFlag)
+            {
+                //ゴミ箱拡大
+                m_TrashBox.transform.localScale = new Vector3(1.2f,1.2f,1.2f);
+            }
+            else
+            {
+                m_TrashBox.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
+            }
         }
         //マウスがカードの上にあるか判断
         //horverd = CheckMouseOnCard();
