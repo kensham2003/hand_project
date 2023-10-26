@@ -199,6 +199,7 @@ public class Monster : MonoBehaviour
         }
 
         m_parameter.maxHp = m_parameter.hp;
+        //Debug.Log("maxHP = " + m_parameter.maxHp);
         m_audioSource = GetComponent<AudioSource>();
         //cpuMain.UsageRegister(m_parameter.constantLoad);
         OnBecameVisibleFromCamera();
@@ -212,7 +213,8 @@ public class Monster : MonoBehaviour
             cpuMain = GameObject.Find("Managers").GetComponent<CpuMain>();
         }
 
-        m_parameter.maxHp = m_parameter.hp;
+        //m_parameter.maxHp = m_parameter.hp;
+        //Debug.Log("maxHP = " + m_parameter.maxHp);
         if(m_monsterHPGauge == null)return;
         m_monsterHPGauge.gameObject.SetActive(false);
         m_showHPGaugeCoroutineCount = 0;
