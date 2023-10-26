@@ -1475,7 +1475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1693dacdf8c0e3b458b80dbce7dc35f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxCount: 4
+  m_maxCount: 3
   m_handsCard: []
   m_drawInterval: 0.1
   m_lockOnEffect: {fileID: 2316881878268189752, guid: 0b30a8df181065a4ca5d35282a1cdb43, type: 3}
