@@ -148,7 +148,6 @@ public class Card : MonoBehaviour
         {
             m_cpuUpText = transform.GetChild(0).gameObject.GetComponent<RectTransform>();
             m_InitCpuUpPos = m_cpuUpText.anchoredPosition;
-            Debug.Log(m_InitCpuUpPos);
         }
     }
 
