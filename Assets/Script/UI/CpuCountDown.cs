@@ -57,7 +57,7 @@ public class CpuCountDown : MonoBehaviour
         if(m_overlayColor.a > 0){
             m_overlayColor.a -= 0.5f/255f;
             m_countDownOverlay.color = m_overlayColor;
-            Debug.Log("a = " + m_overlayColor.a);
+            //Debug.Log("a = " + m_overlayColor.a);
         }
 
         //0になったらゲームオーバー

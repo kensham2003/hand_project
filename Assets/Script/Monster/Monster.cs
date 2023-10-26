@@ -407,7 +407,11 @@ public class Monster : MonoBehaviour
     }
 
     protected virtual  void ShowHPGauge(){
-        StartCoroutine(ShowHPGaugeCoroutine(2f));
+        if(gameObject.activeSelf)
+        {
+            StartCoroutine(ShowHPGaugeCoroutine(2f));
+        }
+        
     }
 
     IEnumerator ShowHPGaugeCoroutine(float time){
@@ -482,6 +486,7 @@ public class Monster : MonoBehaviour
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
+            StartCoroutine(ResetColliderEnable());
         }
     }
 
@@ -545,7 +550,7 @@ public class Monster : MonoBehaviour
             }
             FarAttack(tag);
             yield return new WaitForSeconds(time);
-            FarAttack(tag);
+            //FarAttack(tag);
             yield break;
         }
     }

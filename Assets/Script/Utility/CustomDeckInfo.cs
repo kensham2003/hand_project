@@ -5,17 +5,14 @@ using UnityEngine;
 public class CustomDeckInfo : SingletonMonoBehaviour<CustomDeckInfo>
 {
     [SerializeField] private List<string> m_customDeckCard;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private bool m_useCustomDeck;
+    public bool useCustomDeck
     {
-        
+        get { return m_useCustomDeck; }
+        set { m_useCustomDeck = value; }
     }
+    
 
     public void SetCustomDeck(List<string> deck)
     {

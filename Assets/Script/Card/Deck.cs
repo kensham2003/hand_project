@@ -34,7 +34,7 @@ public class Deck : MonoBehaviour
         if(m_customFlag)
         {
             m_cardsPrefab.Clear();
-            m_customDeck = GameObject.Find("Singletons").GetComponent<CustomDeckInfo>();
+            m_customDeck = CustomDeckInfo.Instance;
             foreach(string st in m_customDeck.GetCustomDeck())
             {
                 m_cardsPrefab.Add((GameObject)Resources.Load("Card/"+st));
