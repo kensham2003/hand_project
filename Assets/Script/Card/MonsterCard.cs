@@ -32,6 +32,7 @@ public class MonsterCard : Card
 
         //イメージを表示に設定
         m_image.enabled = true;
+        if(m_cpuUpText)m_cpuUpText.gameObject.active = true;
 
         if(m_pressed)
         {
@@ -61,6 +62,7 @@ public class MonsterCard : Card
             {
                 //image非表示に設定
                 m_image.enabled = false;
+                if(m_cpuUpText)m_cpuUpText.gameObject.active = false;
             }
         }
         else
