@@ -38,11 +38,19 @@ public class Virus : EffectMonster
 
     void Damage()
     {
-        foreach (GameObject obj in GameObject.Find("Managers").GetComponent<VisibleList>().GetVisibleList())
+        List<EnemyMonster> enemyMonsters = new List<EnemyMonster>();
+        foreach (GameObject obj in m_visibleList.GetVisibleList())
         {
+            if(!obj)continue;
             EnemyMonster em = obj.GetComponent<EnemyMonster>();
             if(em != null)
             {
+                enemyMonsters.Add(em);
+            }
+        }
+
+        foreach(EnemyMonster em in enemyMonsters){
+            if(em.gameObject.activeSelf){
                 em.ChangeHP(m_damageValue);
             }
         }
