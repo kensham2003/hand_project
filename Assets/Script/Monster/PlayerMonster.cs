@@ -94,8 +94,8 @@ public class PlayerMonster : Monster
     //ターゲットへ攻撃
     public override void Action()
     {
+	m_attackFlag = false;
         if(!gameObject.activeSelf)return;
-        m_attackFlag = false;
         if(m_target == null)return;
         if(m_target.activeSelf == false)return;
         
