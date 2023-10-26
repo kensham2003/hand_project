@@ -189,7 +189,7 @@ public class EnemyMonster : Monster
             //m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             //距離を計算
             Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
-            m_targetDistance = Vector3.Distance(closestPoint, transform.position);
+            m_targetDistance = Vector2.Distance(new Vector2(closestPoint.x,closestPoint.z),new Vector2(transform.position.x,transform.position.z));
             if(m_parameter.attackDistance < m_targetDistance)
             {
                 //ターゲット移動
@@ -232,7 +232,7 @@ public class EnemyMonster : Monster
             //float targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             //距離を計算
             Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
-            m_targetDistance = Vector3.Distance(closestPoint, transform.position);
+            m_targetDistance = Vector2.Distance(new Vector2(closestPoint.x,closestPoint.z),new Vector2(transform.position.x,transform.position.z));
             if(m_parameter.attackDistance < m_targetDistance)
             {
                 //ターゲット移動
@@ -374,7 +374,7 @@ public class EnemyMonster : Monster
             //m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
             //距離を計算
             Vector3 closestPoint = m_target.GetComponent<BoxCollider>().ClosestPointOnBounds(transform.position);
-            m_targetDistance = Vector3.Distance(closestPoint, transform.position);
+            m_targetDistance = Vector2.Distance(new Vector2(closestPoint.x,closestPoint.z),new Vector2(transform.position.x,transform.position.z));
             if(m_attackFlag == false &&m_parameter.attackDistance >= m_targetDistance)
             {                
                 if(m_canFirstAttack){Action();}

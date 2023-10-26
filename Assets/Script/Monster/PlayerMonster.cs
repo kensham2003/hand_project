@@ -295,7 +295,7 @@ public class PlayerMonster : Monster
                 moveVec = moveVec.normalized;
 
                 //ターゲットの距離
-                m_targetDistance = Vector3.Distance(m_target.transform.position,transform.position);
+                m_targetDistance = Vector2.Distance(new Vector2(m_target.transform.position.x,m_target.transform.position.z),new Vector2(transform.position.x,transform.position.z));
 
                 if(m_parameter.attackDistance < m_targetDistance)
                 {
