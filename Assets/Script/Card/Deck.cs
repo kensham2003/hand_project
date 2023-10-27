@@ -66,6 +66,11 @@ public class Deck : MonoBehaviour
 
     public GameObject Draw(int num)
     {
-        return  Instantiate (m_cardsPrefab[num]);
+        if(m_cardsPrefab[num] != null){
+            return  Instantiate (m_cardsPrefab[num]);
+        }
+        else{
+            return null;
+        }
     }
 }

@@ -10,6 +10,11 @@ public class ChangeScene : MonoBehaviour
 {
     //遷移先
     [SerializeField] string changeScene;
+
+    [SerializeField] private CustomDeck m_customDeck;
+
+    [SerializeField] private GameObject m_notSetDeckWarning;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +29,18 @@ public class ChangeScene : MonoBehaviour
 
     public void OnPushButton()
     {
-        PoolManager.Instance.ReleaseAllGameObjects();
-        SceneManager.LoadScene(changeScene);
+        if(m_customDeck){
+            if(m_customDeck.canEnterStage){
+                PoolManager.Instance.ReleaseAllGameObjects();
+                SceneManager.LoadScene(changeScene);
+            }
+            else{
+                m_notSetDeckWarning.SetActive(true);
+            }
+        }
+        else{
+            PoolManager.Instance.ReleaseAllGameObjects();
+            SceneManager.LoadScene(changeScene);
+        }
     }
 }

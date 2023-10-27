@@ -47,7 +47,10 @@ public class CardMonsterDictionary : SingletonMonoBehaviour<CardMonsterDictionar
     /// <param name="cardId">カードID</param>
     /// <returns>(MonsterParameter)モンスターパラメータ</returns>
     public MonsterParamerter GetMonsterParamerter(int cardId){
-        return m_cardMonsterParamDict[cardId];
+        if(m_cardMonsterParamDict.ContainsKey(cardId)){
+            return m_cardMonsterParamDict[cardId];
+        }
+        else{return new MonsterParamerter();}
     }
 
     /// <summary>

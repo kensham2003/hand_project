@@ -38,7 +38,7 @@ public class MonsterCard : Card
 
         //イメージを表示に設定
         m_image.enabled = true;
-        if(m_cpuUpText)m_cpuUpText.gameObject.active = true;
+        if(m_cpuUpText)m_cpuUpText.gameObject.SetActive(true);
 
         if(m_pressed)
         {
@@ -76,7 +76,7 @@ public class MonsterCard : Card
             {
                 //image非表示に設定
                 m_image.enabled = false;
-                if(m_cpuUpText)m_cpuUpText.gameObject.active = false;
+                if(m_cpuUpText)m_cpuUpText.gameObject.SetActive(false);
             }
         }
         else
@@ -106,6 +106,9 @@ public class MonsterCard : Card
         // CpuMain.Instance.UsageRegister(cpuLoad);
 
         GameObject monsterObj = m_instantiateManager.InstantiateMonster(m_cardID, hit.point + new Vector3(0,0.5f,0.0f), Quaternion.identity);
+        if(monsterObj.GetComponent<Collider>().enabled == false){
+            monsterObj.GetComponent<Collider>().enabled = true;
+        }
         m_audioSource.Play();
         m_hands.GetComponent<Hands>().RemoveCard(m_handsCardNum);
     }
