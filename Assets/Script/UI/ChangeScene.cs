@@ -32,6 +32,8 @@ public class ChangeScene : MonoBehaviour
         if(m_customDeck){
             if(m_customDeck.canEnterStage){
                 PoolManager.Instance.ReleaseAllGameObjects();
+                StageManager.Instance.currentStage = 4;
+                Debug.Log(StageManager.Instance.currentStage);
                 SceneManager.LoadScene(changeScene);
             }
             else{
@@ -40,6 +42,8 @@ public class ChangeScene : MonoBehaviour
         }
         else{
             PoolManager.Instance.ReleaseAllGameObjects();
+            StageManager.Instance.currentStage = 4;
+            Debug.Log(StageManager.Instance.currentStage);
             SceneManager.LoadScene(changeScene);
         }
     }
