@@ -83,7 +83,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
-        m_cpuMain.OnUsageFull += GameOver;
+        if(m_cpuMain){
+            m_cpuMain.OnUsageFull += GameOver;
+        }
         if(m_enemyManager){
             m_enemyManager.OnAllEnemyCleared += GameClear;
         }
@@ -91,7 +93,9 @@ public class GameManager : MonoBehaviour
             m_uiTimer.OnTimerZero += GameClear;
         }
         m_lagCoroutine = StartCoroutine(LagSimulate());
-        m_stageOrigin = m_stage.position;
+        if(m_stage){
+            m_stageOrigin = m_stage.position;
+        }
     }
 
     private void Update()

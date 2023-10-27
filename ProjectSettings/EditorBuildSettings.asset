@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Alpha/Alpha_select.unity
     guid: cc1fa20ba7e03694581fa0690577f808
   - enabled: 1
+    path: Assets/Scenes/Alpha/Alpha_deck.unity
+    guid: fe9bb6da6d96a3547aaec95969668511
+  - enabled: 1
     path: Assets/Scenes/Alpha/Alpha_stage1.unity
     guid: ace1a58469a540d448cefc6a5f2ee4c2
   - enabled: 1
@@ -20,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Alpha/Alpha_stage3.unity
     guid: c21b502d8c33b8f4a8b4c469c8c8c43a
+  - enabled: 1
+    path: Assets/Scenes/Alpha/Alpha_stage4.unity
+    guid: d88ba06d22b472b4aa1881d52eea3596
+  - enabled: 1
+    path: Assets/Scenes/Alpha/Alpha_stage5.unity
+    guid: d5f0f5f91754ae04180605d6258d0686
   - enabled: 1
     path: Assets/Scenes/Alpha/Alpha_clear.unity
     guid: 7b2881e6fd1b0e5459dd64efff49e073

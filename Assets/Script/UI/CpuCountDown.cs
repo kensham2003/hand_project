@@ -102,6 +102,7 @@ public class CpuCountDown : MonoBehaviour
     private void CountDown()
     {
         m_countDownTime--;
+        if(m_countDownTime < 0)m_countDownTime = 0;
         m_overlayColor.a = (100f + 15*(10-m_countDownTime))/255f;
         m_countDownOverlay.color = m_overlayColor;
     }

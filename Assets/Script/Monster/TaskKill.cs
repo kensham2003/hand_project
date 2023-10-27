@@ -30,7 +30,8 @@ public class TaskKill : EffectMonster
                 }
             }
             else if(obj.gameObject.name == "FireWall"){
-                Destroy(obj);
+                obj.GetComponent<FireWallObject>().Death();
+                //Destroy(obj);
             }
         }
 

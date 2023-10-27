@@ -27,10 +27,18 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         m_currentStage = stageNum - '0';
     }
 
+    /// <summary>
+    /// 次のステージ数を返す
+    /// </summary>
+    /// <returns></returns>
     public int GetNextStage(){
         return m_currentStage + 1;
     }
 
+    /// <summary>
+    /// 最終ステージなのか（カスタムとランダムもtrueになる）
+    /// </summary>
+    /// <returns></returns>
     public bool IsLastStage(){
         return m_currentStage >= m_maxStage;
     }
