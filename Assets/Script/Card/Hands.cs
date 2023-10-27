@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,6 +59,8 @@ public class Hands : MonoBehaviour
     /// ドローの種類
     /// </summary>
     [SerializeField] private DrawType m_drawType;
+
+    public event Action<int> OnCardCountChanged = delegate{};
 
     // Start is called before the first frame update
     private void Start()
@@ -141,6 +144,7 @@ public class Hands : MonoBehaviour
             Destroy(m_handsCard[n].gameObject);
             m_handsCard.RemoveAt(n);
             m_cardCount--;
+            OnCardCountChanged(m_cardCount);
             ChangePosition();
         }
         else if(m_drawType == DrawType.standard)
@@ -171,6 +175,7 @@ public class Hands : MonoBehaviour
             temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(num * 280 + 140 , 100 );
             temp.GetComponent<Card>().SetHandsCardNum(num);
             m_cardCount++;
+            OnCardCountChanged(m_cardCount);
         }
     }
 
@@ -184,6 +189,7 @@ public class Hands : MonoBehaviour
             temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(m_cardCount * 280 + 140 , 100 );
             temp.GetComponent<Card>().SetHandsCardNum(m_cardCount);
             m_cardCount++;
+            OnCardCountChanged(m_cardCount);
         }
     }
 
@@ -198,6 +204,7 @@ public class Hands : MonoBehaviour
         temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(m_cardCount * 280 + 140 , 100 );
         temp.GetComponent<Card>().SetHandsCardNum(m_cardCount);
         m_cardCount++;
+        OnCardCountChanged(m_cardCount);
 
     }
 
@@ -213,6 +220,7 @@ public class Hands : MonoBehaviour
         temp.GetComponent<RectTransform>().anchoredPosition = new Vector2(m_cardCount * 280 + 140 , 100 );
         temp.GetComponent<Card>().SetHandsCardNum(m_cardCount);
         m_cardCount++;
+        OnCardCountChanged(m_cardCount);
     }
 
     /// <summary>
@@ -254,4 +262,6 @@ public class Hands : MonoBehaviour
 
         return false;
     }
+
+    public int GetMaxCount(){return m_maxCount;}
 }

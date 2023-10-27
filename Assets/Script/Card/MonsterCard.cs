@@ -17,6 +17,12 @@ public class MonsterCard : Card
 
     private AudioSource m_audioSource;
 
+
+    /// <summary>
+    /// プレビュー用攻撃範囲
+    /// </summary>
+    private GameObject m_spawnPreviewRange;
+    private float m_attackdistance;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -32,6 +38,7 @@ public class MonsterCard : Card
 
         //イメージを表示に設定
         m_image.enabled = true;
+        if(m_cpuUpText)m_cpuUpText.gameObject.active = true;
 
         if(m_pressed)
         {
@@ -41,6 +48,13 @@ public class MonsterCard : Card
                 m_previewObject = m_instantiateManager.InstantiateMonsterPreview(m_cardID,new Vector3(0,1.0f,0.0f), Quaternion.identity);
                 m_previewObject.GetComponent<PlayerMonster>().SetPreview(true);
                 m_previewObject.GetComponent<Collider>().enabled = false;
+                m_attackdistance = m_previewObject.GetComponent<Monster>().GetParamerter().attackDistance * 2;
+                //攻撃範囲
+                if(m_spawnPreviewRange == null)
+                {
+                    m_spawnPreviewRange = Instantiate((GameObject)Resources.Load ("PreViewRange"));
+                    m_spawnPreviewRange.transform.localScale = new Vector3(1 * m_attackdistance,0.5f,1 * m_attackdistance);  
+                }
             }
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -49,11 +63,12 @@ public class MonsterCard : Card
             {
                 
                 m_previewObject.transform.position = hit.point;
-                
+                m_spawnPreviewRange.transform.position = hit.point;
             }
             else{
                 //画面上に出ないように
                 m_previewObject.transform.position = new Vector3(0, -50f, 0);
+                m_spawnPreviewRange.transform.position = new Vector3(0, -50f, 0);
             }
             
             //カードがフィールド上にあれば非表示
@@ -61,6 +76,7 @@ public class MonsterCard : Card
             {
                 //image非表示に設定
                 m_image.enabled = false;
+                if(m_cpuUpText)m_cpuUpText.gameObject.active = false;
             }
         }
         else
@@ -74,6 +90,8 @@ public class MonsterCard : Card
                 m_previewObject.GetComponent<PlayerMonster>().PreviewDeath();
                 //m_instantiateManager.DestroyMonster(m_previewObject);
                 m_previewObject = null;
+
+                Destroy(m_spawnPreviewRange);
             }
         }
     }

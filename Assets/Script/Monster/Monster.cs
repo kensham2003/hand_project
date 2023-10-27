@@ -439,6 +439,11 @@ public class Monster : MonoBehaviour
             m_audioSource.Play();
         }
         m_target.GetComponent<Monster>().ChangeHP(m_parameter.attack);
+
+        if(m_attackEffect)
+        {
+            Instantiate(m_attackEffect,m_target.transform.position,Quaternion.identity);
+        }
     }
 
     /// <summary>
