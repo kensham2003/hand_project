@@ -348,7 +348,7 @@ public class PlayerMonster : Monster
     //ユニバーサルクロス用移動
     void UCMove()
     {
-        if(m_target == null)
+        if(m_target == null || m_target.activeSelf == false)
         {
             m_status = Status.idle;
             
@@ -389,7 +389,7 @@ public class PlayerMonster : Monster
     //ユニバーサルクロス用攻撃
     void UCAttack()
     {
-        if(m_target == null)
+        if(m_target == null || m_target.activeSelf == false)
         {
             //死んでいたらidleへ
             m_status = Status.idle;

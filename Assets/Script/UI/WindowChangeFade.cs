@@ -91,7 +91,7 @@ public class WindowChangeFade : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //シーンの最初数フレームのunscaledDeltaTimeが異常に大きいのでフェードの処理をしない
         //閾値はわりと適当（普通な場合なら超えないだろうな値）

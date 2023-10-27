@@ -84,7 +84,7 @@ public class CpuUsageUI : MonoBehaviour
     private void Update() {
         ShakeText();
         if(m_cleared)return;
-        if(Time.frameCount % 60 == 0){
+        if(Time.frameCount % 20 == 0){
             float newUsage = m_cpuMain.Usage;
             if(Mathf.Abs(newUsage - m_oldUsage) > 0.005f){
                 Instantiate(m_changedTextPrefab, m_changedTextFolder).GetComponent<ChangedCpuUsage>().SetText(newUsage - m_oldUsage);
