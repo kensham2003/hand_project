@@ -15,6 +15,9 @@ public class CanvasCardRaycaster : MonoBehaviour
     [Header("CPU使用量変更プレビューUI")]
     [SerializeField] CpuUsageChangePreview m_cpuUsageChangePreview;
 
+    [Header("CPUゲージプレビュー")]
+    [SerializeField] CpuGaugePreview m_cpuGaugePreview;
+
     /// <summary>
     /// 今ホバーしているカード
     /// </summary>
@@ -53,11 +56,22 @@ public class CanvasCardRaycaster : MonoBehaviour
             m_nowHovering = null;
         }
         if(m_nowHovering){
-            float constantLoad = CardMonsterDictionary.Instance.GetMonsterParamerter(m_nowHovering.CardId).constantLoad.raiseRate;
-            m_cpuUsageChangePreview.SetText(constantLoad);
+            //モンスターカード
+            if(m_nowHovering.GetComponent<MonsterCard>()){
+                float constantLoad = CardMonsterDictionary.Instance.GetMonsterParamerter(m_nowHovering.CardId).constantLoad.raiseRate;
+                m_cpuUsageChangePreview.SetText(constantLoad);
+                m_cpuGaugePreview.SetAddedUsage(constantLoad);
+            }
+            //呪文カード
+            else{
+                float spawnLoad = CardMonsterDictionary.Instance.GetMonsterParamerter(m_nowHovering.CardId).spawnLoad.raiseRate;
+                m_cpuUsageChangePreview.SetText(spawnLoad);
+                m_cpuGaugePreview.SetAddedUsage(spawnLoad);
+            }
         }
         else{
             m_cpuUsageChangePreview.SetText(0);
+            m_cpuGaugePreview.SetAddedUsage(0f);
         }
     }
 

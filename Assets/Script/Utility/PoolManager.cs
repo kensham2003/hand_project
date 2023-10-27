@@ -39,6 +39,7 @@ public class PoolManager : SingletonMonoBehaviour<PoolManager>
     /// </summary>
     /// <param name="obj"></param>
     void OnGetFromPool(GameObject obj){
+        if(obj == null)return;
         obj.SetActive(true);
     }
 

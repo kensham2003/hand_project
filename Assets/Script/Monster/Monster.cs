@@ -407,7 +407,10 @@ public class Monster : MonoBehaviour
     }
 
     protected virtual  void ShowHPGauge(){
-        StartCoroutine(ShowHPGaugeCoroutine(2f));
+        if(gameObject.activeSelf)
+        {
+            StartCoroutine(ShowHPGaugeCoroutine(2f));
+        }
     }
 
     IEnumerator ShowHPGaugeCoroutine(float time){
@@ -465,17 +468,6 @@ public class Monster : MonoBehaviour
 
             m_coroutine = StartCoroutine(ResetColliderEnable());   
         }
-        else
-        {
-            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
-            {
-                if(m.gameObject.tag == tag)
-                {
-                    m.ChangeHP(m_parameter.attack);
-                }
-            }
-        }
-        
     }
 
     /// <summary>
@@ -493,18 +485,7 @@ public class Monster : MonoBehaviour
         {
             collider.enabled = true;
             m_prevRangeAttackFlag = true;
-        }
-        else
-        {
-            foreach(Monster m in m_rangeAttackZone.GetMonstersInRange())
-            {
-                if(m.gameObject.tag == tag)
-                {
-                    m.ChangeHP(m_parameter.attack);
-                }
-            }
-            collider.enabled = false;
-            m_prevRangeAttackFlag = false;
+            StartCoroutine(ResetColliderEnable());
         }
     }
 
@@ -568,7 +549,7 @@ public class Monster : MonoBehaviour
             }
             FarAttack(tag);
             yield return new WaitForSeconds(time);
-            FarAttack(tag);
+            //FarAttack(tag);
             yield break;
         }
     }

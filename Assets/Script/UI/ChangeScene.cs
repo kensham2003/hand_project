@@ -24,6 +24,7 @@ public class ChangeScene : MonoBehaviour
 
     public void OnPushButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        PoolManager.Instance.ReleaseAllGameObjects();
+        SceneManager.LoadScene(changeScene);
     }
 }

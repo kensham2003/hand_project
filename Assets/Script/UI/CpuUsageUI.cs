@@ -53,6 +53,7 @@ public class CpuUsageUI : MonoBehaviour
         m_text = GetComponent<TextMeshProUGUI>();
         m_text.text = ((int)m_cpuMain.Usage).ToString() + "%";
         m_rectTransform = GetComponent<RectTransform>();
+        CalculatePosY(0);
         m_originalPosition = m_rectTransform.anchoredPosition;
         m_oldUsage = m_cpuMain.Usage;
         m_cleared = false;
@@ -75,6 +76,7 @@ public class CpuUsageUI : MonoBehaviour
         else if(usage > 50){m_text.color = new Color(255f/255f, 165f/255f, 0);} //orange
         else if(usage > 25){m_text.color = Color.yellow;}
         else{m_text.color = Color.green;}
+        CalculatePosY(usage);
         m_rectTransform.anchoredPosition = m_originalPosition;
         if(usage >= m_cpuMain.GetGameOverPercentage()){m_cleared = true;}
     }
@@ -82,7 +84,7 @@ public class CpuUsageUI : MonoBehaviour
     private void Update() {
         ShakeText();
         if(m_cleared)return;
-        if(Time.frameCount % 3 == 0){
+        if(Time.frameCount % 60 == 0){
             float newUsage = m_cpuMain.Usage;
             if(Mathf.Abs(newUsage - m_oldUsage) > 0.005f){
                 Instantiate(m_changedTextPrefab, m_changedTextFolder).GetComponent<ChangedCpuUsage>().SetText(newUsage - m_oldUsage);
@@ -101,5 +103,15 @@ public class CpuUsageUI : MonoBehaviour
         else{
             m_rectTransform.anchoredPosition = m_originalPosition;
         }
+    }
+
+    private void CalculatePosY(float usage){
+        float usageMax100 = usage;
+        if(usageMax100 > 100f) usageMax100 = 100f;
+        Vector2 pos = m_rectTransform.anchoredPosition;
+        pos.y = -140 + 2.4f * usageMax100;
+        pos.x = -23f;
+        m_rectTransform.anchoredPosition = pos;
+        m_originalPosition = pos;
     }
 }

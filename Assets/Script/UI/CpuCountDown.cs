@@ -18,18 +18,28 @@ public class CpuCountDown : MonoBehaviour
     private TextMeshProUGUI m_countDownText;
 
     /// <summary>
+    /// カウントダウンのエフェクト画像
+    /// </summary>
+    [SerializeField]private Image m_countDownOverlay;
+
+    /// <summary>
     /// カウントダウンが始まったフラグ
     /// </summary>
     private bool m_countDown = false;
 
     private float m_initCountDownTime;
     private float m_countDownTime;
+
+    private Color m_overlayColor;
     // Start is called before the first frame update
     void Start()
     {
         m_countDownImage = GetComponent<Image>();
         m_countDownText = transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
         m_initCountDownTime = m_cpu.GetCotuntDownTime();
+        m_overlayColor = Color.red;
+        m_overlayColor.a = 0;
+        m_countDownOverlay.color = m_overlayColor;
     }
 
     // Update is called once per frame
@@ -42,6 +52,12 @@ public class CpuCountDown : MonoBehaviour
         else
         {
             Hidden();
+        }
+
+        if(m_overlayColor.a > 0){
+            m_overlayColor.a -= 0.5f/255f;
+            m_countDownOverlay.color = m_overlayColor;
+            //Debug.Log("a = " + m_overlayColor.a);
         }
 
         //0になったらゲームオーバー
@@ -86,5 +102,7 @@ public class CpuCountDown : MonoBehaviour
     private void CountDown()
     {
         m_countDownTime--;
+        m_overlayColor.a = (100f + 15*(10-m_countDownTime))/255f;
+        m_countDownOverlay.color = m_overlayColor;
     }
 }
