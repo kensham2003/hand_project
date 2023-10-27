@@ -52,7 +52,6 @@ public class RangeAttackZone : MonoBehaviour
 
                 if(m_tag == m.tag)
                 {
-                    Debug.Log("dmg : " + transform.parent.gameObject.name);
                     m.ChangeHP(m_damageValue);
                 }
             }

@@ -47,7 +47,7 @@ public class SelectUIArrows : MonoBehaviour
                 rightPos.x += m_moveAmount;
                 m_rightButtons.anchoredPosition = rightPos;
 
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
 
             m_rightButtons.anchoredPosition = Vector2.zero;
@@ -70,7 +70,7 @@ public class SelectUIArrows : MonoBehaviour
                 rightPos.x += m_moveAmount;
                 m_rightButtons.anchoredPosition = rightPos;
 
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
 
             m_leftButtons.anchoredPosition = Vector2.zero;
