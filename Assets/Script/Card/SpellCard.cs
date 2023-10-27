@@ -33,10 +33,12 @@ public class SpellCard : Card
         if(m_spawnFied && m_pressed)
         {
             m_image.enabled = false;
+            if(m_cpuUpText)m_cpuUpText.gameObject.active = false;
         }
         else
         {
             m_image.enabled = true;
+            if(m_cpuUpText)m_cpuUpText.gameObject.active = true;
         }
     }
 

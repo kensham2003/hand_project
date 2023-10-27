@@ -114,6 +114,12 @@ public class Card : MonoBehaviour
     /// </summary>
     protected GameObject m_TrashBox;
 
+
+    //CPU上昇テキスト
+    protected RectTransform m_cpuUpText;
+    
+    //初期位置
+    protected Vector3 m_InitCpuUpPos;
     protected virtual void Start()
     {
         m_initPos = GetComponent<RectTransform>().anchoredPosition;
@@ -123,7 +129,7 @@ public class Card : MonoBehaviour
         m_imageInitSize = GetComponent<RectTransform>().sizeDelta;
         m_imageHoverSize = GetComponent<RectTransform>().sizeDelta * 2;
         m_instantiateManager = GameObject.Find("Managers").GetComponent<InstantiateManager>();
-
+        
         //手札
         m_hands = GameObject.Find ("Hands");
         //カード情報UI
@@ -136,6 +142,13 @@ public class Card : MonoBehaviour
         m_canvas = FindObjectOfType<Canvas>();
         //ゴミ箱取得
         m_TrashBox = GameObject.Find("TrashBox");
+
+        
+        if(transform.childCount > 0)
+        {
+            m_cpuUpText = transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+            m_InitCpuUpPos = m_cpuUpText.anchoredPosition;
+        }
     }
 
     // Update is called once per frame
@@ -176,6 +189,11 @@ public class Card : MonoBehaviour
         {
            //画像の大きさ変更
            GetComponent<RectTransform>().sizeDelta = m_imageHoverSize;
+           if(m_cpuUpText != null)
+           {
+                m_cpuUpText.anchoredPosition = m_InitCpuUpPos * 2;
+                m_cpuUpText.localScale = new Vector3(2,2,2);
+           }
 
             if(Input.GetMouseButton(0))
             {
@@ -194,7 +212,12 @@ public class Card : MonoBehaviour
         {
             //画像の大きさ変更
             GetComponent<RectTransform>().sizeDelta = m_imageInitSize;
-            
+            if(m_cpuUpText != null)
+           {
+                m_cpuUpText.anchoredPosition = m_InitCpuUpPos;
+                m_cpuUpText.localScale = new Vector3(1,1,1);
+           }
+
             //一枚でもホバーしているか
             oneceHorvered = false;
             if(m_hands != null)
@@ -226,9 +249,8 @@ public class Card : MonoBehaviour
             float scale = (float)Screen.width / 1920;
             //Debug.Log(scale);
             GetComponent<RectTransform>().anchoredPosition = Input.mousePosition / scale;
-
-            
         }
+
     }
 
      //効果発動
@@ -387,12 +409,13 @@ public class Card : MonoBehaviour
 
         foreach(RaycastResult result in rayResult)
         {
-            
+
             //カード効果
             if(result.gameObject.name == "SpawnField")
             {
                 m_spawnFied = true;
                 hitObject = result.gameObject;
+    
                 break;
             }
 
